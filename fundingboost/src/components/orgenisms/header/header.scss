@@ -8,23 +8,23 @@
 .headerBar{
   background-color: white;
 }
-.navbarmenu{
+
+.navbarMenu{
   maxHeight: '100px';
 }
 
-.seachbar{
+.seachBar{
   display: flex;
   flex-direction: row;
   margin-left: auto;
 
 }
 
-
-
 .navbar-nav {
   display: flex;
   align-items: center; // 요소들을 수직으로 가운데 정렬합니다.
 }
+
 .gifthub-btn{
   border: none;
   cursor: default;
@@ -37,6 +37,7 @@
     height: 25px;
   }
 }
+
 .login-btn{
   margin-right: 10px;
 }
