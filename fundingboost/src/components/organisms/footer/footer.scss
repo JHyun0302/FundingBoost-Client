@@ -56,9 +56,15 @@ ul li a:hover {
   }
 }
 
-
 .container {
   width: 100%;
+}
+
+.icons-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 320px) {

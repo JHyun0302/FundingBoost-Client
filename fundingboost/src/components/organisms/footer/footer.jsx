@@ -28,7 +28,9 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <MDBBtn
+                <div>
+                    <div className="icons-row">
+                    <MDBBtn
                     rippleColor="dark"
                     color='link'
                     floating
@@ -63,7 +65,6 @@ const Footer = () => {
                 >
                     <MDBIcon fab className='fa-google' />
                 </MDBBtn>
-
                 <MDBBtn
                     rippleColor="dark"
                     color='link'
@@ -82,23 +83,13 @@ const Footer = () => {
                     floating
                     size="lg"
                     className='text-dark m-1'
-                    href='https://www.linkedin.com/'
-                    role='button'
-                >
-                    <MDBIcon fab className='fa-linkedin' />
-                </MDBBtn>
-
-                <MDBBtn
-                    rippleColor="dark"
-                    color='link'
-                    floating
-                    size="lg"
-                    className='text-dark m-1'
                     href='https://github.com/'
                     role='button'
                 >
                     <MDBIcon fab className='fa-github' />
                 </MDBBtn>
+                    </div>
+                </div>
                 <div className="col-md-12 text-center">
                     <p>&copy; 2024 KAKAO CLOUD SCHOOL DEV. All rights reserved.</p>
                 </div>
