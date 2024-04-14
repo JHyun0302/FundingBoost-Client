@@ -10,37 +10,43 @@
 }
 
 .navbarMenu{
-  maxHeight: 100px;
+  max-Height: 100px;
+
 }
 
-.seachBar{
+.searchBar{
   display: flex;
   flex-direction: row;
   margin-left: auto;
   flex-wrap: nowrap;
+  .form-control {
+    border-radius: 15px;
+  }
+  .gifthub-btn{
+    margin-left: 5px;
+    border: none;
+
+    background: none;
+
+    &:hover, &:active, &:focus{
+      background:none !important;
+      box-shadow:none !important;
+    }
+    img{
+      height: 25px;
+    }
+  }
 }
 
 .navbar-nav {
   display: flex;
   align-items: center; // 요소들을 수직으로 가운데 정렬합니다.
 }
-
-.gifthub-btn{
-  border: none;
-  cursor: default;
-  background: none;
-  &:hover, &:active, &:focus{
-    background:none !important;
-    box-shadow:none !important;
-  }
-  img{
-    height: 25px;
-  }
-}
 .loginLogout {
-  margin-right: 15px;
-}
-.login-btn{
-  border: none;
-  background:none;
+  margin-right: 25px;
+  margin-left: 5px;
+  .login-btn{
+    border: none;
+    background:none;
+  }
 }

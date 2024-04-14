@@ -5,7 +5,7 @@ import './header.scss';
 
 import  logoImg from '../../../assets/logo.svg';
 import gifthub from '../../../assets/gifthub.svg';
-//import { CiSearch } from "react-icons/ci";
+import { CiSearch } from "react-icons/ci";
 
 //헤더 네이게이션바
 function HeaderBar() {
@@ -35,7 +35,8 @@ function HeaderBar() {
                         <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
                         <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
                     </Nav>
-                    <Form className="seachBar">
+
+                    <Form className="searchBar">
                         <Form.Control type="search" placeholder="상품을 검색해보세요"
                                       className="me-2"
                                       aria-label="Search"
@@ -49,10 +50,8 @@ function HeaderBar() {
                             <NavDropdown title={nickName} id="logoutDropdown" drop="down">
                                 <NavDropdown.Item onClick={logout}>로그아웃</NavDropdown.Item>
                             </NavDropdown>
-
                         ) : (
                             <button onClick={login} className="login-btn" >로그인</button>
-
                         )}
                     </div>
 
