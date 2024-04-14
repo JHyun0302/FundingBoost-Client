@@ -10,14 +10,14 @@
 }
 
 .navbarMenu{
-  maxHeight: '100px';
+  maxHeight: 100px;
 }
 
 .seachBar{
   display: flex;
   flex-direction: row;
   margin-left: auto;
-
+  flex-wrap: nowrap;
 }
 
 .navbar-nav {
@@ -37,7 +37,10 @@
     height: 25px;
   }
 }
-
+.loginLogout {
+  margin-right: 15px;
+}
 .login-btn{
-  margin-right: 10px;
+  border: none;
+  background:none;
 }
