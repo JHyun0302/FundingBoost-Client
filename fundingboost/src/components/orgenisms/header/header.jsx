@@ -47,8 +47,8 @@ function HeaderBar() {
                     {/*로그인 여부에따른 변화*/}
                     <div  className="loginLogout">
                         {isLoggedIn ? (
-                            <NavDropdown title={nickName} id="logoutDropdown" drop="down">
-                                <NavDropdown.Item onClick={logout}>로그아웃</NavDropdown.Item>
+                            <NavDropdown title={nickName} id="logoutDropdown"  align="end">
+                                <NavDropdown.Item onClick={logout} className="dropdownItem">로그아웃</NavDropdown.Item>
                             </NavDropdown>
                         ) : (
                             <button onClick={login} className="login-btn" >로그인</button>
