@@ -1,17 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import  header from './components/orgenisms/header/header'
-import HeaderBar from "./components/orgenisms/header/header";
+import Footer from "./components/organisms/footer/footer";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import Footer from './components/organisms/footer/footer'
+import LoginPage from './components/pages/login-page/login-page'
+import HeaderBar from "./components/organisms/header/header";
 
 function App() {
     return (
         <div className="App">
-                <HeaderBar />
-                <Footer />
+            <LoginPage/>
         </div>
     );
 }

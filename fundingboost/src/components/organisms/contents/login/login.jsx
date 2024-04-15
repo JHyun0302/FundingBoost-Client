@@ -1,11 +1,14 @@
 import React from 'react';
 import {useState} from "react";
+import '../login/login.scss';
 import kakaologin from "../../../../assets/sociallogin/kakaologin.png";
 import naverlogin from "../../../../assets/sociallogin/naverlogin.png";
 import googlelogin from "../../../../assets/sociallogin/googlelogin.png";
 import applelogin from "../../../../assets/sociallogin/applelogin.png";
+import logo from "../../../../assets/logo.png";
+import loginmoji from "../../../../assets/loginmoji.svg"
 
-const Login = () => {
+const LoginPane = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
@@ -32,8 +35,12 @@ const Login = () => {
     };
 
     return (
+        <div className="social-login-pane">
             <div className="social-login-box">
                 <h1 className="centerAlign">LOGIN</h1>
+                <div className="loginmoji">
+                <img src={loginmoji} alt="loginmoji" />
+                </div>
                 <div className="login-box">
                     <br/>
                     <div className="input-box">
@@ -72,9 +79,10 @@ const Login = () => {
                     <img src={applelogin} alt="Apple Login" className="social-login-btn"/>
                 </a>
 
-                <h5 className="signup-text">아직 회원이 아니신가요? <button className="signup-btn"> 회원가입</button></h5>
+                <h5 className="signup-text">아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp; <button className="signup-btn">회원가입</button></h5>
             </div>
+        </div>
     );
 };
 
-export default Login;
+export default LoginPane;

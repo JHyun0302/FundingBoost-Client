@@ -9,7 +9,7 @@
 .social-login-box {
   width: 40%; /* 사각형 박스의 가로 크기를 설정합니다. 필요에 따라 조정하세요. */
   height: auto;
-  padding: 15px;
+  padding: 10px;
   border: 1px solid #ffffff;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,7 @@
 .centerAlign{
   font-family: 'Hanna', fantasy;
   font-size: 35px;
+  margin: 0px;
 }
 
 .login-box {
@@ -117,5 +118,5 @@
 }
 
 .loginmoji{
-  padding:10px;
+  padding:5px;
 }
