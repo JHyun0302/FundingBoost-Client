@@ -1,4 +1,4 @@
-//main 내 프로필 이미지
+// 프로필 이미지
 import React from 'react';
 import './ProfileImg.scss';
 

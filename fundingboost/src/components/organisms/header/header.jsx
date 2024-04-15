@@ -37,6 +37,7 @@ function HeaderBar() {
                     </Nav>
 
                     <Form className="searchBar">
+                        <CiSearch  style={{ fontSize: '40px' }} />
                         <Form.Control type="search" placeholder="상품을 검색해보세요"
                                       className="me-2"
                                       aria-label="Search"
