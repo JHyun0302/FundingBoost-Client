@@ -1,0 +1,10 @@
+.yellowBtn{
+  background-color: #FFC83B;
+  color: black;
+  box-shadow: none;
+
+  &:hover, &:active, &:focus{
+    background-color: #FFC83B !important;
+    box-shadow: none !important;
+  }
+}
