@@ -1,19 +1,20 @@
-.nonMember {
+.memberNoFunding {
   display: flex;
   align-items: center;
   background-color: #EBEBEB;
   height: 200px;
 
-  .nonMember-Profile {
+  .memberNoFunding-Profile {
     margin-right: 10px;
   }
 
-  .nonMember-text {
+  .memberNoFunding-text {
     color: black;
     text-align:left;
     margin-bottom: 10px;
     font-size:23px;
   }
+
 }
 
 
