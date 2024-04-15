@@ -6,7 +6,9 @@ import  './yellowBtn.scss';
 const LoginButton = ({ onClick }) => {
     return (
         <>
-            <Button href="/login" className="yellowBtn">로그인 바로가기</Button>{' '}
+            <div className="logingo-btn">
+                <Button href="/login" className="yellowBtn">로그인 바로가기</Button>{' '}
+            </div>
         </>
     );
 }

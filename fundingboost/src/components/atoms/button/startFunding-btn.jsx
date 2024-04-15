@@ -6,7 +6,9 @@ import  './yellowBtn.scss';
 const StartFundingButton = ({ onClick }) => {
     return (
         <>
-            <Button href="/gifthub" className="yellowBtn">펀딩 생성하기</Button>{' '}
+            <div className="startFunding-btn">
+                <Button href="/gifthub" className="yellowBtn">펀딩 생성하기</Button>{' '}
+            </div>
         </>
     );
 }

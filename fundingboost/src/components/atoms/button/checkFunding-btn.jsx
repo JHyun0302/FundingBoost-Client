@@ -6,8 +6,11 @@ import  './yellowBtn.scss';
 function CheckFundingButton({ onClick }){
     return (
         <>
-            <Button href="/mypage" className="yellowBtn">펀딩 바로가기</Button>{' '}
+            <div className="checkFunding-btn">
+                <Button href="/mypage" className="yellowBtn">펀딩 바로가기</Button>{' '}
+            </div>
         </>
+
     );
 }
 export default CheckFundingButton;
