@@ -1,7 +1,7 @@
 //메인페이지 '로그인하러가기' 버튼
 import React from 'react';
 import Button from "react-bootstrap/Button";
-import  './yellowBtn.scss';
+import  '../yellowBtn.scss';
 
 const LoginButton = ({ onClick }) => {
     return (

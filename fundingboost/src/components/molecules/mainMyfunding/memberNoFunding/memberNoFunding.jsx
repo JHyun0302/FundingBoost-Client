@@ -1,5 +1,5 @@
-import ProfileImg from "../../atoms/ProfileImg";
-import StartFundingButton  from "../../atoms/button/startFunding-btn";
+import ProfileImg from "../../../atoms/ProfileImg/ProfileImg";
+import StartFundingButton  from "../../../atoms/button/mainMyfuudingBtn/startFunding-btn";
 import React, { useState } from "react";
 
 import './memberNoFunding.scss'
@@ -11,7 +11,7 @@ function MainMyFunding() {
             <ProfileImg className="memberNoFunding-Profile" ></ProfileImg>
             <div className="memberNoFunding-item">
                 <div className="memberNoFunding-text">
-                    <b>님</b>.<br/> 펀딩의 주인공이 되어보세요.
+                    <b>{nickName}님</b>.<br/> 펀딩의 주인공이 되어보세요.
                 </div>
                 <StartFundingButton className={"nonMember-StartFundingBtn"} />
             </div>

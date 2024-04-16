@@ -1,5 +1,5 @@
-import ProfileImg from "../../atoms/ProfileImg";
-import  LoginButton from "../../atoms/button/logingo-btn";
+import ProfileImg from "../../../atoms/ProfileImg/ProfileImg";
+import  LoginButton from "../../../atoms/button/mainMyfuudingBtn/logingo-btn";
 import React from "react";
 import './nonMember.scss'
 function MainMyFunding() {

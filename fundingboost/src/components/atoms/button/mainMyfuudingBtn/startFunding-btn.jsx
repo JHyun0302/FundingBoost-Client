@@ -1,7 +1,7 @@
 //메인페인지 '펀딩 만들기' 버튼
 import React from 'react';
 import Button from "react-bootstrap/Button";
-import  './yellowBtn.scss';
+import  '../yellowBtn.scss';
 
 const StartFundingButton = ({ onClick }) => {
     return (

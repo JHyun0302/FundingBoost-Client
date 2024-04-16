@@ -4,7 +4,7 @@ import './gauge-bar.scss';
 function WithLabelExample() {
     const now = 60;
 
-    return <ProgressBar variant="success" now={now} label={`${now}%`} className="maim-Mygauge-bar" />;
+    return <ProgressBar variant="success" now={now} label={`${now}%`} className="gauge-bar" />;
 }
 
 export default WithLabelExample;
