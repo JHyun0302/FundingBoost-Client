@@ -45,6 +45,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: 'SUITE-Regular';
 }
 
 .error-message{
@@ -55,7 +56,7 @@
   left: 0;
 }
 
-.login-btn {
+.login-btn-grey {
   flex: 3;
   background-color: #9b9b9b;
   font-size: inherit;
@@ -65,13 +66,14 @@
   cursor: pointer;
   transition: background-color 0.3s;
   width : 100%;
+  font-family: 'SUITE-Regular';
 }
 
-.login-btn:hover {
+.login-btn-grey:hover {
   background-color: #666666;
 }
 
-.login-btn:active {
+.login-btn-grey:active {
   background-color: #3e3e3e;
 }
 
@@ -101,6 +103,7 @@
 .signup-text {
   font-size: 14px; /* 글자 크기를 설정합니다. 필요에 따라 조정하세요. */
   font-weight: normal; /* 기본 굵기로 설정합니다. */
+  font-family: 'SUITE-Regular';
 }
 
 .signup-btn{

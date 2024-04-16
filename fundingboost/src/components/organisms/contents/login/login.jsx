@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import '../login/login.scss';
 import kakaologin from "../../../../assets/sociallogin/kakaologin.png";
 import naverlogin from "../../../../assets/sociallogin/naverlogin.png";
@@ -9,6 +10,8 @@ import logo from "../../../../assets/logo.png";
 import loginmoji from "../../../../assets/loginmoji.svg"
 
 const LoginPane = () => {
+    // const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
@@ -64,7 +67,7 @@ const LoginPane = () => {
                         )}
                     </div>
                     <br/>
-                    <button className="login-btn" onClick={handleLogin}>로그인</button>
+                    <button className="login-btn-grey" onClick={handleLogin}>로그인</button>
                 </div>
                 <a href="https://kauth.kakao.com/oauth/authorize" className="social-login-link">
                     <img src={kakaologin} alt="Kakao Login" className="social-login-btn"/>
