@@ -23,3 +23,16 @@
   margin: 0;
   text-align: center;
 }
+
+.item-list-single{
+  display: flex;
+  //width: 20%;
+  padding:10px;
+  //border: 3px solid #bebebe;
+  flex-direction: row; /* 세로 방향으로 아이템을 배치 */
+  align-items: center;
+}
+
+.single-item{
+  padding:10px;
+}
