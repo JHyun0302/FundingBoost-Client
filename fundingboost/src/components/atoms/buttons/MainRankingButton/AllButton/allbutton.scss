@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 40px;
+  padding-bottom: 20px;
   margin-right: 20px;
   margin-left: 20px;
 }
@@ -14,11 +15,17 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  //background-color: #3e3e3e; /* 배경색 */
+  opacity: 90%;
+  //background-color: #ffc83b;
   background-color: white;
-  border: 3px solid #3e3e3e;
+  border: 3px solid #bebebe;
   margin: 10px; /* 버튼 간격 조정 */
   cursor: pointer;
+}
+
+.circle-button:hover{
+  opacity: 100%;
+  border: 3px solid #3e3e3e;
 }
 
 .circle-button:focus {
