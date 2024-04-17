@@ -35,8 +35,6 @@ const MainPane = () => {
                     <div className="single-item"><MainRankingItem products={product[0]}/></div>
                     <div className="single-item"><MainRankingItem products={product[1]}/></div>
                     <div className="single-item"><MainRankingItem products={product[0]}/></div>
-
-
                 </div>
             </div>
         </div>
