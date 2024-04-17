@@ -2,6 +2,9 @@
   width: 180px;
   align-content: space-between;
   padding-bottom: 60px;
+
+  text-decoration: none;
+
   .imgwrap {
     position: relative;
     .soldout {
@@ -27,7 +30,7 @@
     }
   }
   .title {
-    font-size: 10px;
+    font-size: 100px;
     font-weight: 400;
     padding-top: 10px;
     line-height: 1.2;
@@ -37,4 +40,19 @@
     padding-top: 10px;
     font-weight: 700;
   }
+}
+
+.img-wrapper{
+  height: max-content;
+  }
+
+.title-wrapper{
+  margin-top: 15px;
+  height: 60px;
+  color: #3e3e3e;
+}
+
+.price-wrapper{
+  height: max-content;
+  color: #6d6d6d;
 }
