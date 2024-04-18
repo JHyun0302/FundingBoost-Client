@@ -1,0 +1,21 @@
+.nonMember {
+  display: flex;
+  align-items: center;
+  background-color: #EBEBEB;
+  height: 210px;
+
+  .nonMember-Profile {
+    margin-right: 10px;
+  }
+
+  .nonMember-text {
+    color: black;
+    text-align:left;
+    margin-bottom: 10px;
+    font-size:23px;
+  }
+}
+
+
+
+

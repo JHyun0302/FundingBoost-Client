@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+.meberYesFundingstatus{
+  display: flex;
+}
+
+.memberYesFunding {
+  display: flex;
+  align-items: flex-start;
+  background-color: #EBEBEB;
+  height: 210px;
+  width: 100vw;
+
+  font-family:'SUITE-Regular';
+  .memberYesFunding-Profile {
+    margin-right: 10px;
+  }
+
+  .profile-img{
+    width: 40px;
+    margin-top: 10px;
+  }
+
+  .memberYesFunding-item {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 10px;
+    .memberYesFunding-text{
+      display: flex;
+      align-items: center;
+
+      .myfundingNickName{
+        font-size: 23px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    }
+
+    .memberFundingDday{
+      font-size: 23px;
+      font-weight: bold;
+      margin-left: 20px;
+      color: #FFACAC;
+
+    }
+    .memberFunding-RightItem{
+      display: contents;
+
+      .memberFundingProgress{
+        font-size: 23px;
+        font-weight: bold;
+        margin-left: auto;
+      }
+    }
+  }
+  .myFundingItemsContainer{
+    position: absolute;
+    left:0; right:0; margin-left:auto; margin-right:auto;
+
+
+  .myFundingItem {
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-top: 10px;
+    display: inline-block;
+    flex-direction: column;
+
+    .item-img {
+      width: 140px;
+      height: 110px;
+    }
+
+    .gauge-bar {
+      width: 150px;
+      height: 13px;
+      margin-top: 17px;
+    }
+  }
+
+
+  }
+}
+
+
+
+
+
+

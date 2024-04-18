@@ -1,0 +1,19 @@
+.yellowBtn{
+  background-color: #FFC83B;
+  color: black;
+  box-shadow: none;
+
+  &:hover, &:active, &:focus{
+    background-color: #FFC83B !important;
+    box-shadow: none !important;
+  }
+}
+.logingo-btn{
+  margin-left: -200px;
+}
+.startFunding-btn{
+  margin-left: -170px;
+}
+.checkFunding-btn{
+  margin-left: 10px;
+}
