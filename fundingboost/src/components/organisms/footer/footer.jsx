@@ -39,7 +39,7 @@ const Footer = () => {
                     href='https://www.facebook.com/'
                     role='button'
                 >
-                    <MDBIcon fab className='fab fa-facebook-f' />
+                    <MDBIcon fab icon='facebook-f'  />
                 </MDBBtn>
 
                 <MDBBtn
@@ -51,7 +51,7 @@ const Footer = () => {
                     href='https://twitter.com/'
                     role='button'
                 >
-                    <MDBIcon fab className='fa-twitter' />
+                    <MDBIcon fab icon='twitter'  />
                 </MDBBtn>
 
                 <MDBBtn
@@ -63,7 +63,7 @@ const Footer = () => {
                     href='https://www.google.com/'
                     role='button'
                 >
-                    <MDBIcon fab className='fa-google' />
+                    <MDBIcon fab icon='google'  />
                 </MDBBtn>
                 <MDBBtn
                     rippleColor="dark"
@@ -74,7 +74,7 @@ const Footer = () => {
                     href='https://www.instagram.com/'
                     role='button'
                 >
-                    <MDBIcon fab className='fa-instagram' />
+                    <MDBIcon fab icon='instagram' />
                 </MDBBtn>
 
                 <MDBBtn
@@ -86,7 +86,7 @@ const Footer = () => {
                     href='https://github.com/'
                     role='button'
                 >
-                    <MDBIcon fab className='fa-github' />
+                    <MDBIcon fab icon='github' />
                 </MDBBtn>
                     </div>
                 </div>
