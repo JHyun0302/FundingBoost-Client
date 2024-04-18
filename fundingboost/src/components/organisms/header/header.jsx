@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './header.scss';
 
@@ -9,6 +10,7 @@ import { CiSearch } from "react-icons/ci";
 
 //헤더 네이게이션바
 function HeaderBar() {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [nickName, setNickName] = useState('');
 
@@ -16,11 +18,18 @@ function HeaderBar() {
     const login = () => {
         setIsLoggedIn(true);
         setNickName('nick_name');
+        navigate('/login');
     };
+
     // 로그아웃
     const logout = () => {
         setIsLoggedIn(false);
         setNickName("");
+        navigate('/home');
+    };
+
+    const home  = () =>{
+        navigate('/main');
     };
 
     return (

@@ -1,0 +1,16 @@
+.most-funding-button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease; /* hover 시에 색상이 변하는 transition 효과 */
+  font-family: 'SUITE-Regular';
+  padding-right: 80px;
+  padding-left: 80px;
+
+  &:hover {
+    color: #007bff; /* hover 시에 색상 변경 */
+  }
+}
