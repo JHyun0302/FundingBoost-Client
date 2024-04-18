@@ -6,12 +6,13 @@ import HeaderBar from "../../orgenisms/header/header";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from '../../organisms/footer/footer'
-import LoginPane from '../../organisms/contents/login/login'
+import MainPane from '../../organisms/contents/main/main'
 
 function MainPage() {
     return (
-        <div className="Login-pages">
+        <div className="Main-pages">
             <HeaderBar />
+            <MainPane />
             <Footer />
         </div>
     );
