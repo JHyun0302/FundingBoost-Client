@@ -1,0 +1,46 @@
+.fundingMessageBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 175px;
+    width: 416px;
+}
+  
+.fundingMessageView {
+    height: 150px;
+    width: 58%;
+}
+  
+.fundingMessageTitle {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+  
+.fundingMessageTitleText1 {
+    color: #000000;
+}
+.fundingMessageTitleText2 {
+    color: #c1c1c1;
+}
+  
+.fundingMessage {
+    flex-direction: column;
+    background-color: #e5eeff;
+    border-radius: 10px;
+    height: 100px;
+    width: 100%;
+    padding: 18px 15px;
+    color: #000000;
+    font-size: 12px;
+    border:none;
+
+}
+.textCount{
+    font-size: 10px;
+    color: #5d5d5d;
+}
+@media (max-width: 768px) {
+    .fundingMessageView, .fundingMessageTitle, .fundingMessageOverlap {
+        flex-direction: column;
+    }
+}
