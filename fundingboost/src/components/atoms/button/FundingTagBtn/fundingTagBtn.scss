@@ -3,22 +3,21 @@
     flex-direction: column;
     justify-content: space-between;
     height: 74px;
-    width: 416px;
+
 }
   
 .fundingOpenBtnView {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   flex-wrap: wrap;
   height: 74px;
-  width: 100%;
+
 
 
   .fundingOpenTagBtn {
     display: flex;
-    justify-content: center;
-    height: 30px;
+    margin-top: 3%;
+    height:  40%;
   }
 
   .birthdayTagBtn, .graduateTagBtn, .etcTagBtn {
@@ -45,8 +44,6 @@
       font-size: 12px;
       font-weight: 500;
       white-space: nowrap;
-      width: 100%;
-
 }
 
 
