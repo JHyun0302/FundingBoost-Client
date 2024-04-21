@@ -10,7 +10,7 @@ export default function Router() {
                 <Route path="/" element={<Main />}/>
                 <Route path="/home" element={<Main />}/>
                 <Route path="/login" element={<Login />} />
-                <Route path="/gifthub" element={<Gifthub />} />
+                <Route path="/api/v1/gifthub" element={<Gifthub />} />
             </Routes>
         </BrowserRouter>
     );
