@@ -55,7 +55,7 @@ function HeaderBar() {
                                       aria-label="Search"
                         />
 
-                        <Button className="gifthub-btn" href="/gifthub"><img src={gifthub}/></Button>
+                        <Button className="gifthub-btn" href="api/v1/gifthub"><img src={gifthub}/></Button>
 
                     </Form>
 
