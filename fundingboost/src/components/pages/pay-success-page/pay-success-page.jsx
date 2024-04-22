@@ -6,16 +6,16 @@ import HeaderBar from "../../organisms/header/header";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from '../../organisms/footer/footer'
-import LoginPane from '../../organisms/contents/login/login'
+import PaySuccessPane from '../../organisms/contents/paysuccess/paysuccess'
 
-function LoginPage() {
+function PaySuccessPage() {
     return (
-        <div className="Login-pages">
+        <div className="Main-pages">
             <HeaderBar />
-            <LoginPane />
+            <PaySuccessPane />
             <Footer />
         </div>
     );
 }
 
-export default LoginPage;
+export default PaySuccessPage;
