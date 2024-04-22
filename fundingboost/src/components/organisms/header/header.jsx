@@ -46,11 +46,17 @@ function HeaderBar() {
                     </Nav>
 
                     <Form className="searchBar">
+
+
+                        <CiSearch  style={{ fontSize: '40px' }} />
+
                         <Form.Control type="search" placeholder="상품을 검색해보세요"
                                       className="me-2"
                                       aria-label="Search"
                         />
-                        <Button className="gifthub-btn" href="/api/v1/gifthub"><img src={gifthub}/></Button>
+
+                        <Button className="gifthub-btn" href="/gifthub"><img src={gifthub}/></Button>
+
                     </Form>
 
                     {/*로그인 여부에따른 변화*/}
