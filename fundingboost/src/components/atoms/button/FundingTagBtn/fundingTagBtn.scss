@@ -31,7 +31,7 @@
     border-color: black;
     width: 65px;
 
-    &:hover, &:active &:focus {
+    &:hover, &:active &:focus &:visited{
       background-color: #000000;
       color: white;
     }

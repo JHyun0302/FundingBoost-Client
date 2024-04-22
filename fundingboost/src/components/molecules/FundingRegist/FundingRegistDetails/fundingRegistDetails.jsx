@@ -3,12 +3,12 @@ import FundingRegistBtn from "../../../atoms/button/FundingRegistBtn/fundingRegi
 import FundingMessage from "../../../atoms/FundingMessage/fundingMessage";
 import FundingTagBtn from "../../../atoms/button/FundingTagBtn/fundingTagBtn";
 import Calender from "../../../atoms/Calendar/calender";
-import './fundingRegistRight.scss';
+import './fundingRegistDetails.scss';
 
-function FundingRegistRight(props) {
+function FundingRegistDetails(props) {
     return (
-        <div className="fundingRegistRight">
-            <div className="fundingRegistRightContent">
+        <div className="fundingRegistDetails">
+            <div className="fundingRegistDetailsContent">
                 <div>
                     <Calender/>
                     <FundingTagBtn/>
@@ -26,4 +26,4 @@ function FundingRegistRight(props) {
     );
 }
 
-export default FundingRegistRight;
+export default FundingRegistDetails;
