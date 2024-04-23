@@ -11,6 +11,11 @@
   padding-left: 80px;
 
   &:hover {
-    color: #007bff; /* hover 시에 색상 변경 */
+    color: #004182; /* hover 시에 색상 변경 */
+  }
+
+  &.selected {
+    color: #004182FF; /* 선택된 버튼의 색상 */
+    font-weight: bold;
   }
 }
