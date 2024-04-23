@@ -1,0 +1,21 @@
+.fundingRegist-Page {
+  display: flex;
+  flex-direction: column;
+  .fundingRegistContent{
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+  }
+  .funding {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+
+  .fundingRegist-Details{
+    position: fixed;
+
+  }
+
+}
