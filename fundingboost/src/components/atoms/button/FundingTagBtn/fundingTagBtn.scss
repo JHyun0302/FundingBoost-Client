@@ -11,13 +11,14 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 74px;
+  margin-top: 5px;
 
 
 
   .fundingOpenTagBtn {
     display: flex;
     margin-top: 3%;
-    height:  40%;
+    justify-content: space-between;
   }
 
   .birthdayTagBtn, .graduateTagBtn, .etcTagBtn {
@@ -26,10 +27,9 @@
     box-shadow: none;
     text-align: center;
     border-radius: 10px;
-    margin-right:23px;
-    font-size: 10px;
+    font-size: 13px;
     border-color: black;
-    width: 65px;
+    width: 95px;
 
     &:hover, &:active &:focus &:visited{
       background-color: #000000;
@@ -41,7 +41,7 @@
 .fundingOpenBtnTitle {
       justify-self: flex-start;
       color: #000000;
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 500;
       white-space: nowrap;
 }

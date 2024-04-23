@@ -28,7 +28,7 @@ function FundingRegistPage() {
         <div className="fundingRegist-Page">
             <HeaderBar />
             <div className="fundingRegistContent">
-                <FundingRegistItem className="fundingRegist-Item" />
+                <FundingRegistItem />
                 <FundingRegistDetails className="fundingRegist-Details"/>
             </div>
             <Footer/>

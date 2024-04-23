@@ -6,6 +6,7 @@ import FundingItem from "../../FundingItem/FundingRegistItem/FundingItem";
 import NonItemImg from "../../../../assets/nonItemImg.svg";
 
 
+
 const FundingRegistItem = () => {
 
     const[data,setData]=useState([]);
@@ -23,9 +24,10 @@ const FundingRegistItem = () => {
     }
     console.log(data);
     return (
-        <div className="FundingRegistItem">
+        <div className="FundingRegistItem" style={{ overflowY: 'scroll', height: '100vh', scrollbarWidth: 'none'}}  >
             {Array.isArray(data) && data.map((item, index) => (
                 <div key={index}>
+
                     <div className="itemContainer">
                         {/*<ItemImg/>*/}
                         <img src={item.itemImageUrl || NonItemImg} alt={item.itemName}  className="item-img"/>

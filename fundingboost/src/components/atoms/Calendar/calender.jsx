@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import './calender.scss';
 
 
 const Calender = () => {
@@ -18,21 +19,23 @@ const Calender = () => {
         return date.toLocaleDateString('en-US');
     };
     return (
-        <div>
-            <DatePicker
-                selected={startDate}
-                onChange={onChange}
-                minDate={today}
-                maxDate={endDate ? endDate : null}
-                startDate={today}
-                endDate={endDate}
 
-                selectsRange
-                inline
-                showDisabledMonthNavigation
-                isClearable={true}
-            />
+        <div >
+            <div className="calender">
+                <DatePicker
+                    selected={startDate}
+                    onChange={onChange}
+                    minDate={today}
+                    maxDate={endDate ? endDate : null}
+                    startDate={today}
+                    endDate={endDate}
 
+                    selectsRange
+                    inline
+                    showDisabledMonthNavigation
+                    isClearable={true}
+                />
+            </div>
 
             <div>
                 {/* 선택한 시작 날짜와 종료 날짜를 출력 */}

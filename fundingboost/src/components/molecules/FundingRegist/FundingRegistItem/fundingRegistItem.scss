@@ -1,17 +1,25 @@
 .FundingRegistItem {
     flex:1;
     height: 100vh;
-    margin: 2%;
+    margin-left: 2%;
+    margin-right: 3%;
+
+
+  .itemDetail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .itemContainer{
    display: flex;
+    margin-top: 3%;
     .item-img{
-      width: 25%;
+      width: 200px;
+      height: 200px;
       margin-left: 10px;
     }
-    .itemDerail{
-      display: flex;
-      flex-direction: column;
-    }
+
   }
 
   .title {
@@ -46,11 +54,10 @@
     color: #000000;
     font-size: 25px;
     font-weight:bolder;
-    text-align: right;
-    position: absolute;
-    left:770px;
-    margin-top:7%
-
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 10%;
   }
 }
 
