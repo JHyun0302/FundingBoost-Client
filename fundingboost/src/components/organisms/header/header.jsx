@@ -42,7 +42,7 @@ function HeaderBar() {
                         <Nav.Link href="/home" className="home-btn">홈</Nav.Link>
                         <Nav.Link href="/friendfunding" className="friend-btn">친구펀딩</Nav.Link>
                         <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
-                        <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
+                        <Nav.Link href="api/v1/mypage" className="my-btn">MY</Nav.Link>
                     </Nav>
 
                     <Form className="searchBar">
