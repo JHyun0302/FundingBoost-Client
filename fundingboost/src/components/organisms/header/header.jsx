@@ -35,14 +35,14 @@ function HeaderBar() {
     return (
         <Navbar expand="lg" className="headerBar">
             <Container fluid>
-                <Navbar.Brand href="/" className="navbar-logo"><img src ={logoImg}/></Navbar.Brand>
+                <Navbar.Brand href="home" className="navbar-logo"><img src ={logoImg}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="navbarMemu" navbarScroll>
                         <Nav.Link href="/home" className="home-btn">홈</Nav.Link>
                         <Nav.Link href="/friendfunding" className="friend-btn">친구펀딩</Nav.Link>
                         <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
-                        <Nav.Link href="api/v1/mypage" className="my-btn">MY</Nav.Link>
+                        <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
                     </Nav>
 
                     <Form className="searchBar">
@@ -55,7 +55,7 @@ function HeaderBar() {
                                       aria-label="Search"
                         />
 
-                        <Button className="gifthub-btn" href="api/v1/gifthub"><img src={gifthub}/></Button>
+                        <Button className="gifthub-btn" href="/gifthub"><img src={gifthub}/></Button>
 
                     </Form>
 

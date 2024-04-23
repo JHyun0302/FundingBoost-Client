@@ -1,0 +1,16 @@
+.mypage-total-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.mypage-left-pane-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.mypage-right-pane-containter{
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #3e3e3e;
+}
+
