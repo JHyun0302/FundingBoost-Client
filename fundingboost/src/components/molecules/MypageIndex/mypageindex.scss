@@ -1,0 +1,36 @@
+.MyPageIndexBox {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+}
+
+.MyPageIndexBox .line {
+  object-fit: cover;
+  background-color: #b1b1b1;
+  height: 2px;
+  width: 374px;
+}
+
+.MyPageIndexBox .MyPageIndexBoxText {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  padding:10px;
+  //font-weight: 200;
+  letter-spacing: 0;
+  text-align: center;
+  width: 370px;
+  border: none;
+  background-color: white;
+}
+
+.selected{
+  color: #6a6a6a;
+  font-weight: bold; // 선택된 버튼의 텍스트를 볼드체로 설정
+}
+
+@media (max-width: 320px) {
+  .MyPageIndexBox{
+    flex-wrap: wrap;
+  }
+}

@@ -35,7 +35,7 @@ function HeaderBar() {
     return (
         <Navbar expand="lg" className="headerBar">
             <Container fluid>
-                <Navbar.Brand href="/" className="navbar-logo"><img src ={logoImg}/></Navbar.Brand>
+                <Navbar.Brand href="home" className="navbar-logo"><img src ={logoImg}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="navbarMemu" navbarScroll>

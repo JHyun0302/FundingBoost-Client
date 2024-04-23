@@ -23,6 +23,14 @@
   cursor: pointer;
 }
 
+.circle-button.selected {
+  background-color: #3e3e3e;
+  border-color: #3e3e3e;
+  .button-label{
+  color: white;
+  }
+}
+
 .circle-button:hover{
   opacity: 100%;
   border: 3px solid #3e3e3e;
