@@ -21,8 +21,11 @@ function FundingRegistDetails(props) {
                     <FundingMessage selectedTag={selectedTag} />
                 </div>
                 <div>
-                    <FundingRegistBtn/>
+                    <div className="FundingRegist-registBtn">
+                        <FundingRegistBtn/>
+                    </div>
                 </div>
+
             </div>
         </div>
 

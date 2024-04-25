@@ -16,7 +16,7 @@ const Calender = () => {
     };
     const formatDate = (date) => {
         // 날짜를 원하는 형식으로 포맷
-        return date.toLocaleDateString('en-US');
+        return date.toLocaleDateString('ko-KR');
     };
     return (
 
@@ -39,8 +39,7 @@ const Calender = () => {
 
             <div>
                 {/* 선택한 시작 날짜와 종료 날짜를 출력 */}
-                <p>Start Date: {startDate && formatDate(startDate)}</p>
-                <p>End Date: {endDate && formatDate(endDate)}</p>
+                <p>시작일: {startDate && formatDate(startDate)} 종료일: {endDate && formatDate(endDate)}</p>
             </div>
         </div>
 

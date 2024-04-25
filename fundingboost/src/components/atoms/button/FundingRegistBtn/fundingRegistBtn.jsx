@@ -6,7 +6,7 @@ import  '../yellowBtn.scss';
 function FundingRegistButton({ onClick }){
     return (
         <>
-            <div className="checkFunding-btn">
+            <div className="FundingRegist-btn">
                 <Button href="/mypage" className="yellowBtn">펀딩 등록하기</Button>{' '}
             </div>
         </>
