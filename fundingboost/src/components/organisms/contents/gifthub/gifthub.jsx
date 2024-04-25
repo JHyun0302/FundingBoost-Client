@@ -7,7 +7,7 @@ import axios from 'axios';
 const GifthubPane = () => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [items, setItems] = useState(null); // 초기값을 null로 설정
+    const [items, setItems] = useState([]);
 
     const handleCheckboxChange = (item, isChecked) => {
         if (isChecked) {
@@ -19,27 +19,24 @@ const GifthubPane = () => {
         }
     };
 
+    const handleDeleteItem = (itemToDelete) => {
+        // 삭제 버튼 클릭 시 해당 아이템을 제거합니다.
+        setItems(items.filter(item => item !== itemToDelete));
+        setTotalPrice(totalPrice - itemToDelete.itemPrice);
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://e7d8-112-218-95-58.ngrok-free.app/api/v1/gifthub?memberId=1');
-                if (response.data.success) {
-                    setItems(response.data.data);
-                } else {
-                    console.error("Failed to fetch data");
-                }
+                const response = await axios.get('https://c38ecfe7-f20b-4190-91da-4b70e391ad80.mock.pstmn.io/api/v1/gifthub');
+                setItems(response.data);
             } catch (error) {
-                console.error("There was an error fetching the post data:", error);
+                console.error("Error fetching data:", error);
             }
         };
 
         fetchData();
     }, []);
-
-    // items가 null 또는 undefined인 경우, 아무것도 렌더링하지 않음
-    if (!items) {
-        return null;
-    }
 
     return (
         <div className="gifthub-page-container">
@@ -49,6 +46,7 @@ const GifthubPane = () => {
                         key={item.itemId}
                         item={item}
                         onCheckboxChange={handleCheckboxChange}
+                        onDelete={handleDeleteItem}
                     />
                 ))}
             </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./singlegifthubitem.scss";
 import Checkbox from "../../atoms/checkbox/checkbox";
+import axios from 'axios';
 
-export default function SingleGiftHubItem({ item, onCheckboxChange }) {
+export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) {
     const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
@@ -19,12 +20,26 @@ export default function SingleGiftHubItem({ item, onCheckboxChange }) {
         }
     };
 
-    const handleDeleteItem = () => {
-        // 삭제 버튼 클릭 시 해당 아이템을 부모 컴포넌트로 전달하여 삭제
-        // 선택된 아이템을 삭제하기 전에 체크 상태를 업데이트
+    const handleDeleteItem = async () => {
+        // // 삭제 버튼 클릭 시 해당 아이템을 삭제
+        // try {
+        //     // axios를 사용하여 DELETE 요청을 보냅니다.
+        //     const response = await axios.delete(`https://localhost:8080/api/v1/gifthub/${item.gifthubItemId}`, {
+        //         headers: {
+        //             Authorization: `Bearer <access_token>` // 여기에 실제 엑세스 토큰 insert
+        //         }
+        //     });
+        //
+        //     // 삭제 요청이 성공하면 onDelete 함수를 호출하여 아이템을 삭제합니다.
+        //     if (onDelete) {
+        //         onDelete(item);
+        //     }
+        // } catch (error) {
+        //     console.error("Error deleting item:", error);
+        // }
         setIsChecked(false);
-        if (onCheckboxChange) {
-            onCheckboxChange(item, false); // 아이템 삭제를 전달
+        if (onDelete) {
+            onDelete(item); // 아이템 삭제를 부모 컴포넌트로 전달
         }
     };
 
@@ -35,7 +50,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange }) {
                     isSelected={isChecked} // 체크박스의 상태를 전달
                     onCheckboxChange={handleCheckboxChange}
                 />
-                <div className="FundingRegistItem">
+                <div className="gifthub-fundingRegistItem">
                     <img src={item.itemImageUrl} alt={item.itemName} className="sequenceGroup" />
                     <div className="giftbox-item-container">
                         <div className="giftbox-item-title">
