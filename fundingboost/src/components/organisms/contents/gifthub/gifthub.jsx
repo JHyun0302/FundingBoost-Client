@@ -22,7 +22,11 @@ const GifthubPane = () => {
     const handleDeleteItem = (itemToDelete) => {
         // 삭제 버튼 클릭 시 해당 아이템을 제거합니다.
         setItems(items.filter(item => item !== itemToDelete));
-        setTotalPrice(totalPrice - itemToDelete.itemPrice);
+        // 선택된 아이템 중에서 삭제된 아이템인지 확인합니다.
+        const isDeletedItemSelected = selectedItems.includes(itemToDelete);
+        if (isDeletedItemSelected) {
+            setTotalPrice(totalPrice - itemToDelete.itemPrice);
+        }
     };
 
     useEffect(() => {
@@ -51,7 +55,7 @@ const GifthubPane = () => {
                 ))}
             </div>
             <div className="gifthub-result-pane">
-                <GifthubResult totalPrice={totalPrice} />
+                <GifthubResult totalPrice={totalPrice} selectedItems={selectedItems} />
             </div>
         </div>
     );
