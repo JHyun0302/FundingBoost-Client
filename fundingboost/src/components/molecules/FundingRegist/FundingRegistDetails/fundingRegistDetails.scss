@@ -1,4 +1,6 @@
+
 .fundingRegistDetails {
+  font-family: SUITE-Regular;
   width: 369.6px;
   border-left: 1px solid #6a6a6a;
   height: 100vh;
@@ -21,8 +23,13 @@
     .FundingRegist-btn {
       display: flex;
       align-items: center;
+      margin-bottom: 10%;
 
-      margin-bottom: 20%;
+      .yellowBtn{
+        width: 300px;
+        height: 45px;
+        text-align: center;
+      }
     }
   }
 }

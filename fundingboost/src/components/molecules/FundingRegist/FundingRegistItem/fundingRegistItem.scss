@@ -3,8 +3,12 @@
     height: 100vh;
     margin-left: 2%;
     margin-right: 3%;
+  font-family: SUITE-Regular;
 
+.FundingRegistItem-details :hover{
+  background-color: #f3f3f3;
 
+}
   .itemDetail {
     display: flex;
     flex-direction: column;
@@ -19,13 +23,13 @@
       height: 200px;
       margin-left: 10px;
     }
-
   }
 
   .title {
     color: #000000;
     font-size: 25px;
   }
+
 .optionDetail{
   display: flex;
   align-items: center;
@@ -35,7 +39,6 @@
     border-radius: 8px;
     height: 22px;
     width: 43px;
-
 
     .option {
       color: #ffffff;

@@ -26,8 +26,7 @@ const FundingRegistItem = () => {
     return (
         <div className="FundingRegistItem" style={{ overflowY: 'scroll', height: '100vh', scrollbarWidth: 'none'}}  >
             {Array.isArray(data) && data.map((item, index) => (
-                <div key={index}>
-
+                <div key={index} className="FundingRegistItem-details">
                     <div className="itemContainer">
                         {/*<ItemImg/>*/}
                         <img src={item.itemImageUrl || NonItemImg} alt={item.itemName}  className="item-img"/>
