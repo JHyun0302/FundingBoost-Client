@@ -21,7 +21,7 @@ export function GifthubPage() {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'https://8269110c-f6c2-4f52-bca9-81b9e076730c.mock.pstmn.io/api/v1/gifthub',
+                    // url: 'https://c38ecfe7-f20b-4190-91da-4b70e391ad80.mock.pstmn.io/api/v1/gifthub',
                     responseType: 'json'
                 })
 
@@ -41,7 +41,6 @@ export function GifthubPage() {
             }
         };
         loadData();
-        console.log(itemId, itemName, itemImageUrl, optionName, itemPrice, quantity);
     }, []);
 
     return (
