@@ -4,10 +4,13 @@ import Button from 'react-bootstrap/Button';
 import  '../yellowBtn.scss';
 
 function FundingRegistButton({ onClick }){
+    const handleClick = () => {
+        onClick();
+    };
     return (
         <>
             <div className="FundingRegist-btn">
-                <Button href="/mypage" className="yellowBtn">펀딩 등록하기</Button>{' '}
+                <Button href="/mypage" className="yellowBtn" onClick={handleClick}>펀딩 등록하기</Button>{' '}
             </div>
         </>
 

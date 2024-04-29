@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
 import './fundingMessage.scss';
 import axios from 'axios';
 
-export default function FundingMessage ({selectedTag}) {
+export default function FundingMessage ({selectedTag,onMessageChange}) {
 
     const [inputCount, setInputCount] = useState(0);
     const [inputText, setInputText] = useState("");
@@ -18,6 +18,7 @@ export default function FundingMessage ({selectedTag}) {
         const text = e.target.value;
         setInputText(text);
         setInputCount(text.length);
+        onMessageChange(text);
     };
 
     return (

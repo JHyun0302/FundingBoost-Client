@@ -10,17 +10,35 @@ import axios from "axios";
 import NonItemImg from "../../../assets/nonItemImg.svg";
 
 function FundingRegistPage(props) {
-    const { startDate, endDate } = props;
+    const [endDate, setEndDate] = useState(new Date());
+    const [tag, setTag] = useState("");
+    const [message, setMessage] = useState("");
+
     useEffect(() => {
-        console.log("Start Date:", startDate);
         console.log("End Date:", endDate);
-    }, [startDate, endDate]);
+        console.log("Tag:", tag);
+        console.log("Message:", message);
+    }, [endDate, tag, message]);
+
+    const handleSubmit = async () => {
+        try {
+
+            const response = await axios.post('https://a77443a3-ce83-4082-b661-bf8e8150b7da.mock.pstmn.io/funding', {
+                endDate: endDate,
+                tag: tag,
+                message: message
+            });
+            console.log('POST 결과:', response.data);
+        } catch (error) {
+            console.error('POST 에러:', error);
+        }
+    };
 
     return (
         <div className="fundingRegist-Page">
             <HeaderBar />
             <div className="fundingRegistContent">
-                <FundingRegistItem  />
+                <FundingRegistItem />
                 <FundingRegistDetails className="fundingRegist-Details"/>
             </div>
             <Footer/>

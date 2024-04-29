@@ -1,3 +1,6 @@
+.FundingRegistItem :hover{
+  background-color: #f1f1f1;
+}
 .FundingRegistItem {
     flex:1;
     height: 100vh;
@@ -24,17 +27,18 @@
       width: 200px;
       height: 200px;
       margin-left: 10px;
+      margin-right: 10px;
       box-shadow : 5px 5px 5px 5px red inset;
 
 
     }
+    align-items: center;
   }
 
   .title {
     color: #000000;
     font-size: 25px;
   }
-
 .optionDetail{
   display: flex;
   align-items: center;
@@ -44,6 +48,7 @@
     border-radius: 8px;
     height: 22px;
     width: 43px;
+
 
     .option {
       color: #ffffff;

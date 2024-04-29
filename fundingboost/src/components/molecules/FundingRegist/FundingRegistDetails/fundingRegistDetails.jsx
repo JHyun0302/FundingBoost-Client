@@ -9,12 +9,21 @@ import axios from "axios";
 function FundingRegistDetails(props) {
     const [selectedTag, setSelectedTag] = useState("");
     const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+    const [selectedMessage, setSelectedMessage] = useState("");
+
 
     const handleTagSelect = (tagText) => {
         setSelectedTag(tagText);
+        console.log('태그:', tagText);
     };
 
-    const handleDateChange = ({ startDate, endDate }) => {
+    const handleMessage = (messageText) => {
+        setSelectedMessage(messageText);
+        console.log('메시지:', messageText);
+    };
+
+
+    const handleEndDate = ({ startDate, endDate }) => {
         setSelectedEndDate(endDate);
 
     };
@@ -25,7 +34,7 @@ function FundingRegistDetails(props) {
         <div className="fundingRegistDetails">
             <div className="fundingRegistDetailsContent">
                 <div>
-                    <Calender onDateChange={handleDateChange} />
+                    <Calender onDateChange={handleEndDate} />
                     <FundingTagBtn onTagSelect={handleTagSelect}/>
                     <FundingMessage selectedTag={selectedTag} />
                 </div>
