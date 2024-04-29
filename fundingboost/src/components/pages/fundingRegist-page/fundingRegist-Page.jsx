@@ -9,13 +9,18 @@ import './fundingRegist-Page.scss';
 import axios from "axios";
 import NonItemImg from "../../../assets/nonItemImg.svg";
 
-function FundingRegistPage() {
+function FundingRegistPage(props) {
+    const { startDate, endDate } = props;
+    useEffect(() => {
+        console.log("Start Date:", startDate);
+        console.log("End Date:", endDate);
+    }, [startDate, endDate]);
 
     return (
         <div className="fundingRegist-Page">
             <HeaderBar />
             <div className="fundingRegistContent">
-                <FundingRegistItem />
+                <FundingRegistItem  />
                 <FundingRegistDetails className="fundingRegist-Details"/>
             </div>
             <Footer/>

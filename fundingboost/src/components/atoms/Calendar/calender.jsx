@@ -4,18 +4,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import './calender.scss';
 
 
-const Calender = () => {
+const Calender = ({ onDateChange }) => {
     const today = new Date();
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(null);
+    const defaultEndDate = new Date();
+    defaultEndDate.setDate(today.getDate() + 13);
+    const [startDate, setStartDate] = useState(today);
+    const [endDate, setEndDate] = useState(defaultEndDate);
 
     const onChange = (dates) => {
         const [start, end] = dates;
         setStartDate(start);
         setEndDate(end);
+        onDateChange({ startDate: start, endDate: end });
     };
+
+
     const formatDate = (date) => {
-        // 날짜를 원하는 형식으로 포맷
         return date.toLocaleDateString('ko-KR');
     };
     return (
