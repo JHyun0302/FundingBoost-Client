@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./singlegifthubitem.scss";
+import "./../../organisms/contents/gifthub/gifthub";
 import Checkbox from "../../atoms/checkbox/checkbox";
 import axios from 'axios';
 
@@ -16,6 +17,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
 
         // 부모 컴포넌트로 선택된 아이템과 체크 여부를 전달
         if (onCheckboxChange) {
+            // 변경된 체크 상태와 함께 아이템 정보를 전달
             onCheckboxChange(item, !isChecked); // 체크 상태를 반전해서 전달
         }
     };

@@ -35,7 +35,7 @@ const GifthubPane = () => {
                 const response = await axios.get('https://c38ecfe7-f20b-4190-91da-4b70e391ad80.mock.pstmn.io/api/v1/gifthub');
                 setItems(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error("Error fetching data(gifthub):", error);
             }
         };
 

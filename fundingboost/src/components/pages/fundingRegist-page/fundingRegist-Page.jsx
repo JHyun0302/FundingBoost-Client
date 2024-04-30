@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import HeaderBar from "../../organisms/header/header";
@@ -10,12 +11,16 @@ import axios from "axios";
 import NonItemImg from "../../../assets/nonItemImg.svg";
 
 function FundingRegistPage() {
+    const location = useLocation();
+    const { state: { selectedItems } } = location;
+
+    console.log(selectedItems);
 
     return (
         <div className="fundingRegist-Page">
             <HeaderBar />
             <div className="fundingRegistContent">
-                <FundingRegistItem />
+                <FundingRegistItem selectedItems={selectedItems} />
                 <FundingRegistDetails className="fundingRegist-Details"/>
             </div>
             <Footer/>

@@ -6,7 +6,8 @@ const GifthubResult = ({ totalPrice, selectedItems }) => {
     const navigate = useNavigate();
 
     const handleFunding = () => {
-        navigate('/funding', { state: { totalPrice, selectedItems } });
+        navigate('/funding', { state: { selectedItems } });
+        console.log(selectedItems);
     };
 
     return (
