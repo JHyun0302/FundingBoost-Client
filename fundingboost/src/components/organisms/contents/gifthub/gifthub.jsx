@@ -35,12 +35,22 @@ const GifthubPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // const response = await axios.get(`${mockServerUrl}/api/v1/gifthub`);
-                const response = await axios.get('https://b1e54d7c-e57f-4063-8c50-49c7f563474c.mock.pstmn.io/api/v1/gifthub')
-                setItems(response.data);
-                console.log(response.data);
+                const response = await axios({
+                    method: 'GET',
+                    url: 'https://f33a-112-218-95-58.ngrok-free.app/api/v1/gifthub?memberId=1',
+                    responseType: 'json',
+                    headers: ({
+                        "Access-Control-Allow-Credentials" : true,
+                        "ngrok-skip-browser-warning": true,
+                    }),
+                })
+                if (response.data.success) {
+                    setItems(response.data.data);
+                } else {
+                    console.error("Failed to fetch data");
+                }
             } catch (error) {
-                console.error("Error fetching data(gifthub):", error);
+                console.error("There was an error fetching the post data:", error);
             }
         };
 
