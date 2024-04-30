@@ -16,7 +16,7 @@ const FundingRegistItem = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("https://a77443a3-ce83-4082-b661-bf8e8150b7da.mock.pstmn.io/funding");
+            const response = await axios.get("https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/FundingRegist");
             setData(response.data.data);
         } catch (error) {
             console.error('Error data:', error);

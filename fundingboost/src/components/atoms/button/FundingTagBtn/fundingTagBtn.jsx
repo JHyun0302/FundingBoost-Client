@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button";
 
 
 export default function FundingTagBtn ({onTagSelect}) {
-    const [selectedTag, setSelectedTag] = React.useState(null);
+    const [selectedTag, setselectedTag] = React.useState(null);
 
     const handleTagClick = (tagText) => {
         onTagSelect(tagText);
-        setSelectedTag(tagText);
+        setselectedTag(tagText);
     };
 
     return (

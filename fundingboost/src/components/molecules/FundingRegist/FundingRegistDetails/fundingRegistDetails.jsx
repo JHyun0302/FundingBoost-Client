@@ -1,33 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FundingRegistBtn from "../../../atoms/button/FundingRegistBtn/fundingRegistBtn";
 import FundingMessage from "../../../atoms/FundingMessage/fundingMessage";
 import FundingTagBtn from "../../../atoms/button/FundingTagBtn/fundingTagBtn";
 import Calender from "../../../atoms/Calendar/calender";
 import './fundingRegistDetails.scss';
 import axios from "axios";
-
-function FundingRegistDetails(props) {
+function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange }) {
     const [selectedTag, setSelectedTag] = useState("");
     const [selectedEndDate, setSelectedEndDate] = useState(new Date());
     const [selectedMessage, setSelectedMessage] = useState("");
 
-
     const handleTagSelect = (tagText) => {
         setSelectedTag(tagText);
-        console.log('태그:', tagText);
+        onTagSelect(tagText);
     };
 
-    const handleMessage = (messageText) => {
+    const handleMessageChange = (messageText) => {
         setSelectedMessage(messageText);
-        console.log('메시지:', messageText);
+        onMessageChange(messageText);
     };
 
-
-    const handleEndDate = ({ startDate, endDate }) => {
+    const handleEndDate = ({endDate}) => {
         setSelectedEndDate(endDate);
-
+        onDateChange(endDate);
     };
-    console.log('종료:', selectedEndDate);
 
 
     return (
@@ -36,12 +32,7 @@ function FundingRegistDetails(props) {
                 <div>
                     <Calender onDateChange={handleEndDate} />
                     <FundingTagBtn onTagSelect={handleTagSelect}/>
-                    <FundingMessage selectedTag={selectedTag} />
-                </div>
-                <div>
-                    <div className="FundingRegist-registBtn">
-                        <FundingRegistBtn/>
-                    </div>
+                    <FundingMessage selectedTag={selectedTag} onMessageChange={handleMessageChange}/>
                 </div>
             </div>
         </div>

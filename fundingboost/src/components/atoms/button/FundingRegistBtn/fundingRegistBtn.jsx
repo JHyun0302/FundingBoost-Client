@@ -1,16 +1,21 @@
 //펀딩 바로가기 버튼
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 import  '../yellowBtn.scss';
 
 function FundingRegistButton({ onClick }){
+    // 페이지 이동
+    const navigate = useNavigate();
     const handleClick = () => {
         onClick();
+        navigate('/mypage');
     };
     return (
         <>
             <div className="FundingRegist-btn">
-                <Button href="/mypage" className="yellowBtn" onClick={handleClick}>펀딩 등록하기</Button>{' '}
+                <Button className="yellowBtn" onClick={ handleClick }>펀딩 등록하기</Button>
+
             </div>
         </>
 

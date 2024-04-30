@@ -2,8 +2,8 @@
 .fundingRegistDetails {
   font-family: SUITE-Regular;
   width: 369.6px;
-  border-left: 1px solid #6a6a6a;
   height: 100vh;
+
 
   .fundingRegistDetailsContent {
     display: flex;
@@ -16,20 +16,5 @@
     justify-content: space-between;
     width :100%;
   }
-  .FundingRegist-registBtn{
-    display: flex;
-    justify-content: flex-end;
 
-    .FundingRegist-btn {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10%;
-
-      .yellowBtn{
-        width: 300px;
-        height: 45px;
-        text-align: center;
-      }
-    }
-  }
 }

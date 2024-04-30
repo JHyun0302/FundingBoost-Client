@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react';
+// FundingRegistPage.js
+
+import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import HeaderBar from "../../organisms/header/header";
@@ -8,25 +10,40 @@ import FundingRegistItem from "../../molecules/FundingRegist/FundingRegistItem/f
 import './fundingRegist-Page.scss';
 import axios from "axios";
 import NonItemImg from "../../../assets/nonItemImg.svg";
+import FundingRegistBtn from "../../atoms/button/FundingRegistBtn/fundingRegistBtn";
 
 function FundingRegistPage(props) {
-    const [endDate, setEndDate] = useState(new Date());
+    const [deadline, setDeadline] = useState(new Date());
     const [tag, setTag] = useState("");
-    const [message, setMessage] = useState("");
+    const [fundingMessage, setFundingMessage] = useState("");
 
+    //태그
+    const Tag = (tagText) => {
+        setTag(tagText);
+    };
+
+    //메시지
+    const FundingMessage = (messageText) => {
+        setFundingMessage(messageText);
+    };
+    //날짜
+    const Deadline = (date) => {
+        setDeadline(date);
+    };
     useEffect(() => {
-        console.log("End Date:", endDate);
+        console.log("deadline:", deadline);
         console.log("Tag:", tag);
-        console.log("Message:", message);
-    }, [endDate, tag, message]);
+        console.log("fundingMessage:", fundingMessage);
+    }, [deadline, tag, fundingMessage]);
 
+
+    // 종료일 ,메시지, 태그
     const handleSubmit = async () => {
         try {
-
-            const response = await axios.post('https://a77443a3-ce83-4082-b661-bf8e8150b7da.mock.pstmn.io/funding', {
-                endDate: endDate,
-                tag: tag,
-                message: message
+            const response = await axios.post('https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/FundingRegist', {
+                fundingMessage: fundingMessage,
+                deadline: deadline,
+                tag: tag
             });
             console.log('POST 결과:', response.data);
         } catch (error) {
@@ -38,8 +55,13 @@ function FundingRegistPage(props) {
         <div className="fundingRegist-Page">
             <HeaderBar />
             <div className="fundingRegistContent">
-                <FundingRegistItem />
-                <FundingRegistDetails className="fundingRegist-Details"/>
+                <FundingRegistItem/>
+                <div className="fundingRegist-Details">
+                    <FundingRegistDetails onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />
+                    <div className="FundingRegist-registBtn">
+                        <FundingRegistBtn onClick={handleSubmit}/>
+                    </div>
+                </div>
             </div>
             <Footer/>
         </div>
