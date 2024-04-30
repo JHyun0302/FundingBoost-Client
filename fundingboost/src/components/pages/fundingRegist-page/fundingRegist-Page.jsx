@@ -26,9 +26,19 @@ function FundingRegistPage(props) {
     const FundingMessage = (messageText) => {
         setFundingMessage(messageText);
     };
+
+    //deadline yyyy-mm-dd 형태로 전송
+    const FundingDeadLine = (date) => {
+        if (date && date.toISOString) {
+            return date.toISOString().split('T')[0];
+        } else {
+            return "";
+        }
+    };
     //날짜
     const Deadline = (date) => {
-        setDeadline(date);
+        const fundingDeadLine = FundingDeadLine(date);
+        setDeadline(fundingDeadLine);
     };
     useEffect(() => {
         console.log("deadline:", deadline);
