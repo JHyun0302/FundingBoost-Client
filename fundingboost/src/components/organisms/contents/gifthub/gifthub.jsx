@@ -34,6 +34,7 @@ const GifthubPane = () => {
             try {
                 const response = await axios.get('https://c38ecfe7-f20b-4190-91da-4b70e391ad80.mock.pstmn.io/api/v1/gifthub');
                 setItems(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching data(gifthub):", error);
             }
@@ -42,10 +43,10 @@ const GifthubPane = () => {
         fetchData();
     }, []);
 
-    return (
+    return(
         <div className="gifthub-page-container">
             <div className="gifthub-item-pane-container">
-                {items.map(item => (
+                {Array.isArray(items) && items.map(item => (
                     <SingleGiftHubItem
                         key={item.itemId}
                         item={item}
@@ -59,6 +60,7 @@ const GifthubPane = () => {
             </div>
         </div>
     );
+
 };
 
 export default GifthubPane;
