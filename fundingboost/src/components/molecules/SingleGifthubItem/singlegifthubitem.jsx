@@ -3,9 +3,11 @@ import "./singlegifthubitem.scss";
 import "./../../organisms/contents/gifthub/gifthub";
 import Checkbox from "../../atoms/checkbox/checkbox";
 import axios from 'axios';
+import GifthubOptionCount from '../Modal/GifthubOptionCount/gifthuboptioncount'; // 변경
 
 export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) {
     const [isChecked, setIsChecked] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         // 컴포넌트가 마운트될 때 아이템의 초기 체크 상태 설정
@@ -45,6 +47,10 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
         }
     };
 
+    const handleShowModal = () => {
+        setShowModal(true);
+    };
+
     return (
         <div className="giftbox-total-container">
             <div className="checkbox-item-container">
@@ -68,7 +74,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
                         <div className="quantity-container">
                             <span className="quantity-text">수량 </span>
                             <span className="quantity-number">{item.quantity}</span>
-                            <button className="change-button">변경</button>
+                            <GifthubOptionCount />
                         </div>
                         <div className="giftbox-item-price">{item.itemPrice} 원</div>
                     </div>

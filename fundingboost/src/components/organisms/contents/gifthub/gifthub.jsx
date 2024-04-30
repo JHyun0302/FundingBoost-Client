@@ -9,6 +9,9 @@ const GifthubPane = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [items, setItems] = useState([]);
 
+    // const mockServerUrl = process.env.REACT_APP_MOCK_SERVER_URL;
+    // console.log(mockServerUrl);
+
     const handleCheckboxChange = (item, isChecked) => {
         if (isChecked) {
             setSelectedItems([...selectedItems, item]);
@@ -32,7 +35,8 @@ const GifthubPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://c38ecfe7-f20b-4190-91da-4b70e391ad80.mock.pstmn.io/api/v1/gifthub');
+                // const response = await axios.get(`${mockServerUrl}/api/v1/gifthub`);
+                const response = await axios.get('https://b1e54d7c-e57f-4063-8c50-49c7f563474c.mock.pstmn.io/api/v1/gifthub')
                 setItems(response.data);
                 console.log(response.data);
             } catch (error) {
