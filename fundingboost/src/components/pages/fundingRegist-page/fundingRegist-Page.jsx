@@ -37,13 +37,23 @@ function FundingRegistPage(props) {
     }, [deadline, tag, fundingMessage]);
 
 
-    // 종료일 ,메시지, 태그
+    // 종료일 ,메시지, 태그 정보 전송
     const handleSubmit = async () => {
         try {
+
+            let fundingTag = tag;
+            if (tag === "펀딩 해주세요🎁") {
+                fundingTag = "기타";
+            } else if (tag === "생일이에요🎉 축하해주세요") {
+                fundingTag = "생일";
+            } else if (tag === "졸업했어요🧑‍🎓 축하해주세요") {
+                fundingTag = "졸업";
+            }
+
             const response = await axios.post('https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/FundingRegist', {
                 fundingMessage: fundingMessage,
                 deadline: deadline,
-                tag: tag
+                tag: fundingTag
             });
             console.log('POST 결과:', response.data);
         } catch (error) {
