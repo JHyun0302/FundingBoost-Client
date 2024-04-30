@@ -13,7 +13,6 @@ const Calender = ({ onDateChange }) => {
 
     const onChange = (dates) => {
         const [start, end] = dates;
-        setStartDate(start);
         setEndDate(end);
         onDateChange({ startDate: start, endDate: end });
     };
