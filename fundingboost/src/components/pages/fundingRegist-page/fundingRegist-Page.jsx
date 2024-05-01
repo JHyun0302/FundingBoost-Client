@@ -37,9 +37,10 @@ function FundingRegistPage(props) {
     };
     //날짜
     const Deadline = (date) => {
-        const fundingDeadLine = FundingDeadLine(date);
-        setDeadline(fundingDeadLine);
+        const fundingDeadline = FundingDeadLine(date);
+        setDeadline(fundingDeadline);
     };
+
     useEffect(() => {
         console.log("deadline:", deadline);
         console.log("Tag:", tag);
@@ -50,7 +51,6 @@ function FundingRegistPage(props) {
     // 종료일 ,메시지, 태그 정보 전송
     const handleSubmit = async () => {
         try {
-
             let fundingTag = tag;
             if (tag === "펀딩 해주세요🎁") {
                 fundingTag = "기타";
@@ -60,10 +60,17 @@ function FundingRegistPage(props) {
                 fundingTag = "졸업";
             }
 
-            const response = await axios.post('https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/FundingRegist', {
+            const response = await axios.post('https://70af-112-218-95-58.ngrok-free.app/api/v1/funding', {
                 fundingMessage: fundingMessage,
                 deadline: deadline,
-                tag: fundingTag
+                tag: fundingTag,
+
+                responseType: 'json',
+                headers: ({
+                    "Access-Control-Allow-Credentials" : true,
+                    "ngrok-skip-browser-warning": true,
+                })
+
             });
             console.log('POST 결과:', response.data);
         } catch (error) {
