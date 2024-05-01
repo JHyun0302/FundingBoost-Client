@@ -24,10 +24,17 @@
   background-color: white;
 }
 
-.selected{
-  color: #6a6a6a;
-  font-weight: bold; // 선택된 버튼의 텍스트를 볼드체로 설정
+//.MyPageIndexBox .MyPageIndexBoxText.selected {
+//  color: #6a6a6a;
+//  font-weight: bold;
+//}
+
+
+.MyPageIndexBoxText.selected {
+  font-weight: bold !important;
 }
+
+
 
 @media (max-width: 320px) {
   .MyPageIndexBox{
