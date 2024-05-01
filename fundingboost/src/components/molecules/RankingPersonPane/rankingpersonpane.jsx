@@ -12,7 +12,7 @@ const RankingPersonPane = () => {
     };
 
     return (
-        <div className="ranking-pane-container">
+        <div className={`ranking-pane-container ${selectedButton}`}>
             <AllButton
                 isSelected={selectedButton === 'all'} // 현재 선택된 버튼인지 여부를 isSelected prop으로 전달
                 onClick={() => handleButtonClick('all')} // 클릭 이벤트 핸들러를 전달

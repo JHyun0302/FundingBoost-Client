@@ -1,6 +1,6 @@
 // FundingRegistPage.js
-
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import HeaderBar from "../../organisms/header/header";
@@ -16,7 +16,10 @@ function FundingRegistPage(props) {
     const [deadline, setDeadline] = useState(new Date());
     const [tag, setTag] = useState("");
     const [fundingMessage, setFundingMessage] = useState("");
+    const location = useLocation();
+    const { state: { selectedItems } } = location;
 
+    console.log(selectedItems);
     //태그
     const Tag = (tagText) => {
         setTag(tagText);
@@ -78,17 +81,20 @@ function FundingRegistPage(props) {
         }
     };
 
+
     return (
         <div className="fundingRegist-Page">
             <HeaderBar />
             <div className="fundingRegistContent">
-                <FundingRegistItem/>
+
+                <FundingRegistItem selectedItems={selectedItems}/>
                 <div className="fundingRegist-Details">
-                    <FundingRegistDetails onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />
+                    <FundingRegistDetails className="fundingRegist-Details" onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />
                     <div className="FundingRegist-registBtn">
                         <FundingRegistBtn onClick={handleSubmit}/>
                     </div>
                 </div>
+
             </div>
             <Footer/>
         </div>

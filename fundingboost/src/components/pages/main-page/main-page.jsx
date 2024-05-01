@@ -8,6 +8,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from '../../organisms/footer/footer'
 import MainPane from '../../organisms/contents/main/main'
 import MemberYesFunding from "../../molecules/mainMyfunding/memberYesFunding/memberYesFunding";
+
 function MainPage() {
     return (
         <div className="Main-pages">
