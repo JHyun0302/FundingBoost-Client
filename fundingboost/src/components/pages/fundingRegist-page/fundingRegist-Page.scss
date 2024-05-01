@@ -12,10 +12,29 @@
     width: 100%;
   }
 
+.fundingRegist-Details{
 
-  .fundingRegist-Details{
-    position: fixed;
+  border-left: 1px solid #6a6a6a;
 
+  .FundingRegist-registBtn{
+    display: flex;
+    justify-content: center;
+
+
+    .FundingRegist-btn {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5%;
+
+      .yellowBtn{
+        width: 300px;
+        height: 45px;
+        text-align: center;
+      }
+    }
   }
+
+}
+
 
 }

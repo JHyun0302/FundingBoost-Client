@@ -29,4 +29,5 @@ const FundingRegistItem = ({ selectedItems }) => {
     );
 };
 
+
 export default FundingRegistItem;

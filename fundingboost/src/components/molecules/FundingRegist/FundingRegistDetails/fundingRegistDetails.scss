@@ -1,22 +1,20 @@
+
 .fundingRegistDetails {
+  font-family: SUITE-Regular;
   width: 369.6px;
-  border-left: 1px solid #6a6a6a;
   height: 100vh;
+
 
   .fundingRegistDetailsContent {
     display: flex;
-    justify-content: center;
-
-    margin-top: 10px;
+    flex-direction: column;
+    height: 100vh;
+    margin-top: 15px;
     //float: right;
     //margin-right: 10%
     align-items: center;
-
-  }
-  .checkFunding-btn{
-    position: absolute;
-    right: 50px;
-    bottom: 20px;
+    justify-content: space-between;
+    width :100%;
   }
 
 }

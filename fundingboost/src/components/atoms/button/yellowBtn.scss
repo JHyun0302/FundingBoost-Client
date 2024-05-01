@@ -2,7 +2,7 @@
   background-color: #FFC83B;
   color: black;
   box-shadow: none;
-  border-color: black;
+  border: none;
 
   &:hover, &:active, &:focus{
     background-color: #FFC83B !important;
@@ -14,4 +14,7 @@
 }
 .startFunding-btn{
   margin-left: -170px;
+}
+.checkFunding-btn{
+  margin-left: 10px;
 }

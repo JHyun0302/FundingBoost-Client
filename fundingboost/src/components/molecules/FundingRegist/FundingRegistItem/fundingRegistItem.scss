@@ -1,25 +1,38 @@
+.FundingRegistItem :hover{
+  background-color: #f1f1f1;
+}
 .FundingRegistItem {
     flex:1;
     height: 100vh;
     margin-left: 2%;
     margin-right: 3%;
+  font-family: SUITE-Regular;
 
+.FundingRegistItem-details :hover{
+  background-color: #f3f3f3;
 
+}
   .itemDetail {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-left: 10px;
   }
 
   .itemContainer{
    display: flex;
     margin-top: 3%;
+    align-items: center;
     .item-img{
       width: 200px;
       height: 200px;
       margin-left: 10px;
-    }
+      margin-right: 10px;
+      box-shadow : 5px 5px 5px 5px red inset;
 
+
+    }
+    align-items: center;
   }
 
   .title {

@@ -4,19 +4,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import './calender.scss';
 
 
-const Calender = () => {
+const Calender = ({ onDateChange }) => {
     const today = new Date();
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(null);
+    const defaultEndDate = new Date();
+    defaultEndDate.setDate(today.getDate() + 13);
+    const [startDate, setStartDate] = useState(today);
+    const [endDate, setEndDate] = useState(defaultEndDate);
 
     const onChange = (dates) => {
         const [start, end] = dates;
-        setStartDate(start);
         setEndDate(end);
+        onDateChange({ startDate: start, endDate: end });
     };
+
+
     const formatDate = (date) => {
-        // 날짜를 원하는 형식으로 포맷
-        return date.toLocaleDateString('en-US');
+        return date.toLocaleDateString('ko-KR');
     };
     return (
 
@@ -39,8 +42,7 @@ const Calender = () => {
 
             <div>
                 {/* 선택한 시작 날짜와 종료 날짜를 출력 */}
-                <p>Start Date: {startDate && formatDate(startDate)}</p>
-                <p>End Date: {endDate && formatDate(endDate)}</p>
+                <p>시작일: {startDate && formatDate(startDate)} 종료일: {endDate && formatDate(endDate)}</p>
             </div>
         </div>
 
