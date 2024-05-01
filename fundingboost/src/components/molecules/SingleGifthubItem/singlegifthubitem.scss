@@ -8,11 +8,52 @@
   padding: 10px;
 }
 
+.gifthub-itemDetail{
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 10px;
+  margin-bottom:50px;
+}
+
+.gifthub-title{
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.2;
+
+}
+
+.gifthub-optionDetail{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  .gifthub-optionGroup {
+    background-color: #d9d9d9;
+    border-radius: 8px;
+    height: 22px;
+    width: 43px;
+
+
+    .gifthub-option {
+      color: #ffffff;
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+  .gifthub-optionName {
+    color: #909090;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+}
+
 .checkbox-container {
   margin-right: 20px; /* 체크박스와 이미지 사이 여백 조절 */
 }
 
-.FundingRegistItem {
+.gifthub-fundingRegistItem {
   position: relative;
   height: 100%;
   left: 0;
@@ -53,6 +94,8 @@
     line-height: normal;
     position: absolute;
     top: 15px;
+    white-space: normal;
+    width: 750px;
   }
 
   .giftbox-item-optionGroup {
@@ -60,7 +103,6 @@
     border-radius: 8px;
     height: 20px;
     position: absolute;
-    top: 58px;
     width: 40px;
 
     .giftbox-item-option {
@@ -87,10 +129,10 @@
     font-size: 13px;
     font-weight: 500;
     margin-left: 50px;
+    width: auto;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 61px;
   }
 
   .giftbox-item-price {
@@ -98,7 +140,7 @@
     font-family: SUITE-Regular;
     font-size: 25px;
     font-weight: 400;
-    left: 900px;
+    right: 5px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
@@ -117,7 +159,7 @@
   margin-right: 20px;
 }
 
-.FundingRegistItem {
+.gifthub-fundingRegistItem {
   display: flex;
   align-items: center;
 }
@@ -147,8 +189,8 @@
   font-family: SUITE-Regular;
   font-size: 15px;
   font-weight: 500;
-  right: 0px;
-  top: 10px;
+  right: 5px;
+  top: 15px;
   line-height: normal;
   position: absolute;
 }
@@ -160,12 +202,11 @@
 }
 
 .quantity-container {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
-  margin-top: 10px; /* 옵션과 수량 사이에 여백을 만들기 위해 마진 추가 */
-  left: 30px;
-  top: 20px;
+  margin-top: 10px;
+  bottom: 0px;
 }
 
 .quantity-text {
