@@ -18,8 +18,10 @@ function FundingRegistPage(props) {
     const [fundingMessage, setFundingMessage] = useState("");
     const location = useLocation();
     const { state: { selectedItems } } = location;
-
     console.log(selectedItems);
+
+    //상품id
+    const itemIdList = selectedItems.map(item => item.itemId);
     //태그
     const Tag = (tagText) => {
         setTag(tagText);
@@ -38,22 +40,25 @@ function FundingRegistPage(props) {
             return "";
         }
     };
+
     //날짜
     const Deadline = (date) => {
         const fundingDeadline = FundingDeadLine(date);
         setDeadline(fundingDeadline);
     };
 
-    useEffect(() => {
-        console.log("deadline:", deadline);
-        console.log("Tag:", tag);
-        console.log("fundingMessage:", fundingMessage);
-    }, [deadline, tag, fundingMessage]);
+    // useEffect(() => {
+    //     console.log("deadline:", deadline);
+    //     console.log("Tag:", tag);
+    //     console.log("fundingMessage:", fundingMessage);
+    //     console.log("itemIdList:", itemIdList);
+    // }, [deadline, tag, fundingMessage,itemIdList]);
 
 
     // 종료일 ,메시지, 태그 정보 전송
     const handleSubmit = async () => {
         try {
+            const url = 'https://70af-112-218-95-58.ngrok-free.app/api/v1/funding';
             let fundingTag = tag;
             if (tag === "펀딩 해주세요🎁") {
                 fundingTag = "기타";
@@ -62,19 +67,27 @@ function FundingRegistPage(props) {
             } else if (tag === "졸업했어요🧑‍🎓 축하해주세요") {
                 fundingTag = "졸업";
             }
-
-            const response = await axios.post('https://70af-112-218-95-58.ngrok-free.app/api/v1/funding', {
+            const data = JSON.stringify({
+                itemIdList:itemIdList,
                 fundingMessage: fundingMessage,
                 deadline: deadline,
-                tag: fundingTag,
+                tag: fundingTag
+            })
 
+            const response = await axios.post('https://70af-112-218-95-58.ngrok-free.app/api/v1/funding?memberId=1', data,
+            {
                 responseType: 'json',
                 headers: ({
+                    "Content-Type" : "application/json",
                     "Access-Control-Allow-Credentials" : true,
                     "ngrok-skip-browser-warning": true,
                 })
 
             });
+            console.log('itemIdList: ' + itemIdList);
+            console.log('fundingMessage: ' + fundingMessage);
+            console.log('deadline: ' + deadline);
+            console.log('tag: ' + fundingTag);
             console.log('POST 결과:', response.data);
         } catch (error) {
             console.error('POST 에러:', error);
