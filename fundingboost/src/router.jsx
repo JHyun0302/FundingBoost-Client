@@ -6,7 +6,8 @@ import { HashLoader } from "react-spinners";
 const Main = lazy(() => import('../src/components/pages/main-page/main-page'));
 const Login = lazy(() => import('../src/components/pages/login-page/login-page'));
 const Gifthub = lazy(() => import('./components/pages/gifthub-page/gifthub-page'));
-const Mypage = lazy(() => import('./components/pages/mypage-page/mypage-page'));
+const MypageMyfunding = lazy(() => import('./components/pages/mypage/mypage-myfunding-page/mypage-myfunding-page'));
+const MypageFundingHistory = lazy(() => import('./components/pages/mypage/mypage-funding-history-page/mypage-myfunding-history-page'));
 const FundingRegistPage = lazy(() => import('./components/pages/fundingRegist-page/fundingRegist-Page'));
 
 // 로딩 스피너
@@ -25,8 +26,9 @@ function Router() {
                 <Route path="/home" element={<Suspense fallback={<LoadingSpinner />}><Main /></Suspense>} />
                 <Route path="/login" element={<Suspense fallback={<LoadingSpinner />}><Login /></Suspense>} />
                 <Route path="/gifthub" element={<Suspense fallback={<LoadingSpinner />}><Gifthub /></Suspense>} />
-                <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner />}><Mypage /></Suspense>} />
                 <Route path="/funding" element={<Suspense fallback={<LoadingSpinner />}><FundingRegistPage /></Suspense>} />
+                <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner />}><MypageMyfunding /></Suspense>} />
+                <Route path="/mypage/funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFundingHistory/></Suspense>} />
             </Routes>
         </BrowserRouter>
     );

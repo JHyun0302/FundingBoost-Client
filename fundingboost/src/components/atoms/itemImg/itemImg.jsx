@@ -11,7 +11,8 @@ function ItemImg(){
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("https://a77443a3-ce83-4082-b661-bf8e8150b7da.mock.pstmn.io/funding");
+            // GET 요청 url 수정 필요!
+            const response = await axios.get("https://70af-112-218-95-58.ngrok-free.app/funding");
             setData(response.data.data);
         } catch (error) {
             console.error('Error data:', error);
