@@ -57,9 +57,11 @@ function MemberYesFunding({ memberFundingData }) {
                         <Carousel showArrows={true} showThumbs={false} showStatus={false} showIndicators={false}
                                   emulateTouch={true} slidesToShow={isMobile ? 3 : 5}>
                             {memberFundingData?.data?.homeMyFundingItemDtoList?.map((product, index) => (
-                                <div className="myFundingItem" key={index}>
-                                    <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg"/>
-                                    <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
+                                <div className="myFundingItem-a">
+                                    <div className="myFundingItem" key={index}>
+                                        <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg"/>
+                                        <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
+                                    </div>
                                 </div>
                             ))}
                         </Carousel>
