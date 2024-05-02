@@ -65,25 +65,30 @@
     position: absolute;
     left:0; right:0; margin-left:auto; margin-right:auto;
 
+    .myFundingItem-a {
+      height:200px;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 5px;
+      justify-content: center;
+      .myFundingItem {
+        display: inline-block;
+        flex-direction: column;
 
-  .myFundingItem {
-    margin-left: 55px;
-    margin-right: 55px;
-    margin-top: 10px;
-    display: inline-block;
-    flex-direction: column;
+        .item-img {
+          width: 140px;
+          height: 110px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+        }
 
-    .item-img {
-      width: 140px;
-      height: 110px;
+        .gauge-bar {
+          width: 150px;
+          height: 13px;
+
+        }
+      }
     }
-
-    .gauge-bar {
-      width: 150px;
-      height: 13px;
-      margin-top: 17px;
-    }
-  }
 
 
   }
