@@ -6,6 +6,7 @@
 }
 .meberYesFundingstatus{
   display: flex;
+  width: 100%;
 }
 
 .memberYesFunding {
@@ -13,7 +14,7 @@
   align-items: flex-start;
   background-color: #EBEBEB;
   height: 210px;
-  width: 100vw;
+
 
   font-family:'SUITE-Regular';
   .memberYesFunding-Profile {
@@ -22,18 +23,20 @@
 
   .profile-img{
     width: 40px;
-    margin-top: 10px;
+    margin-right: 10px;
   }
 
   .memberYesFunding-item {
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin: 15px 15px 0 25px;
+    justify-content: space-around;
+    width: 100%;
+
     .memberYesFunding-text{
       display: flex;
       align-items: center;
-
+      margin-left: 5px;
       .myfundingNickName{
         font-size: 23px;
         font-weight: bold;
