@@ -7,11 +7,15 @@ import { Carousel } from 'react-responsive-carousel';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './memberYesFunding.scss';
+import axios from "axios";
 
-function MainMyFunding() {
-    const [nickName, setNickName] = useState('');
+function MemberYesFunding({ memberFundingData }) {
     const [isMobile, setIsMobile] = useState(false);
     const [products, setProducts] = useState([]);
+
+    // const [fundingDeadline, setFundingDeadline] = useState('');
+    // const [myFundingItems, setMyFundingItems] = useState([]);
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -20,37 +24,26 @@ function MainMyFunding() {
         handleResize();
         window.addEventListener('resize', handleResize);
 
-        // fetchProducts();
-
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    // const fetchProducts = () => {
-    //     const dummyProducts = [
-    //         { id: 1, imageUrl: '상품1', gauge: 50 },
-    //         { id: 2, imageUrl: '상품2', gauge: 70 },
-    //         { id: 3, imageUrl: '상품3', gauge: 70 },
-    //         { id: 4, imageUrl: '상품4', gauge: 70 },
-    //         { id: 5, imageUrl: '상품5', gauge: 70 }
-    //     ];
-    //     setProducts(dummyProducts);
-    // };
+    console.log("상품이미지:",memberFundingData?.data?.homeMyFundingItemDtoList?.itemImageUrl);
+
 
     return (
         <div className="memberYesFunding">
-
                 <div className="meberYesFundingstatus">
 
                     <div className="memberYesFunding-item">
-                        <ProfileImg className="memberYesFunding-Profile" />
+                        <ProfileImg className="memberYesFunding-Profile" memberFundingData={memberFundingData.data} />
                         <div className="memberYesFunding-text">
                             <div className="memberYesFunding-text">
-                                <div className="myfundingNickName">{nickName} 님</div>
+                                <div className="myfundingNickName">{memberFundingData?.data?.homeMemberInfoDto?.nickName}님</div>
                                 펀딩 현황
                             </div>
-                            <div className="memberFundingDday">D-</div>
+                            <div className="memberFundingDday">{memberFundingData?.data?.homeMyFundingStatusDto?.deadline}</div>
 
                         </div>
                         <div className="memberFunding-RightItem">
@@ -60,20 +53,22 @@ function MainMyFunding() {
 
                 </div>
 
-                <div className={isMobile ? "myFundingItemsContainer mobile-carousel" : "myFundingItemsContainer"}>
-                <Carousel showArrows={true} showThumbs={false} showStatus={false} showIndicators={false} emulateTouch={true} slidesToShow={isMobile ? 3 : 5}>
-                        {products.map(product => (
-                            <div className="myFundingItem" key={product.id}>
-                                <ItemImg src={product.imageUrl} className="myFundingItemimg" />
-                                <GaugeBar value={product.gauge} className="myFundingGaugeBar" />
-                            </div>
-                        ))}
-                    </Carousel>
+                    <div className={isMobile ? "myFundingItemsContainer mobile-carousel" : "myFundingItemsContainer"}>
+                        <Carousel showArrows={true} showThumbs={false} showStatus={false} showIndicators={false}
+                                  emulateTouch={true} slidesToShow={isMobile ? 3 : 5}>
+                            {memberFundingData?.data?.homeMyFundingItemDtoList?.map((product, index) => (
+                                <div className="myFundingItem" key={index}>
+                                    <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg"/>
+                                    <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
+                                </div>
+                            ))}
+                        </Carousel>
 
+
+                    </div>
                 </div>
-            </div>
         </div>
     );
 }
 
-export default MainMyFunding
+export default MemberYesFunding;
