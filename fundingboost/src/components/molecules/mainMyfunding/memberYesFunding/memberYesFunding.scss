@@ -4,7 +4,7 @@
   font-weight: 400;
   font-style: normal;
 }
-.meberYesFundingstatus{
+.memberYesFundingstatus{
   display: flex;
   width: 100%;
 }
@@ -44,7 +44,7 @@
       }
     }
 
-    .memberFundingDday{
+    .memberFundingD-day{
       font-size: 23px;
       font-weight: bold;
       margin-left: 20px;
@@ -63,35 +63,59 @@
   }
   .myFundingItemsContainer{
     position: absolute;
-    left:0; right:0; margin-left:auto; margin-right:auto;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
 
-    .myFundingItem-a {
-      height:200px;
+    .myFundingItems{
       display: flex;
-      align-items: flex-end;
-      margin-bottom: 5px;
       justify-content: center;
-      .myFundingItem {
-        display: inline-block;
-        flex-direction: column;
+      height: 200px;
 
-        .item-img {
-          width: 140px;
-          height: 110px;
-          box-shadow: 0px 0px 3px #b8b8b8;
-          margin-bottom: 10px;
-        }
+      .myFundingItem-a {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        float: left;
+        margin: 0px 20px 2px 20px ;
 
-        .gauge-bar {
-          width: 150px;
-          height: 13px;
+        .myFundingItem {
+          display: inline-block;
+          flex-direction: column;
 
+          .item-img {
+            width: 140px;
+            height: 110px;
+            box-shadow: 0px 0px 3px #b8b8b8;
+            margin-bottom: 10px;
+          }
+
+          .gauge-bar {
+            width: 150px;
+            height: 13px;
+
+          }
         }
       }
     }
 
 
+    .item-img-container{
+      display: flex;
+      justify-content: center;
+
+    }
   }
+}
+.carousel .slide {
+  display: flex;
+  justify-content: flex-end;
+  height: 200px;
+  min-width: 100%;
+  margin: 0;
+  position: relative;
+  text-align: center;
 }
 
 
