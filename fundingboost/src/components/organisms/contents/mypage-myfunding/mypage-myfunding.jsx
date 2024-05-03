@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './mypage-myfunding.scss';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
-import emptyImage from "../../../../assets/empty.png";
-import nonItemImg from '../../../../assets/nonItemImg.svg';
+import MyfundingNonFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-nonfunding";
+import MyfundingDoFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-dofunding";
+import MyfundingFinFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-finfunding";
 
 const MypagePane = () => {
     // 선택된 버튼에 대한 액션을 처리하는 함수
@@ -19,21 +19,10 @@ const MypagePane = () => {
                 <MypageProfile />
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={0} />
             </div>
-            <div className="mypage-right-pane-containter">
-                <div className="mypage-myfunding-content-wrapper">
-                    <div className="mypage-myfunding-title-wrapper">
-                    <div className="mypage-myfunding-title">MY 펀딩</div>
-                        <Link to="/gifthub" className="mypage-create-funding">💫펀딩 생성하기💫</Link>
-                    </div>
-                    <div className="horizontalLine"></div>
-                    <div className="empty-image-container">
-                        <img src={emptyImage} alt="Empty" className="empty-image"/>
-                        <img src={nonItemImg} alt="NonItem" className="nonItem-image"/>
-                        <div className="mypage-nonfunding-noti-text">현재 진행 중인 펀딩이 없어요 😭</div>
-                    </div>
-                    <div className="mypage-horizontalUnderLine"></div>
-
-                </div>
+            <div>
+            <MyfundingNonFundingPane/>
+            <MyfundingDoFundingPane/>
+            <MyfundingFinFundingPane/>
             </div>
         </div>
     );
