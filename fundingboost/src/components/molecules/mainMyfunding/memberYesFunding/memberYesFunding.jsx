@@ -76,13 +76,16 @@ function MemberYesFunding({ memberFundingData }) {
                                     showStatus={false}
                                     showIndicators={false}
                                     emulateTouch={true}
-                                    slidesToShow={3}
+                                    slidesToShow={3} //한 슬라이드에 상품 갯수
                                     arrows ={false}
+                                    autoPlay={true} //자동슬라이드
+                                    interval={2000}
+                                    infinite={true} //무한 슬라이드
                                 >
                                     {memberFundingData?.data?.homeMyFundingItemDtoList?.map((product, index) => (
                                         <div className="myFundingItem-a">
                                             <div className="myFundingItem" key={index}>
-                                                <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg"/>
+                                                <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg" />
                                                 <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                             </div>
                                         </div>
