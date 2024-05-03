@@ -7,17 +7,20 @@
 
 .myPageProfile{
   display: flex;
+  //justify-content: center;
+  margin-right: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
   flex-direction: row;
 }
 
 .myPageProfileImg {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 90px;
   border: 1px solid #3e3e3e;
   padding: 10px;
 }
-
 
 .myPageProfileText{
   display: flex;
@@ -29,7 +32,7 @@
 
 .myPageProfileName {
   color: #000000;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   letter-spacing: 10px;
 }
