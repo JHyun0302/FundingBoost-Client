@@ -1,5 +1,5 @@
 import React from 'react';
-import hweng from '../../../assets/hweng.svg';
+import hweng from '../../../../assets/hweng.svg';
 import './mainFriendNoFunding.scss';
 
 const MainFriendNoFunding = () => {

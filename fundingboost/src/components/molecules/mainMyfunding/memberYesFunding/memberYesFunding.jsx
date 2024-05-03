@@ -57,7 +57,7 @@ function MemberYesFunding({ memberFundingData }) {
                     {!isMobile? (
                         <div className="myFundingItemsContainer mobile-carousel">
                             <div className="myFundingItems">
-                            {memberFundingData?.data?.homeMyFundingItemDtoList?.map((product, index) => (
+                            {memberFundingData?.data?.homeMyFundingStatusDto?.homeMyFundingItemDtoList?.map((product, index) => (
                                 <div className="myFundingItem-a">
                                     <div className="myFundingItem" key={index}>
                                         <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg"/>
@@ -76,13 +76,13 @@ function MemberYesFunding({ memberFundingData }) {
                                     showStatus={false}
                                     showIndicators={false}
                                     emulateTouch={true}
-                                    slidesToShow={3} //한 슬라이드에 상품 갯수
+
                                     arrows ={false}
                                     autoPlay={true} //자동슬라이드
                                     interval={2000}
                                     infinite={true} //무한 슬라이드
                                 >
-                                    {memberFundingData?.data?.homeMyFundingItemDtoList?.map((product, index) => (
+                                    {memberFundingData?.data?.homeMyFundingStatusDto?.homeMyFundingItemDtoList?.map((product, index) => (
                                         <div className="myFundingItem-a">
                                             <div className="myFundingItem" key={index}>
                                                 <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg" />
