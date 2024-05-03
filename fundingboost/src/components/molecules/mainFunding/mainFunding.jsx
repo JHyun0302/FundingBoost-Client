@@ -1,11 +1,11 @@
 import React,{useEffect, useState} from 'react';
-import './mainMyFunding.scss';
-import MemberYesFunding from "../memberYesFunding/memberYesFunding";
-import MemberNoFunding from "../memberNoFunding/memberNoFunding";
-import NonMember from "../nonMember/nonMember";
+import './mainFunding.scss';
+import MemberYesFunding from "../mainMyfunding/memberYesFunding/memberYesFunding";
+import MemberNoFunding from "../mainMyfunding/memberNoFunding/memberNoFunding";
+import NonMember from "../mainMyfunding/nonMember/nonMember";
 import axios from "axios";
 
-const MainMyfunding = () => {
+const MainFunding = () => {
     const [memberFundingData, setFundingMemberData] = useState({});
     useEffect(() => {
         const fetchData = async () => {
@@ -37,4 +37,4 @@ const MainMyfunding = () => {
     );
 };
 
-export default MainMyfunding;
+export default MainFunding;
