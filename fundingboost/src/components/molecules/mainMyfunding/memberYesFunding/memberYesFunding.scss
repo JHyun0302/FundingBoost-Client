@@ -4,8 +4,9 @@
   font-weight: 400;
   font-style: normal;
 }
-.meberYesFundingstatus{
+.memberYesFundingstatus{
   display: flex;
+  width: 100%;
 }
 
 .memberYesFunding {
@@ -13,7 +14,7 @@
   align-items: flex-start;
   background-color: #EBEBEB;
   height: 210px;
-  width: 100vw;
+
 
   font-family:'SUITE-Regular';
   .memberYesFunding-Profile {
@@ -22,18 +23,20 @@
 
   .profile-img{
     width: 40px;
-    margin-top: 10px;
+    margin-right: 10px;
   }
 
   .memberYesFunding-item {
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin: 15px 15px 0 25px;
+    justify-content: space-around;
+    width: 100%;
+
     .memberYesFunding-text{
       display: flex;
       align-items: center;
-
+      margin-left: 5px;
       .myfundingNickName{
         font-size: 23px;
         font-weight: bold;
@@ -41,7 +44,7 @@
       }
     }
 
-    .memberFundingDday{
+    .memberFundingD-day{
       font-size: 23px;
       font-weight: bold;
       margin-left: 20px;
@@ -60,30 +63,89 @@
   }
   .myFundingItemsContainer{
     position: absolute;
-    left:0; right:0; margin-left:auto; margin-right:auto;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
 
+    .myFundingItems{
+      display: flex;
+      justify-content: center;
+      height: 200px;
 
-  .myFundingItem {
-    margin-left: 55px;
-    margin-right: 55px;
-    margin-top: 10px;
-    display: inline-block;
-    flex-direction: column;
+      .myFundingItem-a {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        float: left;
+        margin: 0px 20px 2px 20px ;
 
-    .item-img {
-      width: 140px;
-      height: 110px;
+        .myFundingItem {
+          display: inline-block;
+          flex-direction: column;
+          text-align: center;
+
+          .item-img {
+            width: 140px;
+            height: 110px;
+            box-shadow: 0px 0px 3px #b8b8b8;
+            margin-bottom: 10px;
+          }
+
+          .gauge-bar {
+            width: 150px;
+            height: 13px;
+
+          }
+        }
+      }
     }
 
-    .gauge-bar {
-      width: 150px;
-      height: 13px;
-      margin-top: 17px;
+
+    .item-img-container{
+      display: flex;
+      justify-content: center;
+
     }
   }
+}
 
 
-  }
+.carousel .slide {
+  display: flex;
+  justify-content: flex-end;
+  height: 200px;
+  min-width: 100%;
+  margin: 0;
+  position: relative;
+  text-align: center;
+}
+
+.carousel.carousel-slider .control-arrow {
+  display: flex;
+  background-color: #cbcbcb;
+  height: 30px;
+  width:30px;
+  border-radius: 50%;
+  margin: 92px 30px 0 30px;
+}
+
+.carousel .control-next.control-arrow:before {
+  border-left: 10px solid #fff;
+  margin-top: 2px;
+  margin-left: 6px;
+
+}
+.carousel .control-prev.control-arrow:before {
+  border-right: 10px solid #fff;
+  margin-top: 2px;
+  margin-right: 6px;
+
+}
+
+.bg-success {
+  --bs-bg-opacity: 1;
+  background-color: #40d600 !important;
 }
 
 

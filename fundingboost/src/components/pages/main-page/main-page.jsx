@@ -7,13 +7,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from '../../organisms/footer/footer'
 import MainPane from '../../organisms/contents/main/main'
-import MemberYesFunding from "../../molecules/mainMyfunding/memberYesFunding/memberYesFunding";
+import MainMyfunding from "../../molecules/mainMyfunding/mainMyfunding/mainMyfunding";
 
 function MainPage() {
     return (
         <div className="Main-pages">
             <HeaderBar />
-            <MemberYesFunding/>
+            <MainMyfunding/>
             <MainPane />
             <Footer />
         </div>
