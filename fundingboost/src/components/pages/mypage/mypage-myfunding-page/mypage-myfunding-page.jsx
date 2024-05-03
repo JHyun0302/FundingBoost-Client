@@ -4,13 +4,14 @@ import HeaderBar from "../../../organisms/header/header";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from '../../../organisms/footer/footer'
-import MypagePane from '../../../organisms/contents/mypage-myfunding/mypage-myfunding'
+import MypageMyfundingPane from '../../../organisms/contents/mypage-myfunding/mypage-myfunding'
+import MyfundingNonFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-nonfunding";
 
 function MypageMyfundingPage() {
     return (
         <div className="Mypage-pages">
             <HeaderBar />
-            <MypagePane />
+            <MypageMyfundingPane />
             <Footer />
         </div>
     );
