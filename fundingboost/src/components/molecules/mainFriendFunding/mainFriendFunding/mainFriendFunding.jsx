@@ -25,19 +25,26 @@ const MainFriendFunding = ({ memberFundingData }) => {
                 {friendFundingData && friendFundingData.length > 0 && (
                     <div className="friendFunding-items-container">
                         {friendFundingData.map((friendFunding, index) => (
-                        <div key={index} className="myFundingItem-a">
+                        <div key={index} className="mainFriendFundingitem">
                             <div className="mainFriendFundingContents">
                                 <div className="mainFriendFundingProfile-item">
-                                    <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoLis} className="myFundingItemimg"/>
-                                    <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="profile-img"/>
+                                    <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoLis} className="mainFriendFunding-Itemimg"/>
+                                    <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="mainFriendFunding-profile-img"/>
                                 </div>
-                                <div>
-                                    <div>
-                                        <div className="myfundingNickName">{friendFunding.commonFriendFundingDto.nickName}님</div>
-                                        <div className="memberFundingD-day">{friendFunding.commonFriendFundingDto.friendFundingDeadlineDate} </div>
-                                        <div className="mainFriendFundingTag">{friendFunding.commonFriendFundingDto.tag}</div>
+                                <div className="mainFriendFunding-textitem-GaugeBar">
+                                    <div className="mainFriendFunding-textContents">
+                                        <div className="mainFriendFunding-NickName-Dday">
+                                            <div className="mainFriendFunding-NickName">{friendFunding.commonFriendFundingDto.nickName}</div>
+                                            <div className="mainFriendFunding-D-day">{friendFunding.commonFriendFundingDto.friendFundingDeadlineDate} </div>
+                                        </div>
+                                        <div>
+                                            <div className="mainFriendFunding-Tag">{friendFunding.commonFriendFundingDto.tag}</div>
+                                        </div>
+
                                     </div>
-                                    <GaugeBar value={friendFunding.commonFriendFundingDto.friendFundingPercent} className="myFundingGaugeBar"/>
+                                    <div className="mainFriendFunding-GaugeBarContent">
+                                        <GaugeBar value={friendFunding.commonFriendFundingDto.friendFundingPercent} className="mainFriendFunding-GaugeBar"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
