@@ -28,7 +28,7 @@ const MainFriendFunding = ({ memberFundingData }) => {
                         <div key={index} className="mainFriendFundingitem">
                             <div className="mainFriendFundingContents">
                                 <div className="mainFriendFundingProfile-item">
-                                    <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoLis} className="mainFriendFunding-Itemimg"/>
+                                    <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoList[0].itemImageUrl} className="mainFriendFunding-Itemimg"/>
                                     <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="mainFriendFunding-profile-img"/>
                                 </div>
                                 <div className="mainFriendFunding-textitem-GaugeBar">
