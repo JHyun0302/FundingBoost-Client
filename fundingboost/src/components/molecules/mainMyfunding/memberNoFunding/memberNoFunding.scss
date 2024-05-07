@@ -1,22 +1,22 @@
 .memberNoFunding {
-  display: flex;
-  align-items: center;
   background-color: #EBEBEB;
   height: 210px;
+  display: flex;
+  .main-memberNoFunding{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
 
-  .memberNoFunding-Profile {
-    margin-right: 10px;
   }
-
   .memberNoFunding-text {
     color: black;
     text-align:left;
     margin-bottom: 10px;
     font-size:23px;
+    .memberNoFunding-Nickname{
+      letter-spacing: 5px;
+
+    }
   }
 
 }
-
-
-
-
