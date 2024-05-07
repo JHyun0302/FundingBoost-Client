@@ -50,6 +50,16 @@ const MypagePane = () => {
                     deadline={apiData.deadline}
                     deadlineDate={apiData.deadlineDate}
                     totalPercent={apiData.totalPercent}
+                    message={apiData.message}
+                    tag={apiData.tag}
+                    participateFriendDtoList={apiData.participateFriendDtoList}
+                    myPageFundingItemDtoList={apiData.myPageFundingItemDtoList} />}
+                {apiData && <MyfundingFinFundingPane
+                    deadline={apiData.deadline}
+                    deadlineDate={apiData.deadlineDate}
+                    totalPercent={apiData.totalPercent}
+                    message={apiData.message}
+                    tag={apiData.tag}
                     participateFriendDtoList={apiData.participateFriendDtoList}
                     myPageFundingItemDtoList={apiData.myPageFundingItemDtoList} />}
             </div>
