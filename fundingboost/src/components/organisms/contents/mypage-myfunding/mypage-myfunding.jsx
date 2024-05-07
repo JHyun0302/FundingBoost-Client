@@ -1,5 +1,6 @@
-import React from 'react';
 import './mypage-myfunding.scss';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import MyfundingNonFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-nonfunding";
@@ -7,22 +8,50 @@ import MyfundingDoFundingPane from "../../../molecules/Mypage-Myfunding/mypage-m
 import MyfundingFinFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-finfunding";
 
 const MypagePane = () => {
-    // 선택된 버튼에 대한 액션을 처리하는 함수
+    const [apiData, setApiData] = useState(null);
+
     const handleButtonClick = (index) => {
         // 선택된 버튼에 대한 로직을 작성합니다.
         console.log(`Selected index: ${index}`);
     };
 
+    useEffect(() => {
+        // API 호출 함수
+        const fetchData = async () => {
+            try {
+                const response = await axios({
+                    method: 'GET',
+                    url: 'https://58aa-112-218-95-58.ngrok-free.app/api/v1/funding/my-funding-status?memberId=1',
+                    headers: {
+                        "Access-Control-Allow-Credentials": "true",
+                        "ngrok-skip-browser-warning": "true"
+                    },
+                    responseType: 'json'
+                });
+                console.log(response.data); // 콘솔에 데이터 출력
+                setApiData(response.data.data); // 상태에 데이터 저장
+            } catch (error) {
+                console.error("API 호출 중 오류가 발생했습니다.", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <div className="mypage-total-container">
             <div className="mypage-left-pane-container">
-                <MypageProfile />
+                {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={0} />
             </div>
             <div>
-            <MyfundingNonFundingPane/>
-            <MyfundingDoFundingPane/>
-            <MyfundingFinFundingPane/>
+                <MyfundingNonFundingPane />
+                {apiData && <MyfundingDoFundingPane
+                    deadline={apiData.deadline}
+                    deadlineDate={apiData.deadlineDate}
+                    totalPercent={apiData.totalPercent}
+                    participateFriendDtoList={apiData.participateFriendDtoList}
+                    myPageFundingItemDtoList={apiData.myPageFundingItemDtoList} />}
             </div>
         </div>
     );

@@ -1,6 +1,8 @@
 import React from "react";
 import "./mypage-myfunding-singleitem.scss";
 import Gauge from "../../atoms/gauge-bar/gauge-bar";
+import MypageDeliveryButton from "../buttons/Mypage-Myfunding-Button/mypage-delivery-button/mypage-delivery-button";
+import MypageCompleteButton from "../buttons/Mypage-Myfunding-Button/mypage-complete-button/mypage-complete-button";
 
 const MyFundingSingleItem = ({ item }) => {
     return (

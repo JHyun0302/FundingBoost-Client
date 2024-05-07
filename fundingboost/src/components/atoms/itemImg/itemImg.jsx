@@ -11,8 +11,7 @@ function ItemImg(){
 
     const fetchData = async () => {
         try {
-            // GET 요청 url 수정 필요!
-            const response = await axios.get("https://70af-112-218-95-58.ngrok-free.app/funding");
+            const response = await axios.get("https://58aa-112-218-95-58.ngrok-free.app/funding");
             setData(response.data.data);
         } catch (error) {
             console.error('Error data:', error);
