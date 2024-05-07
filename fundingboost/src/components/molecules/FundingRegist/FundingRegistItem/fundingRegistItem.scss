@@ -1,17 +1,38 @@
-.FundingRegistItem :hover{
-  background-color: #f1f1f1;
+
+input[type="checkbox"] {
+  display: none;
 }
+
+.checkbox-label::before {
+  content: attr(data-order);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 5px;
+
+  top: 7%;
+  left: 23px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-label::before {
+  background-color: #000;
+  color: #fff;
+}
+
 .FundingRegistItem {
-    flex:1;
-    height: 100vh;
-    margin-left: 2%;
-    margin-right: 3%;
+  flex:1;
+  height: 100%;
+  margin: 0 3% 3% 2%;
   font-family: SUITE-Regular;
 
-.FundingRegistItem-details :hover{
-  background-color: #f3f3f3;
+  .FundingRegistItem-details :hover{
+    background-color: #f3f3f3;
 
-}
+  }
   .itemDetail {
     display: flex;
     flex-direction: column;
@@ -20,17 +41,15 @@
   }
 
   .itemContainer{
-   display: flex;
+    display: flex;
     margin-top: 3%;
     align-items: center;
+    margin-left: 15px;
     .item-img{
       width: 200px;
       height: 200px;
       margin-left: 10px;
       margin-right: 10px;
-      box-shadow : 5px 5px 5px 5px red inset;
-
-
     }
     align-items: center;
   }
@@ -39,29 +58,29 @@
     color: #000000;
     font-size: 25px;
   }
-.optionDetail{
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  .optionGroup {
-    background-color: #d9d9d9;
-    border-radius: 8px;
-    height: 22px;
-    width: 43px;
+  .optionDetail{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    .optionGroup {
+      background-color: #d9d9d9;
+      border-radius: 8px;
+      height: 22px;
+      width: 43px;
 
 
-    .option {
-      color: #ffffff;
-      font-size: 15px;
-      text-align: center;
+      .option {
+        color: #ffffff;
+        font-size: 15px;
+        text-align: center;
+      }
+    }
+    .optionName {
+      color: #909090;
+      font-size: 12px;
+      margin-left: 5px;
     }
   }
-  .optionName {
-    color: #909090;
-    font-size: 12px;
-    margin-left: 5px;
-  }
-}
 
   .price {
     color: #000000;
@@ -73,4 +92,3 @@
     margin-top: 10%;
   }
 }
-
