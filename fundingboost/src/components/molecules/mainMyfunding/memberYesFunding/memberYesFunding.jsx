@@ -76,14 +76,15 @@ function MemberYesFunding({ memberFundingData }) {
                                 showIndicators={false}
                                 emulateTouch={true}
                                 arrows={false}
-                                autoPlay={true}
-                                interval={2000}
+                                autoPlay={false}
+                                // interval={2000}
                                 infinite={true}
                             >
                                 {chunkArray(memberFundingData?.data?.homeMyFundingStatusDto?.homeMyFundingItemDtoList, 3).map((chunk, index) => (
                                     <div className="myFundingItem-a" key={index}>
                                         {chunk.map((product, index) => (
                                             <div className="myFundingItem" key={index}>
+                                                {/*<ItemImg imageUrl={product.itemImageUrl} className={`myFundingItemimg ${product.itemPercent === 100 ? 'Gauge100Img':''}`} />*/}
                                                 <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg" />
                                                 <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                             </div>
