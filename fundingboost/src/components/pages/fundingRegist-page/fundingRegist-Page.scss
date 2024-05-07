@@ -5,6 +5,11 @@
     flex: 1;
     display: flex;
     align-items: flex-start;
+
+    .fundingRegist-Details {
+      height: 100%;
+      border-left: 1px solid #6a6a6a;
+    }
   }
   .funding {
     display: flex;
@@ -13,17 +18,17 @@
   }
 
 .fundingRegist-Details{
-
+height: auto;
   border-left: 1px solid #6a6a6a;
 
   .FundingRegist-registBtn{
     display: flex;
     justify-content: center;
-
+    height: 100vh;
 
     .FundingRegist-btn {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       margin-bottom: 5%;
 
       .yellowBtn{
