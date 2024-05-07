@@ -79,11 +79,13 @@
         justify-content: center;
         float: left;
         margin: 0px 20px 2px 20px ;
+        height: 200px;
 
         .myFundingItem {
           display: inline-block;
           flex-direction: column;
           text-align: center;
+          margin: 0 20px;
 
           .item-img {
             width: 140px;
@@ -147,9 +149,3 @@
   --bs-bg-opacity: 1;
   background-color: #40d600 !important;
 }
-
-
-
-
-
-
