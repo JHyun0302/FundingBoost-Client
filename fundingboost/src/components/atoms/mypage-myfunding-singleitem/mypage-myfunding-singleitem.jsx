@@ -10,7 +10,7 @@ const MyFundingSingleItem = ({ item }) => {
             <div className="mypage-myfunding-view">
                 <img className="mypage-myfunding-image" alt="이미지" src={item.itemImageUrl} />
                 <div className="mypage-myfunding-text-wrapper-2">{item.itemPercent}%</div>
-                <Gauge progress={item.itemPercent} />
+                <Gauge value={item.itemPercent} />
                 <div className="mypage-myfunding-text-wrapper-3">{item.itemName}</div>
                 <div className="mypage-myfunding-group">
                     <div className="mypage-myfunding-overlap-group">
