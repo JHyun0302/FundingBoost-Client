@@ -16,9 +16,25 @@ function chunkArray(arr, chunkSize) {
 }
 
 const MainFriendFunding = ({ memberFundingData }) => {
+    const [itemsSlide, setItemsSlide] = useState(2);
+
     useEffect(() => {
-        console.log("친구펀딩 데이터:", memberFundingData);
-    }, [memberFundingData]);
+        //반응형 추가
+        function handleResize() {
+            if (window.innerWidth >= 1411) setItemsSlide(5);
+            else if (window.innerWidth >= 1130) setItemsSlide(4);
+            else if (window.innerWidth >= 840) setItemsSlide(3);
+            else setItemsSlide(2);
+
+        }
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const friendFundingData = memberFundingData?.data?.homeFriendFundingDtoList;
 
@@ -41,7 +57,7 @@ const MainFriendFunding = ({ memberFundingData }) => {
                         // interval={2000}
                         infinite={true}
                     >
-                        {chunkArray(friendFundingData, 5).map((chunk, index) => (
+                        {chunkArray(friendFundingData, itemsSlide).map((chunk, index) => (
                             <div key={index} className="mainFriendFundingitem">
                                 {chunk.map((friendFunding, idx) => (
                                     <div key={idx} className="mainFriendFundingContents">
