@@ -1,5 +1,5 @@
 .mainFriendFunding {
-  background-color: #ff8c8c;
+  background-color: #F7F7F7;
   height: 282px ;
   .mainFriendFunding-text {
     font-size: 13px;
@@ -10,6 +10,12 @@
   }
   .carousel .control-dots {
     margin: 0 0 !important;
+  }
+  .carousel.carousel-slider .control-arrow {
+    display: none;
+  }
+  .carousel .slider-wrapper.axis-horizontal .slider .slide {
+    width: 710px;
   }
 
 }

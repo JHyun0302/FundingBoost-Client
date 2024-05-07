@@ -31,7 +31,7 @@ const MainFriendFunding = ({ memberFundingData }) => {
             <div className="friendFunding-contents">
                 {friendFundingData && friendFundingData.length > 0 && (
                     <Carousel
-                        showArrows={true}
+                        showArrows={false}
                         showThumbs={false}
                         showStatus={false}
                         showIndicators={true}
