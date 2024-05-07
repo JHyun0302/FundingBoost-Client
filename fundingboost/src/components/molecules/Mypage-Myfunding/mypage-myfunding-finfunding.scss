@@ -1,0 +1,51 @@
+.memberFundingDday {
+  font-family: SUITE-Regular;
+  font-size: 23px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: #FFACAC;
+}
+
+.mypage-day-wrpper{
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mypage-enddate-pane{
+  font-family: SUITE-Regular;
+  margin-left: 20px;
+}
+
+.mypage-button-style-01{
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #f9c43c;
+  font-family: SUITE-Regular;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 1px solid #b7b7b7;
+  align-items: center;
+}
+
+.mypage-button-style-01:hover{
+  background-color: #ffa42e;
+  transition: background-color 0.3s;
+}
+
+.mypage-share-icon{
+  width: 25px;
+  padding-bottom: 3px;
+}
+
+.mypage-fin-button-noti-wrpper {
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

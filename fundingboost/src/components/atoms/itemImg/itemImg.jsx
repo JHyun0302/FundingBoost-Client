@@ -5,8 +5,8 @@ import axios from 'axios';
 import NonItemImg from '../../../assets/nonItemImg.svg';
 import ProgressBar from "react-bootstrap/ProgressBar";
 
-function ItemImg({imageUrl}){
 
+function ItemImg({imageUrl}){
 
         return (
             <div className="item-img-container">

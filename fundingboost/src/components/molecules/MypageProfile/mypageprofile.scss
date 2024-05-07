@@ -7,17 +7,18 @@
 
 .myPageProfile{
   display: flex;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
   flex-direction: row;
 }
 
 .myPageProfileImg {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 90px;
-  border: 1px solid #3e3e3e;
-  padding: 10px;
+  border: 2px solid #3e3e3e;
 }
-
 
 .myPageProfileText{
   display: flex;
@@ -29,7 +30,7 @@
 
 .myPageProfileName {
   color: #000000;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   letter-spacing: 10px;
 }
@@ -47,7 +48,7 @@
   font-size: 18px;
   font-weight: 500;
   width: 140px;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .myPoint {

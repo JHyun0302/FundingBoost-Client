@@ -74,16 +74,16 @@ function FundingRegistPage(props) {
                 tag: fundingTag
             })
 
-            const response = await axios.post('https://70af-112-218-95-58.ngrok-free.app/api/v1/funding?memberId=1', data,
-            {
-                responseType: 'json',
-                headers: ({
-                    "Content-Type" : "application/json",
-                    "Access-Control-Allow-Credentials" : true,
-                    "ngrok-skip-browser-warning": true,
-                })
+            const response = await axios.post('https://58aa-112-218-95-58.ngrok-free.app/api/v1/funding?memberId=1', data,
+                {
+                    responseType: 'json',
+                    headers: ({
+                        "Content-Type" : "application/json",
+                        "Access-Control-Allow-Credentials" : true,
+                        "ngrok-skip-browser-warning": true,
+                    })
 
-            });
+                });
             console.log('itemIdList: ' + itemIdList);
             console.log('fundingMessage: ' + fundingMessage);
             console.log('deadline: ' + deadline);

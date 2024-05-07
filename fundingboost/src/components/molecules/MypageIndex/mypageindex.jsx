@@ -1,13 +1,35 @@
 import React, { useState } from "react";
 import "./mypageindex.scss";
+import { useNavigate } from "react-router-dom";
 
-export default function MyPageIndex() {
+export default function MyPageIndex({ onButtonClick, currentPageIndex }) {
     // 선택된 버튼의 인덱스를 저장하는 상태
-    const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+    const navigate = useNavigate();
+    const [selectedButtonIndex, setSelectedButtonIndex] = useState(currentPageIndex);
 
     // 버튼을 클릭할 때 호출되는 함수
     const handleButtonClick = (index) => {
         setSelectedButtonIndex(index);
+        onButtonClick(index);
+        navigateToMyPage(index);
+        console.log(index);
+    };
+
+    const navigateToMyPage = (index) => {
+        switch (index) {
+            case 0:
+                navigate("/mypage");
+                break;
+            case 1:
+                navigate("/mypage/funding-history");
+                break;
+            case 2:
+                // 다른 페이지로 이동하는 로직 추가
+                break;
+            // 나머지 버튼에 대한 처리 추가
+            default:
+                break;
+        }
     };
 
     return (
@@ -28,6 +50,8 @@ export default function MyPageIndex() {
             >
                 지난 펀딩 이력
             </button>
+
+
             <button
                 className={`MyPageIndexBoxText ${
                     selectedButtonIndex === 2 ? "selected" : ""
