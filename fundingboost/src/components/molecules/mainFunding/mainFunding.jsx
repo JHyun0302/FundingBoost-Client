@@ -12,8 +12,8 @@ const MainFunding = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/main',{
-                    // 'https://58aa-112-218-95-58.ngrok-free.app/api/v1/home?memberId=1'
+                const response = await axios.get('https://58aa-112-218-95-58.ngrok-free.app/api/v1/home?memberId=1',{
+
                     responseType: 'json',
                     headers: ({
                         "Content-Type" : "application/json",
