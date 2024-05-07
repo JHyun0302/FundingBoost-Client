@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import FundingRegistBtn from "../../../atoms/button/FundingRegistBtn/fundingRegistBtn";
+import React, { useState } from 'react';
 import FundingMessage from "../../../atoms/FundingMessage/fundingMessage";
 import FundingTagBtn from "../../../atoms/button/FundingTagBtn/fundingTagBtn";
 import Calender from "../../../atoms/Calendar/calender";
 import './fundingRegistDetails.scss';
-import axios from "axios";
-function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange }) {
+
+function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange, onValidityChange }) {
     const [selectedTag, setSelectedTag] = useState("");
     const [selectedEndDate, setSelectedEndDate] = useState(new Date());
     const [selectedMessage, setSelectedMessage] = useState("");

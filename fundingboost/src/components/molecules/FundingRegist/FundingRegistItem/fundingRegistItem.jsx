@@ -17,7 +17,7 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
             const selectedOrder = selectedItem.order;
             selectedItem.order = null;
 
-            //선택 해제시 순서 재조정
+            //선택 해제 시 순서 재조정
             updatedItems.forEach(item => {
                 if (item.order && item.order > selectedOrder) {
                     item.order--;
@@ -37,6 +37,9 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
 
     return (
         <div className="FundingRegistItem">
+            <div className="fundingRegist-text">
+                * 모든 상품의 순서를 지정해주세요.
+            </div>
             {orderedItems.map((item, index) => (
                 <div key={index}>
                     <div className="itemContainer">
