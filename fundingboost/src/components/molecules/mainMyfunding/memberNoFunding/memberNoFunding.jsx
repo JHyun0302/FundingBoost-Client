@@ -4,16 +4,19 @@ import React, { useState } from "react";
 
 import './memberNoFunding.scss'
 
-function MainMyFunding() {
-    const [nickName, setNickName] = useState('');
+function MainMyFunding({memberFundingData}) {
+
     return (
         <div className="memberNoFunding">
-            <ProfileImg className="memberNoFunding-Profile" ></ProfileImg>
-            <div className="memberNoFunding-item">
-                <div className="memberNoFunding-text">
-                    <b>{nickName}님</b>.<br/> 펀딩의 주인공이 되어보세요.
+            <div className="main-memberNoFunding">
+                <ProfileImg className="memberNoFunding-Profile" memberFundingData={memberFundingData.data}></ProfileImg>
+                <div className="memberNoFunding-item">
+                    <div className="memberNoFunding-text">
+                        <div className="memberNoFunding-Nickname"><b>{memberFundingData?.data?.homeMemberInfoDto?.nickName}님</b></div>
+                        <div>펀딩의 주인공이 되어보세요.</div>
+                    </div>
+                    <StartFundingButton className={"nonMember-StartFundingBtn"} />
                 </div>
-                <StartFundingButton className={"nonMember-StartFundingBtn"} />
             </div>
         </div>
     );

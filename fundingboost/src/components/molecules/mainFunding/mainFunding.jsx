@@ -33,7 +33,12 @@ const MainFunding = () => {
 
     return (
         <div>
-            <MemberYesFunding memberFundingData={memberFundingData} />
+            {/*my 펀딩 존재 여부에 따른 변화*/}
+            {memberFundingData.data?.homeMyFundingStatusDto?(
+                <MemberYesFunding memberFundingData={memberFundingData} />
+            ):(
+                <MemberNoFunding memberFundingData={memberFundingData}/>
+            )}
 
             {/*친구 펀딩 존재 여부에 따른 변화*/}
             {memberFundingData.data?.homeFriendFundingDtoList?.length > 0 ? (

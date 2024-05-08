@@ -1,22 +1,27 @@
 .memberNoFunding {
-  display: flex;
-  align-items: center;
   background-color: #EBEBEB;
   height: 210px;
+  display: flex;
+  font-family: 'SUITE-Regular';
 
-  .memberNoFunding-Profile {
-    margin-right: 10px;
+  .main-memberNoFunding{
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+
+    .memberNoFunding-item {
+      margin-left: 25px;
+
+      .memberNoFunding-text {
+        color: black;
+        text-align:left;
+        margin-bottom: 10px;
+        font-size:23px;
+
+        .memberNoFunding-Nickname{
+          letter-spacing: 5px;
+        }
+      }
+    }
   }
-
-  .memberNoFunding-text {
-    color: black;
-    text-align:left;
-    margin-bottom: 10px;
-    font-size:23px;
-  }
-
 }
-
-
-
-

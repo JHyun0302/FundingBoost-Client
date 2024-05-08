@@ -3,16 +3,24 @@
   align-items: center;
   background-color: #EBEBEB;
   height: 210px;
+  font-family: 'SUITE-Regular';
 
-  .nonMember-Profile {
-    margin-right: 10px;
-  }
+  .main-nonMember {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
 
-  .nonMember-text {
-    color: black;
-    text-align:left;
-    margin-bottom: 10px;
-    font-size:23px;
+    .nonMember-item {
+      margin-left: 25px;
+
+      .nonMember-text {
+        color: black;
+        text-align: left;
+        margin-bottom: 10px;
+        font-size: 23px;
+
+      }
+    }
   }
 }
 

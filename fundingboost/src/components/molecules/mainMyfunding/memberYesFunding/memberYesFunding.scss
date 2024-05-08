@@ -42,6 +42,11 @@
         font-weight: bold;
         margin-right: 10px;
       }
+      .memberFundingTag {
+        margin-left: 6px;
+        font-size: 13px;
+        color: #b1b1b1;
+      }
     }
 
     .memberFundingD-day{
@@ -49,8 +54,14 @@
       font-weight: bold;
       margin-left: 20px;
       color: #FFACAC;
-
     }
+    .memberFundingD-dayEnd{
+      font-size: 23px;
+      font-weight: bold;
+      margin-left: 20px;
+      color: #55ADFF;
+    }
+
     .memberFunding-RightItem{
       display: contents;
 
@@ -58,6 +69,7 @@
         font-size: 23px;
         font-weight: bold;
         margin-left: auto;
+        margin-right: 10px;
       }
     }
   }
@@ -79,18 +91,27 @@
         justify-content: center;
         float: left;
         margin: 0px 20px 2px 20px ;
+        height: 200px;
 
         .myFundingItem {
           display: inline-block;
           flex-direction: column;
           text-align: center;
+          margin: 0 20px;
+        .myFundingItemImg{
+          width: 140px;
+          height: 115px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+        }
+        .gaugeFull{
+          width: 140px;
+          height: 115px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+          filter: brightness(0.68);
+        }
 
-          .item-img {
-            width: 140px;
-            height: 110px;
-            box-shadow: 0px 0px 3px #b8b8b8;
-            margin-bottom: 10px;
-          }
 
           .gauge-bar {
             width: 150px;
@@ -147,9 +168,3 @@
   --bs-bg-opacity: 1;
   background-color: #40d600 !important;
 }
-
-
-
-
-
-
