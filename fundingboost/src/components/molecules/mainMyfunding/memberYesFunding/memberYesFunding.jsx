@@ -26,6 +26,7 @@ function MemberYesFunding({ memberFundingData }) {
 
     console.log("상품이미지:", memberFundingData?.data?.homeMyFundingItemDtoList?.itemImageUrl);
 
+    //캐러셀 분할
     function chunkArray(arr, chunkSize) {
         const chunkedArray = [];
         for (let i = 0; i < arr.length; i += chunkSize) {
@@ -44,8 +45,11 @@ function MemberYesFunding({ memberFundingData }) {
                             <div className="myfundingNickName">{memberFundingData?.data?.homeMemberInfoDto?.nickName}님</div>
                             펀딩 현황
                         </div>
-                        <div className={`memberFundingD-day ${memberFundingData?.data?.homeMyFundingStatusDto?.deadline === "종료"? "memberFundingD-dayEnd" :""}`}>{memberFundingData?.data?.homeMyFundingStatusDto?.deadline === "종료"? "펀딩이 종료되었습니다!" :memberFundingData?.data?.homeMyFundingStatusDto?.deadline }</div>
-                        <div className="memberFundingTag">#태그{memberFundingData?.data?.homeMyFundingStatusDto?.tag}</div>
+                        {/*deadline에 따른 렌더링, "종료"일 경우 추가 */}
+                        <div className={`memberFundingD-day ${memberFundingData?.data?.homeMyFundingStatusDto?.deadline === "종료"? "memberFundingD-dayEnd" :""}`}>
+                            {memberFundingData?.data?.homeMyFundingStatusDto?.deadline === "종료"? "펀딩이 종료되었습니다!" :memberFundingData?.data?.homeMyFundingStatusDto?.deadline }
+                        </div>
+                        <div className="memberFundingTag">{memberFundingData?.data?.homeMyFundingStatusDto?.tag}</div>
                     </div>
                     <div className="memberFunding-RightItem">
                         <div className="memberFundingProgress">{memberFundingData?.data?.homeMyFundingStatusDto?.totalPercent}%</div>
@@ -60,7 +64,8 @@ function MemberYesFunding({ memberFundingData }) {
                             {memberFundingData?.data?.homeMyFundingStatusDto?.homeMyFundingItemDtoList?.map((product, index) => (
                                 <div className="myFundingItem-a" key={index}>
                                     <div className="myFundingItem">
-                                        <img src={product.itemImageUrl} className={`myFundingItemimg ${product.itemPercent === 100 ? 'gaugeFull' : 'myFundingItemImg'}`} />
+                                        <img src={product.itemImageUrl} // 각 상품의 percent가 100인 경우 관리
+                                             className={`myFundingItemimg ${product.itemPercent === 100 ? 'gaugeFull' : 'myFundingItemImg'}`} />
                                         <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                     </div>
                                 </div>
@@ -70,6 +75,7 @@ function MemberYesFunding({ memberFundingData }) {
                 ) : (
                     <div className="myFundingItemsContainer mobile-carousel">
                         <div className="myFundingItems">
+                            {/*캐러셀 커스텀*/}
                             <Carousel
                                 showArrows={true}
                                 showThumbs={false}
