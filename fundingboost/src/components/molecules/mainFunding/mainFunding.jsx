@@ -6,7 +6,6 @@ import MainFriendFunding from "../mainFriendFunding/mainFriendFunding/mainFriend
 import NonMember from "../mainMyfunding/nonMember/nonMember";
 import MainFriendNoFunding from "../mainFriendFunding/mainFriendNoFunding/mainFriendNoFunding";
 import axios from "axios";
-import MemberFinishFunding from "../mainMyfunding/memberFinishFunding/memberFinishFunding";
 
 const MainFunding = () => {
     const [memberFundingData, setFundingMemberData] = useState({});
@@ -40,10 +39,6 @@ const MainFunding = () => {
             ):(
                 <MemberNoFunding memberFundingData={memberFundingData}/>
             )}
-            <MemberFinishFunding memberFundingData={memberFundingData}/>
-                <MemberNoFunding memberFundingData={memberFundingData}/>
-            <NonMember />
-
 
             {/*친구 펀딩 존재 여부에 따른 변화*/}
             {memberFundingData.data?.homeFriendFundingDtoList?.length > 0 ? (

@@ -42,6 +42,11 @@
         font-weight: bold;
         margin-right: 10px;
       }
+      .memberFundingTag {
+        margin-left: 6px;
+        font-size: 13px;
+        color: #b1b1b1;
+      }
     }
 
     .memberFundingD-day{
@@ -49,8 +54,14 @@
       font-weight: bold;
       margin-left: 20px;
       color: #FFACAC;
-
     }
+    .memberFundingD-dayEnd{
+      font-size: 23px;
+      font-weight: bold;
+      margin-left: 20px;
+      color: #55ADFF;
+    }
+
     .memberFunding-RightItem{
       display: contents;
 

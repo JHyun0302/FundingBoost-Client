@@ -44,7 +44,8 @@ function MemberYesFunding({ memberFundingData }) {
                             <div className="myfundingNickName">{memberFundingData?.data?.homeMemberInfoDto?.nickName}님</div>
                             펀딩 현황
                         </div>
-                        <div className="memberFundingD-day">{memberFundingData?.data?.homeMyFundingStatusDto?.deadline}</div>
+                        <div className={`memberFundingD-day ${memberFundingData?.data?.homeMyFundingStatusDto?.deadline === "종료"? "memberFundingD-dayEnd" :""}`}>{memberFundingData?.data?.homeMyFundingStatusDto?.deadline === "종료"? "펀딩이 종료되었습니다!" :memberFundingData?.data?.homeMyFundingStatusDto?.deadline }</div>
+                        <div className="memberFundingTag">#태그{memberFundingData?.data?.homeMyFundingStatusDto?.tag}</div>
                     </div>
                     <div className="memberFunding-RightItem">
                         <div className="memberFundingProgress">{memberFundingData?.data?.homeMyFundingStatusDto?.totalPercent}%</div>
