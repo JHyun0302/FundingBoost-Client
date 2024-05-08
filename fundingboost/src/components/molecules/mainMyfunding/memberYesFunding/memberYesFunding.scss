@@ -98,13 +98,20 @@
           flex-direction: column;
           text-align: center;
           margin: 0 20px;
+        .myFundingItemImg{
+          width: 140px;
+          height: 115px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+        }
+        .gaugeFull{
+          width: 140px;
+          height: 115px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+          filter: brightness(0.6);
+        }
 
-          .item-img {
-            width: 140px;
-            height: 110px;
-            box-shadow: 0px 0px 3px #b8b8b8;
-            margin-bottom: 10px;
-          }
 
           .gauge-bar {
             width: 150px;

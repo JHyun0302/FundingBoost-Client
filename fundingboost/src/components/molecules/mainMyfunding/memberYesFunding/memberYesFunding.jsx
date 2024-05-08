@@ -9,7 +9,7 @@ import './memberYesFunding.scss';
 import axios from "axios";
 
 function MemberYesFunding({ memberFundingData }) {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 970);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1085);
 
     //반응형 추가
     useEffect(() => {
@@ -60,7 +60,7 @@ function MemberYesFunding({ memberFundingData }) {
                             {memberFundingData?.data?.homeMyFundingStatusDto?.homeMyFundingItemDtoList?.map((product, index) => (
                                 <div className="myFundingItem-a" key={index}>
                                     <div className="myFundingItem">
-                                        <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg" />
+                                        <img src={product.itemImageUrl} className={`myFundingItemimg ${product.itemPercent === 100 ? 'gaugeFull' : 'myFundingItemImg'}`} />
                                         <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                     </div>
                                 </div>
@@ -85,8 +85,8 @@ function MemberYesFunding({ memberFundingData }) {
                                     <div className="myFundingItem-a" key={index}>
                                         {chunk.map((product, index) => (
                                             <div className="myFundingItem" key={index}>
-                                                {/*<ItemImg imageUrl={product.itemImageUrl} className={`myFundingItemimg ${product.itemPercent === 100 ? 'Gauge100Img':''}`} />*/}
-                                                <ItemImg imageUrl={product.itemImageUrl} className="myFundingItemimg" />
+                                                <img src={product.itemImageUrl}
+                                                     className={`myFundingItemimg ${product.itemPercent === 100 ? 'gaugeFull' : 'myFundingItemImg'}`}/>
                                                 <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                             </div>
                                         ))}
