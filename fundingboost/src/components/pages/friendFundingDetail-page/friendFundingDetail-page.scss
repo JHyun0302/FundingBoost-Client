@@ -1,0 +1,19 @@
+.friendFundingDetail-Page {
+  display: flex;
+  flex-direction: column;
+
+  .friendFundingDetail {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+
+  }
+
+  .friendFundingDetail-optionDetail {
+    height: auto;
+    border-left: 1px solid #6a6a6a;
+    display: flex;
+    justify-content: space-between;
+
+  }
+}

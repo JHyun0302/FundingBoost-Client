@@ -8,7 +8,10 @@ const FriendFundingDetailItem = () => {
 
 
 
-    // return (
+    return (
+        <div className="friendFundingDetailItem">
+            왼쪽 아이템 리스트 입니다.
+        </div>
     //     <div className="FriendFundingDetailItem">
     //
     //         {orderedItems.map((item, index) => (
@@ -30,6 +33,7 @@ const FriendFundingDetailItem = () => {
     //         ))}
     //     </div>
     // );
+    );
 };
 
 export default FriendFundingDetailItem ;
