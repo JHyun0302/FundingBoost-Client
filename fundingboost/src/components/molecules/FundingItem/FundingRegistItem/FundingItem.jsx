@@ -6,7 +6,7 @@ import { formatPrice } from '../../../../utils/formats';
 
 
 export default function Mainrankingitem({ products }) {
-    // products가 undefined인 경우를 처리
+
     if (!products) {
         return null;
     }
