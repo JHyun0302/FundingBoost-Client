@@ -1,6 +1,5 @@
 import React from 'react';
 import "./friendFundingDetail-friendFunding.scss";
-import img from "../../../assets/image-25.png";
 import FriendFundingDetailMoneyButtonGroup
     from "../button/friendFundingDetail-moneybuttonGroup/friendFundingDetail-moneybuttonGroup";
 import GaugeBar from "../gauge-bar/gauge-bar";
