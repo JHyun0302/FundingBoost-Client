@@ -3,14 +3,14 @@ import './friendFundingDetail-optionDetail.scss';
 import FriendFundingDetailFriendFunding from '../../../atoms/friendFundingDetail-friendFunding/friendFundingDetail-friendFunding';
 import FriendFundingDetailProfileMessage from '../../../atoms/friendFundingDetail-profileMessage/friendFundingDetail-profileMessage';
 
-const FriendFundingDetailOptionDetail = () => {
+const FriendFundingDetailOptionDetail = ({friendFundingDetailData} ) => {
     return (
         <div className="friendFundingDetail-optionDetail">
             <div>
-                <FriendFundingDetailProfileMessage />
+                <FriendFundingDetailProfileMessage friendFundingDetailData={friendFundingDetailData} />
             </div>
             <div>
-                <FriendFundingDetailFriendFunding />
+                <FriendFundingDetailFriendFunding friendFundingDetailData={friendFundingDetailData} />
             </div>
         </div>
     );
