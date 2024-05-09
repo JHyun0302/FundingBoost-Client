@@ -10,6 +10,7 @@ export default function MyfundingAdditionalPane({ participateFriendDtoList, tota
             <div className="mypage-additional-wrapper">
                 <div className="mypage-additional-container">
                     <div className="mypage-myfunding-additional-title-01">전체 진행률</div>
+                    <div className="mypage-myfunding-totalper-wrapper">{totalPercent}%</div>
                     <Gauge totalPercent={totalPercent}/>
                     <div className="mypage-myfunding-additional-title-02">내 펀딩에 참여한 친구</div>
                     <JoinFriend participateFriendDtoList={participateFriendDtoList}/>
