@@ -1,11 +1,10 @@
 import React from 'react';
 import "./friendFundingDetail-profileMessage.scss";
-// import img from "../../../assets/image-25.png";
 import img2 from "../../../assets/airplane.png";
 import ProfileImg from "../ProfileImg/ProfileImg";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
 
-export default function FriendFundingDetailFriendProfile ({friendFundingDetailData} ) {
+export default function FriendFundingDetailFriendProfile ({friendFundingDetailData}) {
     return (
         <div className="friendFundingDetail-FriendProfile">
             <div className="friendFundingDetail-Profile">
@@ -33,7 +32,6 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
                             <div className="friendFundingDetail-friendName">{contributor.contributorName}</div>
                             </div>
                         ))}
-                        {/*<button className="nextFriends">&gt;</button>*/}
                     </div>
                 </div>
 

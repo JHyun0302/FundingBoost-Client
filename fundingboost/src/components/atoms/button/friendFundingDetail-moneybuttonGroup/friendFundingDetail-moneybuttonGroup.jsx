@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import './friendFundingDetail-moneybuttonGroup.scss'
 
-const FriendFundingDetailMoneybuttonGroup = () => {
+const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange }) => {
     const [fundingAmount, setFundingAmount] = useState(0);
 
-    // 금액 버튼 클릭
+    // 버튼을 통한 금액 입력
     const handleMoneyButtonClick = (amount) => {
-        setFundingAmount(prevAmount => (parseInt(prevAmount) + amount).toString());
+        const newAmount = parseInt(fundingAmount) + amount;
+        setFundingAmount(newAmount);
+        onFundingAmountChange(newAmount);
     };
-    //사용자가 직접 버튼 입력
+
+
+    //사용자가 직접 금액 입력
     const handleMoneyInputChange = (event) => {
         const inputValue = event.target.value;
         const numericValue = inputValue.replace(/\D/g, '');  //문자입력제한
-        setFundingAmount(numericValue === "" ? 0 : parseInt(numericValue));
+        const newAmount = numericValue === "" ? 0 : parseInt(numericValue);
+        setFundingAmount(newAmount);
+        onFundingAmountChange(newAmount);
     };
 
-    //숫자 형식 천단위 ,
+
+    //숫자 형식 천단위 ","
     const formattedFundingAmount = fundingAmount ? parseInt(fundingAmount).toLocaleString() : "펀딩할 금액을 입력해 주세요";
 
     return (
