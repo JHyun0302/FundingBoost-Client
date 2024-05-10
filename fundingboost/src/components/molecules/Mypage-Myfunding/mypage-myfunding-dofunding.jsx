@@ -5,8 +5,9 @@ import shareicon from "../../../assets/share.svg";
 import MyfundingAdditionalPane from "../../atoms/mypage-additional-info/mypage-additional-info";
 import MyfundingItemList from "../mypage-myfunding-itemlist/mypage-myfunding-itemlist";
 import messagebox from "../../../assets/messagebox.svg";
-import MyPageMyFundingMessage from "../Modal/MypageMyfundingMessage/mypagemyfundingmessage"
-import messageboxopen from "../../../assets/messagebox-open.svg"
+import MyPageMyFundingMessage from "../Modal/MypageMyfundingMessage/mypagemyfundingmessage";
+import messageboxopen from "../../../assets/messagebox-open.svg";
+import ExtensionButton from "../../atoms/buttons/Mypage-Myfunding-Button/mypage-myfunding-extension-button/mypage-myfunding-extension-button";
 
 const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent, message, tag, participateFriendDtoList, myPageFundingItemDtoList,  isFundingClosed, setIsFundingClosed }) => {
     const [showModal, setShowModal] = useState(false); // 모달 열림 여부 상태 관리
@@ -72,7 +73,7 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
                         </button>
                     </div>
                     <div className="mypage-button-noti-wrpper">
-                        <button className="mypage-button-style-01">기간 연장하기</button>
+                        <ExtensionButton myPageFundingItemDtoList = {myPageFundingItemDtoList}/>
                         <button className="mypage-button-style-01">
                             <img src={shareicon} alt="shareicon" className="mypage-share-icon"/>
                         </button>
@@ -95,3 +96,4 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
 }
 
 export default MyfundingDoFundingPane;
+

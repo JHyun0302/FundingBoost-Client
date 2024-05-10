@@ -27,7 +27,7 @@ const MyfundingFinFundingPane = ({ apiData, deadline, deadlineDate, totalPercent
                 <div className="mypage-myfunding-title-wrapper">
                     <div className="mypage-day-wrpper">
                         <div className="mypage-myfunding-title">MY 펀딩</div>
-                        <div className="memberFundingDday">펀딩이 {deadlineDate}되었습니다.</div>
+                        <div className="memberFundingDday">{deadlineDate}</div>
                         <div className="mypage-enddate-pane">~ {deadline}</div>
                         <div className="mypage-tag-pane">{tag}</div>
                         <button
