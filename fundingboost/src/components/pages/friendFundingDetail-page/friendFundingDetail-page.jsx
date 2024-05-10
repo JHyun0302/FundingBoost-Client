@@ -13,8 +13,7 @@ const FriendFundingDetailPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/main',{
-
+                const response = await axios.get('https://07ae-112-218-95-58.ngrok-free.app/api/v1/funding/friends/1?memberId=2',{
                     responseType: 'json',
                     headers: ({
                         "Content-Type" : "application/json",

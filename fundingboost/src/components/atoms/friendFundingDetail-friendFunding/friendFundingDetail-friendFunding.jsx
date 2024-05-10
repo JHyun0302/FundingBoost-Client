@@ -11,8 +11,8 @@ export default function FriendFundingDetailFriendToFunding ({friendFundingDetail
         <div className="friendFundingDetailFriendToFunding">
             <div className="friendFundingDetail-FriendToFunding">
                 <div className="friendFundingDetail-FriendToFunding-style1">
-                    <div className="fundingToFriend-Text">{friendFundingDetailData?.data?.nickName}님께 펀딩하기</div>
-                    <input type="text" className="fundingToFriend-textBox" placeholder="펀딩할 금액을 입력해 주세요."/>
+                    <div className="fundingToFriend-Text">{friendFundingDetailData?.data?.friendName}님께 펀딩하기</div>
+
                     <div className="MoneyButtonGroup">
                         <FriendFundingDetailMoneyButtonGroup/>
                     </div>

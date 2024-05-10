@@ -11,8 +11,8 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
             <div className="friendFundingDetail-Profile">
                 <div className='friendProfileInfo'>
                     <img className="friendFundingDetail-friendProfileImage" alt="MyProfile"
-                         src={friendFundingDetailData?.data?.profileImgUrl || defaultProfileImg}/>
-                    <div className="friendFundingDetail-friendName">{friendFundingDetailData?.data?.nickName}</div>
+                         src={friendFundingDetailData?.data?.friendProfileImgUrl || defaultProfileImg}/>
+                    <div className="friendFundingDetail-friendName">{friendFundingDetailData?.data?.friendName}</div>
                     <div className="friendFundingDetail-fundingTag">{friendFundingDetailData?.data?.fundingTag}</div>
                 </div>
                 <div className="fundingMessage-triangle"></div>
@@ -22,7 +22,7 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
                 </div>
                 <div className='fundingFriendsTitle'>
                     <img className="paperAirplane" alt="paperAirplane" src={img2}/>
-                    <div className="fundingFriendsIntro">{friendFundingDetailData?.data?.nickName}님에게 펀딩한 친구들</div>
+                    <div className="fundingFriendsIntro">{friendFundingDetailData?.data?.friendName}님에게 펀딩한 친구들</div>
                 </div>
                 <div className="friendFundingDetail-fundingFriendlist">
                     <div className="friendFundingDetail-fundingFriends">
@@ -33,11 +33,7 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
                             <div className="friendFundingDetail-friendName">{contributor.contributorName}</div>
                             </div>
                         ))}
-                        {/*<img className="fundingFriends-img" alt="Ellipse" src={img} />*/}
-                        {/*<img className="fundingFriends-img" alt="Ellipse" src={img} />*/}
-                        {/*<img className="fundingFriends-img" alt="Ellipse" src={img} />*/}
-                        {/*<img className="fundingFriends-img" alt="Ellipse" src={img} />*/}
-                        <button className="nextFriends">&gt;</button>
+                        {/*<button className="nextFriends">&gt;</button>*/}
                     </div>
                 </div>
 

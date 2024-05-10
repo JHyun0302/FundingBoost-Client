@@ -9,7 +9,7 @@ console.log("상품명:"+{friendFundingDetailData});
         <div className="friendFundingDetailItem">
             {friendFundingDetailData?.data?.friendFundingItemList.map((item, index) => (
                 <div key={index} className="friendFundingDetailItem-itemContainer">
-                    <img src={friendFundingDetailData?.data?.friendFundingItemList[0]?.itemImageUrl || NonItemImg} alt={item.itemName} className="item-img" />
+                    <img src={item.itemImageUrl || NonItemImg} alt={item.itemName} className="item-img" />
                     <div className="friendFundingDetailItem-itemDetail">
                         <div className="friendFundingDetailItem-itemtitle">{item.itemName}</div>
                         <div className="friendFundingDetailItem-optionDetail">
@@ -18,7 +18,7 @@ console.log("상품명:"+{friendFundingDetailData});
                             </div>
                             <div className="friendFundingDetailItem-optionName">{item.optionName}</div>
                         </div>
-                        <div className="friendFundingDetailItem-price">{item.itemPrice} 원</div>
+                        <div className="friendFundingDetailItem-price">{Number(item.itemPrice).toLocaleString()} 원</div>
                     </div>
                 </div>
             ))}

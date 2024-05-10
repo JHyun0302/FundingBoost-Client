@@ -86,7 +86,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #F5F5F5;
+  background-color: #efeeee;
   padding: 12px;
   //justify-content: space-between;
   width: 320px;
@@ -108,18 +108,22 @@
     height: 29px;
     border-radius: 90px;
   }
+  .friendFundingDetail-fundingFriends-img {
+    position: relative;
+  }
   .friendFundingDetail-friendName{
-    //position: absolute;
-    top: 67px;
-    left: 13px;
+    position: absolute;
+    top: 57px;
+    left: 5px;
     text-align: center;
-    background-color: #e2e2e2;
-    border-radius: 2px;
+    background-color: #e5eeff;
+    border-radius: 10px;
     width: 55px;
-    border: 1px solid #9e9e9e;
-    justify-content: center;
+    border: 1px solid #c0c0c0;
+
     display: none;
   }
+
   .fundingFriends-img:hover + .friendFundingDetail-friendName{
     display: block;
   }
