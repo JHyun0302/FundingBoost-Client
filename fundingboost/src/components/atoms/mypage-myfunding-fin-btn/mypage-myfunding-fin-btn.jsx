@@ -40,7 +40,6 @@ export default function MyPageFinfundingbtn({ item }) {
                 </div>
             );
         } else {
-
             return (
                 <div className="fin-btn-wrapper">
                     <MypageCompleteButton />

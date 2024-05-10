@@ -10,6 +10,7 @@ const MypageMyfunding = lazy(() => import('./components/pages/mypage/mypage-myfu
 const MypageFundingHistory = lazy(() => import('./components/pages/mypage/mypage-funding-history-page/mypage-myfunding-history-page'));
 const FundingRegistPage = lazy(() => import('./components/pages/fundingRegist-page/fundingRegist-Page'));
 const FundingSuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
+const FundingPayPage = lazy(() => import('./components/pages/mypay-page/mypay-page'));
 
 // 로딩 스피너
 const LoadingSpinner = () => (
@@ -31,6 +32,8 @@ function Router() {
                 <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner />}><MypageMyfunding /></Suspense>} />
                 <Route path="/mypage/funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFundingHistory/></Suspense>} />
                 <Route path="/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
+                <Route path="/funding/pay" element={<Suspense fallback={<LoadingSpinner />}><FundingPayPage/></Suspense>} />
+
             </Routes>
         </BrowserRouter>
     );
