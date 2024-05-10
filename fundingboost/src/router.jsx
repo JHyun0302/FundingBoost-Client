@@ -9,8 +9,9 @@ const Gifthub = lazy(() => import('./components/pages/gifthub-page/gifthub-page'
 const MypageMyfunding = lazy(() => import('./components/pages/mypage/mypage-myfunding-page/mypage-myfunding-page'));
 const MypageFundingHistory = lazy(() => import('./components/pages/mypage/mypage-funding-history-page/mypage-myfunding-history-page'));
 const FundingRegistPage = lazy(() => import('./components/pages/fundingRegist-page/fundingRegist-Page'));
-const FundingSuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
+const PaySuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
 const FundingPayPage = lazy(() => import('./components/pages/mypay-page/mypay-page'));
+const FundingSuccessPage = lazy(() => import('./components/pages/funding-success-page/funding-success-page'));
 
 // 로딩 스피너
 const LoadingSpinner = () => (
@@ -31,8 +32,11 @@ function Router() {
                 <Route path="/funding" element={<Suspense fallback={<LoadingSpinner />}><FundingRegistPage /></Suspense>} />
                 <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner />}><MypageMyfunding /></Suspense>} />
                 <Route path="/mypage/funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFundingHistory/></Suspense>} />
-                <Route path="/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
                 <Route path="/funding/pay" element={<Suspense fallback={<LoadingSpinner />}><FundingPayPage/></Suspense>} />
+                <Route path="/friend-funding/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
+                <Route path="/order/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
+                <Route path="/funding/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
+                <Route path="/funding/regist/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
 
             </Routes>
         </BrowserRouter>

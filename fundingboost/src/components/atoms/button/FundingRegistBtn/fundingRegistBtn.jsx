@@ -9,7 +9,7 @@ function FundingRegistButton({ onClick }){
     const navigate = useNavigate();
     const handleClick = () => {
         onClick();
-        navigate('/mypage');
+        navigate('/funding/regist/success');
     };
     return (
         <>
