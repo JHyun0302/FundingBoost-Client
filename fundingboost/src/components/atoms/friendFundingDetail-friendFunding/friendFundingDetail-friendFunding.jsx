@@ -26,13 +26,13 @@ export default function FriendFundingDetailFriendToFunding({ friendFundingDetail
                 <div className="friendFundingDetail-FriendToFunding-style1">
                     <div className="fundingToFriend-Text">{friendFundingDetailData?.data?.friendName}님께 펀딩하기</div>
                     <div className="MoneyButtonGroup">
-                        <FriendFundingDetailMoneyButtonGroup onFundingAmountChange={handleFundingAmountChange} />
+                        <FriendFundingDetailMoneyButtonGroup onFundingAmountChange={handleFundingAmountChange} friendFundingDetailData ={friendFundingDetailData}/>
                     </div>
                 </div>
                 <div className="friendFundingDetail-FriendToFunding-style2">
                     <div className="friendFundingDetail-fundingInfo">
                         <div className='friendFundingDetail-dDayGroup'>
-                            <div className="friendFundingDetail-dDay">D - 3</div>
+                            <div className="friendFundingDetail-dDay">{friendFundingDetailData?.data?.deadLineDate}</div>
                             <div className="friendFundingDetail-deadLine">{friendFundingDetailData?.data?.deadline}</div>
                         </div>
                         <div className="friendFundingDetail-totalPercent">{friendFundingDetailData?.data?.contributedPercent}%</div>

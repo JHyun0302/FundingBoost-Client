@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './friendFundingDetail-moneybuttonGroup.scss'
 
-const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange }) => {
+const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange, friendFundingDetailData  }) => {
     const [fundingAmount, setFundingAmount] = useState(0);
 
     // 버튼을 통한 금액 입력
     const handleMoneyButtonClick = (amount) => {
-        const newAmount = parseInt(fundingAmount) + amount;
+        const newAmount = Math.min(parseInt(fundingAmount) + amount, friendFundingDetailData?.data?.leftPrice);
         setFundingAmount(newAmount);
         onFundingAmountChange(newAmount);
     };
@@ -16,7 +16,7 @@ const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange }) => {
     const handleMoneyInputChange = (event) => {
         const inputValue = event.target.value;
         const numericValue = inputValue.replace(/\D/g, '');  //문자입력제한
-        const newAmount = numericValue === "" ? 0 : parseInt(numericValue);
+        const newAmount = Math.min(numericValue === "" ? 0 : parseInt(numericValue), friendFundingDetailData?.data?.leftPrice);
         setFundingAmount(newAmount);
         onFundingAmountChange(newAmount);
     };
@@ -41,7 +41,7 @@ const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange }) => {
                     <button className="moneyButton" onClick={() => handleMoneyButtonClick(100000)}>+ 10만</button>
                 </div>
                 <div className="money">
-                    <button className="moneyButton">+ 전액</button>
+                    <button className="moneyButton" onClick={() => handleMoneyButtonClick(friendFundingDetailData?.data?.leftPrice)}>+ 전액</button>
                 </div>
             </div>
 
