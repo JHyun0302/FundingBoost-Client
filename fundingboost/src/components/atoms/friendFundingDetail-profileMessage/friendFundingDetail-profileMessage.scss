@@ -91,12 +91,12 @@
   //justify-content: space-between;
   width: 320px;
   //position: relative;
-
+  flex-wrap: wrap;
   .fundingFriends-img{
     height: 50px;
     width: 50px;
     border-radius: 90px;
-    margin: 0 7px
+    margin: 4px 4.5px
   }
 
   .nextFriends  {
@@ -120,12 +120,12 @@
     border-radius: 10px;
     width: 55px;
     border: 1px solid #c0c0c0;
-
+    z-index: 1;
     display: none;
   }
 
   .fundingFriends-img:hover + .friendFundingDetail-friendName{
-    display: block;
+    display: block !important;
   }
 
 }
