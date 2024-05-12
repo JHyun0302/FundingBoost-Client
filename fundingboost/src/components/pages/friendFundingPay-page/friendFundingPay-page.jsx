@@ -1,9 +1,10 @@
-// FriendFundingPayPage 컴포넌트
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-const FriendFundingPayPage = ({fundingAmount}) => {
+const FriendFundingPayPage = () => {
+    const location = useLocation();
+    const fundingAmount = location.state;
 
-console.log("펀딩된 금액: "+fundingAmount);
     return (
         <div>
             <p>펀딩된 금액: {fundingAmount}</p>

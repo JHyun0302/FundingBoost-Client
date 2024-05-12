@@ -22,7 +22,7 @@ const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange, friendFund
     };
 
 
-    //숫자 형식 천단위 ","
+    //숫자 형식 천단위 "," 표시
     const formattedFundingAmount = fundingAmount ? parseInt(fundingAmount).toLocaleString() : "펀딩할 금액을 입력해 주세요";
 
     return (
@@ -41,7 +41,9 @@ const FriendFundingDetailMoneybuttonGroup = ({ onFundingAmountChange, friendFund
                     <button className="moneyButton" onClick={() => handleMoneyButtonClick(100000)}>+ 10만</button>
                 </div>
                 <div className="money">
-                    <button className="moneyButton" onClick={() => handleMoneyButtonClick(friendFundingDetailData?.data?.leftPrice)}>+ 전액</button>
+                    <button className="moneyButton"
+                            onClick={() => handleMoneyButtonClick(friendFundingDetailData?.data?.leftPrice)}>+ 전액
+                    </button>
                 </div>
             </div>
 
