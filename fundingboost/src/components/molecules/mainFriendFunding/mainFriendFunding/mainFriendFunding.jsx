@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // react-router-dom에서 Link 가져오기
 import './mainFriendFunding.scss';
 import ItemImg from "../../../atoms/itemImg/itemImg";
 import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
@@ -53,33 +54,33 @@ const MainFriendFunding = ({ memberFundingData }) => {
                         showIndicators={true}
                         emulateTouch={true}
                         arrows={false}
-                        // autoPlay={true}
-                        // interval={2000}
                         infinite={true}
                     >
                         {chunkArray(friendFundingData, itemsSlide).map((chunk, index) => (
                             <div key={index} className="mainFriendFundingitem">
                                 {chunk.map((friendFunding, idx) => (
-                                    <div key={idx} className="mainFriendFundingContents">
-                                        <div className="mainFriendFundingProfile-item">
-                                            <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoList[0].itemImageUrl} className="mainFriendFunding-Itemimg"/>
-                                            <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="mainFriendFunding-profile-img"/>
-                                        </div>
-                                        <div className="mainFriendFunding-textitem-GaugeBar">
-                                            <div className="mainFriendFunding-textContents">
-                                                <div className="mainFriendFunding-NickName-Dday">
-                                                    <div className="mainFriendFunding-NickName">{friendFunding.commonFriendFundingDto.nickName}</div>
-                                                    <div className="mainFriendFunding-D-day">{friendFunding.commonFriendFundingDto.friendFundingDeadlineDate} </div>
+                                    <Link to={`/friend-funding-detail/${friendFunding.id}`} key={idx} className="mainFriendFundingContents">
+                                        <div className="mainFriendFundingContents">
+                                            <div className="mainFriendFundingProfile-item">
+                                                <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoList[0].itemImageUrl} className="mainFriendFunding-Itemimg"/>
+                                                <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="mainFriendFunding-profile-img"/>
+                                            </div>
+                                            <div className="mainFriendFunding-textitem-GaugeBar">
+                                                <div className="mainFriendFunding-textContents">
+                                                    <div className="mainFriendFunding-NickName-Dday">
+                                                        <div className="mainFriendFunding-NickName">{friendFunding.commonFriendFundingDto.nickName}</div>
+                                                        <div className="mainFriendFunding-D-day">{friendFunding.commonFriendFundingDto.friendFundingDeadlineDate} </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="mainFriendFunding-Tag">{friendFunding.commonFriendFundingDto.tag}</div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <div className="mainFriendFunding-Tag">{friendFunding.commonFriendFundingDto.tag}</div>
+                                                <div className="mainFriendFunding-GaugeBarContent">
+                                                    <GaugeBar value={friendFunding.commonFriendFundingDto.friendFundingPercent} className="mainFriendFunding-GaugeBar"/>
                                                 </div>
                                             </div>
-                                            <div className="mainFriendFunding-GaugeBarContent">
-                                                <GaugeBar value={friendFunding.commonFriendFundingDto.friendFundingPercent} className="mainFriendFunding-GaugeBar"/>
-                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         ))}

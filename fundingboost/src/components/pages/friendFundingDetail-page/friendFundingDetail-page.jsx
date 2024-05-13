@@ -1,25 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import FriendFundingDetailItem
-    from "../../molecules/FriendFundingDetail/FriendFundingDetail-item/friendFundingDetail-item";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'; // react-router-dom에서 useParams 가져오기
+import axios from "axios";
 import Header from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
-import FriendFundingDetailOptionDetail
-    from "../../molecules/FriendFundingDetail/friendFundingDetail-optionDetail/friendFundingDetail-optionDetail";
+import FriendFundingDetailItem from "../../molecules/FriendFundingDetail/FriendFundingDetail-item/friendFundingDetail-item";
+import FriendFundingDetailOptionDetail from "../../molecules/FriendFundingDetail/friendFundingDetail-optionDetail/friendFundingDetail-optionDetail";
 import "./friendFundingDetail-page.scss";
-import axios from "axios";
 
 const FriendFundingDetailPage = () => {
+    const { friendFundingId } = useParams(); // URL에서 친구 펀딩 ID 가져오기
     const [friendFundingDetailData, setFriendFundingDetailData] = useState({});
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://07ae-112-218-95-58.ngrok-free.app/api/v1/funding/friends/1?memberId=2',{
+                const response = await axios.get(`https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/main/${friendFundingId}`, {
                     responseType: 'json',
-                    headers: ({
-                        "Content-Type" : "application/json",
-                        "Access-Control-Allow-Credentials" : true,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true,
-                    }),
+                    },
                 });
                 setFriendFundingDetailData(response.data);
                 console.log("response ->", response.data);
@@ -28,11 +29,9 @@ const FriendFundingDetailPage = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [friendFundingId]);
 
-    console.log("data:", friendFundingDetailData && friendFundingDetailData.data);
     return (
-
         <div className="friendFundingDetail-Page">
             <Header />
 
@@ -41,7 +40,6 @@ const FriendFundingDetailPage = () => {
                 <div className="friendFundingDetail-optionDetail">
                     <FriendFundingDetailOptionDetail friendFundingDetailData={friendFundingDetailData} />
                 </div>
-
             </div>
             <Footer />
         </div>
