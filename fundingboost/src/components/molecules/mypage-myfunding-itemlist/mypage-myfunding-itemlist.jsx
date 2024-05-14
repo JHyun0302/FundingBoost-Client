@@ -13,7 +13,7 @@ export default function MyPageFundingItemPane({ apiData, myPageFundingItemDtoLis
     // MyFundingSingleItem 컴포넌트를 반복하여 렌더링합니다.
     const renderSingleItems = (startIdx, endIdx) => {
         return myPageFundingItemDtoList.slice(startIdx, endIdx).map((item, index) => (
-            <MyFundingSingleItem key={startIdx + index} item={item} isFundingClosed={isFundingClosed} setIsFundingClosed={setIsFundingClosed} apiData={apiData}/>
+            <MyFundingSingleItem key={startIdx + index} item={item} isFundingClosed={isFundingClosed} setIsFundingClosed={setIsFundingClosed} apiData={apiData} myPageFundingItemDtoList={myPageFundingItemDtoList}/>
         ));
     };
 

@@ -1,19 +1,20 @@
 import React from 'react';
-import logo from '../../../assets/logo.svg';
+import './mypay-page.scss'
 import HeaderBar from "../../organisms/header/header";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from '../../organisms/footer/footer'
-import PaySuccessPane from '../../organisms/contents/paysuccess/paysuccess'
+import MypayPane from '../../organisms/contents/mypay/mypay';
 
-function PaySuccessPage() {
+
+function MypayPage() {
     return (
         <div className="mypay-pages">
             <HeaderBar />
-            <PaySuccessPane />
+            <MypayPane/>
             <Footer />
         </div>
     );
 }
 
-export default PaySuccessPage;
+export default MypayPage;
