@@ -15,8 +15,6 @@ const FundingPayPage = lazy(() => import('./components/pages/mypay-page/mypay-pa
 const FundingSuccessPage = lazy(() => import('./components/pages/funding-success-page/funding-success-page'));
 const FriendFundingDetail = lazy(() => import('./components/pages/friendFundingDetail-page/friendFundingDetail-page'));
 const FriendFundingPayPage = lazy(() => import('./components/pages/friendFundingPay-page/friendFundingPay-page'));
-const FundingSuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
-
 
 
 // 로딩 스피너
