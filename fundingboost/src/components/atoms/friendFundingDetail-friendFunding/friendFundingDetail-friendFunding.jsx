@@ -1,4 +1,3 @@
-// FriendFundingDetailFriendToFunding 컴포넌트
 import React, { useState } from 'react';
 import "./friendFundingDetail-friendFunding.scss";
 import FriendFundingDetailMoneyButtonGroup from "../button/friendFundingDetail-moneybuttonGroup/friendFundingDetail-moneybuttonGroup";
@@ -14,10 +13,9 @@ export default function FriendFundingDetailFriendToFunding({ friendFundingDetail
         setFundingAmount(amount);
     };
 
-    // 펀딩 버튼 클릭 시 실행되는 함수
+    // 펀딩 버튼 클릭 시 실행
     const handleFriendToFundingBtnClick = () => {
         console.log("Funding button clicked. Funding amount:", fundingAmount);
-        // 펀딩 버튼이 클릭되면 페이지를 이동하고 펀딩 금액을 전달합니다.
     };
 
     return (
@@ -43,7 +41,6 @@ export default function FriendFundingDetailFriendToFunding({ friendFundingDetail
                 </div>
                 <div className="friendFundingDetail-FriendToFunding-style3">
                     <div className="friendFundingDetail-payButton">
-                        {/* FriendToFundingBtn 컴포넌트에 onClick prop을 전달합니다. */}
                         <FriendToFundingBtn onClick={handleFriendToFundingBtnClick} fundingAmount={fundingAmount} />
                         <div>
                             <button className="friendFundingDetail-sharebtn">

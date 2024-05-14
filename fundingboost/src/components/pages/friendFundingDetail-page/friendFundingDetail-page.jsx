@@ -6,15 +6,17 @@ import Footer from "../../organisms/footer/footer";
 import FriendFundingDetailItem from "../../molecules/FriendFundingDetail/FriendFundingDetail-item/friendFundingDetail-item";
 import FriendFundingDetailOptionDetail from "../../molecules/FriendFundingDetail/friendFundingDetail-optionDetail/friendFundingDetail-optionDetail";
 import "./friendFundingDetail-page.scss";
+import { useLocation } from 'react-router-dom';
+
 
 const FriendFundingDetailPage = () => {
-    const { friendFundingId } = useParams(); // URL에서 친구 펀딩 ID 가져오기
     const [friendFundingDetailData, setFriendFundingDetailData] = useState({});
-
+    const { fundingId } = useParams();
+    console.log("FundingId: "+fundingId);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://6e7c48eb-1b4f-4777-b960-9cc07bec54f4.mock.pstmn.io/main/${friendFundingId}`, {
+                const response = await axios.get(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/friends/${fundingId}`, {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
@@ -28,8 +30,9 @@ const FriendFundingDetailPage = () => {
                 console.error("Error data:", error);
             }
         };
+        console.log("FundingId2: "+fundingId);
         fetchData();
-    }, [friendFundingId]);
+    }, [fundingId]);
 
     return (
         <div className="friendFundingDetail-Page">

@@ -59,7 +59,13 @@ const MainFriendFunding = ({ memberFundingData }) => {
                         {chunkArray(friendFundingData, itemsSlide).map((chunk, index) => (
                             <div key={index} className="mainFriendFundingitem">
                                 {chunk.map((friendFunding, idx) => (
-                                    <Link to={`/friend-funding-detail/${friendFunding.id}`} key={idx} className="mainFriendFundingContents">
+                                    <Link key={idx}
+                                          to={{
+                                              pathname: `/friend-Funding/Detail/${friendFunding.commonFriendFundingDto.fundingId}`,
+                                              state: { fundingId: friendFunding.commonFriendFundingDto.fundingId }
+                                          }}
+                                          className="mainFriendFundingLink"
+                                        >
                                         <div className="mainFriendFundingContents">
                                             <div className="mainFriendFundingProfile-item">
                                                 <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoList[0].itemImageUrl} className="mainFriendFunding-Itemimg"/>
