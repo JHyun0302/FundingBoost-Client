@@ -24,19 +24,21 @@
   text-align: center;
 }
 
-.item-list-single{
+.item-list-single {
   display: flex;
-  //width: 20%;
-  padding:10px;
-  //border: 3px solid #bebebe;
-  flex-direction: row; /* 세로 방향으로 아이템을 배치 */
+  flex-wrap: wrap;
+  gap: 20px; /* 아이템 간의 간격을 조정합니다. 필요에 따라 조정하세요. */
   align-items: center;
+  padding:10px;
 }
 
-.single-item{
+.single-item {
   width: 1000px;
-  height: 1000px;
+  height: auto;
+  flex-basis: 25%;
   padding:10px;
   font-family: SUITE-Regular;
   font-size: 90%;
+  max-width: 18%;
+  /* flex-basis 값이 너무 클 경우, flex-basis의 값을 조정하거나 max-width를 사용해 조정하세요. */
 }
