@@ -9,7 +9,10 @@ const Gifthub = lazy(() => import('./components/pages/gifthub-page/gifthub-page'
 const MypageMyfunding = lazy(() => import('./components/pages/mypage/mypage-myfunding-page/mypage-myfunding-page'));
 const MypageFundingHistory = lazy(() => import('./components/pages/mypage/mypage-funding-history-page/mypage-myfunding-history-page'));
 const FundingRegistPage = lazy(() => import('./components/pages/fundingRegist-page/fundingRegist-Page'));
+const FriendFundingDetail = lazy(() => import('./components/pages/friendFundingDetail-page/friendFundingDetail-page'));
+const FriendFundingPayPage = lazy(() => import('./components/pages/friendFundingPay-page/friendFundingPay-page'));
 const FundingSuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
+
 
 // 로딩 스피너
 const LoadingSpinner = () => (
@@ -30,7 +33,10 @@ function Router() {
                 <Route path="/funding" element={<Suspense fallback={<LoadingSpinner />}><FundingRegistPage /></Suspense>} />
                 <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner />}><MypageMyfunding /></Suspense>} />
                 <Route path="/mypage/funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFundingHistory/></Suspense>} />
+                <Route path="/friend-funding/detail" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingDetail /></Suspense>} />
+                <Route path="/friend-funding/pay" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingPayPage /></Suspense>} />
                 <Route path="/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
+
             </Routes>
         </BrowserRouter>
     );
