@@ -1,7 +1,12 @@
 .friendFundingPayPage {
-  background-image: url("../../../assets/friendFunding/receipt.svg");
-  background-size: cover;
-  margin: 0 5%;
+
+  .friendFundingPayPageDetile{
+    background-image: url("../../../assets/friendFunding/receipt.svg");
+    background-size: cover;
+    margin: 0 5% 5% 5%;
+
+  }
+
   .friend-funding-profile {
     display: flex;
     flex-direction: row;
@@ -67,5 +72,94 @@
     .friend-funding-total-price {
       flex-direction: column;
     }
+  }
+}
+
+.friend-funding-price-current-pay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 241px;
+  width: 920px;
+}
+
+.friend-funding-price-current-pay-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #000000;
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.friend-funding-price-current-pay-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-end;
+  height: 178px;
+  width: 735px;
+}
+
+.friend-funding-price-current-pay-fixed-text {
+  color: #1d1d1d;
+  font-size: 25px;
+  font-weight: 200;
+}
+
+@media (max-width: 768px) {
+  .friend-funding-price-current-pay-div {
+    flex-direction: column;
+  }
+}
+
+.friend-funding-bar-code {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 128px;
+  width: 1038px;
+  justify-content: space-between;
+}
+
+.friend-funding-bar-code-image {
+  //background-image: url(./barcode-image.svg);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 128px;
+  width: 570px;
+}
+
+.friend-funding-bar-code-price {
+  color: #000000;
+  font-size: 50px;
+  font-weight: 500;
+  text-align: end;
+  width: 333px;
+}
+
+.friend-funding-bar-code-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.friend-funding-bar-code-button {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 400;
+  height: 50px;
+  text-align: center;
+  width: 206px;
+  align-self: flex-end;
+  background: #FFC83B;
+  border: none;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .friend-funding-bar-code {
+    flex-direction: column;
   }
 }

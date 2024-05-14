@@ -5,7 +5,16 @@ import './friendFundingPay-page.scss'
 import img from '../../../assets/logo.svg';
 import axios from "axios";
 
-
+import HeaderBar from "../../organisms/header/header";
+import Footer from "../../organisms/footer/footer";
+import receipt from "../../../assets/friendFunding/receipt.svg";
+import FriendFundingPayPrice from "../../molecules/FriendFundingPay/FriendFundingPay-Price/friendFundingPay-Price";
+import FriendFundingPayBarcode
+    from "../../molecules/FriendFundingPay/FriendFundingPay-barcode/friendFundingPay-barcode";
+import FriendFundingPayProfile
+    from "../../molecules/FriendFundingPay/FriendFundingPay-profile/friendFundingPay-profile";
+import FriendFundingPayCurrentPay
+    from "../../molecules/FriendFundingPay/FriendFundingPay-CurrentPay/friendFundingPay-CurrentPay";
 
 const FriendFundingPayPage = () => {
     const location = useLocation();
@@ -16,15 +25,6 @@ const FriendFundingPayPage = () => {
 
     const [friendFundingPayData, setFriendFundingPayData] = useState(null);
 
-
-    const leftPrice = () => {
-        if (friendFundingPayData) {
-            return friendFundingPayData.totalPrice - friendFundingPayData.presentPrice;
-        }
-        return 0;
-
-    };
-    console.log("최대 펀딩 가능 금액: " + leftPrice())
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -49,33 +49,21 @@ const FriendFundingPayPage = () => {
     return (
 
         <div className="friendFundingPayPage">
+            <HeaderBar />
             {friendFundingPayData && friendFundingPayData.friendProfile && (
                 <>
-            <div className="friend-funding-profile">
+                <div className="friendFundingPayPageDetile">
+                    <FriendFundingPayProfile friendFundingPayData={friendFundingPayData} />
+                    <FriendFundingPayPrice  friendFundingPayData={friendFundingPayData}/>
+                    <PointUse friendFundingPayData={friendFundingPayData}/>
+                    <FriendFundingPayCurrentPay friendFundingPayData={friendFundingPayData}/>
+                    <FriendFundingPayBarcode friendFundingPayData ={friendFundingPayData}/>
 
+                </div>
 
-                    <img className="friend-funding-profile-image" alt="Ellipse" src={friendFundingPayData.friendProfile}/>
-                <div className="friend-funding-profile-name">{friendFundingPayData.friendName}</div>
-                <div className="friend-funding-profile-text">님에게 펀딩하기</div>
-            </div>
-            <div className="friend-funding-total-price">
-                <div className="friend-funding-total-price-row">
-                    <div className="friend-funding-total-price-first-text">친구의 펀딩 총 금액</div>
-                    <div className="friend-funding-total-price-second-text">{friendFundingPayData.totalPrice}</div>
-                </div>
-                <div className="friend-funding-total-price-row">
-                    <div className="friend-funding-total-price-first-text">현재 펀딩완료 금액</div>
-                    <div className="friend-funding-total-price-second-text">{friendFundingPayData.presentPrice}</div>
-                </div>
-                <div className="friend-funding-total-price-row">
-                    <div className="friend-funding-total-price-first-text">최대 펀딩 가능 금액</div>
-                    <div className="friend-funding-total-price-second-text">{leftPrice()}</div>
-                </div>
-            </div>
-            <PointUse friendFundingPayData={friendFundingPayData}/>
                 </>
-                )}
-
+            )}
+        <Footer />
         </div>
 
     );

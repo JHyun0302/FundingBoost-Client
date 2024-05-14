@@ -1,0 +1,46 @@
+.friend-funding-bar-code {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 128px;
+  width: 1038px;
+  justify-content: space-between;
+}
+
+.friend-funding-bar-code-image {
+  height: 128px;
+  width: 570px;
+}
+
+.friend-funding-bar-code-price {
+  color: #000000;
+  font-size: 50px;
+  font-weight: 500;
+  text-align: end;
+  width: 333px;
+}
+
+.friend-funding-bar-code-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.friend-funding-bar-code-button {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 400;
+  height: 50px;
+  text-align: center;
+  width: 206px;
+  align-self: flex-end;
+  background: #FFC83B;
+  border: none;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .friend-funding-bar-code {
+    flex-direction: column;
+  }
+}
