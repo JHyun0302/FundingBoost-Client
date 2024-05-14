@@ -77,7 +77,7 @@ function FundingRegistPage(props) {
                     headers: ({
                         "Content-Type" : "application/json",
                         "Access-Control-Allow-Credentials" : true,
-                        "ngrok-skip-browser-warning": true,
+                        "ngrok-skip-browser-warning": true
                     })
 
                 });

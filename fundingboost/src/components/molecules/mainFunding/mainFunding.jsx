@@ -14,6 +14,7 @@ const MainFunding = () => {
             try {
                 const response = await axios.get('https://65fd-112-218-95-58.ngrok-free.app/api/v1/home?memberId=1',{
 
+
                     responseType: 'json',
                     headers: ({
                         "Content-Type" : "application/json",
