@@ -1,14 +1,39 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useLocation, useParams} from 'react-router-dom';
 import PointUse from '../../atoms/point/pointUse';
 import './friendFundingPay-page.scss'
 import img from '../../../assets/logo.svg';
+import axios from "axios";
 
 
 
 const FriendFundingPayPage = () => {
     const location = useLocation();
     const fundingAmount = location.state;
+
+    const { fundingId } = useParams();
+    console.log("FundingId: "+fundingId);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/pay/friends/2?memberId=1`, {
+                    responseType: 'json',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Credentials": true,
+                        "ngrok-skip-browser-warning": true,
+                    },
+                });
+                console.log("response ->", response.data);
+            } catch (error) {
+                console.error("Error data:", error);
+            }
+        };
+        fetchData();
+    }, [fundingId]);
+
+
     return (
         <div className="friendFundingPayPage">
             <div className="friend-funding-profile">

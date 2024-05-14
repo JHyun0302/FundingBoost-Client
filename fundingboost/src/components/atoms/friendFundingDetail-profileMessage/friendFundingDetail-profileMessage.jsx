@@ -9,7 +9,7 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
         <div className="friendFundingDetail-FriendProfile">
             <div className="friendFundingDetail-Profile">
                 <div className='friendProfileInfo'>
-                    <img className="friendFundingDetail-friendProfileImage" alt="MyProfile"
+                    <img className="friendFundingDetail-friendProfileImage" alt="FriendProfile"
                          src={friendFundingDetailData?.data?.friendProfileImgUrl || defaultProfileImg}/>
                     <div className="friendFundingDetail-friendName">{friendFundingDetailData?.data?.friendName}</div>
                     <div className="friendFundingDetail-fundingTag">{friendFundingDetailData?.data?.fundingTag}</div>
