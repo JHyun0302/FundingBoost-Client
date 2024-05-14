@@ -1,0 +1,28 @@
+.friend-funding-total-price {
+  display: flex;
+  flex-direction: column;
+  height: 178px;
+  width: 540px;
+  justify-content: space-between;
+  margin-top: 20px;
+
+
+  .friend-funding-total-price-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .friend-funding-total-price-first-text, .friend-funding-total-price-second-text {
+      font-size: 25px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .friend-funding-total-price-first-text {
+      width: 85px;
+      height: 36px;
+    }
+
+  }
+
+}
+
+

@@ -1,7 +1,6 @@
 import React from 'react';
 import img from "../../../../assets/logo.svg";
-import barcodeImage from "../../../../assets/friendFunding/barcode-image.svg";
-import FriendFundingPaymentBtn from "../../../atoms/button/friendfundingPaymentBtn/friendfundingPaymentBtn";
+
 import './friendFundingPay-profile.scss';
 
 const FriendFundingPayProfile = ({friendFundingPayData}) => {

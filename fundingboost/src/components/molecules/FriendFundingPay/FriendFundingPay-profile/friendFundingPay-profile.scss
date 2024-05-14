@@ -1,35 +1,35 @@
 .friend-funding-profile {
   display: flex;
   flex-direction: row;
-  height: 191px;
-  width: 632px;
   align-items: center;
-}
-
-.friend-funding-profile-image {
-  height: 187px;
-  object-fit: cover;
-  width: 187px;
-  border: 1px solid black;
-  border-radius: 50%;
-}
 
 
-.friend-funding-profile-name {
-  color: #000000;
-  font-size: 50px;
-  font-weight: 700;
-  letter-spacing: 25px;
-  text-align: center;
-  width: 262px;
-  margin-left: 30px
+  .friend-funding-profile-image {
+    object-fit: cover;
+    width: 120px;
+    border: 1px solid black;
+    border-radius: 50%;
+  }
+
+  .friend-funding-profile-name {
+    color: #000000;
+    font-size: 33px;
+    font-weight: 700;
+    letter-spacing: 18px;
+    text-align: center;
+    margin-left: 40px;
+  }
+  .friend-funding-profile-text {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
 }
 
-.friend-funding-profile-text {
-  color: #000000;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
+
+
+
+

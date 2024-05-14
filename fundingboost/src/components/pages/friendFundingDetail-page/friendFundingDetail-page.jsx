@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // react-router-dom에서 useParams 가져오기
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 import Header from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
 import FriendFundingDetailItem from "../../molecules/FriendFundingDetail/FriendFundingDetail-item/friendFundingDetail-item";
 import FriendFundingDetailOptionDetail from "../../molecules/FriendFundingDetail/friendFundingDetail-optionDetail/friendFundingDetail-optionDetail";
 import "./friendFundingDetail-page.scss";
-import { useLocation } from 'react-router-dom';
 
 
 const FriendFundingDetailPage = () => {

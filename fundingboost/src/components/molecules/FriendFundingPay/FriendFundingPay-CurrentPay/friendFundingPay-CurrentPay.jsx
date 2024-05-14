@@ -4,23 +4,27 @@ import barcodeImage from "../../../../assets/friendFunding/barcode-image.svg";
 import FriendFundingPaymentBtn from "../../../atoms/button/friendfundingPaymentBtn/friendfundingPaymentBtn";
 import './FriendFundingPay-CurrentPay.scss';
 
-const FriendFundingPayCurrentPay = ({friendFundingPayData}) => {
+const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoints}) => {
 
+    const finalPrice = () => {
+        const numericUsePoints = Number(usePoints);
+        return (fundingAmount - numericUsePoints).toLocaleString();
+    }
     return (
         <div className="friend-funding-price-current-pay">
             <div className="friend-funding-price-current-pay-fixed-text">결제 금액</div>
             <div className="friend-funding-price-current-pay-div">
                 <div className="friend-funding-price-current-pay-text">
                     <div>펀딩한 금액</div>
-                    <div>50,000</div>
+                    <div>{fundingAmount.toLocaleString()}</div>
                 </div>
-                <div className="friend-funding-price-current-pay-div">
+                <div className="friend-funding-price-current-pay-text">
                     <div>사용 포인트</div>
-                    <div>-30,000</div>
+                    <div>- {usePoints.toLocaleString()}</div>
                 </div>
-                <div className="friend-funding-price-current-pay-div">
+                <div className="friend-funding-price-current-pay-text">
                     <div>결제할 금액</div>
-                    <div>20,000</div>
+                    <div>{finalPrice()}</div>
 
                 </div>
             </div>
