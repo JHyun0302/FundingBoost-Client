@@ -3,7 +3,7 @@ import "./mypage-myfunding-singleitem.scss";
 import Gauge from "../../atoms/gauge-bar/gauge-bar";
 import MypageFinfundingbtn from "../../atoms/mypage-myfunding-fin-btn/mypage-myfunding-fin-btn";
 
-const MyFundingSingleItem = ({ apiData, item }) => {
+const MyFundingSingleItem = ({ apiData, item, myPageFundingItemDtoList }) => {
 
 
     return (
@@ -21,7 +21,7 @@ const MyFundingSingleItem = ({ apiData, item }) => {
                 </div>
                 <div className="mypage-myfunding-text-wrapper-4">{item.itemPrice}원</div>
 
-                {apiData && <MypageFinfundingbtn item={item} />}
+                {apiData && <MypageFinfundingbtn item={item} myPageFundingItemDtoList={myPageFundingItemDtoList} />}
 
             </div>
         </div>

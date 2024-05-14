@@ -5,7 +5,7 @@ import MypageDeliveryButton from "../buttons/Mypage-Myfunding-Button/mypage-deli
 import MypageExchangeButton from "../buttons/Mypage-Myfunding-Button/mypage-exchange-button/mypage-exchange-button";
 import MypageRemainpayButton from "../buttons/Mypage-Myfunding-Button/mypage-remainpay-button/mypage-remainpay-button";
 
-export default function MyPageFinfundingbtn({ item }) {
+export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) {
     const { finishedStatus, itemPercent } = item;
 
     if (itemPercent === 0) {
@@ -26,7 +26,7 @@ export default function MyPageFinfundingbtn({ item }) {
                 <div className="fin-btn-wrapper">
                     <div className="exchange-remain-btn-wrapper">
                         <MypageExchangeButton />
-                        <MypageRemainpayButton />
+                        <MypageRemainpayButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
                     </div>
                 </div>
             );
