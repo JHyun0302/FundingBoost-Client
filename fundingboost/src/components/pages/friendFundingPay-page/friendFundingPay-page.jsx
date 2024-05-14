@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {useLocation, useParams} from 'react-router-dom';
 import PointUse from '../../atoms/point/pointUse';
 import './friendFundingPay-page.scss'
@@ -14,6 +14,17 @@ const FriendFundingPayPage = () => {
     const { fundingId } = useParams();
     console.log("FundingId: "+fundingId);
 
+    const [friendFundingPayData, setFriendFundingPayData] = useState(null);
+
+
+    const leftPrice = () => {
+        if (friendFundingPayData) {
+            return friendFundingPayData.totalPrice - friendFundingPayData.presentPrice;
+        }
+        return 0;
+
+    };
+    console.log("최대 펀딩 가능 금액: " + leftPrice())
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,6 +37,7 @@ const FriendFundingPayPage = () => {
                     },
                 });
                 console.log("response ->", response.data);
+                setFriendFundingPayData(response.data.data);
             } catch (error) {
                 console.error("Error data:", error);
             }
@@ -35,27 +47,34 @@ const FriendFundingPayPage = () => {
 
 
     return (
+
         <div className="friendFundingPayPage">
+            {friendFundingPayData && friendFundingPayData.friendProfile && (
+                <>
             <div className="friend-funding-profile">
-                <img className="friend-funding-profile-image" alt="Ellipse" src={img}/>
-                <div className="friend-funding-profile-name">구정은</div>
+
+
+                    <img className="friend-funding-profile-image" alt="Ellipse" src={friendFundingPayData.friendProfile}/>
+                <div className="friend-funding-profile-name">{friendFundingPayData.friendName}</div>
                 <div className="friend-funding-profile-text">님에게 펀딩하기</div>
             </div>
             <div className="friend-funding-total-price">
                 <div className="friend-funding-total-price-row">
                     <div className="friend-funding-total-price-first-text">친구의 펀딩 총 금액</div>
-                    <div className="friend-funding-total-price-second-text">15,000,000</div>
+                    <div className="friend-funding-total-price-second-text">{friendFundingPayData.totalPrice}</div>
                 </div>
                 <div className="friend-funding-total-price-row">
                     <div className="friend-funding-total-price-first-text">현재 펀딩완료 금액</div>
-                    <div className="friend-funding-total-price-second-text">3,270,000</div>
+                    <div className="friend-funding-total-price-second-text">{friendFundingPayData.presentPrice}</div>
                 </div>
                 <div className="friend-funding-total-price-row">
                     <div className="friend-funding-total-price-first-text">최대 펀딩 가능 금액</div>
-                    <div className="friend-funding-total-price-second-text">11,730,000</div>
+                    <div className="friend-funding-total-price-second-text">{leftPrice()}</div>
                 </div>
             </div>
-            <PointUse/>
+            <PointUse friendFundingPayData={friendFundingPayData}/>
+                </>
+                )}
 
         </div>
 
