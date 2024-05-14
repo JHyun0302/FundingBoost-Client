@@ -1,0 +1,59 @@
+.fundingOpenBtnBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 74px;
+}
+  
+.fundingOpenBtnView {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 74px;
+  margin-top: 5px;
+
+
+
+  .fundingOpenTagBtn {
+    display: flex;
+    margin-top: 3%;
+    justify-content: space-between;
+  }
+
+  .birthdayTagBtn, .graduateTagBtn, .etcTagBtn {
+    background-color: #FFC83B;
+    color: black;
+    box-shadow: none;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 13px;
+    border-color: black;
+    width: 95px;
+    border: none;
+
+    &:hover, &:active &:focus &:visited{
+      background-color: #000000;
+      color: white;
+    }
+
+    &.selected {
+      background-color: #000000;
+      color: white;
+    }
+  }
+}
+  
+.fundingOpenBtnTitle {
+      justify-self: flex-start;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 500;
+      white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+    .view {
+      flex-direction: column;
+    }
+}

@@ -1,0 +1,29 @@
+.nonMember {
+  display: flex;
+  align-items: center;
+  background-color: #EBEBEB;
+  height: 210px;
+  font-family: 'SUITE-Regular';
+
+  .main-nonMember {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+
+    .nonMember-item {
+      margin-left: 25px;
+
+      .nonMember-text {
+        color: black;
+        text-align: left;
+        margin-bottom: 10px;
+        font-size: 23px;
+
+      }
+    }
+  }
+}
+
+
+
+

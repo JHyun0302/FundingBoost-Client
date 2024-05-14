@@ -1,0 +1,42 @@
+.main-pane-container {
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 아이템을 배치 */
+  align-items: center;
+}
+
+.ranking-button-area {
+  background: #f5f5f5;
+  padding: 20px;
+  width: 100%;
+}
+
+.ranking-item-area {
+  background: white;
+  padding: 20px;
+  width: 100%;
+  margin-top: 5spx; /* ranking-button-area와의 간격 조정 */
+}
+
+.rankging-text {
+  font-family: 'Hanna', fantasy;
+  font-size: 30px;
+  margin: 0;
+  text-align: center;
+}
+
+.item-list-single{
+  display: flex;
+  //width: 20%;
+  padding:10px;
+  //border: 3px solid #bebebe;
+  flex-direction: row; /* 세로 방향으로 아이템을 배치 */
+  align-items: center;
+}
+
+.single-item{
+  width: 1000px;
+  height: 1000px;
+  padding:10px;
+  font-family: SUITE-Regular;
+  font-size: 90%;
+}

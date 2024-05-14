@@ -1,0 +1,99 @@
+.resultcontainer {
+  position: relative;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  display: flex;
+  width: 100%;
+
+  /* 내부 요소들을 오른쪽으로 정렬 */
+  .giftbox-total-price,
+  .gifthub-btn-container,
+  .gifthub-purchase-btn,
+  .gifthub-funding-container,
+  .gifthub-funding-btn {
+    font-family: SUITE-Regular;
+    margin-left: auto;
+    font-size: 30px;
+  }
+
+  .price-noti-gifthub{
+    margin-left: auto;
+    display: flex;
+    padding-right: 5px;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+
+  .total-price-noti{
+    margin-left: auto;
+  }
+
+  .giftbox-total-price{
+    margin-bottom: 20px;
+  }
+
+  .gifthub-funding-container{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .gifthub-noti-font{
+    font-size: 11px;
+    color: #8c8c8c;
+    position: relative;
+    top: 20px;
+    margin-right: 5px;
+  }
+
+  .gifthub-purchase-btn{
+    height: auto;
+    border-radius: 3px;
+    font-size: 20px;
+    //padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #efbb37;
+    color: black;
+    border: 1px solid #c8c8c8;
+  }
+
+  .gifthub-purchase-btn:hover{
+    color: white;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .gifthub-funding-btn{
+    height: auto;
+    border-radius: 3px;
+    font-size: 20px;
+    //padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #efbb37;
+    color: black;
+    border: 1px solid #c8c8c8;
+  }
+
+  .gifthub-funding-btn:hover{
+    color: white;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .gifthub-btn-container {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+
+  /* .gifthub-purchase-btn-container 스타일 추가 */
+  .gifthub-purchase-btn-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: auto;
+  }
+}
+
