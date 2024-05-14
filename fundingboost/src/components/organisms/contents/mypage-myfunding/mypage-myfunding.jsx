@@ -22,7 +22,7 @@ const MypagePane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                        url: 'https://07ae-112-218-95-58.ngrok-free.app/api/v1/funding/my-funding-status?memberId=1',
+                        url: 'https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/my-funding-status?memberId=1',
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true
@@ -37,7 +37,8 @@ const MypagePane = () => {
 
                 // "종료"인 경우에만 상태를 "종료"로 설정
                 if (fetchedDeadlineDate === "종료") {
-                    setDeadlineDate(fetchedDeadlineDate);
+                    // 종료버튼 눌렀을때 날짜뜨는거 여기 수정 필요
+                    setDeadlineDate(fetchedDeadlineDate); 
                 } else {
                     setDeadlineDate(response.data.data.deadline);
                 }

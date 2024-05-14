@@ -71,7 +71,7 @@ function FundingRegistPage(props) {
                 tag: fundingTag
             })
 
-            const response = await axios.post('https://07ae-112-218-95-58.ngrok-free.app/api/v1/funding?memberId=1', data,
+            const response = await axios.post('https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding?memberId=1', data,
                 {
                     responseType: 'json',
                     headers: ({
