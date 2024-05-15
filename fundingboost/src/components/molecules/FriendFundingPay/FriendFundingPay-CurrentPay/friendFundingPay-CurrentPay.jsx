@@ -4,11 +4,14 @@ import barcodeImage from "../../../../assets/friendFunding/barcode-image.svg";
 import FriendFundingPaymentBtn from "../../../atoms/button/friendfundingPaymentBtn/friendfundingPaymentBtn";
 import './FriendFundingPay-CurrentPay.scss';
 
-const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoints}) => {
+const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoints,onUpdateFinalPrice}) => {
 
     const finalPrice = () => {
         const numericUsePoints = Number(usePoints);
-        return (fundingAmount - numericUsePoints).toLocaleString();
+        const finalTotalPrice=(fundingAmount - numericUsePoints).toLocaleString();
+
+        onUpdateFinalPrice(finalTotalPrice);
+        return finalTotalPrice
     }
     return (
         <div className="friend-funding-price-current-pay">

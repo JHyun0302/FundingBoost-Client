@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 220px;
+  height: 150px;
 
   .friend-funding-price-current-pay-fixed-text {
-    color: #1d1d1d;
-    font-size: 20px;
+    color: #888888;
+    font-size: 15px;
     font-weight: bold;
   }
 
@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-self: flex-end;
-    height: 178px;
+    height: 150px;
     width: 540px;
 
     .friend-funding-price-current-pay-text {
@@ -23,7 +23,7 @@
       flex-direction: row;
       justify-content: space-between;
       color: #000000;
-      font-size: 25px;
+      font-size: 20px;
       font-weight: 500;
       letter-spacing: 0;
     }

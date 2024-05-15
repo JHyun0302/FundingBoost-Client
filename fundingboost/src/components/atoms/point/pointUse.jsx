@@ -11,29 +11,36 @@ export default function FriendFundingMyPoint({friendFundingPayData, fundingAmoun
         return 0;
     }
 
+    //전액 사용 버튼 사용
     const handleUseAllPoints = () => {
         let allPoints = friendFundingPayData.myPoint;
         if (allPoints > fundingAmount) {
             allPoints = fundingAmount;
         }
-        setUsePoints(allPoints.toLocaleString());
+        setUsePoints(allPoints);
         onUpdatePoints(allPoints);
     };
 
+    //텍스트로 입력하여 포인트 사용
     const useInputPoints = (e) =>{
-
-        // const numericValue = inputValue.replace(/\D/g, '');
         let inputPoints = e.target.value;
-        inputPoints = isNaN(inputPoints) || inputPoints === "" ? "0" : parseInt(inputPoints);
+        //문자 입력 제한
+        inputPoints = inputPoints.replace(/\D/g, '');
+        // inputPoints = parseInt(inputPoints);
+        if (isNaN(inputPoints)) return;
+        // 입력 데이터 전액 보다 클 경우 전액으로 변경
         if (inputPoints > friendFundingPayData.myPoint) {
             inputPoints = friendFundingPayData.myPoint;
         }
         if (inputPoints > fundingAmount) {
             inputPoints = fundingAmount;
         }
-        setUsePoints(inputPoints.toLocaleString());
+        setUsePoints(inputPoints);
         onUpdatePoints(inputPoints);
     }
+
+    //천단위 ,
+    const locleUsePoints = usePoints.toLocaleString();
 
     return (
         <div className="my-point">
@@ -41,7 +48,7 @@ export default function FriendFundingMyPoint({friendFundingPayData, fundingAmoun
                 <div className="my-point-fixed-text" >포인트</div>
                 <input className="my-point-input"
                        type="text"
-                       value={usePoints}
+                       value={locleUsePoints}
                        onChange={useInputPoints }/>
                 <p className="my-point-unit">P</p>
                 <button className="my-point-use-all-point"  onClick={handleUseAllPoints}>전액사용</button>

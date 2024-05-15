@@ -1,25 +1,35 @@
 .friendFundingPayPage {
   font-family: 'SUITE-Regular';
+
   .friendFundingPayPageDetileImg{
     position: relative;
     display:flex;
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 25px;
     justify-content: center;
 
-  }
-  .friendFundingPayPageDetile {
-    //background-image: url("../../../assets/friendFunding/receipt.svg");
-    //background-size: contain;
-    //margin: 0 5% 5% 5%;
-    //background-repeat: no-repeat;
-    //background-position: 50% 0;
+    .receiptImg{
+      max-width: 100%;
+      height: 800px;
+    }
 
   }
-  .friendFundingPayPageDetileInfo{
+  .friendFundingPayPageDetiles{
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    .friendFundingPayPageDetileInfo{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 95px;
+      .friendFundingProfile{
+        width: 100%;
+      }
+    }
   }
+
 
 }

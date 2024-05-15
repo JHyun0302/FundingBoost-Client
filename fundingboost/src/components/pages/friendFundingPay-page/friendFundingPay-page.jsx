@@ -20,7 +20,7 @@ const FriendFundingPayPage = () => {
     const location = useLocation();
     const fundingAmount = location.state;
     const [usePoints, setUsePoints] = useState("");
-
+    const [finalPrice, setFinalPrice] = useState("");
     const { fundingId } = useParams();
     console.log("FundingId: "+fundingId);
 
@@ -32,6 +32,7 @@ const FriendFundingPayPage = () => {
         console.log("포인트 :" + points);
     };
 
+    console.log("결제금액 :" + finalPrice);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,32 +63,37 @@ const FriendFundingPayPage = () => {
                 <>
                     <div className="friendFundingPayPageDetile">
                         <div className="friendFundingPayPageDetileImg">
-                            <img src={receipt} alt="receipt"/>
+                            <img src={receipt} alt="receipt" className="receiptImg"/>
                         </div>
-                        <div className="friendFundingPayPageDetileInfo">
-                            <div className="friendFundingProfile">
-                                <FriendFundingPayProfile  friendFundingPayData={friendFundingPayData}/>
+                        <div className="friendFundingPayPageDetiles">
+                            <div className="friendFundingPayPageDetileInfo">
+                                <div className="friendFundingProfile">
+                                    <FriendFundingPayProfile friendFundingPayData={friendFundingPayData}/>
+                                </div>
+
+                                <FriendFundingPayPrice friendFundingPayData={friendFundingPayData}/>
+                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
+                                <PointUse friendFundingPayData={friendFundingPayData} fundingAmount={fundingAmount}
+                                          onUpdatePoints={updateusePoints}/>
+                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
+                                <FriendFundingPayCurrentPay
+                                    friendFundingPayData={friendFundingPayData}
+                                    fundingAmount={fundingAmount}
+                                    usePoints={usePoints}
+                                    onUpdateFinalPrice={setFinalPrice}
+                                />
+                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
+                                <FriendFundingPayBarcode friendFundingPayData={friendFundingPayData}
+                                                         finalPrice={finalPrice}  usePoints={usePoints}/>
                             </div>
-
-                            <FriendFundingPayPrice friendFundingPayData={friendFundingPayData}/>
-                            <hr style={{ border: 'none', borderBottom: '2.5px dashed black', width: '800px' }} />
-                            <PointUse friendFundingPayData={friendFundingPayData} fundingAmount={fundingAmount}  onUpdatePoints={updateusePoints}/>
-                            <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '800px'}}/>
-                            <FriendFundingPayCurrentPay
-                                friendFundingPayData={friendFundingPayData}
-                                fundingAmount={fundingAmount}
-                                usePoints={usePoints}
-                            />
-                            <FriendFundingPayBarcode friendFundingPayData={friendFundingPayData}/>
                         </div>
-
 
 
                     </div>
 
                 </>
             )}
-        <Footer />
+            <Footer/>
         </div>
 
     );
