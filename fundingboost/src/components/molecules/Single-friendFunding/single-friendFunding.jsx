@@ -5,29 +5,36 @@ import FriendFundingProfileDday from "../../atoms/friendFunding-profile-Dday/fri
 import FriendFundingItemImg from "../../atoms/friendFunding-itemImg/friendFunding-itemImg";
 import GaugeBar from "../../atoms/gauge-bar/gauge-bar";
 
-const SingleFriendFunding = () => {
+const SingleFriendFunding = ({friendFundingData}) => {
+    console.log(friendFundingData);
+
     return (
+
         <div className="friendFunding">
-            <FriendFundingProfileDday/>
+            {friendFundingData?.data?.map((fundingData,index) => (
+                <div key={index} className="friendFundingDetail">
 
-            <FriendFundingItemImg/>
-            <div className="friendFunding-gaugeBar">
-                <GaugeBar/>
-            </div>
+                <FriendFundingProfileDday friendFundingData={fundingData} />
 
-            <div className="MyPageFundingGaugeView">
-                <div className="gauagePercent">50%</div>
-                <div className="gauageBar">
-                    <div className="rectangle-wrapper">
-                         {/*<Rectangle className="rectangle-30" /> */}
-                    </div>
+                <FriendFundingItemImg friendFundingData={fundingData}/>
+                <div className="friendFunding-gaugeBar">
+                    <GaugeBar value={fundingData.friendFundingPercent}/>
                 </div>
-            </div>
 
-            {/* <div className="group">*/}
-            {/*    <img className="polygon" alt="Polygon" src= {img} />*/}
-            {/*</div>*/}
+                {/*<div className="MyPageFundingGaugeView">*/}
+                {/*    <div className="gauagePercent">50%</div>*/}
+                {/*    <div className="gauageBar">*/}
+                {/*        <div className="rectangle-wrapper">*/}
+                {/*         /!*<Rectangle className="rectangle-30" /> *!/*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                </div>
+            ))}
+
+
         </div>
+
     );
 };
 

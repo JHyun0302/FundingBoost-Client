@@ -2,16 +2,17 @@ import React from 'react';
 import './friendFunding-profile-Dday.scss';
 import img from "../../../assets/logo.svg";
 
-const FriendFundingProfileDday = () => {
+const FriendFundingProfileDday = ({friendFundingData}) => {
+    console.log("컴포넌트1:" +friendFundingData);
     return (
         <div className="friendFunding-profile-Dday">
             <div className="friendInfo">
-                <img className="friendProfileImg" alt="friendProfileImg" src={img}/>
+                <img className="friendProfileImg" alt="friendProfileImg" src={friendFundingData?.friendProfileImgUrl}/>
                 <div className="friendNameAndTag">
-                    <div className="friendName">구태형</div>
-                    <div className="friendTag">#생일</div>
+                    <div className="friendName">{friendFundingData?.nickName}</div>
+                    <div className="friendTag">{friendFundingData?.tag}</div>
                 </div>
-                <div className="dDay">D-20</div>
+                <div className="dDay">{friendFundingData?.friendFundingDeadlineDate}</div>
             </div>
         </div>
     );

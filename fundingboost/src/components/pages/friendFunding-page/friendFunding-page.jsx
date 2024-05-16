@@ -1,14 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './friendFunding-page.scss';
 import Header from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
 import SingleFriendFunding from "../../molecules/Single-friendFunding/single-friendFunding";
+import axios from "axios";
 
 const FriendFundingPage = () => {
+    const [friendFundingData, setFriendFundingData] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/funding/friends?memberId=1`, {
+                    responseType: 'json',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Credentials": true,
+                        "ngrok-skip-browser-warning": true,
+                    },
+                });
+                setFriendFundingData(response.data);
+                console.log("response ->", response.data);
+            } catch (error) {
+                console.error("Error data:", error);
+            }
+        };
+        fetchData();
+    },[] );
+
     return (
         <div>
             <Header />
-            <SingleFriendFunding/>
+                <SingleFriendFunding friendFundingData={friendFundingData} />
             <Footer />
         </div>
     );
