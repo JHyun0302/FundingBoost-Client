@@ -1,12 +1,13 @@
-
 .friendFunding {
   display: flex;
   width: 100%;
+
   .friendFunding-row {
     display: flex;
     flex-wrap: wrap;
     margin: 30px;
     justify-content: center;
+
     .friendFunding-itemlist{
       display: flex;
       flex-wrap: wrap;
@@ -24,6 +25,7 @@
         //margin: 20px 16px 20px 15px;
         //flex: 0 0 calc(33.33% - 20px);
         margin: 10px;
+        text-decoration-line: none;
 
         .friendFunding-Background-left {
           width: 436px;
