@@ -47,7 +47,7 @@
   }
 
 .title-wrapper{
-  margin-top: 15px;
+  margin-top: 10px;
   height: 60px;
   color: #3e3e3e;
 }
@@ -55,4 +55,11 @@
 .price-wrapper{
   height: max-content;
   color: #6d6d6d;
+}
+
+.brand-wrapper{
+  margin-top: 10px;
+  height: max-content;
+  margin-bottom: -10px !important;
+  //color: #6d6d6d;
 }
