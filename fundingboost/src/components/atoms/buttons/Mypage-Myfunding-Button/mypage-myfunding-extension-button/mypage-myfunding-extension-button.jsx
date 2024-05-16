@@ -13,7 +13,7 @@ const ExtensionButton = ({ myPageFundingItemDtoList }) => {
 
 
         try {
-            const response = await axios.post(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/extension/${fundingId}?memberId=1`, requestData, {
+            const response = await axios.post(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/funding/extension/${fundingId}?memberId=1`, requestData, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
