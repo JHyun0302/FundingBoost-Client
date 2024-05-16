@@ -37,7 +37,7 @@ const FriendFundingPayPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/pay/friends/2?memberId=1`, {
+                const response = await axios.get(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/pay/friends/2?memberId=1`, {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
@@ -83,8 +83,8 @@ const FriendFundingPayPage = () => {
                                     onUpdateFinalPrice={setFinalPrice}
                                 />
                                 <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
-                                <FriendFundingPayBarcode friendFundingPayData={friendFundingPayData}
-                                                         finalPrice={finalPrice}  usePoints={usePoints}/>
+                                <FriendFundingPayBarcode friendFundingPayData={friendFundingPayData} finalPrice={finalPrice}
+                                                         fundingAmount={fundingAmount}  usePoints={usePoints} fundingId={fundingId}/>
                             </div>
                         </div>
 

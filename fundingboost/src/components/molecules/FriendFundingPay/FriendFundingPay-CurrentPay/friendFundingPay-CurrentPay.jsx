@@ -7,7 +7,7 @@ import './FriendFundingPay-CurrentPay.scss';
 const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoints,onUpdateFinalPrice}) => {
 
     const finalPrice = () => {
-        const numericUsePoints = Number(usePoints);
+        const numericUsePoints = usePoints ? Number(usePoints) : 0;
         const finalTotalPrice=(fundingAmount - numericUsePoints).toLocaleString();
 
         onUpdateFinalPrice(finalTotalPrice);

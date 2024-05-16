@@ -7,9 +7,9 @@ import '../yellowBtn.scss';
 function FriendToFundingBtn({ fundingAmount }) {
     const navigate = useNavigate();
     const { fundingId } = useParams()
-    console.log(fundingId);
+    console.log("fundingbtn: " +fundingId);
     const handleClick = () => {
-        navigate('/friend-funding/pay/${fundingId}', { state: fundingAmount });
+        navigate(`/friend-funding/pay/${fundingId}`, { state: fundingAmount });
     };
 
     return (

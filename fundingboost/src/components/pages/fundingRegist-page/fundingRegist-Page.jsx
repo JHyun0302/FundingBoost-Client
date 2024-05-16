@@ -19,7 +19,6 @@ function FundingRegistPage(props) {
     const location = useLocation();
     const { state: { selectedItems } } = location;
     const [orderedItems, setOrderedItems] = useState([]);
-    console.log(selectedItems);
 
     //변경된 상품 id 순서
     const handleItemOrderChange = (updatedItems) => {
@@ -81,11 +80,6 @@ function FundingRegistPage(props) {
                     })
 
                 });
-            console.log('itemIdList: ' + orderedItems);
-            console.log('fundingMessage: ' + fundingMessage);
-            console.log('deadline: ' + deadline);
-            console.log('tag: ' + fundingTag);
-            console.log('POST 결과:', response.data);
         } catch (error) {
             console.error('POST 에러:', error);
         }
