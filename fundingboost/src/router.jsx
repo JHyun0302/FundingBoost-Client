@@ -17,6 +17,7 @@ const FriendFundingPayPage = lazy(() => import('./components/pages/friendFunding
 const Shopping = lazy(() => import('./components/pages/shopping-page/shopping-page'));
 
 
+
 // 로딩 스피너
 const LoadingSpinner = () => (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -41,8 +42,8 @@ function Router() {
                 <Route path="/order/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
                 <Route path="/funding/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
                 <Route path="/funding/regist/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
-                <Route path="/friend-funding/detail" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingDetail /></Suspense>} />
-                <Route path="/friend-funding/pay" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingPayPage /></Suspense>} />
+                <Route path="/friend-funding/detail/:fundingId" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingDetail /></Suspense>} />
+                <Route path="/friend-funding/pay/:fundingId" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingPayPage /></Suspense>} />
                 <Route path="/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
                 <Route path="/shopping" element={<Suspense fallback={<LoadingSpinner />}><Shopping/></Suspense>} />
             </Routes>
