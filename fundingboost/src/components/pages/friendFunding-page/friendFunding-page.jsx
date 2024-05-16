@@ -3,6 +3,7 @@ import './friendFunding-page.scss';
 import Header from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
 import SingleFriendFunding from "../../molecules/Single-friendFunding/single-friendFunding";
+import FriendFundingDropdownBtn from "../../atoms/friendFunding-DropdownBtn/friendFunding-DropdownBtn";
 import axios from "axios";
 
 const FriendFundingPage = () => {
@@ -30,7 +31,8 @@ const FriendFundingPage = () => {
     return (
         <div>
             <Header />
-                <SingleFriendFunding friendFundingData={friendFundingData} />
+            <FriendFundingDropdownBtn className="friendFundingDropdownBtn" friendFundingData={friendFundingData}/>
+            <SingleFriendFunding friendFundingData={friendFundingData} />
             <Footer />
         </div>
     );
