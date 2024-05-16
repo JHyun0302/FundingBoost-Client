@@ -10,24 +10,28 @@ const SingleFriendFunding = ({friendFundingData}) => {
     return (
 
         <div className="friendFunding">
-            {friendFundingData?.data?.map((fundingData,index) => (
-                <div className="friendFunding-Background">
-                    <div className="friendFunding-Background-left">
-                        <div key={index} className="friendFundingDetail">
-                            <FriendFundingProfileDday friendFundingData={fundingData} />
-                            <FriendFundingItemImg friendFundingData={fundingData}/>
-                            <div className="friendFunding-gaugeBar">
-                                <GaugeBar value={fundingData.friendFundingPercent}/>
+            <div className="friendFunding-row">
+                <div className="friendFunding-itemlist">
+                        {friendFundingData?.data?.map((fundingData, index) => (
+                                <div className="friendFunding-Background">
+                                    <div className="friendFunding-Background-left">
+                                        <div key={index} className="friendFundingDetail">
+                                            <FriendFundingProfileDday friendFundingData={fundingData}/>
+                                            <FriendFundingItemImg friendFundingData={fundingData}/>
+                                            <div className="friendFunding-gaugeBar">
+                                                <GaugeBar value={fundingData.friendFundingPercent}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="friendFunding-Background-right">
+                                        <div className="friendFundingbtn"></div>
+                                    </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="friendFunding-Background-right">
-                        <div className="friendFundingbtn"></div>
-                    </div>
-                </div>
-            ))}
+                                ))}
 
+                            </div>
 
+                            </div>
         </div>
 
     );

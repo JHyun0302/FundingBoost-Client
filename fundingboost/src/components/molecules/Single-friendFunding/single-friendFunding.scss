@@ -2,51 +2,68 @@
 .friendFunding {
   display: flex;
   width: 100%;
-  .friendFunding-Background{
+  .friendFunding-row {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px;
+    justify-content: center;
+    .friendFunding-itemlist{
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      flex-direction: row;
 
-    justify-content: space-between;
-    background-color: #EBEBEB;
-    border-radius: 10px;
-    //height: 443px;
-    width: 465px;
-    margin: 20px 16px 20px 15px;
+      .friendFunding-Background {
+        display: flex;
+        flex-direction: row;
+        //margin-bottom: 20px;
+        justify-content: space-between;
+        background-color: #EBEBEB;
+        border-radius: 10px;
+        width: 465px;
+        //margin: 20px 16px 20px 15px;
+        //flex: 0 0 calc(33.33% - 20px);
+        margin: 10px;
 
-    .friendFunding-Background-left{
-      width: 436px;
+        .friendFunding-Background-left {
+          width: 436px;
 
-      .friendFunding-gaugeBar{
-        .gauge-bar.progress {
-          width: 405px;
-          margin: 15px 20px;
-          height: 25px;
+          .friendFunding-gaugeBar {
+            .gauge-bar.progress {
+              width: 405px;
+              margin: 15px 20px;
+              height: 25px;
 
-          .progress-bar.bg-success {
-            background-color: #FFDD2A !important;
-            color: black;
+              .progress-bar.bg-success {
+                background-color: #FFDD2A !important;
+                color: black;
+              }
+            }
+          }
+        }
+
+        .friendFunding-Background-right {
+          background-color: #cfcfcf;
+          width: 29px;
+          border-radius: 0 10px 10px 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .friendFundingbtn {
+            width: 0px;
+            height: 0px;
+            border-top: 12px solid transparent;
+            border-left: 16px solid #ffffff;
+            border-bottom: 12px solid transparent;
+
           }
         }
       }
     }
-    .friendFunding-Background-right{
-      background-color: #cfcfcf;
-      width: 29px;
-      border-radius:0 10px 10px 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
-      .friendFundingbtn{
-        width: 0px;
-        height: 0px;
-        border-top: 12px solid transparent;
-        border-left: 16px solid #ffffff;
-        border-bottom: 12px solid transparent;
 
-      }
-    }
   }
 }
 
