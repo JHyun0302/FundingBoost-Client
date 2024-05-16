@@ -27,13 +27,13 @@
 .item-list-single {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* 아이템 간의 간격을 조정합니다. 필요에 따라 조정하세요. */
+  gap: 35px; /* 아이템 간의 간격을 조정합니다. 필요에 따라 조정하세요. */
   align-items: center;
   padding:10px;
 }
 
 .single-item {
-  width: 1000px;
+  width: 900px;
   height: auto;
   flex-basis: 25%;
   padding:10px;
