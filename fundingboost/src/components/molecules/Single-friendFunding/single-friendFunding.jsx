@@ -6,7 +6,6 @@ import FriendFundingItemImg from "../../atoms/friendFunding-itemImg/friendFundin
 import GaugeBar from "../../atoms/gauge-bar/gauge-bar";
 
 const SingleFriendFunding = ({friendFundingData}) => {
-    console.log(friendFundingData);
 
     return (
 
