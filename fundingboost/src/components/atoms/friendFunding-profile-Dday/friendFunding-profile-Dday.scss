@@ -1,44 +1,63 @@
-
-.friendInfo{
+.friendFunding-profile-Dday{
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  justify-content: flex-start;
+  justify-content: space-between;
+  margin: 12px 25px 10px 20px;
+
+  .friendFundingProfile {
+    display: flex;
+
+
+    .friendProfileImg {
+      width: 60px;
+      height: auto;
+      border-radius: 50%;
+      border-color: #000000;
+      border: 1px solid;
+      margin-right: 10px;
+    }
+    .friendNameAndTag {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .friendName {
+        color: #000000;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .friendTag {
+        font-size: 15px;
+        height: 29px;
+        color: #9c9c9c;
+        margin-left: 10px;
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+  }
+  .friendFunding-DDay{
+    display: flex;
+    align-items: center;
+
+    .dDay{
+      color: #000000;
+      font-weight: bold;
+      font-size: 22px;
+      margin-left: auto;
+    }
+  }
+
 }
 
-.friendProfileImg{
-  width: 73px;
-  border-radius: 90px;
-  border-color: #000000;
-  border: 1px solid;
-  margin-right: 10px;
-}
 
-.friendNameAndTag {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
-.friendName {
-  color: #000000;
-  font-size: 25px;
-  font-weight: bold;
-}
 
-.friendTag {
-  font-size: 17px;
-  height: 29px;
-  color: #9c9c9c;
-  margin-left: 10px;
-}
 
-.dDay{
-  color: #000000;
-  font-weight: bold;
-  font-size: 25px;
-  margin-left: auto;
-  margin-right: 50px;
-}
+
+
+
+
+
+
+

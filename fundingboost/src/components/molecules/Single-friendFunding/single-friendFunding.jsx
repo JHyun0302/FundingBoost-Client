@@ -11,23 +11,19 @@ const SingleFriendFunding = ({friendFundingData}) => {
 
         <div className="friendFunding">
             {friendFundingData?.data?.map((fundingData,index) => (
-                <div key={index} className="friendFundingDetail">
-
-                <FriendFundingProfileDday friendFundingData={fundingData} />
-
-                <FriendFundingItemImg friendFundingData={fundingData}/>
-                <div className="friendFunding-gaugeBar">
-                    <GaugeBar value={fundingData.friendFundingPercent}/>
-                </div>
-
-                {/*<div className="MyPageFundingGaugeView">*/}
-                {/*    <div className="gauagePercent">50%</div>*/}
-                {/*    <div className="gauageBar">*/}
-                {/*        <div className="rectangle-wrapper">*/}
-                {/*         /!*<Rectangle className="rectangle-30" /> *!/*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <div className="friendFunding-Background">
+                    <div className="friendFunding-Background-left">
+                        <div key={index} className="friendFundingDetail">
+                            <FriendFundingProfileDday friendFundingData={fundingData} />
+                            <FriendFundingItemImg friendFundingData={fundingData}/>
+                            <div className="friendFunding-gaugeBar">
+                                <GaugeBar value={fundingData.friendFundingPercent}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="friendFunding-Background-right">
+                        <div className="friendFundingbtn"></div>
+                    </div>
                 </div>
             ))}
 

@@ -1,63 +1,54 @@
-.friendInfo{
-  display: flex;
-}
+
 .friendFunding {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #ebebeb;
-  border-radius: 10px;
-  height: 443px;
-  width: 646px;
-}
-
-
-.MyPageFundingGaugeView {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 82px;
   width: 100%;
-}
+  .friendFunding-Background{
+    display: flex;
+    flex-direction: row;
 
-.gauagePercent {
-  color: #000000;
-  font-size: 30px;
-  font-weight: 700;
-  text-align: right;
-  margin-right: 50px;
-}
+    justify-content: space-between;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    //height: 443px;
+    width: 465px;
+    margin: 20px 16px 20px 15px;
 
-.gauageBar {
-  display: flex;
-  justify-content: space-between;
-  height: 32px;
-  width: 100%;
-}
+    .friendFunding-Background-left{
+      width: 436px;
 
-.goDetail {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+      .friendFunding-gaugeBar{
+        .gauge-bar.progress {
+          width: 405px;
+          margin: 15px 20px;
+          height: 25px;
 
-//   .group {
-//     background-color: gray;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-end;
-//     align-items: center; /* 위아래 중앙 정렬 */
-//     height: 100%; /* 부모 요소의 높이를 100%로 설정 */
-//     width: 30px;
-//   }
+          .progress-bar.bg-success {
+            background-color: #FFDD2A !important;
+            color: black;
+          }
+        }
+      }
+    }
+    .friendFunding-Background-right{
+      background-color: #cfcfcf;
+      width: 29px;
+      border-radius:0 10px 10px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-// .polygon {
-//     width: 20px;
-//  }
+      .friendFundingbtn{
+        width: 0px;
+        height: 0px;
+        border-top: 12px solid transparent;
+        border-left: 16px solid #ffffff;
+        border-bottom: 12px solid transparent;
 
-
-@media (max-width: 768px) {
-  .view, .group, .div, .group-2, .group-3 {
-    flex-direction: column;
+      }
+    }
   }
 }
+
+
+
