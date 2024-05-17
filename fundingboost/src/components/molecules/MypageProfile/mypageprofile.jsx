@@ -19,7 +19,7 @@ export default function MyPageProfile ({ profileInfo }) {
             </div>
             <div className="myPointExplain">내 포인트</div>
             <div className="horizontalLine"></div>
-            <div className="myPoint">{point ? point.toLocaleString() : ''} P</div>
+            <div className="myPoint">{point ? point.toLocaleString() : '0'} P</div>
             <div className="horizontalLine"></div>
         </div>
     );
