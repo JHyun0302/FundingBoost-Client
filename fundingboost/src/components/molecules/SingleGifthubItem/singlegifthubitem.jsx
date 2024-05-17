@@ -3,52 +3,51 @@ import "./singlegifthubitem.scss";
 import "./../../organisms/contents/gifthub/gifthub";
 import Checkbox from "../../atoms/checkbox/checkbox";
 import axios from 'axios';
-import GifthubOptionCount from '../Modal/GifthubOptionCount/gifthuboptioncount'; // 변경
+import GifthubOptionCount from '../Modal/GifthubOptionCount/gifthuboptioncount';
 
 export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) {
     const [isChecked, setIsChecked] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [quantity, setQuantity] = useState(item.quantity || 1);
+    const gifthubItemId = item.itemId;
+
+    // console.log(gifthubItemId)
 
     useEffect(() => {
-        // 컴포넌트가 마운트될 때 아이템의 초기 체크 상태 설정
         setIsChecked(false);
     }, [item]);
 
     const handleCheckboxChange = () => {
-        setIsChecked(!isChecked); // 체크 상태를 업데이트
+        setIsChecked(!isChecked);
 
-        // 부모 컴포넌트로 선택된 아이템과 체크 여부를 전달
         if (onCheckboxChange) {
-            // 변경된 체크 상태와 함께 아이템 정보를 전달
-            onCheckboxChange(item, !isChecked); // 체크 상태를 반전해서 전달
+            onCheckboxChange(item, !isChecked);
         }
     };
 
     const handleDeleteItem = async () => {
-        // // 삭제 버튼 클릭 시 해당 아이템을 삭제
-        // try {
-        //     // axios를 사용하여 DELETE 요청을 보냅니다.
-        //     const response = await axios.delete(`https://localhost:8080/api/v1/gifthub/${item.gifthubItemId}`, {
-        //         headers: {
-        //             Authorization: `Bearer <access_token>` // 여기에 실제 엑세스 토큰 insert
-        //         }
-        //     });
-        //
-        //     // 삭제 요청이 성공하면 onDelete 함수를 호출하여 아이템을 삭제합니다.
-        //     if (onDelete) {
-        //         onDelete(item);
-        //     }
-        // } catch (error) {
-        //     console.error("Error deleting item:", error);
-        // }
+        try {
+            await axios.delete(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/gifthub/${gifthubItemId}?memberId=1`, null, {
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    'ngrok-skip-browser-warning': true,
+                },
+            });
+            console.log('아이템 삭제 성공');
+        } catch (error) {
+            console.error('아이템 삭제 에러:', error);
+        }
+
         setIsChecked(false);
         if (onDelete) {
-            onDelete(item); // 아이템 삭제를 부모 컴포넌트로 전달
+            onDelete(item);
         }
     };
 
-    const handleShowModal = () => {
-        setShowModal(true);
+    const handleQuantityChange = (newQuantity) => {
+        setQuantity(newQuantity);
     };
 
     return (
@@ -68,13 +67,16 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
                                 <div className="gifthub-option">옵션</div>
                             </div>
                             <div className="gifthub-optionName">{item.optionName}</div>
-                        <div className="quantity-container">
-                            <div className="quantity-text">수량 </div>
-                            <div className="quantity-number">{item.quantity}</div>
-                            <GifthubOptionCount/>
-                        </div>
+                            <div className="quantity-container">
+                                <div className="quantity-text">수량 </div>
+                                <div className="quantity-number">{quantity}</div>
+                                <GifthubOptionCount
+                                    onQuantityChange={handleQuantityChange}
+                                    gifthubItemId={gifthubItemId}
+                                />
+                            </div>
                             <div className="giftbox-item-price">{item.itemPrice} 원</div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

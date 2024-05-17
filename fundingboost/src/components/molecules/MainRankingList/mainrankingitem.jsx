@@ -17,7 +17,7 @@ export default function Mainrankingitem({ product }) {
     const truncatedTitle = itemName.length > 25 ? itemName.slice(0, 25) + '...' : itemName;
 
     return (
-        <Link to={"/product/" + itemId} className={style.products} style={{textDecoration: 'none'}}>
+        <Link to={"/shopping/detail/"+ itemId} className={style.products} style={{textDecoration: 'none'}}>
             <div className={style.imgwrap}>
                 {/* 상품 품절 여부에 따라 표시 */}
                 <div className={style.soldout}>
