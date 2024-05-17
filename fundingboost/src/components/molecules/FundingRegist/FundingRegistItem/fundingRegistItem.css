@@ -1,0 +1,77 @@
+input[type="checkbox"] {
+  display: none; }
+
+.checkbox-label::before {
+  content: attr(data-order);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 5px;
+  top: 7%;
+  left: 23px;
+  cursor: pointer; }
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-label::before {
+  background-color: #000;
+  color: #fff; }
+
+.FundingRegistItem {
+  flex: 1;
+  height: 100%;
+  margin: 0 3% 3% 2%;
+  font-family: SUITE-Regular; }
+  .FundingRegistItem .fundingRegist-text {
+    color: #959595;
+    margin-top: 10px;
+    font-size: 13px; }
+  .FundingRegistItem .FundingRegistItem-details :hover {
+    background-color: #f3f3f3; }
+  .FundingRegistItem .itemDetail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px; }
+  .FundingRegistItem .itemContainer {
+    display: flex;
+    margin-top: 3%;
+    align-items: center;
+    margin-left: 15px;
+    align-items: center; }
+    .FundingRegistItem .itemContainer .item-img {
+      width: 200px;
+      height: 200px;
+      margin-left: 10px;
+      margin-right: 10px; }
+  .FundingRegistItem .title {
+    color: #000000;
+    font-size: 25px; }
+  .FundingRegistItem .optionDetail {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; }
+    .FundingRegistItem .optionDetail .optionGroup {
+      background-color: #d9d9d9;
+      border-radius: 8px;
+      height: 22px;
+      width: 43px; }
+      .FundingRegistItem .optionDetail .optionGroup .option {
+        color: #ffffff;
+        font-size: 15px;
+        text-align: center; }
+    .FundingRegistItem .optionDetail .optionName {
+      color: #909090;
+      font-size: 12px;
+      margin-left: 5px; }
+  .FundingRegistItem .price {
+    color: #000000;
+    font-size: 25px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 10%; }
+
+/*# sourceMappingURL=fundingRegistItem.css.map */

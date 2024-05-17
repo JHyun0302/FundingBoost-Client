@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,aAAa;EACX,UAAU,EAAE,MAAM",
+"sources": ["mypage-myfunding-page.scss"],
+"names": [],
+"file": "mypage-myfunding-page.css"
+}

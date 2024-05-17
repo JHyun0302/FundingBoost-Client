@@ -1,0 +1,30 @@
+.MyPageIndexBox {
+  display: flex;
+  flex-direction: column;
+  width: 360px; }
+
+.MyPageIndexBox .line {
+  object-fit: cover;
+  background-color: #b1b1b1;
+  height: 2px;
+  width: 374px; }
+
+.MyPageIndexBox .MyPageIndexBoxText {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  padding: 10px;
+  letter-spacing: 0;
+  text-align: center;
+  width: 370px;
+  border: none;
+  background-color: white; }
+
+.MyPageIndexBoxText.selected {
+  font-weight: bold !important; }
+
+@media (max-width: 320px) {
+  .MyPageIndexBox {
+    flex-wrap: wrap; } }
+
+/*# sourceMappingURL=mypageindex.css.map */

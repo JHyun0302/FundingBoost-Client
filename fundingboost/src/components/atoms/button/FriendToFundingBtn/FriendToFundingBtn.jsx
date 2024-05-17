@@ -9,7 +9,7 @@ function FriendToFundingBtn({ fundingAmount }) {
     const { fundingId } = useParams()
     console.log(fundingId);
     const handleClick = () => {
-        navigate('/friend-funding/pay/${fundingId}', { state: fundingAmount });
+        navigate(`/friend-funding/pay/${fundingId}`, { state: fundingAmount });
     };
 
     return (

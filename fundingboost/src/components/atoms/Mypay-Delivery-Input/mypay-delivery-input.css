@@ -1,0 +1,146 @@
+.MyPayDeliveryInputMyPayDeliveryInputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 384px;
+  width: 476px; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputView {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  height: 384px;
+  width: 478px; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputViewTitle {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: normal;
+  align-self: start;
+  font-family: SUITE-Regular; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputText {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: normal; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputRectangle {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #b7b7b7;
+  width: 351px;
+  height: 32px;
+  font-family: SUITE-Regular; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputOverlap {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #b7b7b7;
+  width: 351px;
+  height: 32px;
+  font-family: SUITE-Regular; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputRectangle-3 {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #b7b7b7;
+  width: 351px;
+  height: 32px;
+  align-content: flex-end;
+  margin-top: 10px;
+  font-family: SUITE-Regular; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputRectangle-2 {
+  font-family: SUITE-Regular;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #b7b7b7;
+  width: 351px;
+  height: 132px;
+  padding-bottom: 100px;
+  text-align: left; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputRectangle-4 {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #b7b7b7;
+  width: 204px;
+  height: 32px;
+  font-family: SUITE-Regular; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputRecipientGroup {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 10px; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputGroup-4 {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 10px; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputGroup-5 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 351.76px;
+  height: 31.81px; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputGroup-6 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: inline-block;
+  float: right; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputOverlap-group {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputText-4 {
+  color: #000000;
+  background-color: #dddddd;
+  border-radius: 5px;
+  border: none;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: normal;
+  width: 140.21px;
+  height: 31.81px; }
+
+.MyPayDeliveryInputBox .MyPayDeliveryInputText-4:hover {
+  background-color: #3e3e3e;
+  color: white;
+  transition: color 0.3s ease; }
+
+.text-wrapper-4 {
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 80; }
+
+.MyPayDeliveryInputDetailAddress {
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 80;
+  text-align: left;
+  margin-left: 5px;
+  color: #b3b3b3;
+  font-weight: 700; }
+
+@media (max-width: 768px) {
+  .MyPayDeliveryInputBox, .MyPayDeliveryInputBox .MyPayDeliveryInputView, .MyPayDeliveryInputBox .MyPayDeliveryInputRecipientGroup, .MyPayDeliveryInputBox .group-2, .MyPayDeliveryInputBox .group-3, .MyPayDeliveryInputBox .group-4, .MyPayDeliveryInputBox .MyPayDeliveryInputGroup-5, .MyPayDeliveryInputBox .MyPayDeliveryInputOverlap-wrapper {
+    flex-direction: column; } }
+
+/*# sourceMappingURL=mypay-delivery-input.css.map */

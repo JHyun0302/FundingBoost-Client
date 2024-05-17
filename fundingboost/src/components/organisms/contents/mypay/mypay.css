@@ -1,0 +1,21 @@
+.mypay-page-container {
+  display: flex;
+  min-height: 335px; }
+
+.mypay-left-container {
+  display: flex;
+  flex: 3;
+  flex-direction: column; }
+
+.mypay-right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-left: 1px solid #818181;
+  align-items: flex-end;
+  position: relative; }
+  .mypay-right-container .payment-container {
+    position: absolute;
+    bottom: 330px; }
+
+/*# sourceMappingURL=mypay.css.map */

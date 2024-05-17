@@ -1,0 +1,41 @@
+.MyPageFundingItemPane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.MyPageFundingItemGroupView {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.mypage-myfunding-item-view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
+
+.carousel-control-prev,
+.carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%); }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); }
+
+.carousel-indicators {
+  display: none; }
+
+.carousel {
+  width: 1120px; }
+
+.carousel-control-next-icon::after {
+  visibility: hidden; }
+
+.carousel-control-prev-icon::after {
+  visibility: hidden; }
+
+/*# sourceMappingURL=mypage-myfunding-itemlist.css.map */

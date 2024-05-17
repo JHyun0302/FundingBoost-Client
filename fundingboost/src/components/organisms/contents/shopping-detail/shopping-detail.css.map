@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,0BAA0B;EACxB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,KAAK;EACjB,cAAc,EAAE,MAAM",
+"sources": ["shopping-detail.scss"],
+"names": [],
+"file": "shopping-detail.css"
+}

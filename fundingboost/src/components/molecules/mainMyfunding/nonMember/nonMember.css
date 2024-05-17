@@ -1,0 +1,19 @@
+.nonMember {
+  display: flex;
+  align-items: center;
+  background-color: #EBEBEB;
+  height: 210px;
+  font-family: 'SUITE-Regular'; }
+  .nonMember .main-nonMember {
+    display: flex;
+    align-items: center;
+    margin-left: 60px; }
+    .nonMember .main-nonMember .nonMember-item {
+      margin-left: 25px; }
+      .nonMember .main-nonMember .nonMember-item .nonMember-text {
+        color: black;
+        text-align: left;
+        margin-bottom: 10px;
+        font-size: 23px; }
+
+/*# sourceMappingURL=nonMember.css.map */

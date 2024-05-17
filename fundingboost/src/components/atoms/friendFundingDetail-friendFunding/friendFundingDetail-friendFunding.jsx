@@ -5,6 +5,7 @@ import GaugeBar from "../gauge-bar/gauge-bar";
 import FriendToFundingBtn from "../button/FriendToFundingBtn/FriendToFundingBtn";
 import shareicon from "../../../assets/share.svg";
 
+
 export default function FriendFundingDetailFriendToFunding({ friendFundingDetailData }) {
     const [fundingAmount, setFundingAmount] = useState(0);
 
@@ -24,7 +25,7 @@ export default function FriendFundingDetailFriendToFunding({ friendFundingDetail
                 <div className="friendFundingDetail-FriendToFunding-style1">
                     <div className="fundingToFriend-Text">{friendFundingDetailData?.data?.friendName}님께 펀딩하기</div>
                     <div className="MoneyButtonGroup">
-                        <FriendFundingDetailMoneyButtonGroup onFundingAmountChange={handleFundingAmountChange} friendFundingDetailData ={friendFundingDetailData}/>
+                        <FriendFundingDetailMoneyButtonGroup onFundingAmountChange={handleFundingAmountChange} friendFundingDetailData ={friendFundingDetailData} friendFundingPercent={friendFundingDetailData?.data?.contributedPercent}/>
                     </div>
                 </div>
                 <div className="friendFundingDetail-FriendToFunding-style2">
