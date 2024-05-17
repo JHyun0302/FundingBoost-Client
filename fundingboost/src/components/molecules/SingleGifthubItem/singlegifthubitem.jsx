@@ -8,6 +8,8 @@ import GifthubOptionCount from '../Modal/GifthubOptionCount/gifthuboptioncount';
 export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) {
     const [isChecked, setIsChecked] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [quantity, setQuantity] = useState(item.quantity || 1); // 기본값 1
+    const itemId = item.itemId;
 
     useEffect(() => {
         // 컴포넌트가 마운트될 때 아이템의 초기 체크 상태 설정
@@ -25,22 +27,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
     };
 
     const handleDeleteItem = async () => {
-        // // 삭제 버튼 클릭 시 해당 아이템을 삭제
-        // try {
-        //     // axios를 사용하여 DELETE 요청을 보냅니다.
-        //     const response = await axios.delete(`https://localhost:8080/api/v1/gifthub/${item.gifthubItemId}`, {
-        //         headers: {
-        //             Authorization: `Bearer <access_token>` // 여기에 실제 엑세스 토큰 insert
-        //         }
-        //     });
-        //
-        //     // 삭제 요청이 성공하면 onDelete 함수를 호출하여 아이템을 삭제합니다.
-        //     if (onDelete) {
-        //         onDelete(item);
-        //     }
-        // } catch (error) {
-        //     console.error("Error deleting item:", error);
-        // }
+        // 삭제 버튼 클릭 시 해당 아이템을 삭제
         setIsChecked(false);
         if (onDelete) {
             onDelete(item); // 아이템 삭제를 부모 컴포넌트로 전달
@@ -49,6 +36,10 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
 
     const handleShowModal = () => {
         setShowModal(true);
+    };
+
+    const handleQuantityChange = (newQuantity) => {
+        setQuantity(newQuantity);
     };
 
     return (
@@ -68,13 +59,17 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
                                 <div className="gifthub-option">옵션</div>
                             </div>
                             <div className="gifthub-optionName">{item.optionName}</div>
-                        <div className="quantity-container">
-                            <div className="quantity-text">수량 </div>
-                            <div className="quantity-number">{item.quantity}</div>
-                            <GifthubOptionCount/>
-                        </div>
+                            <div className="quantity-container">
+                                <div className="quantity-text">수량 </div>
+                                <div className="quantity-number">{quantity}</div>
+                                <GifthubOptionCount
+                                    onQuantityChange={handleQuantityChange}
+                                    gifthubItemId={item.gifthubItemId}
+                                    itemId={itemId}
+                                />
+                            </div>
                             <div className="giftbox-item-price">{item.itemPrice} 원</div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
