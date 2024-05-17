@@ -41,7 +41,7 @@ export default function FriendFundingDetailFriendToFunding({ friendFundingDetail
                 </div>
                 <div className="friendFundingDetail-FriendToFunding-style3">
                     <div className="friendFundingDetail-payButton">
-                        <FriendToFundingBtn onClick={handleFriendToFundingBtnClick} fundingAmount={fundingAmount} />
+                        <FriendToFundingBtn onClick={handleFriendToFundingBtnClick} fundingAmount={fundingAmount}  />
                         <div>
                             <button className="friendFundingDetail-sharebtn">
                                 <img alt="shareicon" className="friendFundingDetail-sharebtn" src={shareicon} />

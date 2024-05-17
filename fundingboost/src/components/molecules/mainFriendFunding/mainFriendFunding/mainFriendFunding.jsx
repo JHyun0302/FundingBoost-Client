@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // react-router-dom에서 Link 가져오기
+import { Link } from 'react-router-dom';
 import './mainFriendFunding.scss';
 import ItemImg from "../../../atoms/itemImg/itemImg";
 import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
