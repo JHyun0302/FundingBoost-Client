@@ -22,7 +22,7 @@ const MypagePane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                        url: 'https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/my-funding-status?memberId=1',
+                        url: 'https://8bef-112-218-95-58.ngrok-free.app/api/v1/funding/my-funding-status?memberId=1',
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true
