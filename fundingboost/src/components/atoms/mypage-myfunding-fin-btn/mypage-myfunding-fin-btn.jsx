@@ -17,7 +17,7 @@ export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) 
         if (itemPercent === 100) {
             return (
                 <div className="fin-btn-wrapper">
-                    <MypageDeliveryButton />
+                    <MypageDeliveryButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
                 </div>
             );
         } else {
@@ -36,7 +36,7 @@ export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) 
         if (itemPercent < 100) {
             return (
                 <div className="fin-btn-wrapper">
-                    <MypageDeliveryButton />
+                    <MypageDeliveryButton  myPageFundingItemDtoList={myPageFundingItemDtoList} />
                 </div>
             );
         } else {

@@ -11,6 +11,8 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
     const [quantity, setQuantity] = useState(item.quantity || 1);
     const gifthubItemId = item.itemId;
 
+    // console.log(gifthubItemId)
+
     useEffect(() => {
         setIsChecked(false);
     }, [item]);

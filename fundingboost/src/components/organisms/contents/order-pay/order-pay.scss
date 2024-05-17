@@ -1,0 +1,24 @@
+.order-pay-page-container{
+  display: flex;
+  min-height: 335px;
+}
+
+.orderpay-left-container{
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.orderpay-right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-left: 1px solid #818181;
+  align-items: flex-end;
+  position: relative;
+
+  .orderpayment-container {
+    position: absolute;
+    bottom: 330px;
+  }
+}

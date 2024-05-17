@@ -9,9 +9,6 @@ const GifthubPane = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [items, setItems] = useState([]);
 
-    // const mockServerUrl = process.env.REACT_APP_MOCK_SERVER_URL;
-    // console.log(mockServerUrl);
-
     const handleCheckboxChange = (item, isChecked) => {
         if (isChecked) {
             setSelectedItems([...selectedItems, item]);
@@ -70,7 +67,7 @@ const GifthubPane = () => {
                 ))}
             </div>
             <div className="gifthub-result-pane">
-                <GifthubResult totalPrice={totalPrice} selectedItems={selectedItems} />
+                <GifthubResult items={items} totalPrice={totalPrice} selectedItems={selectedItems} />
             </div>
         </div>
     );
