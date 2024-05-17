@@ -12,11 +12,9 @@ function GifthubOptionCount({ onQuantityChange,  gifthubItemId, itemId }) {
         onQuantityChange(quantity);
 
         const requestData = {
-            quantity:
-            quantity // 수정된 수량 값
+            quantity: quantity
         };
 
-        const gifthubItemId = itemId;
 
         try {
             const response = await axios.patch(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/gifthub/quantity/${gifthubItemId}`, requestData, {
