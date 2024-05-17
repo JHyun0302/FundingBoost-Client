@@ -1,0 +1,65 @@
+.MyPayDeliveryBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 123px;
+  width: 322px; }
+
+.MyPayDeliveryBox .MyPayDeliveryView {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 130px;
+  width: 328px; }
+
+.MyPayDeliveryBox .MyPayDeliveryName, .MyPayDeliveryBox .MyPayDeliveryAddress, .MyPayDeliveryBox .MyPayDeliveryPhoneNumber, .MyPayDeliveryBox {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  width: 100%;
+  text-align: start; }
+
+.MyPayDeliveryBox .MyPayDeliveryCheckbox {
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center; }
+
+.MyPayDeliveryBox .MyPayDeliveryName {
+  font-weight: bold; }
+
+.MyPayDeliveryBox .MyPayDeliveryAddress, .MyPayDeliveryBox .MyPayDeliveryPhoneNumber {
+  font-weight: 200;
+  font-family: SUITE-Regular; }
+
+.MyPayDeliveryBox .MyPayDeliveryCheckbox {
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end; }
+
+.MyPayDeliveryBox .MyPayDeliverySelect {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 100;
+  text-align: center;
+  margin: auto;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #d2d5da;
+  border-radius: 4px;
+  width: 60px;
+  height: auto;
+  align-content: center; }
+
+.MyPayDeliveryBox .MyPayDeliverySelect:hover {
+  background-color: #3e3e3e;
+  color: white;
+  transition: background-color 0.3s; }
+
+@media (max-width: 768px) {
+  .MyPayDeliveryBox, .MyPayDeliveryBox .MyPayDeliveryView {
+    flex-wrap: wrap; } }
+
+/*# sourceMappingURL=mypay-delivery-history.css.map */

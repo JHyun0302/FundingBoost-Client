@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,yBAAyB;EACvB,MAAM,EAAE,aAAa",
+"sources": ["friendFunding-page.scss"],
+"names": [],
+"file": "friendFunding-page.css"
+}

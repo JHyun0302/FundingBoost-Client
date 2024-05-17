@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,cAAe;EACb,UAAU,EAAE,MAAM",
+"sources": ["gifthub-page.scss"],
+"names": [],
+"file": "gifthub-page.css"
+}

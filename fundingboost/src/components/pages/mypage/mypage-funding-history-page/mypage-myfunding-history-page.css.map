@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,4BAA4B;EAC1B,UAAU,EAAE,MAAM",
+"sources": ["mypage-myfunding-history-page.scss"],
+"names": [],
+"file": "mypage-myfunding-history-page.css"
+}

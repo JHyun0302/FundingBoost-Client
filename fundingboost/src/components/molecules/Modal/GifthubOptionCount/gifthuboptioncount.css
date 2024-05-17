@@ -1,0 +1,11 @@
+.modal-content {
+  font-family: SUITE-Regular, sans-serif; }
+
+.modal-anim {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out; }
+
+.modal.show .modal-anim {
+  opacity: 1; }
+
+/*# sourceMappingURL=gifthuboptioncount.css.map */
