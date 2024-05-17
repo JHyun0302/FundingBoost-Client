@@ -1,0 +1,14 @@
+.ranking-pane-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; }
+
+.balloon {
+  position: relative;
+  width: 100%;
+  background: #e5efff;
+  border-radius: 10px;
+  padding: 0px; }
+
+/*# sourceMappingURL=rankingpersonpane.css.map */

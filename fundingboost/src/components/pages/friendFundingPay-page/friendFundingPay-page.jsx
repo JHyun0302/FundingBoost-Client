@@ -4,7 +4,7 @@ import PointUse from '../../atoms/point/pointUse';
 import './friendFundingPay-page.scss'
 import img from '../../../assets/logo.svg';
 import axios from "axios";
-
+import defaultProfileImg from "../../../assets/defaultProfile.svg";
 import HeaderBar from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
 import receipt from "../../../assets/friendFunding/receipt.svg";
@@ -37,7 +37,7 @@ const FriendFundingPayPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/pay/friends/2?memberId=1`, {
+                const response = await axios.get(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/pay/friends/${fundingId}?memberId=1`, {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
@@ -45,6 +45,7 @@ const FriendFundingPayPage = () => {
                         "ngrok-skip-browser-warning": true,
                     },
                 });
+
                 console.log("response ->", response.data);
                 setFriendFundingPayData(response.data.data);
             } catch (error) {
@@ -59,7 +60,7 @@ const FriendFundingPayPage = () => {
 
         <div className="friendFundingPayPage">
             <HeaderBar />
-            {friendFundingPayData && friendFundingPayData.friendProfile && (
+            {friendFundingPayData &&(
                 <>
                     <div className="friendFundingPayPageDetile">
                         <div className="friendFundingPayPageDetileImg">
@@ -68,7 +69,7 @@ const FriendFundingPayPage = () => {
                         <div className="friendFundingPayPageDetiles">
                             <div className="friendFundingPayPageDetileInfo">
                                 <div className="friendFundingProfile">
-                                    <FriendFundingPayProfile friendFundingPayData={friendFundingPayData}/>
+                                    <FriendFundingPayProfile friendFundingPayData={friendFundingPayData} />
                                 </div>
 
                                 <FriendFundingPayPrice friendFundingPayData={friendFundingPayData}/>
