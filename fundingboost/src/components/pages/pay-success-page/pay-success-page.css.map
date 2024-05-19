@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,YAAa;EACX,UAAU,EAAE,MAAM",
-"sources": ["pay-success-page.scss"],
-"names": [],
-"file": "pay-success-page.css"
-}

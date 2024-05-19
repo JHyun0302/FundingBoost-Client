@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,UAAU;EACR,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;EACZ,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,eAAe;EACvB,aAAa,EAAE,IAAI",
-"sources": ["gauge-bar.scss"],
-"names": [],
-"file": "gauge-bar.css"
-}

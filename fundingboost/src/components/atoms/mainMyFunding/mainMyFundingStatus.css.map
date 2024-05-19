@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,uBAAwB;EACtB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,GAAG,EAAE,IAAI",
-"sources": ["mainMyFundingStatus.scss"],
-"names": [],
-"file": "mainMyFundingStatus.css"
-}
