@@ -28,7 +28,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px; /* 아이템 간의 간격을 조정합니다. 필요에 따라 조정하세요. */
-  align-items: center;
+  align-items: flex-start;
   padding:10px;
 }
 
