@@ -33,14 +33,19 @@
 }
 
 .shopping-single-item {
+  display: flex;
   width: 900px;
-  height: auto;
+  height: 350px;
   flex-basis: 25%;
   padding:10px;
   font-family: SUITE-Regular;
   font-size: 90%;
   max-width: 15%;
-  ;
+  >a{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
 }
 
 .title-wrapper{
