@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,yBAAyB;EACvB,WAAW,EAAE,aAAa;EAC1B,YAAY,EAAE,GAAG;EAEjB,8DAAqC;IACnC,gBAAgB,EAAE,OAAO;IACzB,KAAK,EAAC,KAAK;IACX,MAAM,EAAE,IAAI;EAGd,6CAAoB;IAClB,gBAAgB,EAAE,OAAO;EAE3B,oDAA0B;IACxB,gBAAgB,EAAE,OAAO;IACzB,KAAK,EAAE,KAAK",
-"sources": ["friendFunding-DropdownBtn.scss"],
-"names": [],
-"file": "friendFunding-DropdownBtn.css"
-}

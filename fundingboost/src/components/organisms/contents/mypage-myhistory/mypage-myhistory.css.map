@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,iCAAiC;EAC/B,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;;AAGrB,qCAAqC;EACnC,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;;AAGxB,uCAAuC;EACrC,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,iBAAiB",
-"sources": ["mypage-myhistory.scss"],
-"names": [],
-"file": "mypage-myhistory.css"
-}

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,qBAAsB;EACpB,WAAW,EAAE,aAAa;EAC1B,KAAK,EAAE,OAAO;EAEd,kDAA6B;IAC3B,OAAO,EAAE,IAAI;IACb,cAAc,EAAE,MAAM;IACtB,UAAU,EAAE,IAAI;IAChB,WAAW,EAAE,MAAM;IACnB,eAAe,EAAE,aAAa;IAC9B,KAAK,EAAE,IAAI",
-"sources": ["fundingRegistDetails.scss"],
-"names": [],
-"file": "fundingRegistDetails.css"
-}

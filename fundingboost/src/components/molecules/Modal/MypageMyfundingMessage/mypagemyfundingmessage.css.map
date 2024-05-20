@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,cAAe;EACb,WAAW,EAAE,aAAa;;AAG5B,WAAY;EACV,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,wBAAwB;EACpC,WAAW,EAAE,aAAa;;AAG5B,uBAAwB;EACtB,OAAO,EAAE,CAAC;EACV,WAAW,EAAE,aAAa",
-"sources": ["mypagemyfundingmessage.scss"],
-"names": [],
-"file": "mypagemyfundingmessage.css"
-}

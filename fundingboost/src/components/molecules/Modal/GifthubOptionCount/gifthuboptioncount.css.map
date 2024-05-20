@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,cAAe;EACb,WAAW,EAAE,yBAAyB;;AAGxC,WAAY;EACV,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,wBAAwB;;AAGtC,uBAAwB;EACtB,OAAO,EAAE,CAAC",
-"sources": ["gifthuboptioncount.scss"],
-"names": [],
-"file": "gifthuboptioncount.css"
-}

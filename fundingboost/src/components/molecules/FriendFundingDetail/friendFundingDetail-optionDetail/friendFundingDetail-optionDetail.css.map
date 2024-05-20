@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,iCAAkC;EAChC,WAAW,EAAE,aAAa;EAC1B,KAAK,EAAE,OAAO;EACd,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,MAAM,EAAE,IAAI;EACZ,oEAAkC;IAChC,MAAM,EAAE,KAAK;EAEf,oEAAkC;IAChC,MAAM,EAAE,IAAI",
-"sources": ["friendFundingDetail-optionDetail.scss"],
-"names": [],
-"file": "friendFundingDetail-optionDetail.css"
-}

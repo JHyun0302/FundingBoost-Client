@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,kBAAkB;EAChB,cAAc,EAAC,GAAG;;AAEpB,mBAAmB;EACjB,cAAc,EAAC,GAAG",
-"sources": ["mainFunding.scss"],
-"names": [],
-"file": "mainFunding.css"
-}
