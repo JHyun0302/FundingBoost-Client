@@ -11,7 +11,7 @@ import loginmoji from "../../../../assets/loginmoji.svg"
 
 const LoginPane = () => {
     // const navigate = useNavigate();
-
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
@@ -36,6 +36,10 @@ const LoginPane = () => {
             handleLogin();  // 엔터 키가 눌리면 로그인 처리 함수 호출
         }
     };
+
+    const goSignUp=()=>{
+        navigate("/signup");
+    }
 
     return (
         <div className="social-login-pane">
@@ -82,7 +86,7 @@ const LoginPane = () => {
                     <img src={applelogin} alt="Apple Login" className="social-login-btn"/>
                 </a>
 
-                <h5 className="signup-text">아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp; <button className="signup-btn">회원가입</button></h5>
+                <h5 className="signup-text">아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp; <button className="signup-btn" onClick={goSignUp} >회원가입</button></h5>
             </div>
         </div>
     );

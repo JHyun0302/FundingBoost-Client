@@ -12,13 +12,13 @@ const FundingRegistPage = lazy(() => import('./components/pages/fundingRegist-pa
 const PaySuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
 const FundingPayPage = lazy(() => import('./components/pages/mypay-page/mypay-page'));
 const FundingSuccessPage = lazy(() => import('./components/pages/funding-success-page/funding-success-page'));
-const FriendFundingDetail = lazy(() => import('./components/pages/friendFunding-detail-page/friendFundingDetail-page'));
+const FriendFundingDetail = lazy(() => import('./components/pages/friendFundingDetail-page/friendFundingDetail-page'));
 const FriendFundingPayPage = lazy(() => import('./components/pages/friendFundingPay-page/friendFundingPay-page'));
 const Shopping = lazy(() => import('./components/pages/shopping-page/shopping-page'));
 const FriendFunding = lazy(() => import('./components/pages/friendFunding-page/friendFunding-page'));
 const ShoppingDetail = lazy(() => import('./components/pages/shopping-detail-page/shopping-detail-page'));
 const OrderPayPage = lazy(() => import('./components/pages/order-pay-page/order-pay-page'));
-
+const SignUpPage    = lazy(() => import('./components/pages/signUp-page/signUp-page'));
 // 로딩 스피너
 const LoadingSpinner = () => (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -50,6 +50,7 @@ function Router() {
                 <Route path="/shopping" element={<Suspense fallback={<LoadingSpinner />}><Shopping/></Suspense>} />
                 <Route path="/friend-funding" element={<Suspense fallback={<LoadingSpinner />}><FriendFunding/></Suspense>} />
                 <Route path="/shopping/detail/:itemId" element={<Suspense fallback={<LoadingSpinner />}><ShoppingDetail/></Suspense>} />
+                <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
             </Routes>
         </BrowserRouter>
     );
