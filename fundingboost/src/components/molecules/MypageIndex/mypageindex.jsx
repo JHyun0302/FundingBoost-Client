@@ -34,8 +34,10 @@ export default function MyPageIndex({ onButtonClick, currentPageIndex }) {
                 break;
             case 5:
                 navigate("/mypage/favorite");
+                break;
             case 6:
                 navigate("/mypage/review");
+                break;
             default:
                 break;
         }

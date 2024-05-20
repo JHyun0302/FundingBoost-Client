@@ -18,6 +18,11 @@ const Shopping = lazy(() => import('./components/pages/shopping-page/shopping-pa
 const FriendFunding = lazy(() => import('./components/pages/friendFunding-page/friendFunding-page'));
 const ShoppingDetail = lazy(() => import('./components/pages/shopping-detail-page/shopping-detail-page'));
 const OrderPayPage = lazy(() => import('./components/pages/order-pay-page/order-pay-page'));
+const MypageFriendFundingHistory = lazy(() => import('./components/pages/mypage/mypage-friend-funding-history-page/mypage-friend-funding-history-page'));
+const MypageOrderHistory  = lazy(() => import('./components/pages/mypage/mypage-order-history-page/mypage-order-history-page'));
+const MypageDeliveryMangement = lazy(() => import('./components/pages/mypage/mypage-delivery-management-page/mypage-delivery-management-page'));
+const MypageWishlist= lazy(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
+const MypageReview = lazy(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
 
 // 로딩 스피너
 const LoadingSpinner = () => (
@@ -50,6 +55,12 @@ function Router() {
                 <Route path="/shopping" element={<Suspense fallback={<LoadingSpinner />}><Shopping/></Suspense>} />
                 <Route path="/friend-funding" element={<Suspense fallback={<LoadingSpinner />}><FriendFunding/></Suspense>} />
                 <Route path="/shopping/detail/:itemId" element={<Suspense fallback={<LoadingSpinner />}><ShoppingDetail/></Suspense>} />
+                <Route path="/mypage/friend-funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFriendFundingHistory /></Suspense>} />
+                {/* + 지난펀딩 기록 디테일   */}
+                <Route path="/mypage/order-history" element={<Suspense fallback={<LoadingSpinner />}><MypageOrderHistory /></Suspense>} />
+                <Route path="/mypage/delivery" element={<Suspense fallback={<LoadingSpinner />}><MypageDeliveryMangement /></Suspense>} />
+                <Route path="/mypage/favorite" element={<Suspense fallback={<LoadingSpinner />}><MypageWishlist /></Suspense>} />
+                <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
             </Routes>
         </BrowserRouter>
     );

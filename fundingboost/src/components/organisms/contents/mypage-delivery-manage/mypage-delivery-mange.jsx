@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import './mypage-myhistory.scss';
+import './mypage-delivery-mange.scss';
 import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
 
-const MypageMyHistoryPane = () => {
+const MypageDeliveryPane = () => {
     const [apiData, setApiData] = useState(null);
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
@@ -17,7 +17,7 @@ const MypageMyHistoryPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'http://localhost:8080/api/v1/funding/history',
+                    url: 'http://localhost:8080/api/v1/delivery',
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
@@ -39,13 +39,13 @@ const MypageMyHistoryPane = () => {
         <div className="mypage-myhistory-total-container">
             <div className="mypage-myhistory-left-pane-container">
                 {/*{apiData && <MypageProfile profileInfo={apiData} />}*/}
-                <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={1} />
+                <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={4} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-                지난 펀딩 이력 content
+                배송지 관리 content
             </div>
         </div>
     );
 }
 
-export default MypageMyHistoryPane;
+export default MypageDeliveryPane;
