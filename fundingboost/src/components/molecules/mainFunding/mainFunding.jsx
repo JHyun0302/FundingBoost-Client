@@ -12,8 +12,7 @@ const MainFunding = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://8bef-112-218-95-58.ngrok-free.app/api/v1/home?memberId=1',{
-
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/api/v1/home`,{
 
                     responseType: 'json',
                     headers: ({

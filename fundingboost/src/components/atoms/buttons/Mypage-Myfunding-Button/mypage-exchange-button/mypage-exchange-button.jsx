@@ -9,7 +9,7 @@ const MypageExchangeBtn = ({ memberId }) => {
         };
 
         try {
-            const response = await axios.patch(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/member/point?memberId=1`, requestData, {
+            const response = await axios.patch(`${process.env.REACT_APP_FUNDINGBOOST}/member/point?memberId=1`, requestData, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
