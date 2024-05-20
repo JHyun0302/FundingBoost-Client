@@ -15,7 +15,7 @@ const FriendFundingDetailPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/funding/friends/${fundingId}?memberId=1`, {
+                const response = await axios.get(`https://fd14-112-218-95-58.ngrok-free.app/api/v1/funding/friends/${fundingId}?memberId=1`, {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",

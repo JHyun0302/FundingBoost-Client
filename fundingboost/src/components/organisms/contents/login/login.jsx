@@ -1,39 +1,54 @@
-import React from 'react';
-import {useState} from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // axios 임포트
 import '../login/login.scss';
 import kakaologin from "../../../../assets/sociallogin/kakaologin.png";
 import naverlogin from "../../../../assets/sociallogin/naverlogin.png";
 import googlelogin from "../../../../assets/sociallogin/googlelogin.png";
 import applelogin from "../../../../assets/sociallogin/applelogin.png";
 import logo from "../../../../assets/logo.png";
-import loginmoji from "../../../../assets/loginmoji.svg"
+import loginmoji from "../../../../assets/loginmoji.svg";
 
 const LoginPane = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
+    const [nickName, setNickName] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
 
-    const handleLogin = () => {
-        // 로그인 처리 로직을 여기에 추가합니다.
-        console.log('Username:', username);
-        console.log('Password:', password);
+    const handleLogin = async () => {
+        try {
+            const data = {
+                nickName: nickName,
+                password: password,
+            };
 
-        // 예시: 로그인 실패 시 에러 메시지 띄우기
-        if (username !== 'correct_username' || password !== 'correct_password') {
-            setLoginError(true); // 로그인 에러 상태 업데이트
-            return;
+            const response = await axios.post('https://fd14-112-218-95-58.ngrok-free.app/api/v1/login', data, {
+                responseType: 'json',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": true,
+                    "ngrok-skip-browser-warning": true,
+                }
+            });
+
+            console.log('Response:', response.data);
+
+            if (response.data.success) {
+                setLoginError(false);
+                navigate('/home'); // 로그인 성공 시 홈으로 이동
+            } else {
+                setLoginError(true);
+            }
+        } catch (error) {
+            console.error('POST 에러:', error);
+            setLoginError(true);
         }
-
-        // 로그인 성공 시 에러 상태 초기화
-        setLoginError(false);
     };
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            handleLogin();  // 엔터 키가 눌리면 로그인 처리 함수 호출
+            handleLogin();
         }
     };
 
@@ -42,7 +57,7 @@ const LoginPane = () => {
             <div className="social-login-box">
                 <h1 className="centerAlign">LOGIN</h1>
                 <div className="loginmoji">
-                <img src={loginmoji} alt="loginmoji" />
+                    <img src={loginmoji} alt="loginmoji" />
                 </div>
                 <div className="login-box">
                     <br/>
@@ -51,8 +66,8 @@ const LoginPane = () => {
                             type="text"
                             className="input-field"
                             placeholder="아이디"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={nickName}
+                            onChange={(e) => setNickName(e.target.value)}
                         />
                         <input
                             type="password"
@@ -72,13 +87,13 @@ const LoginPane = () => {
                 <a href="https://kauth.kakao.com/oauth/authorize" className="social-login-link">
                     <img src={kakaologin} alt="Kakao Login" className="social-login-btn"/>
                 </a>
-                <a href="https://kauth.kakao.com/oauth/authorize" className="social-login-link">
+                <a href="https://nid.naver.com/oauth2.0/authorize" className="social-login-link">
                     <img src={naverlogin} alt="Naver Login" className="social-login-btn"/>
                 </a>
-                <a href="https://kauth.kakao.com/oauth/authorize" className="social-login-link">
+                <a href="https://accounts.google.com/o/oauth2/auth" className="social-login-link">
                     <img src={googlelogin} alt="Google Login" className="social-login-btn"/>
                 </a>
-                <a href="https://kauth.kakao.com/oauth/authorize" className="social-login-link">
+                <a href="https://appleid.apple.com/auth/authorize" className="social-login-link">
                     <img src={applelogin} alt="Apple Login" className="social-login-btn"/>
                 </a>
 

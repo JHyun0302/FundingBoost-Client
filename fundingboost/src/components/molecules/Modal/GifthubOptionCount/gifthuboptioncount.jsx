@@ -17,7 +17,7 @@ function GifthubOptionCount({ onQuantityChange,  gifthubItemId, itemId }) {
 
 
         try {
-            const response = await axios.patch(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/gifthub/quantity/${gifthubItemId}`, requestData, {
+            const response = await axios.patch(`https://fd14-112-218-95-58.ngrok-free.app/api/v1/gifthub/quantity/${gifthubItemId}`, requestData, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',

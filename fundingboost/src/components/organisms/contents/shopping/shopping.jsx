@@ -10,7 +10,7 @@ const ShoppingPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://8bef-112-218-95-58.ngrok-free.app/api/v1/items', {
+                const response = await axios.get('https://fd14-112-218-95-58.ngrok-free.app/api/v1/items', {
                     responseType: 'json',
                     headers: ({
                         "Content-Type": "application/json",
