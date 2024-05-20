@@ -12,12 +12,13 @@ const MainPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/home?memberId=1`, {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/home`, {
                     responseType: 'json',
                     headers: ({
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Credentials": true,
-                        "ngrok-skip-browser-warning": true,
+                        "Content-Type" : "application/json",
+                        "Access-Control-Allow-Credentials" : true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
+                        "ngrok-skip-browser-warning": true
                     }),
                 });
                 setFundingMemberData(response.data);

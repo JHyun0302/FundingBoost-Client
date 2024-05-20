@@ -129,7 +129,7 @@ const SignUp = () => {
 
                 </div>
                 <div className="signUp-btn">
-                    <SignUpBtn username={username} email={email} password={password} emailValid={emailValid} passwordsMatch={passwordsMatch} />
+                    <SignUpBtn username={username} email={email} emailValid={emailValid} password={password} passwordConfirm={passwordConfirm}/>
                 </div>
 
             </div>

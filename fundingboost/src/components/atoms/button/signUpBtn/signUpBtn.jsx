@@ -6,14 +6,22 @@ import  '../yellowBtn.scss';
 import axios from "axios";
 
 
-function SignUpBtn({username, email, password, passwordMatch, emailValid}){
+function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
+
     const handleSingUp = async () =>{
         if (!username || !email || !password) {
             alert('모든 정보를 입력해주세요.');
             return;
-        } else if (!passwordMatch || !emailValid) {
-            alert('잘못된 입력입니다.');
+        } else if  (!emailValid){
+            alert('이메일 형식이 올바르지 않습니다.');
             return;
+        }
+        else if  (password !== passwordConfirm){
+            alert('비밀번호가 일치하지 않습니다.');
+            return;
+        }
+        else{
+            alert('펀딩부 스트에 오신 것을 환영합니다🎉 로그인해주세요.');
         }
 
         try{
@@ -23,12 +31,13 @@ function SignUpBtn({username, email, password, passwordMatch, emailValid}){
                 email: email
             })
             console.log("postData:" +data)
-            const response = await axios.post(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/login`,data, {
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/signup`,data, {
                 responseType: 'json',
                 headers: ({
                     "Content-Type" : "application/json",
                     "Access-Control-Allow-Credentials" : true,
-                    "ngrok-skip-browser-warning": true
+                    "ngrok-skip-browser-warning": true,
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
                 }),
                 withCredentials: true,
             });
