@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import axios from 'axios'; // axios 임포트
 import '../login/login.scss';
 import kakaologin from "../../../../assets/sociallogin/kakaologin.png";
@@ -24,21 +23,37 @@ const LoginPane = () => {
                 password: password,
             };
 
-            const response = await axios.post(`http://localhost:8080/api/v1/login`, data, {
+            const response = await axios.post('http://localhost:8080/api/v1/login', data, {
                 responseType: 'json',
                 headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Credentials": true,
-                    "Access-Control-Allow-Origin": "http://localhost:3000/",
-                    "ngrok-skip-browser-warning": true
-                }
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    'Access-Control-Allow-Origin': 'http://localhost:3000/',
+                    'ngrok-skip-browser-warning': true
+                },
+                withCredentials: true
             });
 
             console.log('Response:', response.data);
 
+            // Extract token data from response.data.data
             if (response.data.success) {
-                setLoginError(false);
-                navigate('/home');
+                const { access_token, refresh_token} = response.data.data;
+
+                // Ensure the tokens are defined before setting them in localStorage
+                if (access_token && refresh_token) {
+                    axios.defaults.headers.common['Authorization'] = access_token;
+                    axios.defaults.headers.common['RefreshToken'] = refresh_token;
+
+                    window.localStorage.setItem('accessToken', access_token);
+                    window.localStorage.setItem('refreshToken', refresh_token);
+
+                    setLoginError(false);
+                    navigate('/home');
+                } else {
+                    console.error('Missing token data:', response.data.data);
+                    setLoginError(true);
+                }
             } else {
                 setLoginError(true);
             }

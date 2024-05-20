@@ -11,7 +11,7 @@ export default function Mainrankingitem({ product }) {
 
     const { itemId, itemName, price, itemImageUrl, brandName } = product;
 
-    console.log(product)
+    // console.log(product)
     
     // 상품 타이틀이 너무 길 경우 일부만 표시
     const truncatedTitle = itemName.length > 25 ? itemName.slice(0, 25) + '...' : itemName;
