@@ -54,7 +54,7 @@ function FundingRegistPage(props) {
     // 종료일 ,메시지, 태그 정보 전송
     const handleSubmit = async () => {
         try {
-            const url = 'https://fd14-112-218-95-58.ngrok-free.app/api/v1/funding';
+            const url = 'http://localhost:8080/api/v1/funding';
             let fundingTag = tag;
             if (tag === "펀딩 해주세요🎁") {
                 fundingTag = "기타";
@@ -70,12 +70,13 @@ function FundingRegistPage(props) {
                 tag: fundingTag
             })
 
-            const response = await axios.post('https://fd14-112-218-95-58.ngrok-free.app/api/v1/funding?memberId=1', data,
+            const response = await axios.post('http://localhost:8080/api/v1/funding', data,
                 {
                     responseType: 'json',
                     headers: ({
                         "Content-Type" : "application/json",
                         "Access-Control-Allow-Credentials" : true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "ngrok-skip-browser-warning": true
                     })
 

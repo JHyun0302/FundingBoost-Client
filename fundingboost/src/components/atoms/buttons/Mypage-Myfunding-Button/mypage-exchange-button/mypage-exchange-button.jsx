@@ -9,10 +9,11 @@ const MypageExchangeBtn = ({ memberId }) => {
         };
 
         try {
-            const response = await axios.patch(`https://fd14-112-218-95-58.ngrok-free.app/api/v1/member/point?memberId=1`, requestData, {
+            const response = await axios.patch(`http://localhost:8080/api/v1/member/point`, requestData, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
                     'Access-Control-Allow-Credentials': true,
                     'ngrok-skip-browser-warning': true,
                 },

@@ -24,10 +24,11 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
     const handleCloseFunding = async () => {
         const fundingId = myPageFundingItemDtoList[0]?.fundingId;
         try {
-            const response = await axios.post(`https://fd14-112-218-95-58.ngrok-free.app/api/v1/funding/close/${fundingId}`, null, {
+            const response = await axios.post(`http://localhost:8080/api/v1/funding/close/${fundingId}`, null, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
                     'Access-Control-Allow-Credentials': true,
                     'ngrok-skip-browser-warning': true,
                 }

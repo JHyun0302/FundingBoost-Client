@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../main/main.scss';
+import './main.scss';
 import RankingPersonPane from "../../../molecules/RankingPersonPane/rankingpersonpane";
 import RankingItemPane from "../../../molecules/RankingItemPane/rankingitempane";
 import MainRankingItem from "../../../molecules/MainRankingList/mainrankingitem";
@@ -12,13 +12,15 @@ const MainPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://fd14-112-218-95-58.ngrok-free.app/api/v1/home?memberId=1', {
+                const response = await axios.get('http://localhost:8080/api/v1/home', {
                     responseType: 'json',
                     headers: ({
                         "Content-Type": "application/json",
                         "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "ngrok-skip-browser-warning": true,
                     }),
+                    withCredentials: true
                 });
                 setFundingMemberData(response.data);
                 console.log("response ->", response.data);

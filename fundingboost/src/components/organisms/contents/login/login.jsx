@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios'; // axios 임포트
 import '../login/login.scss';
 import kakaologin from "../../../../assets/sociallogin/kakaologin.png";
@@ -23,12 +24,13 @@ const LoginPane = () => {
                 password: password,
             };
 
-            const response = await axios.post('https://fd14-112-218-95-58.ngrok-free.app/api/v1/login', data, {
+            const response = await axios.post(`http://localhost:8080/api/v1/login`, data, {
                 responseType: 'json',
                 headers: {
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Credentials": true,
-                    "ngrok-skip-browser-warning": true,
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
+                    "ngrok-skip-browser-warning": true
                 }
             });
 
@@ -36,7 +38,7 @@ const LoginPane = () => {
 
             if (response.data.success) {
                 setLoginError(false);
-                navigate('/home'); // 로그인 성공 시 홈으로 이동
+                navigate('/home');
             } else {
                 setLoginError(true);
             }

@@ -37,10 +37,11 @@ const FriendFundingPayPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://fd14-112-218-95-58.ngrok-free.app/api/v1/pay/friends/${fundingId}?memberId=1`, {
+                const response = await axios.get(`http://localhost:8080/api/v1/pay/friends/${fundingId}`, {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true,
                     },

@@ -34,10 +34,11 @@ const GifthubPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'https://fd14-112-218-95-58.ngrok-free.app/api/v1/gifthub?memberId=1',
+                    url: 'http://localhost:8080/api/v1/gifthub',
                     responseType: 'json',
                     headers: ({
                         "Access-Control-Allow-Credentials" : true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "ngrok-skip-browser-warning": true,
                     }),
                 })
