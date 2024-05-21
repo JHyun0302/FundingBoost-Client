@@ -55,6 +55,7 @@ function FundingRegistPage(props) {
     const handleSubmit = async () => {
         try {
             const url = `${process.env.REACT_APP_FUNDINGBOOST}/funding`;
+
             let fundingTag = tag;
             if (tag === "펀딩 해주세요🎁") {
                 fundingTag = "기타";
@@ -70,12 +71,14 @@ function FundingRegistPage(props) {
                 tag: fundingTag
             })
 
-            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding?memberId=1`, data,
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, data,
+
                 {
                     responseType: 'json',
                     headers: ({
                         "Content-Type" : "application/json",
                         "Access-Control-Allow-Credentials" : true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "ngrok-skip-browser-warning": true
                     })
 

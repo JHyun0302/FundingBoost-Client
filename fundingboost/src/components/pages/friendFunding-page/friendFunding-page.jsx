@@ -11,10 +11,12 @@ const FriendFundingPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/friends?memberId=1`, {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/friends`, {
+
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true,
                     },

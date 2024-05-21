@@ -14,6 +14,7 @@ const ShoppingPane = () => {
                     responseType: 'json',
                     headers: ({
                         "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true,
                     }),

@@ -13,10 +13,13 @@ const ExtensionButton = ({ myPageFundingItemDtoList }) => {
 
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding/extension/${fundingId}?memberId=1`, requestData, {
+
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding/extension/${fundingId}`, requestData, {
+
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
                     'Access-Control-Allow-Credentials': true,
                     'ngrok-skip-browser-warning': true,
                 },

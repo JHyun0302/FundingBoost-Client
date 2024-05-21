@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import '../main/main.scss';
+import './main.scss';
 import RankingPersonPane from "../../../molecules/RankingPersonPane/rankingpersonpane";
 import RankingItemPane from "../../../molecules/RankingItemPane/rankingitempane";
 import MainRankingItem from "../../../molecules/MainRankingList/mainrankingitem";
 import axios from "axios";
+
 
 const MainPane = ({mainData}) => {
     console.log("item 데이터:", mainData.data?.itemDtoList);

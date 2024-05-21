@@ -22,9 +22,12 @@ const MypagePane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                        url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status?memberId=1`,
+
+                        url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status`,
+
                     headers: {
                         "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "ngrok-skip-browser-warning": true
                     },
                     responseType: 'json'

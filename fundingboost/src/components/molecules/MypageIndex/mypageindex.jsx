@@ -24,9 +24,20 @@ export default function MyPageIndex({ onButtonClick, currentPageIndex }) {
                 navigate("/mypage/funding-history");
                 break;
             case 2:
-                // 다른 페이지로 이동하는 로직 추가
+                navigate("/mypage/friend-funding-history");
                 break;
-            // 나머지 버튼에 대한 처리 추가
+            case 3:
+                navigate("/mypage/order-history");
+                break;
+            case 4:
+                navigate("/mypage/delivery");
+                break;
+            case 5:
+                navigate("/mypage/favorite");
+                break;
+            case 6:
+                navigate("/mypage/review");
+                break;
             default:
                 break;
         }

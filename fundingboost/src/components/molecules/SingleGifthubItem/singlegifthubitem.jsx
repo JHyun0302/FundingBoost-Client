@@ -27,10 +27,13 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
 
     const handleDeleteItem = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${gifthubItemId}?memberId=1`, null, {
+
+            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${gifthubItemId}`, null, {
+
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
                     'Access-Control-Allow-Credentials': true,
                     'ngrok-skip-browser-warning': true,
                 },

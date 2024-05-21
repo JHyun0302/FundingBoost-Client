@@ -9,7 +9,6 @@ import axios from "axios";
 
 const MainFunding = ({mainData}) => {
 
-
     return (
         <div>
             {/*my 펀딩 존재 여부에 따른 변화*/}
