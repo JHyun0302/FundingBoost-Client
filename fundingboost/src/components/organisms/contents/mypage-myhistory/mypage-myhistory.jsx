@@ -4,6 +4,7 @@ import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
+import MyPageMyFundingHistoryList from "../../../molecules/MyPageMyFundingHistoryList/mypage-myfunding-history-list";
 
 const MypageMyHistoryPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -43,7 +44,7 @@ const MypageMyHistoryPane = () => {
             </div>
             <div className="mypage-myhistory-right-pane-containter">
                 <div className="mypage-myhistory-container">
-
+                    <MyPageMyFundingHistoryList/>
                 </div>
             </div>
         </div>
