@@ -16,6 +16,8 @@ export default function DeliveryAddressList({deliveryData}) {
                         <div className="delivery-address-list-addresses">
                             {/*{deliveryData?.data?.myPageDeliveryDtoList?.map((deliveryData, index) => (*/}
                                 <DeliveryAddress deliveryData={deliveryData}/>
+                            <DeliveryAddress deliveryData={deliveryData}/>
+                            <DeliveryAddress deliveryData={deliveryData}/>
                         {/*))}*/}
                         </div>
                     </div>
