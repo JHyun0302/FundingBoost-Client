@@ -12,7 +12,7 @@ export default function MyPageMyFundingHistory () {
                     <div className="fundingTag"># 생일</div>
                     <div className='lookingDetail'>
                         <div className="showDetail">자세히 보기</div>
-                        <button className="showDetailButton">&gt;</button>
+                        <button className="showDetailButton">▶</button>
                     </div>
                 </div>
                 <p className="fundingDateTime">
