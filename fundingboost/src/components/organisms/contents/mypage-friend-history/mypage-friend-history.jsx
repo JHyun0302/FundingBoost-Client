@@ -4,6 +4,7 @@ import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
+import MyPageFriendFundingList from "../../../molecules/MyPageFriendFundingList/mypage-friend-funding-list";
 
 const MypageFriendHistoryPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -17,7 +18,7 @@ const MypageFriendHistoryPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'http://localhost:8080/api/v1/funding/history/friend',
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/history/friend`,
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
@@ -42,7 +43,9 @@ const MypageFriendHistoryPane = () => {
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={2} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-               친구 펀딩 기록 content
+                <div className="mypage-friend-history-container">
+                    <MyPageFriendFundingList/>
+                </div>
             </div>
         </div>
     );

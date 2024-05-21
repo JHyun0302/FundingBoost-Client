@@ -1,0 +1,58 @@
+.MyPageFundingRecord {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mypage-myfunding-history-title{
+  padding: 10px;
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mypage-fundingRecordTitle{
+  font-size: 30px;
+  margin: 5px;
+}
+
+.detailed{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailedInquiry {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.detailedInquiryImg {
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+
+.mypage-FH-horizontalLine {
+  border-bottom: 1px solid gray;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.fundingRecordItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+@media (max-width: 768px) {
+  .box, .view, .overlap, .overlap-group, .overlap-group-2, .overlap-2, .overlap-3, .overlap-group-wrapper {
+    flex-direction: column;
+  }
+}

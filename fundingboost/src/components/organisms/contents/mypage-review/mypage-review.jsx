@@ -17,7 +17,7 @@ const ReviewPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'http://localhost:8080/api/v1/review',
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/review`,
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",

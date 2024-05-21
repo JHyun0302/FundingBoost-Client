@@ -17,7 +17,7 @@ const MypageOrderHistoryPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'http://localhost:8080/api/v1/order/history',
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/order/history`,
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
