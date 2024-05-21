@@ -17,7 +17,7 @@ const MypageMyHistoryPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'http://localhost:8080/api/v1/funding/history',
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/history`,
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",

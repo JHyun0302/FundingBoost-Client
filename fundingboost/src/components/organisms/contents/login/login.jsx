@@ -23,7 +23,7 @@ const LoginPane = () => {
                 password: password,
             };
 
-            const response = await axios.post('http://localhost:8080/api/v1/login', data, {
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/login`, data, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
