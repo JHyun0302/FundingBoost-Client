@@ -42,7 +42,9 @@ const MypageMyHistoryPane = () => {
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={1} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-                지난 펀딩 이력 content
+                <div className="mypage-myhistory-container">
+
+                </div>
             </div>
         </div>
     );
