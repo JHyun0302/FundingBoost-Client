@@ -8,8 +8,8 @@ import detailimg from "../../../assets/detail-section-icon.svg";
 export default function MyPageMyFundingHistoryList () {
     return (
         <div className="MyPageFundingRecord">
-            <div className='mypage-myfunding-title'>
-                <div className="fundingRecordTitle">지난 펀딩 이력</div>
+            <div className='mypage-myfunding-history-title'>
+                <div className="mypage-fundingRecordTitle">지난 펀딩 이력</div>
                 <div className='detailed'>
                     <img className="detailedInquiryImg" alt="Line" src={detailimg} />
                     <div className="detailedInquiry">상세조회</div>
