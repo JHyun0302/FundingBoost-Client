@@ -37,7 +37,9 @@ const FriendFundingPayPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/v1/pay/friends/${fundingId}`, {
+
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/friends/${fundingId}`, {
+
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",

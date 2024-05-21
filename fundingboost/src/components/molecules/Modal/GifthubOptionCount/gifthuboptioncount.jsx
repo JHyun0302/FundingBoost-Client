@@ -17,7 +17,9 @@ function GifthubOptionCount({ onQuantityChange,  gifthubItemId, itemId }) {
 
 
         try {
-            const response = await axios.patch(`http://localhost:8080/api/v1/gifthub/quantity/${gifthubItemId}`, requestData, {
+
+            const response = await axios.patch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/quantity/${gifthubItemId}`, requestData, {
+
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',

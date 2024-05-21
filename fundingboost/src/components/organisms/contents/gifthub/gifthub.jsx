@@ -34,7 +34,7 @@ const GifthubPane = () => {
             try {
                 const response = await axios({
                     method: 'GET',
-                    url: 'http://localhost:8080/api/v1/gifthub',
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/gifthub`,
                     responseType: 'json',
                     headers: ({
                         "Access-Control-Allow-Credentials" : true,

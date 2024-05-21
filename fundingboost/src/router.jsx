@@ -23,6 +23,7 @@ const MypageOrderHistory  = lazy(() => import('./components/pages/mypage/mypage-
 const MypageDeliveryMangement = lazy(() => import('./components/pages/mypage/mypage-delivery-management-page/mypage-delivery-management-page'));
 const MypageWishlist= lazy(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
 const MypageReview = lazy(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
+const SignUpPage    = lazy(() => import('./components/pages/signUp-page/signUp-page'));
 
 // 로딩 스피너
 const LoadingSpinner = () => (
@@ -61,6 +62,8 @@ function Router() {
                 <Route path="/mypage/delivery" element={<Suspense fallback={<LoadingSpinner />}><MypageDeliveryMangement /></Suspense>} />
                 <Route path="/mypage/favorite" element={<Suspense fallback={<LoadingSpinner />}><MypageWishlist /></Suspense>} />
                 <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
+                <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
+
             </Routes>
         </BrowserRouter>
     );

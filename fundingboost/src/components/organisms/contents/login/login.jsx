@@ -69,6 +69,10 @@ const LoginPane = () => {
         }
     };
 
+    const goSignUp=()=>{
+        navigate("/signup");
+    }
+
     return (
         <div className="social-login-pane">
             <div className="social-login-box">
@@ -114,7 +118,7 @@ const LoginPane = () => {
                     <img src={applelogin} alt="Apple Login" className="social-login-btn"/>
                 </a>
 
-                <h5 className="signup-text">아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp; <button className="signup-btn">회원가입</button></h5>
+                <h5 className="signup-text">아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp; <button className="signup-btn" onClick={goSignUp} >회원가입</button></h5>
             </div>
         </div>
     );

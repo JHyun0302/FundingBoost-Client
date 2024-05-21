@@ -11,7 +11,8 @@ const FriendFundingPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/v1/funding/friends`, {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/friends`, {
+
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",

@@ -17,26 +17,35 @@ export default function Mainrankingitem({ product }) {
     const truncatedTitle = itemName.length > 25 ? itemName.slice(0, 25) + '...' : itemName;
 
     return (
-        <Link to={"/shopping/detail/"+ itemId} className={style.products} style={{textDecoration: 'none'}}>
-            <div className={style.imgwrap}>
-                {/* 상품 품절 여부에 따라 표시 */}
-                <div className={style.soldout}>
-                    {/*<p className={style.text}>{price > 0 ? "판매중" : "Sold Out"}</p>*/}
-                    <div className={style.bg}></div>
+
+        <Link to={"/shopping/detail/" + itemId} className={style.products} style={{textDecoration: 'none'}}>
+            <div className="item-img-title">
+                <div className={style.imgwrap}>
+                    {/* 상품 품절 여부에 따라 표시 */}
+                    <div className={style.soldout}>
+                        {/*<p className={style.text}>{price > 0 ? "판매중" : "Sold Out"}</p>*/}
+                        <div className={style.bg}></div>
+                    </div>
+
+
+                    <div className="img-wrapper">
+                        <img src={itemImageUrl} width="100%" style={{borderRadius: '3px'}} alt={itemName}/>
+                    </div>
                 </div>
-                <div className="img-wrapper">
-                    <img src={itemImageUrl} width="100%" style={{borderRadius: '3px'}} alt={itemName}/>
+                <div className="brand-wrapper">
+                    <p className={style.brand}>{brandName}</p>
+                </div>
+                <div className="title-wrapper">
+                    <h4 className={style.title}>{truncatedTitle}</h4>
                 </div>
             </div>
-            <div className="brand-wrapper">
-                <p className={style.brand}>{brandName}</p>
+
+            <div className="item-price">
+                <div className="price-wrapper">
+                    <p className={style.price}>{price.toLocaleString()}원</p>
+                </div>
             </div>
-            <div className="title-wrapper">
-                <h4 className={style.title}>{truncatedTitle}</h4>
-            </div>
-            <div className="price-wrapper">
-                <p className={style.price}>{price}원</p>
-            </div>
+
         </Link>
     );
 }

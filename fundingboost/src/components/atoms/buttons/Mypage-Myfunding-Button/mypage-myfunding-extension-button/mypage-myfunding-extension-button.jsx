@@ -13,7 +13,9 @@ const ExtensionButton = ({ myPageFundingItemDtoList }) => {
 
 
         try {
-            const response = await axios.post(`http://localhost:8080/api/v1/funding/extension/${fundingId}`, requestData, {
+
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding/extension/${fundingId}`, requestData, {
+
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',

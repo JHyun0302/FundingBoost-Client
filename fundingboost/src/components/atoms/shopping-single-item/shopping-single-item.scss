@@ -28,19 +28,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px; /* 아이템 간의 간격을 조정합니다. 필요에 따라 조정하세요. */
-  align-items: center;
+  align-items: flex-start;
   padding:10px;
 }
 
 .shopping-single-item {
+  display: flex;
   width: 900px;
-  height: auto;
+  height: 350px;
   flex-basis: 25%;
   padding:10px;
   font-family: SUITE-Regular;
   font-size: 90%;
   max-width: 15%;
-  ;
+  >a{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
 }
 
 .title-wrapper{
