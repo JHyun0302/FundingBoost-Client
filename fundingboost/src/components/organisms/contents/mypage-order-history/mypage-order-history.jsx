@@ -4,6 +4,7 @@ import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
+import OrderHistoryList from "../../../molecules/orderHistoryList/orderHistoryList";
 
 const MypageOrderHistoryPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -42,7 +43,7 @@ const MypageOrderHistoryPane = () => {
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={3} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-                구매이력 content
+                <OrderHistoryList />
             </div>
         </div>
     );
