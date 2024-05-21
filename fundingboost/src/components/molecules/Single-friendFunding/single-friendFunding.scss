@@ -17,14 +17,11 @@
       .friendFunding-Background {
         display: flex;
         flex-direction: row;
-        //margin-bottom: 20px;
         justify-content: space-between;
         background-color: #EBEBEB;
         border-radius: 10px;
         width: 465px;
-        //margin: 20px 16px 20px 15px;
-        //flex: 0 0 calc(33.33% - 20px);
-        margin: 10px;
+        margin: 15px 10px 15px 10px;
         text-decoration-line: none;
 
         .friendFunding-Background-left {
@@ -45,7 +42,7 @@
         }
 
         .friendFunding-Background-right {
-          background-color: #cfcfcf;
+          background-color: #dfdfdf;
           width: 29px;
           border-radius: 0 10px 10px 0;
           display: flex;

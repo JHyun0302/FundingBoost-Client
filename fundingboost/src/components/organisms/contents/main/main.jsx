@@ -5,31 +5,8 @@ import RankingItemPane from "../../../molecules/RankingItemPane/rankingitempane"
 import MainRankingItem from "../../../molecules/MainRankingList/mainrankingitem";
 import axios from "axios";
 
-const MainPane = () => {
-    const [memberFundingData, setFundingMemberData] = useState({});
-    const [itemDtoList, setItemDtoList] = useState([]); // itemDtoList 상태 추가
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://8bef-112-218-95-58.ngrok-free.app/api/v1/home?memberId=1', {
-                    responseType: 'json',
-                    headers: ({
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Credentials": true,
-                        "ngrok-skip-browser-warning": true,
-                    }),
-                });
-                setFundingMemberData(response.data);
-                console.log("response ->", response.data);
-                setItemDtoList(response.data.data.itemDtoList);
-            } catch (error) {
-                console.error("Error data:", error);
-            }
-        };
-        fetchData();
-    }, []);
-
+const MainPane = ({mainData}) => {
+    console.log("item 데이터:", mainData.data?.itemDtoList);
     return (
         <div className="main-pane-container">
             <div className="ranking-button-area">
@@ -40,7 +17,7 @@ const MainPane = () => {
             <div className="ranking-item-area">
                 <div className="item-list-single">
                     {/* itemDtoList가 존재하는 경우에만 매핑하여 MainRankingItem 컴포넌트를 렌더링 */}
-                    {itemDtoList && itemDtoList.map((product, index) => (
+                    {mainData.data?.itemDtoList && mainData.data?.itemDtoList.map((product, index) => (
                         <div className="single-item" key={index}>
                             <MainRankingItem product={product} key={index}/>
                         </div>

@@ -20,7 +20,7 @@ function FriendFundingPaymentBtn({usePoints, fundingAmount, fundingId}) {
                 fundingPrice:  numberFundingAmount
             })
             console.log("postData:" +data)
-            const response = await axios.post(`https://8bef-112-218-95-58.ngrok-free.app/api/v1/pay/friends/${fundingId}?memberId=1`,data, {
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/pay/friends/${fundingId}?memberId=1`,data, {
                 responseType: 'json',
                 headers: ({
                     "Content-Type" : "application/json",

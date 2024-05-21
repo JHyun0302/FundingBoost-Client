@@ -28,17 +28,23 @@
   display: flex;
   flex-wrap: wrap;
   gap: 35px; /* 아이템 간의 간격을 조정합니다. 필요에 따라 조정하세요. */
-  align-items: center;
+  align-items: flex-start;
   padding:10px;
 }
 
 .single-item {
+  display: flex;
   width: 900px;
-  height: auto;
+  height: 420px;
   flex-basis: 25%;
   padding:10px;
   font-family: SUITE-Regular;
   font-size: 90%;
   max-width: 18%;
   /* flex-basis 값이 너무 클 경우, flex-basis의 값을 조정하거나 max-width를 사용해 조정하세요. */
+  >a{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
 }

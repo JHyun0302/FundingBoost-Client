@@ -48,13 +48,15 @@
 
 .title-wrapper{
   margin-top: 10px;
-  height: 60px;
   color: #3e3e3e;
 }
 
 .price-wrapper{
   height: max-content;
   color: #6d6d6d;
+  >p{
+    font-size: 17px;
+  }
 }
 
 .brand-wrapper{
