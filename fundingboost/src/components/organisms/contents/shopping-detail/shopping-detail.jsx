@@ -33,7 +33,7 @@ const ShoppingDetailPane = () => {
 
     return(
         <div className="shopping-detail-container">
-            <ShoppingDetailItem itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} />
+            <ShoppingDetailItem itemId={itemId} itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} />
             <ShoppingDetailInfo/>
         </div>
     );

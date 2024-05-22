@@ -11,7 +11,7 @@ const OrderHistoryList = () => {
                         <div className="order-history-list-head">
                             <div className="order-history-list-delivery-management">구매 이력</div>
                             <div className="order-history-detail">
-                                <img className="detailedInquiryImg" alt="Line" src={img}/>
+                                <img className="order-history-detailedInquiryImg" alt="Line" src={img}/>
                                 <div className="order-history-list-add-delivery">상세 조회</div>
                             </div>
                         </div>
