@@ -1,5 +1,4 @@
 .orderHistoryList {
-
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -29,6 +28,7 @@
       flex-direction: column;
       justify-content: space-between;
       width: 90%;
+      align-items: center;
     }
     .order-history-list-head {
       display: flex;
@@ -37,7 +37,7 @@
       height: 84px;
       width: 100%;
 
-      .delivery-address-list-delivery-management {
+      .order-history-list-delivery-management {
         font-weight: bold;
         font-size: 30px;
         display: flex;
@@ -46,7 +46,7 @@
         align-items: flex-end;
       }
 
-      .delivery-address-list-add-delivery {
+      .order-history-list-add-delivery {
         color: #000000;
         font-size: 17px;
         text-align: end;
@@ -58,26 +58,65 @@
         align-items: center;
         margin-right: 15px;
       }
+      .order-history-list-add-delivery:hover{
+        color: #7d7d7d;
+        cursor: pointer;
+      }
     }
 
-    .delivery-address-list-line {
+    .order-history-list-line {
       border-bottom: 1px solid gray;
       margin: 10px;
+      width: 100%;
     }
 
-    .delivery-address-list-addresses {
+    .order-history-list-addresses {
       display: flex;
       flex-direction: column;
-      //width: 100%;
-      //height: 870px;
-      align-items: center;
       overflow: scroll;
       scrollbar-width: none;
+      flex-wrap: nowrap;
+      width: 100%;
+      align-items: center;
     }
   }
 
 
 }
+
+  .MyPageFriendFundingListOverlap-group {
+    background-color: #e0e0e0;
+    height: 33px;
+    width: 98%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    .MyPageFriendFundingListText-wrapper-7 {
+      color: #737373;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: normal;
+      text-align: center;
+      white-space: nowrap;
+      margin-left: 10px;
+      width: 256px;
+    }
+
+    .MyPageFriendFundingListText-wrapper-6 {
+      color: #737373;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: normal;
+      text-align: center;
+      white-space: nowrap;
+      width: 180Px;
+    }
+  }
+
+
 
 
 
