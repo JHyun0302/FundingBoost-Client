@@ -36,7 +36,7 @@
       justify-content: space-between;
       height: 84px;
       width: 100%;
-
+      align-items: flex-end;
       .order-history-list-delivery-management {
         font-weight: bold;
         font-size: 30px;
@@ -45,23 +45,33 @@
         margin: 10px 0 0 15px;
         align-items: flex-end;
       }
-
-      .order-history-list-add-delivery {
-        color: #000000;
-        font-size: 17px;
-        text-align: end;
-        align-self: flex-end;
-        width: 117px;
-        height: 39px;
+      .order-history-detail{
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 15px;
+        flex-direction: row;
+        /* margin: 10px; */
+        height: 39px;
+        align-items: flex-end;
+        >img{
+          margin: 4px;
+          width: 17px;
+          height: auto;
+        }
+        .order-history-list-add-delivery {
+          color: #000000;
+          font-size: 17px;
+          text-align: end;
+          height: 39px;
+          display: flex;
+          justify-content: center;
+          margin-right: 15px;
+          align-items: flex-end;
+        }
+        .order-history-list-add-delivery:hover{
+          color: #7d7d7d;
+          cursor: pointer;
+        }
       }
-      .order-history-list-add-delivery:hover{
-        color: #7d7d7d;
-        cursor: pointer;
-      }
+
     }
 
     .order-history-list-line {

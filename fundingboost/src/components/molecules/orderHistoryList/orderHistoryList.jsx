@@ -1,6 +1,7 @@
 import React from 'react';
 import OrderHistorySingleOrder from '../orderHistory-singleOrder/orderHistory-singleOrder';
 import './orderHistoryList.scss';
+import img from "../../../assets/detail-section-icon.svg";
 const OrderHistoryList = () => {
     return (
         <div className="orderHistoryList">
@@ -9,7 +10,10 @@ const OrderHistoryList = () => {
                     <div className="order-history-list">
                         <div className="order-history-list-head">
                             <div className="order-history-list-delivery-management">구매 이력</div>
-                            <div className="order-history-list-add-delivery">상세 조회</div>
+                            <div className="order-history-detail">
+                                <img className="detailedInquiryImg" alt="Line" src={img}/>
+                                <div className="order-history-list-add-delivery">상세 조회</div>
+                            </div>
                         </div>
                         <div className="order-history-list-line"/>
 
