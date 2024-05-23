@@ -18,8 +18,7 @@ const ShoppingPane = () => {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${accessToken}`,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
-                        "Access-Control-Allow-Credentials": true,
-                        "ngrok-skip-browser-warning": true,
+                        "Access-Control-Allow-Credentials": true
                     }),
                 });
                 setItemData(response.data.data);

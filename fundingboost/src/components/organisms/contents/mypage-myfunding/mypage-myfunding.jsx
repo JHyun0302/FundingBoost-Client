@@ -28,8 +28,7 @@ const MypagePane = () => {
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
-                        "Authorization": `Bearer ${accessToken}`,
-                        "ngrok-skip-browser-warning": true
+                        "Authorization": `Bearer ${accessToken}`
                     },
                     responseType: 'json'
                 });

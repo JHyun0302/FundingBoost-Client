@@ -37,7 +37,6 @@ function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
                 headers: ({
                     "Content-Type" : "application/json",
                     "Access-Control-Allow-Credentials" : true,
-                    "ngrok-skip-browser-warning": true,
                     "Access-Control-Allow-Origin": "http://localhost:3000/",
                 }),
                 withCredentials: true,

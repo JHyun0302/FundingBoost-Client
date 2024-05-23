@@ -80,8 +80,7 @@ function FundingRegistPage(props) {
                         "Content-Type" : "application/json",
                         "Access-Control-Allow-Credentials" : true,
                         "Authorization": `Bearer ${accessToken}`,
-                        "Access-Control-Allow-Origin": "http://localhost:3000/",
-                        "ngrok-skip-browser-warning": true
+                        "Access-Control-Allow-Origin": "http://localhost:3000/"
                     })
 
                 });

@@ -17,8 +17,7 @@ const MypageExchangeBtn = ({ memberId }) => {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
                     "Access-Control-Allow-Origin": "http://localhost:3000/",
-                    'Access-Control-Allow-Credentials': true,
-                    'ngrok-skip-browser-warning': true,
+                    'Access-Control-Allow-Credentials': true
                 },
             });
             console.log('PATCH 결과:', response.data);
