@@ -21,11 +21,14 @@ function FriendFundingPaymentBtn({usePoints, fundingAmount, fundingId}) {
             })
             console.log("postData:" +data)
 
+            const accessToken = localStorage.getItem('accessToken');
+
             const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/pay/friends/${fundingId}`,data, {
 
                 responseType: 'json',
                 headers: ({
                     "Content-Type" : "application/json",
+                    "Authorization": `Bearer ${accessToken}`,
                     "Access-Control-Allow-Origin": "http://localhost:3000/",
                     "Access-Control-Allow-Credentials" : true,
                     "ngrok-skip-browser-warning": true

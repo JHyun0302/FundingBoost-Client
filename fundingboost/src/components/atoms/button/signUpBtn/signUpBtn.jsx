@@ -21,7 +21,7 @@ function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
             return;
         }
         else{
-            alert('펀딩부 스트에 오신 것을 환영합니다🎉 로그인해주세요.');
+            alert('펀딩부스트에 오신 것을 환영합니다🎉 로그인해주세요.');
         }
 
         try{
@@ -31,6 +31,7 @@ function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
                 email: email
             })
             console.log("postData:" +data)
+
             const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/signup`,data, {
                 responseType: 'json',
                 headers: ({

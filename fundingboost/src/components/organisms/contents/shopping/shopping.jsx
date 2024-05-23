@@ -10,10 +10,13 @@ const ShoppingPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const accessToken = localStorage.getItem('accessToken');
+
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/items`, {
                     responseType: 'json',
                     headers: ({
                         "Content-Type": "application/json",
+                        "Authorization": `Bearer ${accessToken}`,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "Access-Control-Allow-Credentials": true,
                         "ngrok-skip-browser-warning": true,

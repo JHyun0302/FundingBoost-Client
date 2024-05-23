@@ -11,18 +11,24 @@ import MainFunding from "../../molecules/mainFunding/mainFunding";
 import MainFriendFunding from "../../molecules/mainFriendFunding/mainFriendFunding/mainFriendFunding";
 import MainFriendNoFunding from "../../molecules/mainFriendFunding/mainFriendNoFunding/mainFriendNoFunding";
 import axios from "axios";
+
 function MainPage() {
     const [mainData, setmainData] = useState({});
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/home`,{
+                let accessToken = "";
+                if(localStorage.getItem('accessToken') != null){
+                    accessToken = localStorage.getItem('accessToken');
+                }
 
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/home`,{
                     responseType: 'json',
                     headers: ({
                         "Content-Type" : "application/json",
                         "Access-Control-Allow-Credentials" : true,
                         "Access-Control-Allow-Origin": "http://localhost:3000/",
+                        "Authorization": `Bearer ${accessToken}`,
                         "ngrok-skip-browser-warning": true
                     }),
                 });
