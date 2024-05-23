@@ -4,6 +4,7 @@ import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
+import ReviewList from "../../../molecules/reviewList/reviewList";
 
 const ReviewPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -43,7 +44,7 @@ const ReviewPane = () => {
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={6} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-                리뷰 content
+              <ReviewList/>
             </div>
         </div>
     );

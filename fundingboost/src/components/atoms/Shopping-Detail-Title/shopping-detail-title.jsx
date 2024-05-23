@@ -4,6 +4,7 @@ import img from "../../../assets/testitem.svg";
 import ShoppingDetailMenu from "../Shopping-Detail-Menu/shopping-detail-menu";
 
 export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImageUrl, itemPrice, option }) {
+
     return (
         <div className="ShoppingDetailItemBox">
             <div className="ShoppingDetailItemBoxView">
@@ -17,7 +18,9 @@ export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImag
                                 {itemName.length > 40 && itemName.slice(40)}
                             </div>
                         )}
-                        <ShoppingDetailMenu itemId= {itemId} itemPrice={itemPrice} option={option} />
+
+                        <ShoppingDetailMenu itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} itemName={itemName} itemPrice={itemPrice} option={option} />
+
                     </div>
                 </div>
             </div>

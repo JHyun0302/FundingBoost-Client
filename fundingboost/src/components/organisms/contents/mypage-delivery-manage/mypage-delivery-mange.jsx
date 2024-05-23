@@ -4,9 +4,11 @@ import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
+import {responsivePropType} from "react-bootstrap/createUtilityClasses";
+import DeliveryAddressList from "../../../molecules/deliveryList/deliveryList";
 
 const MypageDeliveryPane = () => {
-    const [apiData, setApiData] = useState(null);
+    const [apiData , setApiData ] = useState(null);
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
     };
@@ -26,8 +28,9 @@ const MypageDeliveryPane = () => {
                     },
                     responseType: 'json'
                 });
-                console.log(response.data); // 콘솔에 데이터 출력
-                // setApiData(response.data.data); // 상태에 데이터 저장
+                console.log(response.data);
+                setApiData(response.data.data);
+                console.log("data:",setApiData);
 
             } catch (error) {
                 console.error("API 호출 중 오류가 발생했습니다.", error);
@@ -43,7 +46,7 @@ const MypageDeliveryPane = () => {
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={4} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-                배송지 관리 content
+                <DeliveryAddressList deliveryData={apiData} />
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
+import WishList from "../../../molecules/wishList/wishList";
 
 const WishListPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -43,7 +44,7 @@ const WishListPane = () => {
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={5} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-                위시리스트 content
+               <WishList/>
             </div>
         </div>
     );

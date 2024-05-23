@@ -13,10 +13,12 @@ const OrderPane = () => {
     const location = useLocation();
     const [point, setPoint] = useState(null);
 
-    const { state: { selectedItems } } = location;
+    const {selectedItems, itemPurchase } = location.state || {};
+    const [purchaseItem, setPurchaseItem] = useState(itemPurchase ? [itemPurchase] : selectedItems || []);
 
     console.log("selectedItems", selectedItems);
     console.log(deliveryDtoList);
+    console.log(purchaseItem);
 
     useEffect(() => {
         const fetchOrderPayData = async () => {
@@ -52,12 +54,12 @@ const OrderPane = () => {
     return (
         <div className="order-pay-page-container">
             <div className="orderpay-left-container">
-                <OrderProductDetail selectedItems={selectedItems[0]} />
+                <OrderProductDetail selectedItems={purchaseItem} />
                 <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
             </div>
             <div className="orderpay-right-container">
                 <div className="orderpayment-container">
-                    <OrderpayPoint point={point} selectedItems={selectedItems[0] } onUpdateUsingPoint={onUpdateUsingPoint}/>
+                    <OrderpayPoint point={point} selectedItems={purchaseItem } onUpdateUsingPoint={onUpdateUsingPoint}/>
                 </div>
             </div>
         </div>

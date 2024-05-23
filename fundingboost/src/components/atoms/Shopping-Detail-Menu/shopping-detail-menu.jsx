@@ -6,11 +6,19 @@ import wish from "./../../../assets/emptyheart.svg";
 import clickwish from "./../../../assets/fillheart.svg";
 import gifthub from "./../../../assets/gifthub.svg";
 import { useNavigate } from 'react-router-dom';
+import WishBtn  from "../button/wishBtn/wishBtn";
+import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
+import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
 
-
-export default function ShoppingDetailOptionBtn({itemId, itemPrice, option}) {
+export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl}) {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
+    const [selectOption, setSelectOptions] = useState("");
+
+    const optionChange = (e) =>{
+        setSelectOptions(e.target.value);
+        console.log(e.target.value);
+    }
 
     const decreaseQuantity = () => {
         if (quantity > 1) {
@@ -49,6 +57,8 @@ export default function ShoppingDetailOptionBtn({itemId, itemPrice, option}) {
             });
     };
 
+    const localPrice = itemPrice !== undefined ? itemPrice.toLocaleString() : '';
+
     return (
         <div className="shopping-menu-wrapper">
             <div className="shoppingDetailOptionBtnBox">
@@ -59,13 +69,13 @@ export default function ShoppingDetailOptionBtn({itemId, itemPrice, option}) {
                         {quantity}
                         <button className="button-quantity-style" onClick={increaseQuantity}>+</button>
                     </div>
-                    <div className="itemPrice">{itemPrice} 원</div>
+                    <div className="itemPrice">{localPrice} 원</div>
                 </div>
                 <div className="shopping-detail-column">
                     <div className="selectOptionPositon">
-                        <Form.Select aria-label="Default select example">
+                        <Form.Select aria-label="Default select example"  onChange={optionChange}>
                             <option>상품 옵션을 선택해주세요.</option>
-                            <option value="1">{option}</option>
+                            <option >{option}</option>
                             {/*<option value="2">Two</option>*/}
                             {/*<option value="3">Three</option>*/}
                         </Form.Select>
@@ -77,16 +87,14 @@ export default function ShoppingDetailOptionBtn({itemId, itemPrice, option}) {
                             <img className="shareIcon" alt="shareIcon" src={share}/>
                         </div>
                     </div>
-                    <div className="heartIconPosition">
-                        <div className="heartIconWrapper">
-                            <img className="heartIcon" alt="heartIcon" src={wish}/>
-                        </div>
-                    </div>
-                    <div className="shareAndHeartAndPurchase">
-                        <div className="purchaseBox">
-                            <button className="purchaseBtn">구매하기</button>
-                        </div>
-                    </div>
+
+                </div>
+                <div className="heartIconPosition">
+                    <WishBtn />
+                </div>
+
+                <div className="shareAndHeartAndPurchase">
+                    <PurchaseBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName} />
                 </div>
                 <div className="div-third-btn-wrapper">
                     <div className="gifthubGroup">
@@ -95,11 +103,9 @@ export default function ShoppingDetailOptionBtn({itemId, itemPrice, option}) {
                             <div className="gifthubText">GiftHub</div>
                         </button>
                     </div>
-                    <div className="fundingAndGifthubPosition">
-                        <div className="fundingBox">
-                            <button className="fundingBtn">바로 펀딩하기</button>
-                        </div>
-                    </div>
+                <div className="fundingAndGifthubPosition">
+                    <FundingNowBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName}  />
+                </div>
                 </div>
             </div>
         </div>

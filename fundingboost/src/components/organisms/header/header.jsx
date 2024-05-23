@@ -83,7 +83,7 @@ function HeaderBar() {
                         <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
                         <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
                     </Nav>
-
+                    <div className="header-search-login">
                     <Form className="searchBar">
                         <CiSearch style={{ fontSize: '40px' }} />
                         <Form.Control
@@ -104,6 +104,7 @@ function HeaderBar() {
                             <button onClick={loginHandler} className="login-btn">로그인</button>
                         )}
                     </div>
+                </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

@@ -17,13 +17,13 @@ function FundingRegistPage(props) {
     const [tag, setTag] = useState("");
     const [fundingMessage, setFundingMessage] = useState("");
     const location = useLocation();
-    const { state: { selectedItems } } = location;
-    const [orderedItems, setOrderedItems] = useState([]);
+    const { fundingNowData, selectedItems } = location.state || {};
+    const [orderedItems, setOrderedItems] =useState(selectedItems || (fundingNowData ? [fundingNowData] : []));
 
     //변경된 상품 id 순서
     const handleItemOrderChange = (updatedItems) => {
-        const itemIds = updatedItems.map(item => item.itemId);
-        setOrderedItems(itemIds);
+        // const itemIds = updatedItems.map(item => item.itemId);
+        setOrderedItems(updatedItems);
     };
 
     //태그
@@ -95,7 +95,7 @@ function FundingRegistPage(props) {
             <HeaderBar />
             <div className="fundingRegistContent">
 
-                <FundingRegistItem selectedItems={selectedItems} onItemOrderChange={handleItemOrderChange}  />
+                <FundingRegistItem selectedItems={orderedItems} onItemOrderChange={handleItemOrderChange}  />
                 <div className="fundingRegist-Details">
                     <div className="fundingRegistOption">
                         <FundingRegistDetails className="fundingRegist-Details" onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './fundingRegistItem.scss';
 import NonItemImg from "../../../../assets/nonItemImg.svg";
 
 const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
     const [orderedItems, setOrderedItems] = useState(selectedItems);
+
+    useEffect(() => {
+        setOrderedItems(selectedItems);
+    }, [selectedItems]);
+    console.log(orderedItems);
 
     //상품 순서 지정
     const itemOrderCheck = (index) => {
@@ -29,6 +34,7 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
         }
 
         //순서대로 정렬
+        updatedItems[index] = selectedItem;
         updatedItems.sort((a, b) => (a.order || Infinity) - (b.order || Infinity));
 
         setOrderedItems(updatedItems);
@@ -54,7 +60,7 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
                                 </div>
                                 <div className="optionName">{item.optionName}</div>
                             </div>
-                            <div className="price">{item.itemPrice} 원</div>
+                            <div className="price">{item.itemPrice.toLocaleString()} 원</div>
                         </div>
                     </div>
                 </div>

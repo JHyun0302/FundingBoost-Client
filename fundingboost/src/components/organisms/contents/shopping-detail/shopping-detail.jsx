@@ -14,6 +14,7 @@ const ShoppingDetailPane = () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
 
+
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/items/${itemId}`, {
                     responseType: 'json',
                     headers: {
@@ -35,7 +36,7 @@ const ShoppingDetailPane = () => {
 
     return(
         <div className="shopping-detail-container">
-            <ShoppingDetailItem itemId = {itemId} itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} />
+            <ShoppingDetailItem itemId={itemId} itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} />
             <ShoppingDetailInfo/>
         </div>
     );
