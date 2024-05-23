@@ -9,12 +9,10 @@ const ShoppingDetailPane = () => {
     const [itemData, setItemData] = useState([]);
     const { itemId } = useParams();
 
-
-
     useEffect(() => {
         const fetchFundingItemData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/items/items/${itemId}`, {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/items/${itemId}`, {
                     responseType: 'json',
                     headers: {
                         'Content-Type': 'application/json',
@@ -35,7 +33,7 @@ const ShoppingDetailPane = () => {
 
     return(
         <div className="shopping-detail-container">
-            <ShoppingDetailItem itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} />
+            <ShoppingDetailItem itemId={itemId} itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} />
             <ShoppingDetailInfo/>
         </div>
     );

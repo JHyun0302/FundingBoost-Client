@@ -35,42 +35,48 @@ function HeaderBar() {
     return (
         <Navbar expand="lg" className="headerBar">
             <Container fluid>
-                <Navbar.Brand href="home" className="navbar-logo"><img src ={logoImg}/></Navbar.Brand>
+                <Navbar.Brand href="/home" className="navbar-logo"><img src ={logoImg}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav className="navbarMemu" navbarScroll>
-                        <Nav.Link href="/home" className="home-btn">홈</Nav.Link>
-                        <Nav.Link href="/friend-funding" className="friend-btn">친구펀딩</Nav.Link>
-                        <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
-                        <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
-                    </Nav>
 
-                    <Form className="searchBar">
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav className="navbarMemu" navbarScroll>
+                            <Nav.Link href="/home" className="home-btn">홈</Nav.Link>
+                            <Nav.Link href="/friend-funding" className="friend-btn">친구펀딩</Nav.Link>
+                            <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
+                            <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
+                        </Nav>
+
+                        <div className="header-search-login">
+                            <Form className="searchBar">
 
 
-                        <CiSearch  style={{ fontSize: '40px' }} />
+                                <CiSearch  style={{ fontSize: '40px' }} />
 
-                        <Form.Control type="search" placeholder="상품을 검색해보세요"
-                                      className="me-2"
-                                      aria-label="Search"
-                        />
+                                <Form.Control type="search" placeholder="상품을 검색해보세요"
+                                              className="me-2"
+                                              aria-label="Search"
+                                />
 
-                        <Button className="gifthub-btn" href="/gifthub"><img src={gifthub}/></Button>
+                                <Button className="gifthub-btn" href="/gifthub"><img src={gifthub}/></Button>
 
-                    </Form>
+                            </Form>
 
-                    {/*로그인 여부에따른 변화*/}
-                    <div  className="loginLogout">
-                        {isLoggedIn ? (
-                            <NavDropdown title={nickName} id="logoutDropdown"  align="end">
-                                <NavDropdown.Item onClick={logout} className="dropdownItem">로그아웃</NavDropdown.Item>
-                            </NavDropdown>
-                        ) : (
-                            <button onClick={login} className="login-btn" >로그인</button>
-                        )}
-                    </div>
+                            {/*로그인 여부에따른 변화*/}
+                            <div  className="loginLogout">
+                                {isLoggedIn ? (
+                                    <NavDropdown title={nickName} id="logoutDropdown"  align="end">
+                                        <NavDropdown.Item onClick={logout} className="dropdownItem">로그아웃</NavDropdown.Item>
+                                    </NavDropdown>
+                                ) : (
+                                    <button onClick={login} className="login-btn" >로그인</button>
+                                )}
+                            </div>
 
-                </Navbar.Collapse>
+                        </div>
+
+                    </Navbar.Collapse>
+
+
             </Container>
         </Navbar>
     );
