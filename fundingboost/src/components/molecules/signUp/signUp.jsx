@@ -82,7 +82,7 @@ const SignUp = () => {
                                     onChange={inputEmail}
                                 />
                             </div>
-                            {!emailValid && <div className="error-message">이메일 형식은 funding12@boost.com 입니다.</div>}
+                            {!emailValid && <div className="singUp-error-message">이메일 형식은 funding12@boost.com 입니다.</div>}
                         </div>
                         <div className="input-box-info">
                             <div className="input-box-detail">
@@ -120,7 +120,7 @@ const SignUp = () => {
                                 </div>
 
                             </div>
-                            {!passwordsMatch && <div className="error-message">비밀번호가 일치하지 않습니다.</div>}
+                            {!passwordsMatch && <div className="singUp-error-message">비밀번호가 일치하지 않습니다.</div>}
                         </div>
 
                     </div>

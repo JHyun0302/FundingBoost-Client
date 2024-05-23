@@ -14,6 +14,7 @@ import loginmoji from "../../../../assets/loginmoji.svg";
 const LoginPane = () => {
     const navigate = useNavigate();
     const [nickName, setNickName] = useRecoilState(nickNameState);
+    const [email, setemail] = useRecoilState(nickNameState);
     const [password, setPassword] = useRecoilState(passwordState);
     const [login, setLoginState] = useRecoilState(loginState);
     const [loginError, setLoginError] = useState(false);
@@ -21,7 +22,7 @@ const LoginPane = () => {
     const handleLogin = async () => {
         try {
             const data = {
-                nickName,
+                email,
                 password,
             };
 
@@ -101,7 +102,7 @@ const LoginPane = () => {
                             className="input-field"
                             placeholder="아이디"
                             value={nickName}
-                            onChange={(e) => setNickName(e.target.value)}
+                            onChange={(e) => setemail(e.target.value)}
                         />
                         <input
                             type="password"
@@ -118,7 +119,7 @@ const LoginPane = () => {
                     <br />
                     <button className="login-btn-grey" onClick={handleLogin}>로그인</button>
                 </div>
-                <a href="https://kauth.kakao.com/oauth/authorize" className="social-login-link">
+                <a href="http://localhost:8080/oauth2/authorization/kakao" className="social-login-link">
                     <img src={kakaologin} alt="Kakao Login" className="social-login-btn" />
                 </a>
                 <a href="https://nid.naver.com/oauth2.0/authorize" className="social-login-link">
