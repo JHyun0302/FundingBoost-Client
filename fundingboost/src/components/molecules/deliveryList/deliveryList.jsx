@@ -13,13 +13,13 @@ export default function DeliveryAddressList({deliveryData}) {
                             <button className="delivery-address-list-add-delivery">배송지 추가</button>
                         </div>
                         <div className="delivery-address-list-line"/>
-                        <div className="delivery-address-list-addresses">
-                            {/*{deliveryData?.data?.myPageDeliveryDtoList?.map((deliveryData, index) => (*/}
-                                <DeliveryAddress deliveryData={deliveryData}/>
-                            <DeliveryAddress deliveryData={deliveryData}/>
-                            <DeliveryAddress deliveryData={deliveryData}/>
-                        {/*))}*/}
+
+                        {deliveryData?.myPageDeliveryDtoList.map((deliveryAddressData, index) => (
+                        <div  key={index} className="delivery-address-list-addresses">
+                            <DeliveryAddress deliveryData={deliveryAddressData}/>
                         </div>
+                        ))}
+
                     </div>
                 </div>
             </div>

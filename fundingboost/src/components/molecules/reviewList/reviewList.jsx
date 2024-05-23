@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleReview from "../singleReview/singleReview";
 import './reviewList.scss';
-const ReviewList = () => {
+const ReviewList = ({myReviewList}) => {
     return (
         <div className="reviewList">
             <div className="reviewList-container">
@@ -12,10 +12,9 @@ const ReviewList = () => {
                         </div>
                         <div className="review-list-line"/>
                         <div className="review-list-addresses">
-                            {/*{deliveryData?.data?.myPageDeliveryDtoList?.map((deliveryData, index) => (*/}
-                            <SingleReview />
-                            <SingleReview />
-                            <SingleReview />
+                            {/*{myReviewList?.myPageDeliveryDtoList?.map((myReviewList, index) => (*/}
+                            <SingleReview myReviewList={myReviewList} />
+
                             {/*))}*/}
                         </div>
                     </div>

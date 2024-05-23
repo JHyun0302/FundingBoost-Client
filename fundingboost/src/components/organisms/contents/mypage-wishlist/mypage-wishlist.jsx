@@ -28,7 +28,7 @@ const WishListPane = () => {
                     responseType: 'json'
                 });
                 console.log(response.data); // 콘솔에 데이터 출력
-                // setApiData(response.data.data); // 상태에 데이터 저장
+                setApiData(response.data.data); // 상태에 데이터 저장
 
             } catch (error) {
                 console.error("API 호출 중 오류가 발생했습니다.", error);
@@ -40,11 +40,11 @@ const WishListPane = () => {
     return (
         <div className="mypage-myhistory-total-container">
             <div className="mypage-myhistory-left-pane-container">
-                {/*{apiData && <MypageProfile profileInfo={apiData} />}*/}
+                {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={5} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
-               <WishList/>
+               <WishList wishListData={apiData} />
             </div>
         </div>
     );
