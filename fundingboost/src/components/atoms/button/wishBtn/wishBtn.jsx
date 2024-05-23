@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import wish from "../../../../assets/emptyheart.svg";
 import wishFillHeart from "../../../../assets/fillheart.svg";
 import './wishBtn.scss'
 import axios from "axios";
-const WishBtn = () => {
-    const [isWish, setIsWish] = React.useState(false);
+const WishBtn = ({itemId, bookmark}) => {
+    const [isWish, setIsWish] = React.useState(bookmark);
+    console.log(itemId);
+    console.log(bookmark);
+
+    useEffect(() => {
+        setIsWish(bookmark);
+    }, [bookmark]);
+
 
     const clickWishBtn = async () => {
-        setIsWish(!isWish);
-
+        // setIsWish(!isWish);
+        setIsWish(prevIsWish => !prevIsWish);
         try{
-            const respose = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/items/like/{item_id}`,{
+            const respose = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/bookmark/like/${itemId}`,{
                 responseType: 'json',
                 headers: ({
                     "Content-Type" : "application/json",
@@ -21,6 +28,8 @@ const WishBtn = () => {
                 withCredentials: true,
             });
             console.log("post:",respose.data);
+            // setIsWish(!isWish);
+
         } catch (error) {
             console.error("wishBtn Post Error :", error);
         }
