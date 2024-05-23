@@ -12,9 +12,10 @@ const ShoppingDetailPane = () => {
     useEffect(() => {
         const fetchFundingItemData = async () => {
             try {
-                const accessToken = localStorage.getItem('accessToken');
-
-
+                let accessToken = "";
+                if(localStorage.getItem('accessToken') != null){
+                    accessToken = localStorage.getItem('accessToken');
+                }
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/items/${itemId}`, {
                     responseType: 'json',
                     headers: {

@@ -31,7 +31,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
     };
 
     const handleGiftHubClick = () => {
-        const memberId = 11;
+        const memberId = 13;
         const accessToken = localStorage.getItem('accessToken');
 
         fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
@@ -81,6 +81,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         </Form.Select>
                     </div>
                 </div>
+                <div class className="shopping-second-line-wrapper">
                 <div className="div-second-btn-wrapper">
                     <div className="div-wrapper">
                         <div className="shareIconWrapper">
@@ -95,6 +96,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
                 <div className="shareAndHeartAndPurchase">
                     <PurchaseBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName} />
+                </div>
                 </div>
                 <div className="div-third-btn-wrapper">
                     <div className="gifthubGroup">
