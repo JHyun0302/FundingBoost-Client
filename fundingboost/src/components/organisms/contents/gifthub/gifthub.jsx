@@ -32,14 +32,16 @@ const GifthubPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const accessToken = localStorage.getItem('accessToken');
                 const response = await axios({
                     method: 'GET',
                     url: `${process.env.REACT_APP_FUNDINGBOOST}/gifthub`,
                     responseType: 'json',
                     headers: ({
+                        'Content-Type': 'application/json',
                         "Access-Control-Allow-Credentials" : true,
-                        "Access-Control-Allow-Origin": "http://localhost:3000/",
-                        "ngrok-skip-browser-warning": true,
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/"
                     }),
                 })
                 if (response.data.success) {

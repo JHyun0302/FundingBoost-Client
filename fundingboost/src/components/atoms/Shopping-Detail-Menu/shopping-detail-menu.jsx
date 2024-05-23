@@ -5,8 +5,11 @@ import share from "./../../../assets/share.svg";
 import wish from "./../../../assets/emptyheart.svg";
 import clickwish from "./../../../assets/fillheart.svg";
 import gifthub from "./../../../assets/gifthub.svg";
+import { useNavigate } from 'react-router-dom';
 
-export default function ShoppingDetailOptionBtn({itemPrice, option}) {
+
+export default function ShoppingDetailOptionBtn({itemId, itemPrice, option}) {
+    const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
 
     const decreaseQuantity = () => {
@@ -17,6 +20,33 @@ export default function ShoppingDetailOptionBtn({itemPrice, option}) {
 
     const increaseQuantity = () => {
         setQuantity(quantity + 1);
+    };
+
+    const handleGiftHubClick = () => {
+        const memberId = 11;
+        const accessToken = localStorage.getItem('accessToken');
+
+        fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${accessToken}`,
+                "Access-Control-Allow-Origin": "http://localhost:3000/",
+                'Access-Control-Allow-Credentials': true
+
+            },
+            body: JSON.stringify({
+                memberId: memberId,
+                quantity: quantity
+            }),
+        })
+            .then(response => {
+                navigate('/gifthub');
+            })
+            .catch(error => {
+                // Handle error as needed
+                console.error('Error:', error);
+            });
     };
 
     return (
@@ -42,34 +72,34 @@ export default function ShoppingDetailOptionBtn({itemPrice, option}) {
                     </div>
                 </div>
                 <div className="div-second-btn-wrapper">
-                <div className="div-wrapper">
-                    <div className="shareIconWrapper">
-                        <img className="shareIcon" alt="shareIcon" src={share}/>
+                    <div className="div-wrapper">
+                        <div className="shareIconWrapper">
+                            <img className="shareIcon" alt="shareIcon" src={share}/>
+                        </div>
                     </div>
-                </div>
-                <div className="heartIconPosition">
-                    <div className="heartIconWrapper">
-                        <img className="heartIcon" alt="heartIcon" src={wish}/>
+                    <div className="heartIconPosition">
+                        <div className="heartIconWrapper">
+                            <img className="heartIcon" alt="heartIcon" src={wish}/>
+                        </div>
                     </div>
-                </div>
-                <div className="shareAndHeartAndPurchase">
-                    <div className="purchaseBox">
-                        <button className="purchaseBtn">구매하기</button>
+                    <div className="shareAndHeartAndPurchase">
+                        <div className="purchaseBox">
+                            <button className="purchaseBtn">구매하기</button>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <div className="div-third-btn-wrapper">
-                <div className="gifthubGroup">
-                    <button className="gifthubPosition">
-                        <img className="gifthubImg" alt="gifthubImg" src={gifthub}/>
-                        <div className="gifthubText">GiftHub</div>
-                    </button>
-                </div>
-                <div className="fundingAndGifthubPosition">
-                    <div className="fundingBox">
-                        <button className="fundingBtn">바로 펀딩하기</button>
+                    <div className="gifthubGroup">
+                        <button className="gifthubPosition" onClick={handleGiftHubClick}>
+                            <img className="gifthubImg" alt="gifthubImg" src={gifthub}/>
+                            <div className="gifthubText">GiftHub</div>
+                        </button>
                     </div>
-                </div>
+                    <div className="fundingAndGifthubPosition">
+                        <div className="fundingBox">
+                            <button className="fundingBtn">바로 펀딩하기</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
