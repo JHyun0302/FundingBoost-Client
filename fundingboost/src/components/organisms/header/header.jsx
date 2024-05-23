@@ -39,18 +39,18 @@ function HeaderBar() {
             const accessToken = localStorage.getItem('accessToken');
             const refreshToken = localStorage.getItem('refreshToken');
 
-            // await axios.post(
-            //     `${process.env.REACT_APP_FUNDINGBOOST}/logout`,
-            //     {},
-            //     {
-            //         headers: {
-            //             "Access-Control-Allow-Credentials": true,
-            //             "Access-Control-Allow-Origin": "http://localhost:3000/",
-            //             'Authorization': `Bearer ${accessToken}`,
-            //             'RefreshToken': refreshToken
-            //         }
-            //     }
-            // );
+            await axios.post(
+                `${process.env.REACT_APP_FUNDINGBOOST}/logout`,
+                {},
+                {
+                    headers: {
+                        "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
+                        'Authorization': `Bearer ${accessToken}`,
+                        'RefreshToken': refreshToken
+                    }
+                }
+            );
 
             setLoginState(prevState => ({
                 ...prevState,
