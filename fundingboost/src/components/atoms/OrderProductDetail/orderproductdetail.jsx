@@ -5,7 +5,7 @@ const OrderProductDetail = ({ selectedItems }) => {
 
     console.log("Item:", selectedItems);
 
-    const item = selectedItems;
+    const item = selectedItems[0];
 
     return (
         <div>

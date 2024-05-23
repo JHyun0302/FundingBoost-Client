@@ -7,6 +7,8 @@ import clickwish from "./../../../assets/fillheart.svg";
 import gifthub from "./../../../assets/gifthub.svg";
 import WishBtn  from "../button/wishBtn/wishBtn";
 import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
+import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
+
 export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl}) {
     const [quantity, setQuantity] = useState(1);
     const [selectOption, setSelectOptions] = useState({});
@@ -68,9 +70,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
 
                 <div className="shareAndHeartAndPurchase">
-                    <div className="purchaseBox">
-                        <button className="purchaseBtn">구매하기</button>
-                    </div>
+                    <PurchaseBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName} />
                 </div>
                 </div>
                 <div className="div-third-btn-wrapper">
