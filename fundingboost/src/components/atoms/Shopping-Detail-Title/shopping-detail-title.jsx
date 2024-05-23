@@ -18,7 +18,9 @@ export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImag
                                 {itemName.length > 40 && itemName.slice(40)}
                             </div>
                         )}
+
                         <ShoppingDetailMenu itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} itemName={itemName} itemPrice={itemPrice} option={option} />
+
                     </div>
                 </div>
             </div>

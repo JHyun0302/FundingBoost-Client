@@ -5,11 +5,13 @@ import share from "./../../../assets/share.svg";
 import wish from "./../../../assets/emptyheart.svg";
 import clickwish from "./../../../assets/fillheart.svg";
 import gifthub from "./../../../assets/gifthub.svg";
+import { useNavigate } from 'react-router-dom';
 import WishBtn  from "../button/wishBtn/wishBtn";
 import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
 import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
 
 export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl}) {
+    const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
     const [selectOption, setSelectOptions] = useState("");
 
@@ -28,8 +30,35 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
         setQuantity(quantity + 1);
     };
 
-    console.log(itemPrice);
+    const handleGiftHubClick = () => {
+        const memberId = 11;
+        const accessToken = localStorage.getItem('accessToken');
+
+        fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${accessToken}`,
+                "Access-Control-Allow-Origin": "http://localhost:3000/",
+                'Access-Control-Allow-Credentials': true
+
+            },
+            body: JSON.stringify({
+                memberId: memberId,
+                quantity: quantity
+            }),
+        })
+            .then(response => {
+                navigate('/gifthub');
+            })
+            .catch(error => {
+                // Handle error as needed
+                console.error('Error:', error);
+            });
+    };
+
     const localPrice = itemPrice !== undefined ? itemPrice.toLocaleString() : '';
+
     return (
         <div className="shopping-menu-wrapper">
             <div className="shoppingDetailOptionBtnBox">
@@ -53,33 +82,27 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                     </div>
                 </div>
                 <div className="div-second-btn-wrapper">
-                <div className="div-wrapper">
-                    <div className="shareIconWrapper">
-                        <img className="shareIcon" alt="shareIcon" src={share}/>
+                    <div className="div-wrapper">
+                        <div className="shareIconWrapper">
+                            <img className="shareIcon" alt="shareIcon" src={share}/>
+                        </div>
                     </div>
+
                 </div>
-
-
                 <div className="heartIconPosition">
-                    {/*<button className="heartIconWrapper">*/}
-                    {/*    <img className="heartIcon" alt="heartIcon" src={wish}/>*/}
-                    {/*</button>*/}
                     <WishBtn />
                 </div>
-
-
 
                 <div className="shareAndHeartAndPurchase">
                     <PurchaseBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName} />
                 </div>
-                </div>
                 <div className="div-third-btn-wrapper">
-                <div className="gifthubGroup">
-                    <button className="gifthubPosition">
-                        <img className="gifthubImg" alt="gifthubImg" src={gifthub}/>
-                        <div className="gifthubText">GiftHub</div>
-                    </button>
-                </div>
+                    <div className="gifthubGroup">
+                        <button className="gifthubPosition" onClick={handleGiftHubClick}>
+                            <img className="gifthubImg" alt="gifthubImg" src={gifthub}/>
+                            <div className="gifthubText">GiftHub</div>
+                        </button>
+                    </div>
                 <div className="fundingAndGifthubPosition">
                     <FundingNowBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName}  />
                 </div>

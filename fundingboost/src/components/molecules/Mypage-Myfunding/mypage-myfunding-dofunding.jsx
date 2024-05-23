@@ -24,15 +24,16 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
     const handleCloseFunding = async () => {
         const fundingId = myPageFundingItemDtoList[0]?.fundingId;
         try {
+            const accessToken = localStorage.getItem('accessToken');
 
             const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding/close/${fundingId}`, null, {
 
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${accessToken}`,
                     "Access-Control-Allow-Origin": "http://localhost:3000/",
-                    'Access-Control-Allow-Credentials': true,
-                    'ngrok-skip-browser-warning': true,
+                    'Access-Control-Allow-Credentials': true
                 }
             });
             console.log('POST 결과:', response.data);
