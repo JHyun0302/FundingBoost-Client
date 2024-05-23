@@ -29,9 +29,14 @@
 }
 button.purchaseBtn.btn.btn-primary:hover {
   box-shadow: none;
+
 }
 button.purchaseBtn.btn.btn-primary:active{
   background-color: transparent;
+  box-shadow: none;
+}
+button.purchaseBtn.btn.btn-primary:focus{
+  box-shadow: none;
 }
 .purchaseBtn,
 {

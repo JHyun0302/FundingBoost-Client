@@ -9,14 +9,19 @@ function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnail
 
 
     const fundingNowBtnClick = () => {
-        const fundingNowData= {
-            optionName : selectOption,
-            itemName : itemName,
-            itemPrice : itemPrice,
-            itemImageUrl : itemThumbnailImageUrl,
-            itemId:itemId
-        };
-        navigate(`/funding`, {state: {fundingNowData}});
+        if(selectOption&&selectOption !=="상품 옵션을 선택해주세요."){
+            const fundingNowData= {
+                optionName : selectOption,
+                itemName : itemName,
+                itemPrice : itemPrice,
+                itemImageUrl : itemThumbnailImageUrl,
+                itemId:itemId
+            };
+            navigate(`/funding`, {state: {fundingNowData}});
+        }else{
+            alert('상품 옵션을 선택해주세요');
+        }
+
     };
 
     return (

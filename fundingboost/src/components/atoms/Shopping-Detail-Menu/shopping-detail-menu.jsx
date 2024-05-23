@@ -11,7 +11,7 @@ import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
 
 export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl}) {
     const [quantity, setQuantity] = useState(1);
-    const [selectOption, setSelectOptions] = useState({});
+    const [selectOption, setSelectOptions] = useState("");
 
     const optionChange = (e) =>{
         setSelectOptions(e.target.value);
