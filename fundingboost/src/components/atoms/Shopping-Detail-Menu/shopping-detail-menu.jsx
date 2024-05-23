@@ -29,7 +29,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
     };
 
     console.log(itemPrice);
-
+    const localPrice = itemPrice !== undefined ? itemPrice.toLocaleString() : '';
     return (
         <div className="shopping-menu-wrapper">
             <div className="shoppingDetailOptionBtnBox">
@@ -40,7 +40,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         {quantity}
                         <button className="button-quantity-style" onClick={increaseQuantity}>+</button>
                     </div>
-                    <div className="itemPrice">{itemPrice} 원</div>
+                    <div className="itemPrice">{localPrice} 원</div>
                 </div>
                 <div className="shopping-detail-column">
                     <div className="selectOptionPositon">
