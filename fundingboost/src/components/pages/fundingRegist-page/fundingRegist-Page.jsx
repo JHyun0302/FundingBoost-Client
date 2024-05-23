@@ -55,7 +55,7 @@ function FundingRegistPage(props) {
     const handleSubmit = async () => {
         try {
             const url = `${process.env.REACT_APP_FUNDINGBOOST}/funding`;
-
+            const itemIdList = orderedItems.map(item => item.itemId);
             let fundingTag = tag;
             if (tag === "펀딩 해주세요🎁") {
                 fundingTag = "기타";
@@ -65,11 +65,14 @@ function FundingRegistPage(props) {
                 fundingTag = "졸업";
             }
             const data = JSON.stringify({
-                itemIdList:orderedItems,
+                itemIdList:itemIdList,
                 fundingMessage: fundingMessage,
+                tag: fundingTag,
                 deadline: deadline,
-                tag: fundingTag
+
             })
+            console.log("postData:" +data)
+
             const accessToken = localStorage.getItem('accessToken');
 
             const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, data,
@@ -84,6 +87,7 @@ function FundingRegistPage(props) {
                     })
 
                 });
+            console.log("post :", response);
         } catch (error) {
             console.error('POST 에러:', error);
         }
