@@ -26,6 +26,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
         setQuantity(quantity + 1);
     };
 
+    console.log(itemPrice);
 
     return (
         <div className="shopping-menu-wrapper">

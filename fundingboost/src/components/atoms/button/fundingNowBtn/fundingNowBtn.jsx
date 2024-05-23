@@ -10,10 +10,10 @@ function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnail
 
     const fundingNowBtnClick = () => {
         const fundingNowData= {
-            selectOption : selectOption,
+            optionName : selectOption,
             itemName : itemName,
             itemPrice : itemPrice,
-            itemThumbnailImageUrl : itemThumbnailImageUrl,
+            itemImageUrl : itemThumbnailImageUrl,
             itemId:itemId
         };
         navigate(`/funding`, {state: {fundingNowData}});
