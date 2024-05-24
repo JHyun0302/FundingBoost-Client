@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import wish from "../../../../assets/emptyheart.svg";
 import wishFillHeart from "../../../../assets/fillheart.svg";
 import './wishBtn.scss'
 import axios from "axios";
 const WishBtn = ({itemId, bookmark}) => {
-    const [isWish, setIsWish] = useState(bookmark);
+    const [isWish, setIsWish] = React.useState(bookmark);
     console.log(itemId);
+    console.log(bookmark);
 
     useEffect(() => {
         setIsWish(bookmark);
     }, [bookmark]);
-    console.log(bookmark);
+
 
     const clickWishBtn = async () => {
         // setIsWish(!isWish);
