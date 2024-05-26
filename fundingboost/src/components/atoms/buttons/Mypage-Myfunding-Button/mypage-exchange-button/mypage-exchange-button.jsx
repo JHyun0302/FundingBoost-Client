@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import './mypage-exchange-button.scss';
 import axios from "axios";
 
-const MypageExchangeBtn = ({ memberId }) => {
+const MypageExchangeBtn = ({ item, memberId }) => {
+    const [refresh, setRefresh] = useState(false);
+
     const handleExchange = async () => {
         const requestData = {
-            memberId: memberId
+            fundingId: item.fundingId
         };
 
         try {
@@ -21,11 +23,16 @@ const MypageExchangeBtn = ({ memberId }) => {
                 },
             });
             console.log('PATCH 결과:', response.data);
-
+            setRefresh(true);
         } catch (error) {
             console.error('PATCH 에러:', error);
         }
     };
+
+    if (refresh) {
+        window.location.reload(); // 페이지 새로고침
+    }
+
 
     return (
         <button className="mypage-exchange-btn" onClick={handleExchange}>포인트 전환하기</button>
