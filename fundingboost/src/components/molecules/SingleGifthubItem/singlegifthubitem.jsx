@@ -27,10 +27,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
         try {
             const accessToken = localStorage.getItem('accessToken');
             console.log(gifthubItemId);
-            await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/delete`, {
-                gifthubItemId: gifthubItemId
-            }, {
-                responseType: 'json',
+            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${gifthubItemId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
