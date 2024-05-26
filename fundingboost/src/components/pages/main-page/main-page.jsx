@@ -33,6 +33,11 @@ function MainPage() {
                 });
                 setmainData(response.data);
                 console.log("main response ->", response.data);
+
+                console.log("nickName: " + response.data.data.homeMemberInfoDto.nickName);
+                localStorage.setItem('nickName', response.data.data.homeMemberInfoDto.nickName);
+
+
             } catch (error) {
                 console.error("Error data:", error);
             }
