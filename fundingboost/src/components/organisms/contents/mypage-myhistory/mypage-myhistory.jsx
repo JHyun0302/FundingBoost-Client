@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './mypage-myhistory.scss';
 import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
@@ -37,6 +37,7 @@ const MypageMyHistoryPane = () => {
 
         fetchData();
     }, []);
+
     return (
         <div className="mypage-myhistory-total-container">
             <div className="mypage-left-pane-container">
@@ -45,7 +46,7 @@ const MypageMyHistoryPane = () => {
             </div>
             <div className="mypage-myhistory-right-pane-containter">
                 <div className="mypage-myhistory-container">
-                    <MyPageMyFundingHistoryList/>
+                    {apiData && <MyPageMyFundingHistoryList apiData={apiData} />}
                 </div>
             </div>
         </div>
