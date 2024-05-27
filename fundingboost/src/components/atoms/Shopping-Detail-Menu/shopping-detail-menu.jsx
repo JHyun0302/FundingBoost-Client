@@ -31,6 +31,10 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
     };
 
     const handleGiftHubClick = () => {
+        if (!selectOption || selectOption === "상품 옵션을 선택해주세요.") {
+            alert('상품 옵션을 선택해주세요');
+            return;
+        }
         const memberId = 13;
         const accessToken = localStorage.getItem('accessToken');
 

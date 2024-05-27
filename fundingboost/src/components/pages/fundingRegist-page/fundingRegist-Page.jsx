@@ -1,6 +1,6 @@
 // FundingRegistPage.js
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import HeaderBar from "../../organisms/header/header";
@@ -11,6 +11,8 @@ import './fundingRegist-Page.scss';
 import axios from "axios";
 import NonItemImg from "../../../assets/nonItemImg.svg";
 import FundingRegistBtn from "../../atoms/button/FundingRegistBtn/fundingRegistBtn";
+import FundingRegistModal from "../../atoms/fundingRegistModal/fundingRegistModal";
+
 
 function FundingRegistPage(props) {
     const [deadline, setDeadline] = useState(new Date());
@@ -19,6 +21,38 @@ function FundingRegistPage(props) {
     const location = useLocation();
     const { fundingNowData, selectedItems } = location.state || {};
     const [orderedItems, setOrderedItems] =useState(selectedItems || (fundingNowData ? [fundingNowData] : []));
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkFundingStatus = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                if (response.data.data.isRegisterFunding) {
+                    setShowModal(true);
+                }
+            } catch (error) {
+                console.error('Error fetching funding status:', error);
+            }
+        };
+
+        checkFundingStatus();
+    }, []);
+
+    // 모달창 닫기버튼
+    const closeModal = () => {
+        setShowModal(false);
+        navigate('/');
+    };
+    // 모달창 마이페이지 이동버튼
+    const myPageBtnModal = () => {
+        setShowModal(false);
+        navigate('/mypage');
+    };
 
     //변경된 상품 id 순서
     const handleItemOrderChange = (updatedItems) => {
@@ -97,6 +131,7 @@ function FundingRegistPage(props) {
     return (
         <div className="fundingRegist-Page">
             <HeaderBar />
+            <FundingRegistModal show={showModal} onClose={closeModal} onMyPage={myPageBtnModal} message="진행중인 펀딩이 존재합니다." />
             <div className="fundingRegistContent">
 
                 <FundingRegistItem selectedItems={orderedItems} onItemOrderChange={handleItemOrderChange}  />
