@@ -4,22 +4,22 @@ import defaultProfileImg from "../../../assets/testprofile.svg";
 
 export default function MyPageProfile ({ profileInfo }) {
     // 프로필 정보에서 필요한 데이터 추출
-    const { nickName, email, profileImgUrl, point } = profileInfo.myPageMemberDto;
+    // const { nickName, email, profile, point } = profileInfo.myPageMemberDto;
 
     return (
         <div className="myPageProfileView">
             <div className='myPageProfile'>
-                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileImgUrl || defaultProfileImg}/>
+                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileInfo.myPageMemberDto?.profile || defaultProfileImg}/>
                 <div className='myPageProfileText'>
-                    <div className="myPageProfileName">{nickName}</div>
+                    <div className="myPageProfileName">{profileInfo.myPageMemberDto?.nickName}</div>
                     <a className="myPageProfileEmail">
-                        {email}
+                        {profileInfo.myPageMemberDto?.email}
                     </a>
                 </div>
             </div>
             <div className="myPointExplain">내 포인트</div>
             <div className="horizontalLine"></div>
-            <div className="myPoint">{point ? point.toLocaleString() : '0'} P</div>
+            <div className="myPoint">{profileInfo.myPageMemberDto?.point ? profileInfo.myPageMemberDto?.point.toLocaleString() : '0'} P</div>
             <div className="horizontalLine"></div>
         </div>
     );

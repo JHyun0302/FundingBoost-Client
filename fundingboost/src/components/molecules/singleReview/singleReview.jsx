@@ -5,7 +5,8 @@ import { BsStarFill } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
 
-const SingleReview = () => {
+const SingleReview = ({myReviewList}) => {
+    console.log(myReviewList);
     return (
         <div className="singleReview">
             <div className="singleReview-header">

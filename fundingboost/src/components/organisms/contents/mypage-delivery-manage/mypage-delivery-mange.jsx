@@ -42,12 +42,16 @@ const MypageDeliveryPane = () => {
     return (
         <div className="mypage-myhistory-total-container">
             <div className="mypage-myhistory-left-pane-container">
-                {/*{apiData && <MypageProfile profileInfo={apiData} />}*/}
+                {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={4} />
             </div>
+
             <div className="mypage-myhistory-right-pane-containter">
-                <DeliveryAddressList deliveryData={apiData} />
+                <DeliveryAddressList deliveryData={apiData}/>
             </div>
+
+
+
         </div>
     );
 }

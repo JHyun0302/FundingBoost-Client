@@ -3,14 +3,14 @@ import { FcLike } from "react-icons/fc";
 import './wishList-SingleItme.scss'
 import {Link} from "react-router-dom";
 import logo from "../../../assets/logo.png";
-const WishListSingleItem = () => {
+const WishListSingleItem = ({wishListData}) => {
     return (
         <div className="wishListSingleItem">
             {/*<Link to={"/shopping/detail/" + itemId} className={style.product} style={{textDecoration: 'none'}}>*/}
                 <div className="wishList-itme-title">
 
                         <div className="wish-img-wrapper">
-                            <img src={logo} width="100%" style={{borderRadius: '3px'}} />
+                            <img src={wishListData.itemThumbnailImageUrl} width="100%" style={{borderRadius: '3px'}} />
                         </div>
                 </div>
 
@@ -19,11 +19,11 @@ const WishListSingleItem = () => {
                 </div>
 
                 <div className="wish-title-wrapper">
-                    <div className="wish-title">죠르디 피규어 어쩌고 </div>
+                    <div className="wish-title">{wishListData.itemName} </div>
                 </div>
 
                 <div className="wish-price-likebtn">
-                        <p className="wish-Price">10,000원</p>
+                        <p className="wish-Price">{wishListData.itemPrice.toLocaleString()}원</p>
                         <div className="likeBtn">
                             <FcLike />
                         </div>

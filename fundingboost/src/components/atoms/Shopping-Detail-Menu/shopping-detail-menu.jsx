@@ -10,7 +10,7 @@ import WishBtn  from "../button/wishBtn/wishBtn";
 import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
 import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
 
-export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl}) {
+export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl, bookmark}) {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
     const [selectOption, setSelectOptions] = useState("");
@@ -31,7 +31,14 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
     };
 
     const handleGiftHubClick = () => {
+
+        if (!selectOption || selectOption === "상품 옵션을 선택해주세요.") {
+            alert('상품 옵션을 선택해주세요');
+            return;
+        }
+
         const memberId = 11;
+
         const accessToken = localStorage.getItem('accessToken');
 
         fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
@@ -91,7 +98,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
                 </div>
                 <div className="heartIconPosition">
-                    <WishBtn />
+                    <WishBtn itemId={itemId} bookmark={bookmark}/>
                 </div>
 
                 <div className="shareAndHeartAndPurchase">
