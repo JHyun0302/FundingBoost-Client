@@ -4,6 +4,8 @@ import logo from "../../../assets/logo.png";
 import { BsStarFill } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
+import reviewTestItemImg from "../../../assets/reviewTestItmeImg.webp";
+import reviewTestItem from "../../../assets/reviewTestImg.jpg";
 
 const SingleReview = ({myReviewList}) => {
     console.log(myReviewList);
@@ -12,12 +14,12 @@ const SingleReview = ({myReviewList}) => {
             <div className="singleReview-header">
                 <div className="singleReview-item">
                     <div className="review-item-img">
-                        <img src={logo} width="100%" style={{borderRadius: '3px'}}/>
+                        <img src={reviewTestItemImg} width="100%" style={{borderRadius: '3px'}}/>
                     </div>
                     <div className="review-item">
-                        <div className="review-item-name">아이패드 에어/4/5세대 10.9 인치 클리어 애플펜슬 수납 스마트커버</div>
+                        <div className="review-item-name">Apple 에어팟 프로 2세대 USB-C 타입 (MTJV3KH/A)</div>
                         <div className="review-item-text">
-                            <div className="review-option">옵션</div>
+                            <div className="review-option">에어팟 프로 2세대(C 타입) MTJV3KH/A</div>
                             <div className="review-price"> 100,000</div>
                         </div>
                     </div>
@@ -35,7 +37,7 @@ const SingleReview = ({myReviewList}) => {
                         </div>
 
                         <div className="review-img">
-                            <img src={logo} width="100%" style={{borderRadius: '3px'}}/>
+                            <img src={reviewTestItem} width="100%" style={{borderRadius: '3px'}}/>
                         </div>
                     </div>
 
