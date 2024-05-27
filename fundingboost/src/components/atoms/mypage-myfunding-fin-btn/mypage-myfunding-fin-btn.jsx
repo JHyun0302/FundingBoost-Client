@@ -25,7 +25,7 @@ export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) 
             return (
                 <div className="fin-btn-wrapper">
                     <div className="exchange-remain-btn-wrapper">
-                        <MypageExchangeButton />
+                        <MypageExchangeButton item = {item} />
                         <MypageRemainpayButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
                     </div>
                 </div>

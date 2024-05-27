@@ -31,7 +31,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
     };
 
     const handleGiftHubClick = () => {
-        const memberId = 13;
+        const memberId = 11;
         const accessToken = localStorage.getItem('accessToken');
 
         fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {

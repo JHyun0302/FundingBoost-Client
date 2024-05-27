@@ -9,9 +9,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
     const [isChecked, setIsChecked] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [quantity, setQuantity] = useState(item.quantity || 1);
-    const gifthubItemId = item.itemId;
-
-    // console.log(gifthubItemId)
+    const gifthubItemId = item.giftHubItemId;
 
     useEffect(() => {
         setIsChecked(false);
@@ -28,10 +26,8 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
     const handleDeleteItem = async () => {
         try {
             const accessToken = localStorage.getItem('accessToken');
-
-            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${gifthubItemId}`, null, {
-
-                responseType: 'json',
+            console.log(gifthubItemId);
+            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${gifthubItemId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,

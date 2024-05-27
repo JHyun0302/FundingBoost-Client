@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './mypage-myhistory.scss';
 import MypageIndex from '../../../molecules/MypageIndex/mypageindex';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
@@ -28,7 +28,7 @@ const MypageMyHistoryPane = () => {
                     responseType: 'json'
                 });
                 console.log(response.data); // 콘솔에 데이터 출력
-                // setApiData(response.data.data); // 상태에 데이터 저장
+                setApiData(response.data.data); // 상태에 데이터 저장
 
             } catch (error) {
                 console.error("API 호출 중 오류가 발생했습니다.", error);
@@ -37,15 +37,16 @@ const MypageMyHistoryPane = () => {
 
         fetchData();
     }, []);
+
     return (
         <div className="mypage-myhistory-total-container">
-            <div className="mypage-myhistory-left-pane-container">
+            <div className="mypage-left-pane-container">
                 {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={1} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">
                 <div className="mypage-myhistory-container">
-                    <MyPageMyFundingHistoryList/>
+                    {apiData && <MyPageMyFundingHistoryList apiData={apiData} />}
                 </div>
             </div>
         </div>

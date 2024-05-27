@@ -23,7 +23,7 @@ const LoginPane = () => {
         try {
             const data = {
                 email,
-                password,
+                password
             };
 
             const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/login`, data, {
@@ -101,7 +101,7 @@ const LoginPane = () => {
                             type="text"
                             className="input-field"
                             placeholder="아이디"
-                            value={nickName}
+                            value={email}
                             onChange={(e) => setemail(e.target.value)}
                         />
                         <input

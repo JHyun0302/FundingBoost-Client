@@ -1,11 +1,11 @@
 import React from 'react';
 import "./mypage-myfunding-history-list.scss";
-import img from "../../../assets/detail-section-icon.svg";
 import MyPageMyFundingHistory from "../../atoms/MyPageMyFundingHistory/mypage-myfunding-history";
 import detailimg from "../../../assets/detail-section-icon.svg";
 
+export default function MyPageMyFundingHistoryList({ apiData }) {
+    const fundingDetailHistoryDtos = apiData ? apiData.myPageFundingDetailHistoryDtos : [];
 
-export default function MyPageMyFundingHistoryList () {
     return (
         <div className="MyPageFundingRecord">
             <div className='mypage-myfunding-history-title'>
@@ -17,11 +17,9 @@ export default function MyPageMyFundingHistoryList () {
             </div>
             <div className="mypage-FH-horizontalLine"></div>
             <div className="fundingRecordItem">
-                <MyPageMyFundingHistory />
-                <MyPageMyFundingHistory />
-                {/*<MyPageMyFundingHistory />*/}
-                {/*<MyPageMyFundingHistory />*/}
-                {/*<MyPageMyFundingHistory />*/}
+                {fundingDetailHistoryDtos.map((dto, index) => (
+                    <MyPageMyFundingHistory key={index} data={dto} />
+                ))}
             </div>
         </div>
     );
