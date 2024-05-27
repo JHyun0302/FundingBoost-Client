@@ -4,12 +4,15 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import  '../yellowBtn.scss';
 
-function FundingRegistButton({ onClick }){
-    // 페이지 이동
+function FundingRegistButton({ onClick, tagIsSelected }){
     const navigate = useNavigate();
     const handleClick = () => {
-        onClick();
-        navigate('/funding/regist/success');
+        if (tagIsSelected) {
+            onClick();
+            navigate('/funding/regist/success');
+        } else {
+            alert('태그를 선택해주세요!');
+        }
     };
     return (
         <>

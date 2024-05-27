@@ -23,6 +23,7 @@ function FundingRegistPage(props) {
     const [orderedItems, setOrderedItems] =useState(selectedItems || (fundingNowData ? [fundingNowData] : []));
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+    const [tagIsSelected, setTagIsSelected] = useState(false);
 
     useEffect(() => {
         const checkFundingStatus = async () => {
@@ -63,11 +64,21 @@ function FundingRegistPage(props) {
     //태그
     const Tag = (tagText) => {
         setTag(tagText);
+        setTagIsSelected(!!tagText);
+        if (tagText === "생일이에요🎉 축하해주세요") {
+            setFundingMessage("생일 축하드려요!");
+        } else if (tagText === "졸업했어요🧑‍🎓 축하해주세요") {
+            setFundingMessage("졸업을 축하해요!");
+        } else if (tagText === "펀딩 해주세요🎁") {
+            setFundingMessage("펀딩을 해주세요!");
+        }
     };
 
     //메시지
     const FundingMessage = (messageText) => {
-        setFundingMessage(messageText);
+        if (!tagIsSelected) {
+            setFundingMessage(messageText);
+        }
     };
 
     //deadline yyyy-mm-dd 형태로 전송
@@ -84,6 +95,7 @@ function FundingRegistPage(props) {
         const fundingDeadline = FundingDeadLine(date);
         setDeadline(fundingDeadline);
     };
+
 
     // 종료일 ,메시지, 태그 정보 전송
     const handleSubmit = async () => {
@@ -139,7 +151,7 @@ function FundingRegistPage(props) {
                     <div className="fundingRegistOption">
                         <FundingRegistDetails className="fundingRegist-Details" onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />
                         <div className="FundingRegist-registBtn">
-                            <FundingRegistBtn onClick={handleSubmit}/>
+                            <FundingRegistBtn onClick={handleSubmit} tagIsSelected={tagIsSelected}/>
                         </div>
                     </div>
                 </div>
