@@ -4,14 +4,18 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import  '../yellowBtn.scss';
 
-function FundingRegistButton({ onClick, tagIsSelected }){
+function FundingRegistButton({ onClick, tagIsSelected, orderedItems }){
     const navigate = useNavigate();
     const handleClick = () => {
-        if (tagIsSelected) {
+        if (tagIsSelected && orderedItems.every(item => item.order !== null && item.order !== undefined)) {
             onClick();
             navigate('/funding/regist/success');
         } else {
-            alert('태그를 선택해주세요!');
+            if (!tagIsSelected) {
+                alert('태그를 선택해주세요!');
+            } else {
+                alert('상품 순서를 모두 지정해주세요!');
+            }
         }
     };
     return (

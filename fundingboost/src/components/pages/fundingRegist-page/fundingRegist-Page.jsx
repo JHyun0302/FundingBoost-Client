@@ -151,7 +151,7 @@ function FundingRegistPage(props) {
                     <div className="fundingRegistOption">
                         <FundingRegistDetails className="fundingRegist-Details" onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />
                         <div className="FundingRegist-registBtn">
-                            <FundingRegistBtn onClick={handleSubmit} tagIsSelected={tagIsSelected}/>
+                            <FundingRegistBtn onClick={handleSubmit} tagIsSelected={tagIsSelected} orderedItems={orderedItems}/>
                         </div>
                     </div>
                 </div>
