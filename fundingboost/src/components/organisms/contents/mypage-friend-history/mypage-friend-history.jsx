@@ -45,7 +45,7 @@ const MypageFriendHistoryPane = () => {
             </div>
             <div className="mypage-myhistory-right-pane-containter">
                 <div className="mypage-friend-history-container">
-                    <MyPageFriendFundingList/>
+                    <MyPageFriendFundingList apiData={apiData} />
                 </div>
             </div>
         </div>
