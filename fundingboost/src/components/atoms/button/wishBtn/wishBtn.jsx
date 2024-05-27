@@ -3,37 +3,50 @@ import wish from "../../../../assets/emptyheart.svg";
 import wishFillHeart from "../../../../assets/fillheart.svg";
 import './wishBtn.scss'
 import axios from "axios";
+
 const WishBtn = ({itemId, bookmark}) => {
     const [isWish, setIsWish] = React.useState(bookmark);
-    console.log(itemId);
-    console.log(bookmark);
 
+    //bookmark 상태
     useEffect(() => {
         setIsWish(bookmark);
     }, [bookmark]);
 
 
     const clickWishBtn = async () => {
-        // setIsWish(!isWish);
-        setIsWish(prevIsWish => !prevIsWish);
+        const wishState = !isWish;
+        let accessToken = "";
+
+        if (localStorage.getItem('accessToken') != null) {
+            accessToken = localStorage.getItem('accessToken');
+        }
+
         try{
-            const respose = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/bookmark/like/${itemId}`,{
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/bookmark/like/${itemId}`,{},{
                 responseType: 'json',
                 headers: ({
                     "Content-Type" : "application/json",
                     "Access-Control-Allow-Origin": "http://localhost:3000/",
                     "Access-Control-Allow-Credentials" : true,
-                    "ngrok-skip-browser-warning": true
+                    "ngrok-skip-browser-warning": true,
+                    "Authorization": `Bearer ${accessToken}`
                 }),
                 withCredentials: true,
             });
-            console.log("post:",respose.data);
+            console.log("post:",response.data);
             // setIsWish(!isWish);
+            if (response.data.success && response.data.data.isSuccess) {
+                setIsWish(wishState);
+            } else {
+                setIsWish(isWish);
+            }
 
         } catch (error) {
+            setIsWish(isWish);
             console.error("wishBtn Post Error :", error);
         }
-    }
+    };
+
     return (
         <div className="wishBtn">
             <button className="heartIconWrapper" onClick={clickWishBtn}>
