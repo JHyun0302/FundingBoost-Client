@@ -27,7 +27,7 @@ export default function MyPageMyFundingHistory({ data }) {
                             <div className="participatePeople">{data.contributorCount}명 참여</div>
                             {/*<div className="fundingGaugePercent">{data.status ? "100%" : 종료}</div>*/}
                         </div>
-                        <MypageMyfundingGauge />
+                        <MypageMyfundingGauge totalPercent={data.fundingPercent} />
                     </div>
                 </div>
             )}
