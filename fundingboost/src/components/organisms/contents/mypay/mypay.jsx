@@ -22,8 +22,10 @@ const MypayPane = () => {
         const fetchFundingItemData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                const fundingItemId = 1
+                console.log(fundingItemId)
 
-                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/funding/1`, {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/funding/${fundingItemId}`, {
 
                     responseType: 'json',
                     headers: {

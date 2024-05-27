@@ -6,7 +6,6 @@ import MypayDeliveryHistory from "../../atoms/Mypay-Delivery-History/mypay-deliv
 import MypayDeliveryHistoryList from "../../atoms/Mypay-Delivery-History-List/mypay-delivery-history-list";
 
 const MypayDelivery = ({deliveryDtoList}) => {
-
     const [selectedItem, setSelectedItem] = useState(null);
 
     const handleSelectItem = (item) => {

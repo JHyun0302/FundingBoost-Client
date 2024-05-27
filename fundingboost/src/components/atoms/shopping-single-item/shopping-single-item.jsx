@@ -10,7 +10,7 @@ export default function ShoppingSingleItem({ product }) {
     const { itemId, itemName, price, itemImageUrl, brandName } = product;
 
 
-    console.log(product);
+    // console.log(product);
 
     const truncatedTitle = itemName.length > 25 ? itemName.slice(0, 25) + '...' : itemName;
 

@@ -37,8 +37,6 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
             return;
         }
 
-        const memberId = 11;
-
         const accessToken = localStorage.getItem('accessToken');
 
         fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
@@ -51,7 +49,6 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
             },
             body: JSON.stringify({
-                memberId: memberId,
                 quantity: quantity
             }),
         })
