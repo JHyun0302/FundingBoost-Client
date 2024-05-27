@@ -6,9 +6,12 @@ import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
 import {responsivePropType} from "react-bootstrap/createUtilityClasses";
 import DeliveryAddressList from "../../../molecules/deliveryList/deliveryList";
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const MypageDeliveryPane = () => {
     const [apiData , setApiData ] = useState(null);
+    const [modalShowState, setModalShowState] = useState(false);
+
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
     };
@@ -18,6 +21,11 @@ const MypageDeliveryPane = () => {
         const fetchData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+
                 const response = await axios({
                     method: 'GET',
                     url: `${process.env.REACT_APP_FUNDINGBOOST}/delivery`,
@@ -41,6 +49,7 @@ const MypageDeliveryPane = () => {
     }, []);
     return (
         <div className="mypage-myhistory-total-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypage-myhistory-left-pane-container">
                 {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={4} />

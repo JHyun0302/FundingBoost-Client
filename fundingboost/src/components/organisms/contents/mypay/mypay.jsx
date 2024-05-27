@@ -5,6 +5,7 @@ import MypayDelivery from "../../../molecules/Mypay-Delivery/mypay-delivery";
 import MypayPayment from "../../../molecules/Mypay-Payment/mypay-payment";
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const MypayPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -13,6 +14,7 @@ const MypayPane = () => {
     const location = useLocation();
     const [collectPrice, setCollectPrice] = useState(null);
     const [point, setPoint] = useState(null);
+    const [modalShowState, setModalShowState] = useState(false);
 
     const { state: { myPageFundingItemDtoList } } = location;
     console.log("myPageFundingItemDtoList", myPageFundingItemDtoList);
@@ -22,6 +24,10 @@ const MypayPane = () => {
         const fetchFundingItemData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
 
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/funding/1`, {
 
@@ -57,6 +63,7 @@ const MypayPane = () => {
 
     return(
         <div className="mypay-page-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypay-left-container">
                 <MypayProductDetail myPageFundingItemDtoList={myPageFundingItemDtoList[0]} />
                 <MypayDelivery deliveryDtoList={deliveryDtoList}/>
