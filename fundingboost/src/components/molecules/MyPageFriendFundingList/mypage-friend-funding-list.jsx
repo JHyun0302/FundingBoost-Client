@@ -2,8 +2,11 @@ import React from "react";
 import "./mypage-friend-funding-list.scss";
 import MyPageFriendFundingItem from "../../atoms/MyPageFriendFundingItem/mypage-friend-funding-item";
 import img from "../../../assets/detail-section-icon.svg";
+import MyPageMyFundingHistory from "../../atoms/MyPageMyFundingHistory/mypage-myfunding-history";
 
-export default function MyPageFriendFundingList () {
+export default function MyPageFriendFundingList ({ apiData }) {
+    const FriendFundingContributionDto = apiData ? apiData.FriendFundingContributionDto : [];
+
     return (
         <div className="MyPageFriendFundingListBox">
             <div className="MyPageFriendFundingListView">
@@ -20,12 +23,9 @@ export default function MyPageFriendFundingList () {
                     <div className="MyPageFriendFundingListText-wrapper-6">펀딩한 금액</div>
                 </div>
                 <div className="MyPageFriendFundingListView-2">
-                    <MyPageFriendFundingItem />
-                    <MyPageFriendFundingItem />
-                    <MyPageFriendFundingItem />
-                    <MyPageFriendFundingItem />
-                    <MyPageFriendFundingItem />
-                    <MyPageFriendFundingItem />
+                    {FriendFundingContributionDto.map((dto, index) => (
+                        <MyPageFriendFundingItem key={index} data={dto} />
+                    ))}
                 </div>
 
             </div>

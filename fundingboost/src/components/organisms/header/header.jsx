@@ -11,7 +11,7 @@ import gifthub from '../../../assets/gifthub.svg';
 import { CiSearch } from "react-icons/ci";
 import { loginState } from '../../../state/auth';
 
-function HeaderBar() {
+function HeaderBar({mainData}) {
     const navigate = useNavigate();
     const login = useRecoilValue(loginState);
     const setLoginState = useSetRecoilState(loginState);
@@ -64,6 +64,7 @@ function HeaderBar() {
             localStorage.removeItem('GrantType');
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
+            localStorage.removeItem('nickName');
             navigate('/home');
         } catch (error) {
             console.error('로그아웃 실패:', error);
@@ -97,7 +98,7 @@ function HeaderBar() {
 
                     <div className="loginLogout">
                         {login.isAuthenticated && localStorage.getItem('accessToken') ? (
-                            <NavDropdown title={nickName} id="logoutDropdown" align="end">
+                            <NavDropdown title={localStorage.getItem('nickName')} id="logoutDropdown" align="end">
                                 <NavDropdown.Item onClick={logoutHandler} className="dropdownItem">로그아웃</NavDropdown.Item>
                             </NavDropdown>
                         ) : (

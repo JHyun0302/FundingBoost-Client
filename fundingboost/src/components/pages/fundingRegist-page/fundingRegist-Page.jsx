@@ -117,7 +117,7 @@ function FundingRegistPage(props) {
                 deadline: deadline,
 
             })
-            console.log("postData:" +data)
+
 
             const accessToken = localStorage.getItem('accessToken');
 
