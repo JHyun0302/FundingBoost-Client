@@ -9,7 +9,6 @@ import axios from "axios";
 import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
 
 const FriendFundingPage = () => {
-    // const [isModalToken] = useRecoilState(modalTokenState);
     const [modalShowState, setModalShowState] = useState(false);
     const [friendFundingData, setFriendFundingData] = useState([]);
     useEffect(() => {
