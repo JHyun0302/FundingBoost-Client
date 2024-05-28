@@ -9,7 +9,7 @@ export default function MyPageProfile ({ profileInfo }) {
     return (
         <div className="myPageProfileView">
             <div className='myPageProfile'>
-                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileInfo.myPageMemberDto?.profile || defaultProfileImg}/>
+                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileInfo.myPageMemberDto?.profileImgUrl || defaultProfileImg}/>
                 <div className='myPageProfileText'>
                     <div className="myPageProfileName">{profileInfo.myPageMemberDto?.nickName}</div>
                     <a className="myPageProfileEmail">
