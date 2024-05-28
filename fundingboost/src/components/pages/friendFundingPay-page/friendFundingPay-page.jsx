@@ -16,7 +16,13 @@ import FriendFundingPayProfile
 import FriendFundingPayCurrentPay
     from "../../molecules/FriendFundingPay/FriendFundingPay-CurrentPay/friendFundingPay-CurrentPay";
 
+import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
+
+
 const FriendFundingPayPage = () => {
+
+    const [modalShowState, setModalShowState] = useState(false);
+
     const location = useLocation();
     const fundingAmount = location.state;
     const [usePoints, setUsePoints] = useState("");
@@ -27,8 +33,7 @@ const FriendFundingPayPage = () => {
     const [friendFundingPayData, setFriendFundingPayData] = useState(null);
 
     const updateusePoints = (points) => {
-        // Handle updated points here
-        setUsePoints(points); // Update state or perform any necessary actions
+        setUsePoints(points);
         console.log("포인트 :" + points);
     };
 
@@ -38,6 +43,11 @@ const FriendFundingPayPage = () => {
         const fetchData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+
 
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/friends/${fundingId}`, {
 
@@ -62,8 +72,10 @@ const FriendFundingPayPage = () => {
 
     return (
 
+
         <div className="friendFundingPayPage">
             <HeaderBar />
+            {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요." />}
             {friendFundingPayData &&(
                 <>
                     <div className="friendFundingPayPageDetile">

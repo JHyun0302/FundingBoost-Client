@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import OrderProductDetail from "../../../atoms/OrderProductDetail/orderproductdetail";
 import OrderpayPoint from "../../../atoms/OrderPayPayment/orderpaypayment";
 import OrderPayDelivery from "../../../atoms/OrderPayDelivery/orderpaydelivery";
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const OrderPane = () => {
     const [apiData, setApiData] = useState(null);
@@ -12,6 +13,7 @@ const OrderPane = () => {
     const [deliveryDtoList, setdeliveryDtoList] = useState([]);
     const location = useLocation();
     const [point, setPoint] = useState(null);
+    const [modalShowState, setModalShowState] = useState(false);
 
     const {selectedItems, itemPurchase } = location.state || {};
     const [purchaseItem, setPurchaseItem] = useState(itemPurchase ? [itemPurchase] : selectedItems || []);
@@ -24,6 +26,10 @@ const OrderPane = () => {
         const fetchOrderPayData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
 
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/order`, {
                     responseType: 'json',
@@ -53,6 +59,7 @@ const OrderPane = () => {
 
     return (
         <div className="order-pay-page-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="orderpay-left-container">
                 <OrderProductDetail selectedItems={purchaseItem} />
                 <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
