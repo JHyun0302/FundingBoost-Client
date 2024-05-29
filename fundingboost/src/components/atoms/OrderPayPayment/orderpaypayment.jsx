@@ -26,13 +26,28 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                 usingPoint: usingPoint
             };
 
+            const datanow = itemPayDtoList.length > 0 ? {
+                itemId: itemPayDtoList[0].itemId,
+                quantity: 1,
+                deliveryId: selectedDeliveryItem?.deliveryId,
+                usingPoint: usingPoint
+            }: {};
+
             console.log("Request Data:", {
                 itemPayDtoList,
                 deliveryId: selectedDeliveryItem?.deliveryId,
                 usingPoint
             });
 
-            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/pay/order`, data, {
+            const url = itemPayDtoList.some(item => item.giftHubId === null || item.giftHubId === undefined)
+                ? `${process.env.REACT_APP_FUNDINGBOOST}/pay/order/now`
+                : `${process.env.REACT_APP_FUNDINGBOOST}/pay/order`;
+
+            const postData = itemPayDtoList.some(item => item.giftHubId === null || item.giftHubId === undefined)
+                ? datanow
+                : data;
+
+            const response = await axios.post(url, postData, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',

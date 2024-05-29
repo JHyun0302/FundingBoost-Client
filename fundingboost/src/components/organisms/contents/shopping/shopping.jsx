@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './shopping.scss';
 import axios from "axios";
 import ShoppingSingleItem from "../../../atoms/shopping-single-item/shopping-single-item";
@@ -8,13 +8,18 @@ const ShoppingPane = () => {
     const [itemData, setItemData] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('전체');
     const [currentPage, setCurrentPage] = useState(0);
-    const [totalPages, setTotalPages] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
+    const loader = useRef(null);
 
     const fetchData = async (page, category) => {
+        if (isLoading) return; // 추가 데이터를 로드하는 동안 중복 요청 방지
+        setIsLoading(true);
+
         try {
             let accessToken = localStorage.getItem('accessToken') || "";
             const params = {
                 page: page,
+                // lastItemId: 맨 마지막 itemId
                 size: 10,
             };
             if (category !== '전체') {
@@ -33,31 +38,44 @@ const ShoppingPane = () => {
 
             const data = response.data;
             if (data && data.data && Array.isArray(data.data.content)) {
-                setItemData(data.data.content);
-                setTotalPages(data.data.pageable.totalPages || 1);
+
+                setItemData(prevItems => [...prevItems, ...data.data.content]);
+                setCurrentPage(prevPage => prevPage + 1);
             } else {
                 console.error("Error: Unexpected response structure", data);
-                setItemData([]);
-                setTotalPages(1);
             }
         } catch (error) {
             console.error("Error fetching data:", error);
-            setItemData([]);
-            setTotalPages(1);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: "20px",
+            threshold: 0
+        };
+        const observer = new IntersectionObserver(handleObserver, options);
+        if (loader.current) observer.observe(loader.current);
+    }, []);
+
+    useEffect(() => {
         fetchData(currentPage, selectedCategory);
-    }, [currentPage, selectedCategory]);
+    }, [selectedCategory]);
+
+    const handleObserver = (entities) => {
+        const target = entities[0];
+        if (target.isIntersecting) {
+            fetchData(currentPage, selectedCategory);
+        }
+    };
 
     const handleCategorySelect = (category) => {
         setSelectedCategory(category);
         setCurrentPage(0);
-    };
-
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
+        setItemData([]); // 카테고리가 변경되면 아이템 데이터 초기화
     };
 
     return (
@@ -75,17 +93,7 @@ const ShoppingPane = () => {
                         <div>No items available</div>
                     )}
                 </div>
-                <div className="pagination">
-                    {Array.from({ length: totalPages }, (_, index) => (
-                        <button
-                            key={index}
-                            className={`shopping-pagination-active ${index === currentPage ? 'selected' : ''}`}
-                            onClick={() => handlePageChange(index)}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
-                </div>
+                <div ref={loader} className="loading">Loading...</div>
             </div>
         </div>
     );
