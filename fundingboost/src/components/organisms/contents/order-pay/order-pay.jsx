@@ -13,7 +13,7 @@ const OrderPane = () => {
     const location = useLocation();
     const [point, setPoint] = useState(null);
 
-    const {selectedItems, itemPurchase } = location.state || {};
+    const { selectedItems, itemPurchase } = location.state || {};
     const [purchaseItem, setPurchaseItem] = useState(itemPurchase ? [itemPurchase] : selectedItems || []);
 
     console.log("selectedItems", selectedItems);
@@ -51,21 +51,38 @@ const OrderPane = () => {
         console.log("사용 포인트가 업데이트되었습니다:", value);
     };
 
+    const getTotalPrice = () => {
+        if (purchaseItem.length > 0) {
+            // 선택한 아이템의 총 가격 계산
+            const totalPrice = purchaseItem.reduce((accumulator, currentItem) => {
+                return accumulator + currentItem.itemPrice;
+            }, 0);
+            return totalPrice;
+        }
+        return 0;
+    };
+
     return (
         <div className="order-pay-page-container">
             <div className="orderpay-left-container">
                 <div className="mypay-product-details-text">상품내역</div>
-                    <div className="MyOrderItemBox">
+                <div className="MyOrderItemBox">
                     {purchaseItem && purchaseItem.map((item, index) => (
                         <OrderProductDetail key={index} selectedItems={item}/>
                     ))}
-                    </div>
-                    <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
+                </div>
+                <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
             </div>
             <div className="orderpay-right-container">
                 <div className="orderpayment-container">
-                    <OrderpayPoint selectedItems={purchaseItem} point={point} selectedItems={purchaseItem}
-                                   onUpdateUsingPoint={onUpdateUsingPoint}/>
+                    {purchaseItem.length > 0 && (
+                        <OrderpayPoint
+                            selectedItems={purchaseItem[0]}
+                            totalPrice={getTotalPrice()}
+                            point={point}
+                            onUpdateUsingPoint={onUpdateUsingPoint}
+                        />
+                    )}
                 </div>
             </div>
         </div>
