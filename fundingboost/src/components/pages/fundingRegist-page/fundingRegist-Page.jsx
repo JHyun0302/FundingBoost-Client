@@ -1,4 +1,3 @@
-// FundingRegistPage.js
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -14,14 +13,31 @@ import FundingRegistBtn from "../../atoms/button/FundingRegistBtn/fundingRegistB
 import FundingRegistModal from "../../atoms/fundingRegistModal/fundingRegistModal";
 import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
 
-
 function FundingRegistPage(props) {
     const [deadline, setDeadline] = useState(new Date());
     const [tag, setTag] = useState("");
     const [fundingMessage, setFundingMessage] = useState("");
     const location = useLocation();
     const { fundingNowData, selectedItems } = location.state || {};
-    const [orderedItems, setOrderedItems] =useState(selectedItems || (fundingNowData ? [fundingNowData] : []));
+
+    const [orderedItems, setOrderedItems] = useState(() => {
+        if (selectedItems) {
+            return selectedItems;
+        } else if (fundingNowData) {
+            const items = [];
+            //펀딩 수량 만큼 반복해줌
+            for (let i = 0; i < fundingNowData.quantity; i++) {
+                items.push({
+                    ...fundingNowData,
+                    id: `${fundingNowData.itemId}-${i}` //고유id 지정
+                });
+            }
+            return items;
+        } else {
+            return [];
+        }
+    });
+
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const [tagIsSelected, setTagIsSelected] = useState(false);
@@ -35,11 +51,13 @@ function FundingRegistPage(props) {
                     setModalShowState(true);
                     return;
                 }
+
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
                     }
                 });
+
                 if (response.data.data.isRegisterFunding) {
                     setShowModal(true);
                 }
@@ -64,7 +82,6 @@ function FundingRegistPage(props) {
 
     //변경된 상품 id 순서
     const handleItemOrderChange = (updatedItems) => {
-        // const itemIds = updatedItems.map(item => item.itemId);
         setOrderedItems(updatedItems);
     };
 
@@ -73,11 +90,11 @@ function FundingRegistPage(props) {
         setTag(tagText);
         setTagIsSelected(!!tagText);
         if (tagText === "생일이에요🎉 축하해주세요") {
-            setFundingMessage("생일 축하드려요!");
+            setFundingMessage("생일이에요🎉 축하해주세요");
         } else if (tagText === "졸업했어요🧑‍🎓 축하해주세요") {
-            setFundingMessage("졸업을 축하해요!");
+            setFundingMessage("졸업했어요🧑‍🎓 축하해주세요");
         } else if (tagText === "펀딩 해주세요🎁") {
-            setFundingMessage("펀딩을 해주세요!");
+            setFundingMessage("펀딩 해주세요🎁");
         }
     };
 
@@ -118,7 +135,7 @@ function FundingRegistPage(props) {
                 fundingTag = "졸업";
             }
             const data = JSON.stringify({
-                itemIdList:itemIdList,
+                itemIdList: itemIdList,
                 fundingMessage: fundingMessage,
                 tag: fundingTag,
                 deadline: deadline,
@@ -159,13 +176,13 @@ function FundingRegistPage(props) {
                     <div className="fundingRegistOption">
                         <FundingRegistDetails className="fundingRegist-Details" onTagSelect={Tag} onMessageChange={FundingMessage} onDateChange={Deadline} />
                         <div className="FundingRegist-registBtn">
-                            <FundingRegistBtn onClick={handleSubmit} tagIsSelected={tagIsSelected} orderedItems={orderedItems}/>
+                            <FundingRegistBtn onClick={handleSubmit} tagIsSelected={tagIsSelected} orderedItems={orderedItems} />
                         </div>
                     </div>
                 </div>
 
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }

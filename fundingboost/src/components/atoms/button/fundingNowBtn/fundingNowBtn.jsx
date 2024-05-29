@@ -4,10 +4,10 @@ import './fundingNowBtn.scss'
 import {useNavigate} from "react-router-dom";
 
 
-function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnailImageUrl}) {
+function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnailImageUrl, quantity}) {
     const navigate = useNavigate();
 
-
+    console.log(quantity);
     const fundingNowBtnClick = () => {
         if(selectOption&&selectOption !=="상품 옵션을 선택해주세요."){
             const fundingNowData= {
@@ -15,7 +15,8 @@ function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnail
                 itemName : itemName,
                 itemPrice : itemPrice,
                 itemImageUrl : itemThumbnailImageUrl,
-                itemId:itemId
+                itemId:itemId,
+                quantity : quantity
             };
             navigate(`/funding`, {state: {fundingNowData}});
         }else{
