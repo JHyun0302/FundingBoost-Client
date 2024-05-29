@@ -54,12 +54,18 @@ const OrderPane = () => {
     return (
         <div className="order-pay-page-container">
             <div className="orderpay-left-container">
-                <OrderProductDetail selectedItems={purchaseItem} />
-                <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
+                <div className="mypay-product-details-text">상품내역</div>
+                    <div className="MyOrderItemBox">
+                    {purchaseItem && purchaseItem.map((item, index) => (
+                        <OrderProductDetail key={index} selectedItems={item}/>
+                    ))}
+                    </div>
+                    <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
             </div>
             <div className="orderpay-right-container">
                 <div className="orderpayment-container">
-                    <OrderpayPoint point={point} selectedItems={purchaseItem } onUpdateUsingPoint={onUpdateUsingPoint}/>
+                    <OrderpayPoint selectedItems={purchaseItem} point={point} selectedItems={purchaseItem}
+                                   onUpdateUsingPoint={onUpdateUsingPoint}/>
                 </div>
             </div>
         </div>

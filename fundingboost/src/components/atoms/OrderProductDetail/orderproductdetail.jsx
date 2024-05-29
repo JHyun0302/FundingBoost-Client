@@ -3,14 +3,11 @@ import './orderproductdetail.scss';
 
 const OrderProductDetail = ({ selectedItems }) => {
 
-    console.log("Item:", selectedItems);
-
-    const item = selectedItems[0];
+    const item = selectedItems;
+    console.log("Item:", item);
 
     return (
-        <div>
-            <div className="mypay-product-details-text">상품내역</div>
-            <div className="MyPayItemBox">
+        <div className="order-padding-area">
                 <div className="MyPayItemOverlap">
                     <div className="MyPayItem-left-group">
                         <img className="MyPayItem-image" alt="ItemImage" src={item.itemImageUrl}/>
@@ -26,7 +23,6 @@ const OrderProductDetail = ({ selectedItems }) => {
                     </div>
                     <div className="MyPayItem-price">{item.itemPrice.toLocaleString()} 원</div>
                 </div>
-            </div>
         </div>
     );
 };

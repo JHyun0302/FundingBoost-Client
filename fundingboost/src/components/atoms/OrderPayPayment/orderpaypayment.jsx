@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./orderpaypayment.scss";
 
-export default function OrderpayPoint ({ point, myPageFundingItemDtoList, onUpdateUsingPoint }) {
-    const itemPrice = myPageFundingItemDtoList ? myPageFundingItemDtoList.itemPrice : 0;
+export default function OrderpayPoint ({ point, selectedItems, onUpdateUsingPoint }) {
+    const itemPrice = selectedItems.itemPrice || 0;
     const [inputAmount, setInputAmount] = useState("");
     const [usingPoint, setUsingPoint] = useState(0); // usingPoint 상태 추가
+
+    console.log(itemPrice);
 
     const handleInputChange = (event) => {
         const value = event.target.value;

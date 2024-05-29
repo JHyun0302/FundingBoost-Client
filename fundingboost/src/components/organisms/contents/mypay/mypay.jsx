@@ -65,7 +65,7 @@ const MypayPane = () => {
             </div>
             <div className="mypay-right-container">
                 <div className="payment-container">
-                    <MypayPayment collectPrice={collectPrice} point={point} myPageFundingItemDtoList={myPageFundingItemDtoList[0] } onUpdateUsingPoint={onUpdateUsingPoint}/>
+                    <MypayPayment collectPrice={collectPrice} point={point} myPageFundingItemDtoList={myPageFundingItemDtoList[0]} onUpdateUsingPoint={onUpdateUsingPoint}/>
                 </div>
             </div>
         </div>

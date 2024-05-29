@@ -36,3 +36,16 @@
     flex-wrap: wrap;
   }
 }
+
+
+.MyPayDeliveryListGroup{
+  border: 1px solid #3e3e3e;
+}
+
+.MyPayDeliveryListBox .MyPayDeliveryListGroup {
+  background-color: #ffffff;
+  border: 1px solid #b7b7b7;
+  height: 160px;
+  width: 353px;
+  padding: 10px;
+}
