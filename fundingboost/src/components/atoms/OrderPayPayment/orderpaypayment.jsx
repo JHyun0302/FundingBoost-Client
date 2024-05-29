@@ -3,33 +3,38 @@ import "./orderpaypayment.scss";
 
 export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint, totalPrice }) {
     const [inputAmount, setInputAmount] = useState("0");
-    const [usingPoint, setUsingPoint] = useState(0); // usingPoint 상태 추가
+    const [usingPoint, setUsingPoint] = useState(0);
 
     useEffect(() => {
         if (selectedItems && selectedItems.itemPrice) {
-            setInputAmount(selectedItems.itemPrice.toString());
+            // 설정된 기본값을 0으로 유지
+            setInputAmount("0");
         } else {
             console.error("selectedItems or itemPrice is missing or invalid", selectedItems);
         }
     }, [selectedItems]);
 
     const handleInputChange = (event) => {
-        const value = event.target.value;
-        if (Number(value) > totalPrice) {
-            setInputAmount(totalPrice.toString());
-        } else if (Number(value) > point) {
-            setInputAmount(point.toString());
+        const value = Number(event.target.value);
+        const maxPoint = Math.min(point, totalPrice); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
+
+        if (value > maxPoint) {
+            setInputAmount(maxPoint.toString());
+        } else if (value < 0) {
+            setInputAmount("0");
         } else {
-            setInputAmount(value);
+            setInputAmount(value.toString());
         }
-        setUsingPoint(Number(value) || 0);
-        onUpdateUsingPoint(Number(value) || 0);
+
+        setUsingPoint(value || 0);
+        onUpdateUsingPoint(value || 0);
     };
 
     const handleUseAllPoints = () => {
-        setInputAmount(point.toString());
-        setUsingPoint(point); // usingPoint 업데이트
-        onUpdateUsingPoint(point); // 부모 컴포넌트로 usingPoint 업데이트
+        const maxPoint = Math.min(point, totalPrice); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
+        setInputAmount(maxPoint.toString());
+        setUsingPoint(maxPoint); // usingPoint 업데이트
+        onUpdateUsingPoint(maxPoint); // 부모 컴포넌트로 usingPoint 업데이트
     };
 
     const calculateTotalPrice = () => {
