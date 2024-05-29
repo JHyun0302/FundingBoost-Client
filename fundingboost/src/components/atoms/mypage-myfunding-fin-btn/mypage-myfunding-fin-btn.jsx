@@ -12,7 +12,6 @@ export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) 
         return <div style={{ height: '50px' }}></div>;
     }
 
-
     if (finishedStatus) {
         if (itemPercent === 100) {
             return (
@@ -25,7 +24,7 @@ export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) 
             return (
                 <div className="fin-btn-wrapper">
                     <div className="exchange-remain-btn-wrapper">
-                        <MypageExchangeButton item = {item} />
+                        <MypageExchangeButton item={item} />
                         <MypageRemainpayButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
                     </div>
                 </div>
@@ -36,7 +35,7 @@ export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) 
         if (itemPercent < 100) {
             return (
                 <div className="fin-btn-wrapper">
-                    <MypageDeliveryButton  myPageFundingItemDtoList={myPageFundingItemDtoList} />
+                    <MypageCompleteButton />
                 </div>
             );
         } else {
