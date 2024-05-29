@@ -9,20 +9,20 @@ import { useLocation } from 'react-router-dom';
 const MypayPane = () => {
     const [apiData, setApiData] = useState(null);
     const [fundingItemData, setFundingItemData] = useState(null);
-    const [deliveryDtoList, setDeliveryDtoList] = useState([]); // deliveryDtoList 상태 추가
+    const [deliveryDtoList, setdeliveryDtoList] = useState([]); // deliveryDtoList 상태 추가
     const location = useLocation();
     const [collectPrice, setCollectPrice] = useState(null);
     const [point, setPoint] = useState(null);
+    const [selectedDeliveryItem, setSelectedDeliveryItem] = useState(null);
 
-    const { state: { myPageFundingItemDtoList } } = location;
-    console.log("myPageFundingItemDtoList", myPageFundingItemDtoList);
-    console.log(deliveryDtoList);
+    const { state: { selectedItemDto } } = location;
+    console.log("selectedItemDto ", selectedItemDto);
 
     useEffect(() => {
         const fetchFundingItemData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
-                const fundingItemId = 1
+                const fundingItemId = selectedItemDto.fundingItemId;
                 console.log(fundingItemId)
 
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/funding/${fundingItemId}`, {
@@ -38,7 +38,7 @@ const MypayPane = () => {
                 console.log('GET 결과:', response.data);
                 setFundingItemData(response.data);
                 setApiData(response.data.data);
-                setDeliveryDtoList(response.data.data.deliveryDtoList);
+                setdeliveryDtoList(response.data.data.deliveryDtoList);
                 setCollectPrice(response.data.data.collectPrice);
                 setPoint(response.data.data.point);
             } catch (error) {
@@ -50,8 +50,6 @@ const MypayPane = () => {
     }, []);
 
     const onUpdateUsingPoint = (value) => {
-        // 여기에서 사용 포인트 업데이트 로직을 정의합니다.
-        // 예를 들어:
         console.log("사용 포인트가 업데이트되었습니다:", value);
     };
 
@@ -60,12 +58,17 @@ const MypayPane = () => {
     return(
         <div className="mypay-page-container">
             <div className="mypay-left-container">
-                <MypayProductDetail myPageFundingItemDtoList={myPageFundingItemDtoList[0]} />
-                <MypayDelivery deliveryDtoList={deliveryDtoList}/>
+                <MypayProductDetail selectedItemDto={selectedItemDto} />
+                <MypayDelivery deliveryDtoList={deliveryDtoList} onSelectItem={setSelectedDeliveryItem}/>
             </div>
             <div className="mypay-right-container">
                 <div className="payment-container">
-                    <MypayPayment collectPrice={collectPrice} point={point} myPageFundingItemDtoList={myPageFundingItemDtoList[0]} onUpdateUsingPoint={onUpdateUsingPoint}/>
+                    <MypayPayment
+                        collectPrice={collectPrice}
+                        point={point}
+                        selectedItemDto={selectedItemDto}
+                        onUpdateUsingPoint={onUpdateUsingPoint}
+                        selectedDeliveryItem={selectedDeliveryItem}/>
                 </div>
             </div>
         </div>

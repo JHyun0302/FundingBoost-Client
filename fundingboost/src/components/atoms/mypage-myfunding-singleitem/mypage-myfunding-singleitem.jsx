@@ -1,11 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import "./mypage-myfunding-singleitem.scss";
 import Gauge from "../../atoms/gauge-bar/gauge-bar";
 import MypageFinfundingbtn from "../../atoms/mypage-myfunding-fin-btn/mypage-myfunding-fin-btn";
 
 const MyFundingSingleItem = ({ apiData, item, myPageFundingItemDtoList }) => {
-
-
     return (
         <div className="mypage-myfunding-box">
             <div className="mypage-myfunding-view">
@@ -22,7 +20,6 @@ const MyFundingSingleItem = ({ apiData, item, myPageFundingItemDtoList }) => {
                 <div className="mypage-myfunding-text-wrapper-4">{item.itemPrice}원</div>
 
                 {apiData && <MypageFinfundingbtn item={item} myPageFundingItemDtoList={myPageFundingItemDtoList} />}
-
             </div>
         </div>
     );

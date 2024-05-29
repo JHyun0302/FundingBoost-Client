@@ -1,11 +1,11 @@
 import React from 'react';
 import './mypay-product-detail.scss';
 
-const MypayProductDetail = ({ myPageFundingItemDtoList }) => {
+const MypayProductDetail = ({ selectedItemDto }) => {
 
-    console.log("Item:", myPageFundingItemDtoList);
+    console.log("Item:", selectedItemDto);
 
-        const item = myPageFundingItemDtoList;
+        const item = selectedItemDto;
 
         return (
             <div>

@@ -5,11 +5,12 @@ import MyPayDeliveryInput from "../../atoms/Mypay-Delivery-Input/mypay-delivery-
 import MypayDeliveryHistory from "../../atoms/Mypay-Delivery-History/mypay-delivery-history";
 import MypayDeliveryHistoryList from "../../atoms/Mypay-Delivery-History-List/mypay-delivery-history-list";
 
-const MypayDelivery = ({deliveryDtoList}) => {
+const MypayDelivery = ({deliveryDtoList, onSelectItem}) => {
     const [selectedItem, setSelectedItem] = useState(null);
 
     const handleSelectItem = (item) => {
         setSelectedItem(item);
+        onSelectItem(item);
     };
 
 

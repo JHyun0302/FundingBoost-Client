@@ -90,10 +90,9 @@ const ShoppingPane = () => {
                             </div>
                         ))
                     ) : (
-                        <div>No items available</div>
+                        <div ref={loader} className="loading">Item Loading...</div>
                     )}
                 </div>
-                <div ref={loader} className="loading">Loading...</div>
             </div>
         </div>
     );

@@ -3,9 +3,6 @@ import "./mypay-delivery-history-list.scss";
 import MypayDeliveryHistory from "../Mypay-Delivery-History/mypay-delivery-history";
 
 export default function MypayDeliveryHistoryList({ deliveryDtoList, onSelectItem }) {
-
-    console.log(deliveryDtoList)
-
     if (!deliveryDtoList || deliveryDtoList.length === 0) {
         return <div>No delivery history</div>;
     }
