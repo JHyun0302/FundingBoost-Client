@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./mypay-payment.scss";
+import axios from "axios";
 
 export default function MyPayPoint ({ collectPrice, point, myPageFundingItemDtoList, onUpdateUsingPoint }) {
     const itemPrice = myPageFundingItemDtoList ? myPageFundingItemDtoList.itemPrice : 0;

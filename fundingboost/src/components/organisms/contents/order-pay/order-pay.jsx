@@ -9,9 +9,10 @@ import OrderPayDelivery from "../../../atoms/OrderPayDelivery/orderpaydelivery";
 const OrderPane = () => {
     const [apiData, setApiData] = useState(null);
     const [fundingItemData, setFundingItemData] = useState(null);
-    const [deliveryDtoList, setdeliveryDtoList] = useState([]);
+    const [deliveryDtoList, setDeliveryDtoList] = useState([]);
     const location = useLocation();
     const [point, setPoint] = useState(null);
+    const [selectedDeliveryItem, setSelectedDeliveryItem] = useState(null);
 
     const { selectedItems, itemPurchase } = location.state || {};
     const [purchaseItem, setPurchaseItem] = useState(itemPurchase ? [itemPurchase] : selectedItems || []);
@@ -24,7 +25,6 @@ const OrderPane = () => {
         const fetchOrderPayData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
-
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/order`, {
                     responseType: 'json',
                     headers: {
@@ -37,7 +37,7 @@ const OrderPane = () => {
                 console.log('GET 결과:', response.data);
                 setFundingItemData(response.data);
                 setApiData(response.data.data);
-                setdeliveryDtoList(response.data.data.deliveryDtoList);
+                setDeliveryDtoList(response.data.data.deliveryDtoList);
                 setPoint(response.data.data.point);
             } catch (error) {
                 console.error('GET 에러:', error);
@@ -53,7 +53,6 @@ const OrderPane = () => {
 
     const getTotalPrice = () => {
         if (purchaseItem.length > 0) {
-            // 선택한 아이템의 총 가격 계산
             const totalPrice = purchaseItem.reduce((accumulator, currentItem) => {
                 return accumulator + currentItem.itemPrice;
             }, 0);
@@ -68,19 +67,23 @@ const OrderPane = () => {
                 <div className="mypay-product-details-text">상품내역</div>
                 <div className="MyOrderItemBox">
                     {purchaseItem && purchaseItem.map((item, index) => (
-                        <OrderProductDetail key={index} selectedItems={item}/>
+                        <OrderProductDetail key={index} selectedItems={item} />
                     ))}
                 </div>
-                <OrderPayDelivery deliveryDtoList={deliveryDtoList}/>
+                <OrderPayDelivery
+                    deliveryDtoList={deliveryDtoList}
+                    onSelectItem={setSelectedDeliveryItem} // 선택한 배송지 설정
+                />
             </div>
             <div className="orderpay-right-container">
                 <div className="orderpayment-container">
                     {purchaseItem.length > 0 && (
                         <OrderpayPoint
-                            selectedItems={purchaseItem[0]}
+                            selectedItems={purchaseItem}
                             totalPrice={getTotalPrice()}
                             point={point}
                             onUpdateUsingPoint={onUpdateUsingPoint}
+                            selectedDeliveryItem={selectedDeliveryItem} // 선택한 배송지 정보 전달
                         />
                     )}
                 </div>

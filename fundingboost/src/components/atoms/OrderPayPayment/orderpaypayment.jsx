@@ -1,9 +1,52 @@
 import React, { useState, useEffect } from "react";
 import "./orderpaypayment.scss";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint, totalPrice }) {
+export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint, totalPrice, selectedDeliveryItem }) {
     const [inputAmount, setInputAmount] = useState("0");
     const [usingPoint, setUsingPoint] = useState(0);
+    const navigate = useNavigate();
+
+    console.log(selectedDeliveryItem);
+
+    const handlepmypaypayment = async () => {
+        try {
+            const accessToken = localStorage.getItem('accessToken');
+
+            const itemPayDtoList = Array.isArray(selectedItems) ? selectedItems.map(item => ({
+                itemId: item.itemId,
+                giftHubId: item.giftHubItemId,
+                quantity: item.quantity
+            })) : [];
+
+            const data = {
+                itemPayDtoList,
+                deliveryId: selectedDeliveryItem?.deliveryId,
+                usingPoint: usingPoint
+            };
+
+            console.log("Request Data:", {
+                itemPayDtoList,
+                deliveryId: selectedDeliveryItem?.deliveryId,
+                usingPoint
+            });
+
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/pay/order`, data, {
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${accessToken}`,
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
+                    'Access-Control-Allow-Credentials': true
+                }
+            });
+            console.log('POST 결과:', response.data);
+            navigate("/order/pay/success");
+        } catch (error) {
+            console.error('POST 에러:', error);
+        }
+    };
 
     useEffect(() => {
         if (selectedItems && selectedItems.itemPrice) {
@@ -91,7 +134,7 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                     <div className="line" alt="Line"/>
                     <div className="total-price">{remainingPrice} 원</div>
                 </div>
-                <button className="pay-request-button"> 결제하기 </button>
+                <button className="pay-request-button" onClick={handlepmypaypayment}> 결제하기 </button>
             </div>
         </div>
     );

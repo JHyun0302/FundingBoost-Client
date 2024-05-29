@@ -12,7 +12,7 @@ const OrderHistorySingleOrder = ({orderHistoryData}) => {
                     <img className="MyPageOrderHistoryOneEllipse" alt="Ellipse" src={orderHistoryData.itemImageUrl}/>
                     <div className="MyPageOrderHistoryOneOverlap">
                         <div className="MyPageOrderHistoryOneText-wrapper-6">{orderHistoryData.createdDate
-                        }(구매날짜)</div>
+                        }</div>
                         <p className="MyPageOrderHistoryOne-p">{orderHistoryData.itemName}</p>
                         <div className="MyPageOrderHistoryOneOptionQuantity">
                             <div className="MyPageOrderHistoryOneOption-group">
