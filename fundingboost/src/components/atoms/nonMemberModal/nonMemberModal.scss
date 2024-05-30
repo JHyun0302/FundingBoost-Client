@@ -1,4 +1,5 @@
 .modal-boby {
+  font-family: bold;
   position: fixed;
   top: 0;
   left: 0;
@@ -32,6 +33,8 @@
     padding: 25px;
     .modal-header {
       padding: 0 0 5px 0;
+      display: flex;
+      justify-content: center;
     }
     .modal-message2{
       margin-top: 10px;
@@ -42,7 +45,7 @@
       justify-content: space-evenly;
 
       .modal-closeBtn {
-        width: 130px;
+        width: 160px;
         margin-top: 20px;
         padding: 10px 20px;
         background-color: #bdbdbd;
@@ -52,7 +55,7 @@
         cursor: pointer;
       }
       .modal-myPageBtn {
-        width: 130px;
+        width: 160px;
         margin-top: 20px;
         padding: 10px 20px;
         background-color: #FFC83B;

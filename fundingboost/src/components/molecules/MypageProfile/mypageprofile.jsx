@@ -1,6 +1,6 @@
 import React from 'react';
 import "./mypageprofile.scss";
-import defaultProfileImg from "../../../assets/testprofile.svg";
+import defaultProfile from "../../../assets/defaultProfile.svg";
 
 export default function MyPageProfile ({ profileInfo }) {
     // 프로필 정보에서 필요한 데이터 추출
@@ -9,7 +9,7 @@ export default function MyPageProfile ({ profileInfo }) {
     return (
         <div className="myPageProfileView">
             <div className='myPageProfile'>
-                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileInfo.myPageMemberDto?.profileImgUrl || defaultProfileImg}/>
+                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileInfo.myPageMemberDto?.profileImgUrl ||  defaultProfile}/>
                 <div className='myPageProfileText'>
                     <div className="myPageProfileName">{profileInfo.myPageMemberDto?.nickName}</div>
                     <a className="myPageProfileEmail">
