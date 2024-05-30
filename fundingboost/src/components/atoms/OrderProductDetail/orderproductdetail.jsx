@@ -19,6 +19,10 @@ const OrderProductDetail = ({ selectedItems }) => {
                                 </div>
                                 <div className="MyPayItem-option-name">{item.optionName}</div>
                             </div>
+                            <div className="quantity-wrapper">
+                            <div className="MyPayItem-quantity-wrapper">[ 수량 ]</div>
+                                <div className="MyPayItem-quantity"> {item.quantity}</div>
+                            </div>
                         </div>
                     </div>
                     <div className="MyPayItem-price">{item.itemPrice.toLocaleString()} 원</div>

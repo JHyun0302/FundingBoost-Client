@@ -54,7 +54,7 @@ const OrderPane = () => {
     const getTotalPrice = () => {
         if (purchaseItem.length > 0) {
             const totalPrice = purchaseItem.reduce((accumulator, currentItem) => {
-                return accumulator + currentItem.itemPrice;
+                return accumulator + (currentItem.itemPrice * currentItem.quantity);
             }, 0);
             return totalPrice;
         }

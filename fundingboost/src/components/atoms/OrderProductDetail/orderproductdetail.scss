@@ -98,7 +98,28 @@
   font-weight: 500;
   padding-left: 10px;
   white-space: nowrap;
+}
 
+.MyPayItem-quantity-wrapper{
+  color: #8c8c8c;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.MyPayItem-quantity{
+  color: #8c8c8c;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.quantity-wrapper{
+  display: flex;
+  flex-direction: row;
 }
 
 .MyPayItem-price {
