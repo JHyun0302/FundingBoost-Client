@@ -1,6 +1,7 @@
 import React from "react";
 import "./mypage-friend-funding-item.scss";
 import img from "../../../assets/mypageDefaultProfile.svg";
+import defaultProfileImg from "../../../assets/defaultProfile.svg";
 
 export default function MyPageFriendFundingItem ({ data }) {
 
@@ -8,7 +9,7 @@ export default function MyPageFriendFundingItem ({ data }) {
         <div className="MyPageFriendFundingOneBox">
             <div className="MyPageFriendFundingOneView">
                 <div className="div">
-                    <img className="ellipse" alt="Ellipse" src={data.friendProfileImg} />
+                    <img className="ellipse" alt="Ellipse" src={data.friendProfileImg || defaultProfileImg} />
                     <div className="MyPageFriendFundingOneText-wrapper-1">
                         <div className="MyPageFriendFundingOneText-wrapper-3">{data.createdDate}</div>
                         <div className="MyPageFriendFundingOneText-wrapper-4">
@@ -17,7 +18,7 @@ export default function MyPageFriendFundingItem ({ data }) {
                         </div>
                     </div>
                 </div>
-                <div className="MyPageFriendFundingOneText-wrapper-6">{data.price} 원</div>
+                <div className="MyPageFriendFundingOneText-wrapper-6">{data.price.toLocaleString()} 원</div>
             </div>
         </div>
     );

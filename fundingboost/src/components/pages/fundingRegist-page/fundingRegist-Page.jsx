@@ -10,6 +10,7 @@ import './fundingRegist-Page.scss';
 import axios from "axios";
 import FundingRegistBtn from "../../atoms/button/FundingRegistBtn/fundingRegistBtn";
 import FundingRegistModal from "../../atoms/fundingRegistModal/fundingRegistModal";
+import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
 
 
 function FundingRegistPage(props) {
@@ -22,10 +23,16 @@ function FundingRegistPage(props) {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const [tagIsSelected, setTagIsSelected] = useState(false);
+    const [modalShowState, setModalShowState] = useState(false);
 
     useEffect(() => {
         const checkFundingStatus = async () => {
             try {
+                const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
@@ -140,6 +147,7 @@ function FundingRegistPage(props) {
     return (
         <div className="fundingRegist-Page">
             <HeaderBar />
+            {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요." />}
             <FundingRegistModal show={showModal} onClose={closeModal} onMyPage={myPageBtnModal} message="진행중인 펀딩이 존재합니다." />
             <div className="fundingRegistContent">
 

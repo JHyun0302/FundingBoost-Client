@@ -3,12 +3,14 @@ import '../gifthub/gifthub.scss';
 import SingleGiftHubItem from '../../../molecules/SingleGifthubItem/singlegifthubitem';
 import GifthubResult from "../../../molecules/GifthubResult/gifthubresult";
 import axios from 'axios';
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const GifthubPane = () => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [items, setItems] = useState([]);
-
+    const [modalShowState, setModalShowState] = useState(false);
+    
     const handleCheckboxChange = (item, isChecked) => {
         if (isChecked) {
             setSelectedItems([...selectedItems, item]);
@@ -33,6 +35,11 @@ const GifthubPane = () => {
         const fetchData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+                
                 const response = await axios({
                     method: 'GET',
                     url: `${process.env.REACT_APP_FUNDINGBOOST}/gifthub`,
@@ -59,6 +66,7 @@ const GifthubPane = () => {
 
     return(
         <div className="gifthub-page-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요" />}
             <div className="gifthub-item-pane-container">
                 {Array.isArray(items) && items.map(item => (
                     <SingleGiftHubItem

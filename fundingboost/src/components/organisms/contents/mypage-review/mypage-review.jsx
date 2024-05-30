@@ -5,9 +5,12 @@ import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import axios from "axios";
 import ReviewList from "../../../molecules/reviewList/reviewList";
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const ReviewPane = () => {
     const [apiData, setApiData] = useState(null);
+    const [modalShowState, setModalShowState] = useState(false);
+
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
     };
@@ -17,6 +20,11 @@ const ReviewPane = () => {
         const fetchData = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+
                 const response = await axios({
                     method: 'GET',
                     url: `${process.env.REACT_APP_FUNDINGBOOST}/review`,
@@ -39,6 +47,7 @@ const ReviewPane = () => {
     }, []);
     return (
         <div className="mypage-myhistory-total-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypage-myhistory-left-pane-container">
                 {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={6} />

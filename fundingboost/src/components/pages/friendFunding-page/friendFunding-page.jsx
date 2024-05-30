@@ -6,12 +6,20 @@ import SingleFriendFunding from "../../molecules/Single-friendFunding/single-fri
 import FriendFundingDropdownBtn from "../../atoms/friendFunding-DropdownBtn/friendFunding-DropdownBtn";
 import axios from "axios";
 
+import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
+
 const FriendFundingPage = () => {
+    const [modalShowState, setModalShowState] = useState(false);
     const [friendFundingData, setFriendFundingData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
+
                 const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
 
                 const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/friends`, {
 
@@ -35,6 +43,7 @@ const FriendFundingPage = () => {
     return (
         <div>
             <Header />
+            {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요."/>}
             <FriendFundingDropdownBtn className="friendFundingDropdownBtn" friendFundingData={friendFundingData}/>
             <SingleFriendFunding friendFundingData={friendFundingData} />
             <Footer />
