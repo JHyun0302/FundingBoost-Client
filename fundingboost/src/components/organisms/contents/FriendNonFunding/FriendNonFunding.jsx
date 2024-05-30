@@ -2,7 +2,6 @@ import React from 'react';
 import ShoppingNowBtn from '../../../atoms/button/ShoppingNowBtn/shoppingNowBtn';
 import './friendNonFunding.scss';
 import hweng from '../../../../assets/hweng.svg';
-import * as buffer from "node:buffer";
 
 const FriendNonFunding = () => {
     return (
@@ -14,7 +13,7 @@ const FriendNonFunding = () => {
             </div>
 
             <hr style={{border: '1px solid', color: 'black', width: '100%'}}/>
-.\f
+
         </div>
     );
 };
