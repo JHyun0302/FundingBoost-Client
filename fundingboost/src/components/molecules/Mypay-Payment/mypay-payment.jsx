@@ -68,6 +68,7 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
         return remainingPrice > 0 ? remainingPrice.toLocaleString() : "0";
     };
 
+    const displayedCollectPrice = collectPrice >= itemPrice ? itemPrice : collectPrice;
 
     const payTotalPrice = calculateTotalPrice(); // 변수명 변경
 
@@ -115,14 +116,17 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
                         <div className="MyPayFundingPaymentInformationGroup">
                             <div className="MyPayFundingPaymentInformationText">펀딩 된 금액</div>
                             <div className="MyPayFundingPaymentInformationOverlap-group">
-                                <div className="text-price">- {collectPrice ? collectPrice.toLocaleString() : 0} 원</div> {/* 펀딩된 금액을 표시 */}
+                                <div
+                                    className="text-price">- {displayedCollectPrice ? displayedCollectPrice.toLocaleString() : 0} 원
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="line" alt="Line"/>
-                    <div className="total-price">{payTotalPrice} 원</div> {/* 총 가격 표시 */}
+                    <div className="total-price">{payTotalPrice} 원</div>
+                    {/* 총 가격 표시 */}
                 </div>
-                <button className="pay-request-button" onClick={handlePayment}> 결제하기 </button>
+                <button className="pay-request-button" onClick={handlePayment}> 결제하기</button>
             </div>
         </div>
     );
