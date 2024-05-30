@@ -75,7 +75,7 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
                                     gifthubItemId={gifthubItemId}
                                 />
                             </div>
-                            <div className="giftbox-item-price">{item.itemPrice} 원</div>
+                            <div className="giftbox-item-price">{item.itemPrice.toLocaleString()} 원</div>
                         </div>
                     </div>
                 </div>

@@ -110,7 +110,13 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         </button>
                     </div>
                 <div className="fundingAndGifthubPosition">
-                    <FundingNowBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName}  />
+                    <FundingNowBtn
+                        itemId={itemId}
+                        itemThumbnailImageUrl={itemThumbnailImageUrl}
+                        selectOption={selectOption}
+                        itemPrice={itemPrice}
+                        itemName={itemName}
+                        quantity={quantity}/>
                 </div>
                 </div>
             </div>
