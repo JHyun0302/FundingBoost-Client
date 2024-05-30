@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // react-router-dom에서 Link 가져오기
+import { Link } from 'react-router-dom';
 import './mainFriendFunding.scss';
 import ItemImg from "../../../atoms/itemImg/itemImg";
 import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
@@ -59,14 +59,15 @@ const MainFriendFunding = ({ memberFundingData }) => {
                         {chunkArray(friendFundingData, itemsSlide).map((chunk, index) => (
                             <div key={index} className="mainFriendFundingitem">
                                 {chunk.map((friendFunding, idx) => (
-                                    <Link key={idx}
-                                          to={{
-                                              pathname: `/friend-Funding/Detail/${friendFunding.commonFriendFundingDto.fundingId}`,
-                                              state: { fundingId: friendFunding.commonFriendFundingDto.fundingId }
-                                          }}
-                                          className="mainFriendFundingLink"
+                                    <div className="mainFriendFundingContents">
+                                        <Link key={idx}
+                                              to={{
+                                                  pathname: `/friend-Funding/Detail/${friendFunding.commonFriendFundingDto.fundingId}`,
+                                                  state: { fundingId: friendFunding.commonFriendFundingDto.fundingId }
+                                              }}
+                                              className="mainFriendFundingLink"
+                                              style={{ textDecoration: "none" }}
                                         >
-                                        <div className="mainFriendFundingContents">
                                             <div className="mainFriendFundingProfile-item">
                                                 <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoList[0].itemImageUrl} className="mainFriendFunding-Itemimg"/>
                                                 <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="mainFriendFunding-profile-img"/>
@@ -85,8 +86,9 @@ const MainFriendFunding = ({ memberFundingData }) => {
                                                     <GaugeBar value={friendFunding.commonFriendFundingDto.friendFundingPercent} className="mainFriendFunding-GaugeBar"/>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </div>
+
                                 ))}
                             </div>
                         ))}

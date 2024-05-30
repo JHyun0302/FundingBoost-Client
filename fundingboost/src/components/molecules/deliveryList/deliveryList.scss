@@ -1,0 +1,84 @@
+.deliveryList {
+
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .deliveryAddressList-container{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #3e3e3e;
+    height: 100%;
+  }
+
+  .deliveryList-box{
+    background-color: #efefef;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    min-width: 1130px;
+    max-width: 1130px;
+
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    .delivery-address-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90%;
+    }
+    .delivery-address-list-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 84px;
+      width: 100%;
+
+      .delivery-address-list-delivery-management {
+        font-weight: bold;
+        font-size: 30px;
+        display: flex;
+        //align-items: center;
+        margin: 10px 0 0 15px;
+        align-items: flex-end;
+      }
+
+      .delivery-address-list-add-delivery {
+        color: #000000;
+        font-size: 17px;
+        text-align: end;
+        align-self: flex-end;
+        width: 117px;
+        height: 39px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+      }
+    }
+
+    .delivery-address-list-line {
+      border-bottom: 1px solid gray;
+      margin: 10px;
+    }
+
+    .delivery-address-list-addresses {
+      display: flex;
+      flex-direction: column;
+      //width: 100%;
+      //height: 870px;
+      align-items: center;
+      overflow: scroll;
+      scrollbar-width: none;
+    }
+  }
+
+
+}
+
+
+
+

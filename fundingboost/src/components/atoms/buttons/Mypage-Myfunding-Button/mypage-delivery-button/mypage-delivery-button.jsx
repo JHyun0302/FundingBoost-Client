@@ -2,12 +2,13 @@ import React from "react";
 import './mypage-delivery-button.scss';
 import {useNavigate} from "react-router-dom";
 
-function MypageDeliveryBtn() {
+function MypageDeliveryBtn({selectedItemDto}) {
 
     const navigate = useNavigate();
 
     const handleDeliveryButtonClick = () => {
-        navigate('/funding/pay');
+        navigate('/funding/pay', { state: {selectedItemDto}});
+        console.log(selectedItemDto)
     };
 
     return (

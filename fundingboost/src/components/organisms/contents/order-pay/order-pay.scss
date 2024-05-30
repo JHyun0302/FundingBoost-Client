@@ -1,0 +1,44 @@
+.order-pay-page-container{
+  display: flex;
+  min-height: 335px;
+}
+
+.mypay-product-details-text{
+  font-size: 25px;
+  padding: 20px 20px 5px 20px;
+  font-family: SUITE-Regular;
+  font-weight: 400;
+}
+
+.MyOrderItemBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  //align-items: center;
+  border: 1px solid #d7d7d7;
+  margin-bottom: 10px;
+  width: auto;
+  padding: 10px;
+  margin: 5px 20px 10px 20px;
+}
+
+.orderpay-left-container{
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.orderpay-right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-left: 1px solid #818181;
+  align-items: flex-end;
+  position: relative;
+
+  .orderpayment-container {
+    position: absolute;
+    bottom: 330px;
+  }
+}

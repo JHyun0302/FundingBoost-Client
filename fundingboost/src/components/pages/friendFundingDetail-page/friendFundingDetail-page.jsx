@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // react-router-dom에서 useParams 가져오기
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 import Header from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
 import FriendFundingDetailItem from "../../molecules/FriendFundingDetail/FriendFundingDetail-item/friendFundingDetail-item";
 import FriendFundingDetailOptionDetail from "../../molecules/FriendFundingDetail/friendFundingDetail-optionDetail/friendFundingDetail-optionDetail";
 import "./friendFundingDetail-page.scss";
-import { useLocation } from 'react-router-dom';
-
+import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
 
 const FriendFundingDetailPage = () => {
     const [friendFundingDetailData, setFriendFundingDetailData] = useState({});
     const { fundingId } = useParams();
+    const [modalShowState, setModalShowState] = useState(false);
     console.log("FundingId: "+fundingId);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/friends/${fundingId}?memberId=1`, {
+                const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/friends/${fundingId}`, {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
                         "Access-Control-Allow-Credentials": true,
-                        "ngrok-skip-browser-warning": true,
+                        "Authorization": `Bearer ${accessToken}`
                     },
                 });
                 setFriendFundingDetailData(response.data);
@@ -37,7 +44,7 @@ const FriendFundingDetailPage = () => {
     return (
         <div className="friendFundingDetail-Page">
             <Header />
-
+            {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요." />}
             <div className="friendFundingDetail">
                 <FriendFundingDetailItem friendFundingDetailData={friendFundingDetailData} />
                 <div className="friendFundingDetail-optionDetail">

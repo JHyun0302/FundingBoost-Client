@@ -5,34 +5,46 @@ import MypayDelivery from "../../../molecules/Mypay-Delivery/mypay-delivery";
 import MypayPayment from "../../../molecules/Mypay-Payment/mypay-payment";
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const MypayPane = () => {
     const [apiData, setApiData] = useState(null);
     const [fundingItemData, setFundingItemData] = useState(null);
-    const [deliveryDtoList, setDeliveryDtoList] = useState([]); // deliveryDtoList 상태 추가
+    const [deliveryDtoList, setdeliveryDtoList] = useState([]); // deliveryDtoList 상태 추가
     const location = useLocation();
     const [collectPrice, setCollectPrice] = useState(null);
     const [point, setPoint] = useState(null);
+    const [modalShowState, setModalShowState] = useState(false);
+    const [selectedDeliveryItem, setSelectedDeliveryItem] = useState(null);
 
-    const { state: { myPageFundingItemDtoList } } = location;
-    console.log("myPageFundingItemDtoList", myPageFundingItemDtoList);
-    console.log(deliveryDtoList);
+    const { state: { selectedItemDto } } = location;
+    console.log("selectedItemDto ", selectedItemDto);
 
     useEffect(() => {
         const fetchFundingItemData = async () => {
             try {
-                const response = await axios.get(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/pay/view/funding/1?memberId=1`, {
+                const accessToken = localStorage.getItem('accessToken');
+                const fundingItemId = selectedItemDto.fundingItemId;
+                console.log(fundingItemId)
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/pay/view/funding/${fundingItemId}`, {
+
                     responseType: 'json',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Credentials': true,
-                        'ngrok-skip-browser-warning': true,
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
+                        'Access-Control-Allow-Credentials': true
                     }
                 });
                 console.log('GET 결과:', response.data);
                 setFundingItemData(response.data);
                 setApiData(response.data.data);
-                setDeliveryDtoList(response.data.data.deliveryDtoList);
+                setdeliveryDtoList(response.data.data.deliveryDtoList);
                 setCollectPrice(response.data.data.collectPrice);
                 setPoint(response.data.data.point);
             } catch (error) {
@@ -44,8 +56,6 @@ const MypayPane = () => {
     }, []);
 
     const onUpdateUsingPoint = (value) => {
-        // 여기에서 사용 포인트 업데이트 로직을 정의합니다.
-        // 예를 들어:
         console.log("사용 포인트가 업데이트되었습니다:", value);
     };
 
@@ -53,13 +63,19 @@ const MypayPane = () => {
 
     return(
         <div className="mypay-page-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypay-left-container">
-                <MypayProductDetail myPageFundingItemDtoList={myPageFundingItemDtoList[0]} />
-                <MypayDelivery deliveryDtoList={deliveryDtoList}/>
+                <MypayProductDetail selectedItemDto={selectedItemDto} />
+                <MypayDelivery deliveryDtoList={deliveryDtoList} onSelectItem={setSelectedDeliveryItem}/>
             </div>
             <div className="mypay-right-container">
                 <div className="payment-container">
-                    <MypayPayment collectPrice={collectPrice} point={point} myPageFundingItemDtoList={myPageFundingItemDtoList[0] } onUpdateUsingPoint={onUpdateUsingPoint}/>
+                    <MypayPayment
+                        collectPrice={collectPrice}
+                        point={point}
+                        selectedItemDto={selectedItemDto}
+                        onUpdateUsingPoint={onUpdateUsingPoint}
+                        selectedDeliveryItem={selectedDeliveryItem}/>
                 </div>
             </div>
         </div>

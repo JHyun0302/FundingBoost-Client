@@ -12,7 +12,7 @@ export default function MypayDeliveryHistoryList({ deliveryDtoList, onSelectItem
             {deliveryDtoList.map((delivery, index) => (
                 <div key={index} className="MyPayDeliveryListGroup">
                     <div className="MyPayDeliveryListView-wrapper">
-                        <MypayDeliveryHistory key={index} delivery={delivery} onSelectItem={onSelectItem}/>
+                        <MypayDeliveryHistory key= {index} delivery={delivery} onSelectItem={onSelectItem}/>
                     </div>
                 </div>
             ))}

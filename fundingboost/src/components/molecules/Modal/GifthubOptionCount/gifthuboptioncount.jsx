@@ -1,13 +1,48 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 import './gifthuboptioncount.scss';
 
-function GifthubOptionCount() {
+function GifthubOptionCount({ onQuantityChange,  gifthubItemId, itemId }) {
     const [showModal, setShowModal] = useState(false);
+    const [quantity, setQuantity] = useState('');
 
-    const handleCloseModal = () => setShowModal(false);
+    const handleCloseModal = async () => {
+        onQuantityChange(quantity);
+
+        const requestData = {
+            quantity: quantity
+        };
+
+
+        try {
+            const accessToken = localStorage.getItem('accessToken');
+
+            const response = await axios.patch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/quantity/${gifthubItemId}`, requestData, {
+
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${accessToken}`,
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
+                    'Access-Control-Allow-Credentials': true
+                },
+            });
+            console.log('PATCH 결과:', response.data);
+
+        } catch (error) {
+            console.error('PATCH 에러:', error);
+        }
+
+        setShowModal(false);
+    };
+
     const handleShowModal = () => setShowModal(true);
+
+    const handleQuantityChange = (e) => {
+        setQuantity(e.target.value);
+    };
 
     return (
         <>
@@ -15,18 +50,21 @@ function GifthubOptionCount() {
                 변경
             </button>
 
-            <Modal show={showModal} onHide={handleCloseModal} animation={true}>
+            <Modal show={showModal} onHide={() => setShowModal(false)} animation={true}>
                 <Modal.Header closeButton>
                     <Modal.Title>수량 변경</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* 모달 내용 */}
                     <div>변경할 수량을 입력하세요.</div>
-                    {/* 예시: 입력 폼 */}
-                    <input type="text" placeholder="수량 입력" />
+                    <input
+                        type="text"
+                        placeholder="수량 입력"
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
                         닫기
                     </Button>
                     <Button variant="primary" onClick={handleCloseModal}>

@@ -13,12 +13,16 @@ const ExtensionButton = ({ myPageFundingItemDtoList }) => {
 
 
         try {
-            const response = await axios.post(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/extension/${fundingId}?memberId=1`, requestData, {
+            const accessToken = localStorage.getItem('accessToken');
+
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding/extension/${fundingId}`, requestData, {
+
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                    'ngrok-skip-browser-warning': true,
+                    "Authorization": `Bearer ${accessToken}`,
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
+                    'Access-Control-Allow-Credentials': true
                 },
                 withCredentials: true
             });

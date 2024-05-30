@@ -58,6 +58,15 @@
     background-color: #efbb37;
     color: black;
     border: 1px solid #c8c8c8;
+
+    &:disabled {
+      background-color: #cbcbcb;
+      cursor: not-allowed;
+      &:hover{
+        color: #212121;
+        box-shadow:none;
+      }
+    }
   }
 
   .gifthub-purchase-btn:hover{
@@ -75,6 +84,14 @@
     background-color: #efbb37;
     color: black;
     border: 1px solid #c8c8c8;
+    &:disabled {
+      background-color: #cbcbcb;
+      cursor: not-allowed;
+      &:hover{
+        color: #212121;
+        box-shadow:none;
+      }
+    }
   }
 
   .gifthub-funding-btn:hover{

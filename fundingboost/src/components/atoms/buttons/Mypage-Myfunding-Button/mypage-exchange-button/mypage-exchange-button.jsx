@@ -1,31 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import './mypage-exchange-button.scss';
 import axios from "axios";
+import ExchangePoint from "../../../../molecules/Modal/CheckExchangePoint/checkexchangepoint";
 
-const MypageExchangeBtn = ({ memberId }) => {
+const MypageExchangeBtn = ({ item, memberId }) => {
+    const [refresh, setRefresh] = useState(false);
+
     const handleExchange = async () => {
-        const requestData = {
-            memberId: memberId
-        };
-
-        try {
-            const response = await axios.patch(`https://65fd-112-218-95-58.ngrok-free.app/api/v1/member/point?memberId=1`, requestData, {
-                responseType: 'json',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                    'ngrok-skip-browser-warning': true,
-                },
-            });
-            console.log('PATCH 결과:', response.data);
-
-        } catch (error) {
-            console.error('PATCH 에러:', error);
-        }
+        // 요청 보내는 부분은 ExchangePoint 컴포넌트 내부로 이동합니다.
     };
 
+    if (refresh) {
+        window.location.reload(); // 페이지 새로고침
+    }
+
     return (
-        <button className="mypage-exchange-btn" onClick={handleExchange}>포인트 전환하기</button>
+        <ExchangePoint item={item} handleExchange={handleExchange} />
     );
 }
 

@@ -3,15 +3,15 @@ import '../gifthub/gifthub.scss';
 import SingleGiftHubItem from '../../../molecules/SingleGifthubItem/singlegifthubitem';
 import GifthubResult from "../../../molecules/GifthubResult/gifthubresult";
 import axios from 'axios';
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
+import GifthubNonItem from "../../../organisms/contents/gifthubNonItem/gifthubNonItem";
 
 const GifthubPane = () => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [items, setItems] = useState([]);
-
-    // const mockServerUrl = process.env.REACT_APP_MOCK_SERVER_URL;
-    // console.log(mockServerUrl);
-
+    const [modalShowState, setModalShowState] = useState(false);
+    
     const handleCheckboxChange = (item, isChecked) => {
         if (isChecked) {
             setSelectedItems([...selectedItems, item]);
@@ -35,13 +35,21 @@ const GifthubPane = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
+                
                 const response = await axios({
                     method: 'GET',
-                    url: 'https://65fd-112-218-95-58.ngrok-free.app/api/v1/gifthub?memberId=1',
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/gifthub`,
                     responseType: 'json',
                     headers: ({
+                        'Content-Type': 'application/json',
                         "Access-Control-Allow-Credentials" : true,
-                        "ngrok-skip-browser-warning": true,
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Access-Control-Allow-Origin": "http://localhost:3000/"
                     }),
                 })
                 if (response.data.success) {
@@ -59,6 +67,8 @@ const GifthubPane = () => {
 
     return(
         <div className="gifthub-page-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요" />}
+            {items.length > 0 ? (
             <div className="gifthub-item-pane-container">
                 {Array.isArray(items) && items.map(item => (
                     <SingleGiftHubItem
@@ -69,8 +79,13 @@ const GifthubPane = () => {
                     />
                 ))}
             </div>
+            ) : (
+                <div className="gifthub-item-pane-container">
+                <GifthubNonItem/>
+                    </div>
+                )}
             <div className="gifthub-result-pane">
-                <GifthubResult totalPrice={totalPrice} selectedItems={selectedItems} />
+                <GifthubResult items={items} totalPrice={totalPrice} selectedItems={selectedItems} />
             </div>
         </div>
     );

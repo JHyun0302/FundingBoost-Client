@@ -25,15 +25,36 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      .moneyButton{
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        background-color: #ffc83b;
+        border: none;
+      }
     }
 
-    .moneyButton{
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: 600;
-      text-align: center;
-      background-color: #ffc83b;
-      border: none;
+    .NonMoney {
+      background-color: rgb(214, 214, 214);
+      border-radius: 10px;
+      height: 32px;
+      width: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+      .NonMoneyButton{
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        background-color: rgb(214, 214, 214);
+        border: none;
+        cursor: default;
+      }
+
     }
   }
 }

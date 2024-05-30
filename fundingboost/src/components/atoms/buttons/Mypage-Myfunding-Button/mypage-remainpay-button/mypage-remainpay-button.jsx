@@ -1,17 +1,19 @@
 import React from "react";
 import './mypage-remainpay-button.scss';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function MypageRemainpayBtn({myPageFundingItemDtoList}) {
+function MypageRemainpayBtn({ selectedItemDto }) {
     const navigate = useNavigate();
 
-
     const handleRemainpayButtonClick = () => {
-        navigate('/funding/pay', { state: {myPageFundingItemDtoList}});
-        console.log(myPageFundingItemDtoList)
+        navigate('/funding/pay', { state: { selectedItemDto } });
+        console.log(selectedItemDto);
     };
+
     return (
-        <button className="mypage-remainpay-btn" onClick={handleRemainpayButtonClick} >잔여금액 결제하기</button>
+        <button className="mypage-remainpay-btn" onClick={handleRemainpayButtonClick}>
+            잔여금액 결제하기
+        </button>
     );
 }
 

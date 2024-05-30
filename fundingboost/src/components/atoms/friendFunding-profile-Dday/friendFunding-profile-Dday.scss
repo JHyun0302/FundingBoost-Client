@@ -1,0 +1,63 @@
+.friendFunding-profile-Dday{
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 25px 10px 20px;
+
+  .friendFundingProfile {
+    display: flex;
+
+
+    .friendProfileImg {
+      width: 58px;
+      height: auto;
+      border-radius: 50%;
+      border-color: #000000 !important;
+      border: 1px solid;
+      margin-right: 10px;
+    }
+    .friendNameAndTag {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .friendName {
+        color: #000000;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .friendTag {
+        font-size: 14px;
+        height: 29px;
+        color: #9c9c9c;
+        margin-left: 10px;
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+  }
+  .friendFunding-DDay{
+    display: flex;
+    align-items: center;
+
+    .dDay{
+      color: #000000;
+      font-weight: bold;
+      font-size: 20px;
+      margin-left: auto;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

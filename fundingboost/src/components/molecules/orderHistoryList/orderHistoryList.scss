@@ -1,0 +1,133 @@
+.orderHistoryList {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .orderHistoryList-container{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #3e3e3e;
+    height: 100%;
+  }
+
+  .orderHistoryList-box{
+    background-color: #efefef;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    min-width: 1130px;
+    max-width: 1130px;
+
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    .order-history-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90%;
+      align-items: center;
+    }
+    .order-history-list-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 84px;
+      width: 100%;
+      align-items: flex-end;
+      .order-history-list-delivery-management {
+        font-weight: bold;
+        font-size: 30px;
+        display: flex;
+        //align-items: center;
+        margin: 10px 0 0 15px;
+        align-items: flex-end;
+      }
+      .order-history-detail{
+        display: flex;
+        flex-direction: row;
+        /* margin: 10px; */
+        height: 39px;
+        align-items: flex-end;
+        >img{
+          margin: 4px;
+          width: 17px;
+          height: auto;
+        }
+        .order-history-list-add-delivery {
+          color: #000000;
+          font-size: 17px;
+          text-align: end;
+          height: 39px;
+          display: flex;
+          justify-content: center;
+          margin-right: 15px;
+          align-items: flex-end;
+        }
+        .order-history-list-add-delivery:hover{
+          color: #7d7d7d;
+          cursor: pointer;
+        }
+      }
+
+    }
+
+    .order-history-list-line {
+      border-bottom: 1px solid gray;
+      margin: 10px;
+      width: 100%;
+    }
+
+    .order-history-list-addresses {
+      display: flex;
+      flex-direction: column;
+      overflow: scroll;
+      scrollbar-width: none;
+      flex-wrap: nowrap;
+      width: 100%;
+      align-items: center;
+    }
+  }
+
+
+}
+
+  .MyPageFriendFundingListOverlap-group {
+    background-color: #e0e0e0;
+    height: 33px;
+    width: 98%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    .MyPageFriendFundingListText-wrapper-7 {
+      color: #737373;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: normal;
+      text-align: center;
+      white-space: nowrap;
+      margin-left: 10px;
+      width: 256px;
+    }
+
+    .MyPageFriendFundingListText-wrapper-6 {
+      color: #737373;
+      font-size: 20px;
+      font-weight: 100;
+      line-height: normal;
+      text-align: center;
+      white-space: nowrap;
+      width: 180Px;
+    }
+  }
+
+
+
+
+
+

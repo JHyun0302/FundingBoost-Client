@@ -1,0 +1,259 @@
+.shoppingDetailOptionBtnBox{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 400px;
+}
+
+.div-second-btn-wrapper{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.div-third-btn-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.shopping-menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-left: 50%;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.shoppingDetailOptionBtnBox .shareAndHeartAndPurchase {
+  height: 52px;
+  width: 100%;
+}
+
+.shoppingDetailOptionBtnBox .purchaseBox {
+  height: 50px;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 5px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: SUITE-Regular;
+  align-items: center;
+  display: flex;
+}
+
+.shoppingDetailOptionBtnBox .purchaseBtn {
+  color: #3e3e3e;
+  font-size: 20px;
+  font-family: SUITE-Regular;
+  height: 49px;
+  letter-spacing: 0;
+  line-height: normal;
+  bottom: 1px;
+  width: 203px;
+  border: none;
+  background-color: transparent;
+  display: flex; /* 텍스트를 상하 중앙 정렬하기 위해 flex로 변경 */
+  align-items: center;
+  text-align: center;
+}
+
+.shoppingDetailOptionBtnBox .div-wrapper {
+  height: 50px;
+  width: 50px;
+}
+
+.shoppingDetailOptionBtnBox .div {
+  height: 50px;
+}
+
+.shoppingDetailOptionBtnBox .shareIconWrapper {
+  border: 1px solid #ebebeb;
+  left: -2px;
+  top: -2px;
+  height: 49px;
+  width: 49px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex; /* 내부 요소를 수평 중앙으로 정렬하기 위해 flex 사용 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.shoppingDetailOptionBtnBox .shareIcon {
+  height: 25px;
+  width: 25px;
+  object-fit: cover;
+}
+
+.shoppingDetailOptionBtnBox .heartIconPosition {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.shoppingDetailOptionBtnBox .heartIconWrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.shoppingDetailOptionBtnBox .heartIcon {
+  height: 25px;
+  width: 25px;
+}
+
+
+.shoppingDetailOptionBtnBox .selectOptionPositon {
+  font-family: SUITE-Regular;
+  height: 39px;
+  display: flex;
+  flex-direction: column;
+}
+
+.shoppingDetailOptionBtnBox .selectOptionBackground {
+  background-color: #ebebeb;
+  border: 1px solid;
+  border-color: #cacaca;
+  height: 39px;
+  position: relative;
+  width: 330px;
+}
+
+.shoppingDetailOptionBtnBox .selectOption {
+  color: #6e6e6e;
+  font-size: 15px;
+  font-weight: 700;
+  left: 17px;
+  letter-spacing: 0;
+  line-height: normal;
+  top: 11px;
+  white-space: nowrap;
+  width: 140px;
+}
+
+.shoppingDetailOptionBtnBox .fundingAndGifthubPosition {
+  height: 50px;
+  width: 100%;
+}
+
+
+.shoppingDetailOptionBtnBox .gifthubGroup {
+  height: 50px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.shoppingDetailOptionBtnBox .gifthubPosition {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.shoppingDetailOptionBtnBox .gifthubImg {
+  height: 25px;
+  object-fit: cover;
+  display: flex;
+  width: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.shoppingDetailOptionBtnBox .gifthubText {
+  color: #000000;
+  margin-left: 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shoppingDetailOptionBtnBox .quantityAndPrice {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.shoppingDetailOptionBtnBox .itemPrice {
+  color: #000000;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: SUITE-Regular;
+  display: flex;
+  margin-left: auto;
+}
+
+.shoppingDetailOptionBtnBox .quantity {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.shoppingDetailOptionBtnBox .purchaseBtn,
+{
+  color: #000000;
+  font-size: 20px;
+  font-family: SUITE-Regular;
+  letter-spacing: 0;
+  line-height: normal;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+}
+
+.button-quantity-style{
+  width: 25px;
+  height: 25px;
+  font-family:SUITE-Regular;
+  //border-radius: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  background-color: white;
+  border:none;
+}
+
+.shoppingDetailOptionBtnBox .element {
+  color: #000000;
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: normal;
+  align-items: center;
+}
+
+.shopping-second-line-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -8,35 +8,34 @@ import MypageRemainpayButton from "../buttons/Mypage-Myfunding-Button/mypage-rem
 export default function MyPageFinfundingbtn({ item, myPageFundingItemDtoList }) {
     const { finishedStatus, itemPercent } = item;
 
+    const selectedItemDto = myPageFundingItemDtoList.find(dto => dto.fundingItemId === item.fundingItemId);
+
     if (itemPercent === 0) {
         return <div style={{ height: '50px' }}></div>;
     }
-
 
     if (finishedStatus) {
         if (itemPercent === 100) {
             return (
                 <div className="fin-btn-wrapper">
-                    <MypageDeliveryButton />
+                    <MypageDeliveryButton selectedItemDto={selectedItemDto} />
                 </div>
             );
         } else {
-            // 완료되었지만 100%가 아닌 경우
             return (
                 <div className="fin-btn-wrapper">
                     <div className="exchange-remain-btn-wrapper">
-                        <MypageExchangeButton />
-                        <MypageRemainpayButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
+                        <MypageExchangeButton item={item} />
+                        <MypageRemainpayButton selectedItemDto={selectedItemDto} />
                     </div>
                 </div>
             );
         }
     } else {
-        // 완료되지 않은 경우
         if (itemPercent < 100) {
             return (
                 <div className="fin-btn-wrapper">
-                    <MypageDeliveryButton />
+                    <MypageCompleteButton />
                 </div>
             );
         } else {

@@ -6,11 +6,13 @@ import MyPageIndex from "../../../molecules/MypageIndex/mypageindex";
 import MyfundingNonFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-nonfunding";
 import MyfundingDoFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-dofunding";
 import MyfundingFinFundingPane from "../../../molecules/Mypage-Myfunding/mypage-myfunding-finfunding";
+import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
 
 const MypagePane = () => {
     const [apiData, setApiData] = useState(null);
     const [isFundingClosed, setIsFundingClosed] = useState(false); // 펀딩 종료 여부 상태
     const [deadlineDate, setDeadlineDate] = useState(null); // 마감일 상태 추가
+    const [modalShowState, setModalShowState] = useState(false);
 
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
@@ -20,12 +22,19 @@ const MypagePane = () => {
         // API 호출 함수
         const fetchData = async () => {
             try {
+                const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    setModalShowState(true);
+                    return;
+                }
                 const response = await axios({
                     method: 'GET',
-                        url: 'https://65fd-112-218-95-58.ngrok-free.app/api/v1/funding/my-funding-status?memberId=1',
+                        url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status`,
+
                     headers: {
                         "Access-Control-Allow-Credentials": true,
-                        "ngrok-skip-browser-warning": true
+                        "Access-Control-Allow-Origin": "http://localhost:3000/",
+                        "Authorization": `Bearer ${accessToken}`
                     },
                     responseType: 'json'
                 });
@@ -56,6 +65,7 @@ const MypagePane = () => {
 
     return (
         <div className="mypage-total-container">
+            {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypage-left-pane-container">
                 {apiData && <MypageProfile profileInfo={apiData} />}
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={0} />

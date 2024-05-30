@@ -1,0 +1,71 @@
+.friendFunding {
+  display: flex;
+  width: 100%;
+  font-family: SUITE-Regular;
+
+  .friendFunding-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 30px 30px 30px;
+    justify-content: center;
+
+    .friendFunding-itemlist{
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      flex-direction: row;
+
+      .friendFunding-Background {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #EBEBEB;
+        border-radius: 10px;
+        width: 465px;
+        margin: 15px 10px 15px 10px;
+        text-decoration-line: none;
+
+        .friendFunding-Background-left {
+          width: 436px;
+
+          .friendFunding-gaugeBar {
+            .gauge-bar.progress {
+              width: 405px;
+              margin: 15px 20px;
+              height: 25px;
+
+              .progress-bar.bg-success {
+                background-color: #FFDD2A !important;
+                color: black;
+              }
+            }
+          }
+        }
+
+        .friendFunding-Background-right {
+          background-color: #dfdfdf;
+          width: 29px;
+          border-radius: 0 10px 10px 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .friendFundingbtn {
+            width: 0px;
+            height: 0px;
+            border-top: 12px solid transparent;
+            border-left: 16px solid #ffffff;
+            border-bottom: 12px solid transparent;
+
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+
+
