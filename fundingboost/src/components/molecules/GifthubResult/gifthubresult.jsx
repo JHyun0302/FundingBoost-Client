@@ -6,7 +6,9 @@ const GifthubResult = ({ totalPrice, selectedItems, items }) => {
     const navigate = useNavigate();
 
     const handleFunding = () => {
-        if(selectedItems.length >5){
+        const totalFundingItemQuantity = selectedItems.reduce((total, selectedItem) => total + selectedItem.quantity, 0);
+        // 총 수량이 5 이상인 경우 이동 제한
+        if (totalFundingItemQuantity > 5) {
             alert('펀딩은 최대 5개까지만 가능합니다.');
             return;
         }

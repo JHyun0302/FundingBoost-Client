@@ -9,6 +9,11 @@ function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnail
 
     console.log(quantity);
     const fundingNowBtnClick = () => {
+        if(quantity>5){
+            alert('펀딩은 최대 5개까지만 가능합니다. ' +
+                '수량을 확인해주세요');
+         return;
+        }
         if(selectOption&&selectOption !=="상품 옵션을 선택해주세요."){
             const fundingNowData= {
                 optionName : selectOption,

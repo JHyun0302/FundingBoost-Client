@@ -21,11 +21,23 @@ function FundingRegistPage(props) {
     const { fundingNowData, selectedItems } = location.state || {};
 
     const [orderedItems, setOrderedItems] = useState(() => {
+        //gifthub에서 아이템 선택한 경우
         if (selectedItems) {
-            return selectedItems;
+            return selectedItems.reduce((acc, fundingItem) => {
+                //펀딩 수량 만큼 반복해줌
+                for (let i = 0; i < fundingItem.quantity; i++) {
+                    acc.push({
+                        ...fundingItem,
+                        id: `${fundingItem.itemId}-${i}` // 고유 id 지정
+                    });
+                }
+                return acc;
+            }, []);
+
+        // 쇼핑상세에서 펀딩 바로 가기를 통해 아이템 선택한 경우
         } else if (fundingNowData) {
             const items = [];
-            //펀딩 수량 만큼 반복해줌
+
             for (let i = 0; i < fundingNowData.quantity; i++) {
                 items.push({
                     ...fundingNowData,
