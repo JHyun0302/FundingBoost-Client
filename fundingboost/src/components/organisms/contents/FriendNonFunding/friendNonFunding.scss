@@ -1,0 +1,20 @@
+.friendNonFunding{
+  font-family: 'SUITE-Regular';
+  display: flex;
+  height: 500px;
+  align-items: center;
+  flex-direction: column;
+  .friendNonFundingText{
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .friendNonFunding-Title{
+      font-size: 25px;
+      margin-top: 13px;
+    }
+  }
+
+
+}

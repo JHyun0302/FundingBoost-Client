@@ -4,6 +4,7 @@ import SingleGiftHubItem from '../../../molecules/SingleGifthubItem/singlegifthu
 import GifthubResult from "../../../molecules/GifthubResult/gifthubresult";
 import axios from 'axios';
 import NonMemberModal from "../../../atoms/nonMemberModal/nonMemberModal";
+import GifthubNonItem from "../../../organisms/contents/gifthubNonItem/gifthubNonItem";
 
 const GifthubPane = () => {
     const [selectedItems, setSelectedItems] = useState([]);
@@ -67,6 +68,7 @@ const GifthubPane = () => {
     return(
         <div className="gifthub-page-container">
             {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요" />}
+            {items.length > 0 ? (
             <div className="gifthub-item-pane-container">
                 {Array.isArray(items) && items.map(item => (
                     <SingleGiftHubItem
@@ -77,6 +79,11 @@ const GifthubPane = () => {
                     />
                 ))}
             </div>
+            ) : (
+                <div className="gifthub-item-pane-container">
+                <GifthubNonItem/>
+                    </div>
+                )}
             <div className="gifthub-result-pane">
                 <GifthubResult items={items} totalPrice={totalPrice} selectedItems={selectedItems} />
             </div>
