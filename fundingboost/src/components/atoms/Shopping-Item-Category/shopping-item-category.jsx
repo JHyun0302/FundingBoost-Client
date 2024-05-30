@@ -4,55 +4,33 @@ import './shopping-item-category.scss';
 export default function ShoppingCategory({ onCategorySelect }) {
     const [selectedCategory, setSelectedCategory] = useState('전체');
 
+
+    const categories = [
+        { name: '전체', param: '' },
+        { name: '뷰티', param: '뷰티' },
+        { name: '패션', param: '패션' },
+        { name: '식품', param: '식품' },
+        { name: '디지털', param: '디지털' },
+        { name: '리빙/도서', param: '리빙/도서' },
+        { name: '스포츠', param: '스포츠' },
+    ];
+
     const handleCategorySelect = (category) => {
-        setSelectedCategory(category); // 선택된 카테고리를 상태로 설정
-        onCategorySelect(category);
+        setSelectedCategory(category.name); // 선택된 카테고리를 상태로 설정
+        onCategorySelect(category); // 카테고리 객체를 부모 컴포넌트로 전달
     };
 
     return (
         <div className="item-category-button-wrapper">
-            <button
-                className={`item-category-button-style ${selectedCategory === '전체' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('전체')}
-            >
-                전체
-            </button>
-            <button
-                className={`item-category-button-style ${selectedCategory === '뷰티' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('뷰티')}
-            >
-                뷰티
-            </button>
-            <button
-                className={`item-category-button-style ${selectedCategory === '패션' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('패션')}
-            >
-                패션
-            </button>
-            <button
-                className={`item-category-button-style ${selectedCategory === '식품' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('식품')}
-            >
-                식품
-            </button>
-            <button
-                className={`item-category-button-style ${selectedCategory === '디지털' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('디지털')}
-            >
-                디지털
-            </button>
-            <button
-                className={`item-category-button-style ${selectedCategory === '리빙/도서' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('리빙/도서')}
-            >
-                리빙/도서
-            </button>
-            <button
-                className={`item-category-button-style ${selectedCategory === '스포츠' ? 'selected' : ''}`}
-                onClick={() => handleCategorySelect('스포츠')}
-            >
-                스포츠
-            </button>
+            {categories.map((category) => (
+                <button
+                    key={category.param}
+                    className={`item-category-button-style ${selectedCategory === category.name ? 'selected' : ''}`}
+                    onClick={() => handleCategorySelect(category)}
+                >
+                    {category.name}
+                </button>
+            ))}
         </div>
     );
 }

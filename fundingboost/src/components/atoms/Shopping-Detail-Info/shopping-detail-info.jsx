@@ -10,6 +10,7 @@ export default function ShoppingDetailItemExplain () {
                 <button className="text-wrapper-2">리뷰</button>
                 <button className="text-wrapper-3">문의/정책</button>
             </div>
+            <div className="blank"/>
         </div>
     );
 };

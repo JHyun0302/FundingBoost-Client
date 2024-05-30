@@ -1,4 +1,3 @@
-// FundingRegistPage.js
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -9,7 +8,6 @@ import FundingRegistDetails from "../../molecules/FundingRegist/FundingRegistDet
 import FundingRegistItem from "../../molecules/FundingRegist/FundingRegistItem/fundingRegistItem";
 import './fundingRegist-Page.scss';
 import axios from "axios";
-import NonItemImg from "../../../assets/nonItemImg.svg";
 import FundingRegistBtn from "../../atoms/button/FundingRegistBtn/fundingRegistBtn";
 import FundingRegistModal from "../../atoms/fundingRegistModal/fundingRegistModal";
 
@@ -100,7 +98,6 @@ function FundingRegistPage(props) {
     // 종료일 ,메시지, 태그 정보 전송
     const handleSubmit = async () => {
         try {
-            const url = `${process.env.REACT_APP_FUNDINGBOOST}/funding`;
             const itemIdList = orderedItems.map(item => item.itemId);
             let fundingTag = tag;
             if (tag === "펀딩 해주세요🎁") {
