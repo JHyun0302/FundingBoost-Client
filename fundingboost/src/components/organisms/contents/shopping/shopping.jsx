@@ -23,9 +23,7 @@ const ShoppingPane = () => {
                 lastItemId: lastItemIdParam
             };
 
-            const url = isFirstLoad
-                ? `${process.env.REACT_APP_FUNDINGBOOST}/items`
-                : `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}&lastItemId=${lastItemIdParam}`;
+            const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}&lastItemId=${lastItemIdParam}`;
 
             const response = await axios.get(url, {
                 responseType: 'json',
@@ -39,17 +37,14 @@ const ShoppingPane = () => {
 
             const data = response.data;
             if (data && data.data && Array.isArray(data.data.content)) {
-                // 첫 번째 호출이 아닐 때만 기존 데이터를 유지한 채로 새로운 데이터를 추가합니다.
-                if (!isFirstLoad) {
-                    setItemData(prev => [...prev, ...data.data.content]);
-                } else {
-                    setItemData(data.data.content);
-                }
+                setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
                 console.log(data.data.content);
+                console.log(url);
                 if (data.data.content.length > 0) {
-                    setLastItemId(lastItemIdParam - 10);
+                    // 첫 번째 아이템의 itemId에서 10을 뺀 값을 lastItemId로 설정합니다.
+                    setLastItemId(data.data.content[0].itemId - 20);
                 }
-                setIsFirstLoad(false); // 첫 번째 호출이 완료되었음을 표시
+                setIsFirstLoad(false);
             } else {
                 console.error("Error: Unexpected response structure", data);
             }
@@ -60,13 +55,9 @@ const ShoppingPane = () => {
         }
     };
 
-
-
     useEffect(() => {
-        setItemData([]); // 카테고리가 변경되면 아이템 데이터 초기화
-        setLastItemId(60); // 초기 lastItemId 설정
-        setIsFirstLoad(true); // 카테고리가 변경될 때 첫 번째 호출 여부 초기화
-        fetchData(selectedCategory, 60); // 초기 페이지 데이터를 불러옴
+        setItemData([]);
+        fetchData(selectedCategory, 101); // 카테고리 변경시 또는 첫 페이지 로드 시
     }, [selectedCategory]);
 
     useEffect(() => {
@@ -80,7 +71,6 @@ const ShoppingPane = () => {
             observer.observe(loader.current);
         }
 
-        // Clean up
         return () => {
             if (loader.current) {
                 observer.unobserve(loader.current);
