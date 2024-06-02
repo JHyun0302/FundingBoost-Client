@@ -29,7 +29,7 @@ export default function Mainrankingitem({ product }) {
 
 
                     <div className="img-wrapper">
-                        <img src={itemImageUrl} width="100%" style={{borderRadius: '3px'}} alt={itemName}/>
+                        <img src={itemImageUrl} width="100%" style={{borderRadius: '10px'}} alt={itemName}/>
                     </div>
                 </div>
                 <div className="brand-wrapper">
