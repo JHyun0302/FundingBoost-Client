@@ -6,13 +6,13 @@ import ErrorBtn from "../../../atoms/buttons/ErrorButton/error-btn";
 const PaySuccessPane = () => {
     return (
         <div className="success-pane-container">
-            <div className="success-horizontalLine-up"></div>
+            <div className="error-horizontalLine-up"></div>
             <img src={error_icon} alt="error_icon" className="error_icon" />
             <div className="pay-success-text">
                 ⚠️ 네트워크 에러가 발생했습니다. 잠시후 다시 시도해주세요.⚠️
             </div>
             <ErrorBtn/>
-            <div className="success-horizontalLine-down"></div>
+            <div className="error-horizontalLine-down"></div>
         </div>
     );
 }
