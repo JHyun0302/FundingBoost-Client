@@ -49,6 +49,14 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
                     'Access-Control-Allow-Credentials': true
                 }
             });
+            if (response.data.success === false) {
+                // 에러 코드가 50000인 경우 에러 페이지로 리다이렉션
+                if (response.data.error && response.data.error.code === 50000) {
+                    navigate("/error");
+                    return;
+                }
+            }
+
             console.log('POST 결과:', response.data);
             navigate("/order/pay/success");
             // 성공 시 처리
