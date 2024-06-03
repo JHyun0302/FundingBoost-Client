@@ -24,7 +24,7 @@ const MypageDeliveryMangement = lazy(() => import('./components/pages/mypage/myp
 const MypageWishlist= lazy(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
 const MypageReview = lazy(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
 const SignUpPage    = lazy(() => import('./components/pages/signUp-page/signUp-page'));
-
+const KakaoLoginLoadingPage = lazy(() => import('./components/pages/login-page/redirection'));
 // 로딩 스피너
 const LoadingSpinner = () => (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -37,33 +37,50 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Suspense fallback={<LoadingSpinner />}><Main /></Suspense>} />
-                <Route path="/home" element={<Suspense fallback={<LoadingSpinner />}><Main /></Suspense>} />
-                <Route path="/login" element={<Suspense fallback={<LoadingSpinner />}><Login /></Suspense>} />
-                <Route path="/gifthub" element={<Suspense fallback={<LoadingSpinner />}><Gifthub /></Suspense>} />
-                <Route path="/funding" element={<Suspense fallback={<LoadingSpinner />}><FundingRegistPage /></Suspense>} />
-                <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner />}><MypageMyfunding /></Suspense>} />
-                <Route path="/mypage/funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFundingHistory/></Suspense>} />
-                <Route path="/funding/pay" element={<Suspense fallback={<LoadingSpinner />}><FundingPayPage/></Suspense>} />
-                <Route path="/order/pay" element={<Suspense fallback={<LoadingSpinner />}><OrderPayPage/></Suspense>} />
-                <Route path="/friend-funding/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
-                <Route path="/order/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
-                <Route path="/funding/pay/success" element={<Suspense fallback={<LoadingSpinner />}><PaySuccessPage/></Suspense>} />
-                <Route path="/funding/regist/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
-                <Route path="/friend-funding/detail/:fundingId" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingDetail /></Suspense>} />
-                <Route path="/friend-funding/pay/:fundingId" element={<Suspense fallback={<LoadingSpinner />}><FriendFundingPayPage /></Suspense>} />
-                <Route path="/success" element={<Suspense fallback={<LoadingSpinner />}><FundingSuccessPage/></Suspense>} />
-                <Route path="/shopping" element={<Suspense fallback={<LoadingSpinner />}><Shopping/></Suspense>} />
-                <Route path="/friend-funding" element={<Suspense fallback={<LoadingSpinner />}><FriendFunding/></Suspense>} />
-                <Route path="/shopping/detail/:itemId" element={<Suspense fallback={<LoadingSpinner />}><ShoppingDetail/></Suspense>} />
-                <Route path="/mypage/friend-funding-history" element={<Suspense fallback={<LoadingSpinner />}><MypageFriendFundingHistory /></Suspense>} />
+                <Route path="/" element={<Suspense fallback={<LoadingSpinner/>}><Main/></Suspense>}/>
+                <Route path="/home" element={<Suspense fallback={<LoadingSpinner/>}><Main/></Suspense>}/>
+                <Route path="/login" element={<Suspense fallback={<LoadingSpinner/>}><Login/></Suspense>}/>
+                <Route path="/gifthub" element={<Suspense fallback={<LoadingSpinner/>}><Gifthub/></Suspense>}/>
+                <Route path="/funding"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FundingRegistPage/></Suspense>}/>
+                <Route path="/mypage" element={<Suspense fallback={<LoadingSpinner/>}><MypageMyfunding/></Suspense>}/>
+                <Route path="/mypage/funding-history"
+                       element={<Suspense fallback={<LoadingSpinner/>}><MypageFundingHistory/></Suspense>}/>
+                <Route path="/funding/pay"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FundingPayPage/></Suspense>}/>
+                <Route path="/order/pay" element={<Suspense fallback={<LoadingSpinner/>}><OrderPayPage/></Suspense>}/>
+                <Route path="/friend-funding/pay/success"
+                       element={<Suspense fallback={<LoadingSpinner/>}><PaySuccessPage/></Suspense>}/>
+                <Route path="/order/pay/success"
+                       element={<Suspense fallback={<LoadingSpinner/>}><PaySuccessPage/></Suspense>}/>
+                <Route path="/funding/pay/success"
+                       element={<Suspense fallback={<LoadingSpinner/>}><PaySuccessPage/></Suspense>}/>
+                <Route path="/funding/regist/success"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FundingSuccessPage/></Suspense>}/>
+                <Route path="/friend-funding/detail/:fundingId"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FriendFundingDetail/></Suspense>}/>
+                <Route path="/friend-funding/pay/:fundingId"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FriendFundingPayPage/></Suspense>}/>
+                <Route path="/success"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FundingSuccessPage/></Suspense>}/>
+                <Route path="/shopping" element={<Suspense fallback={<LoadingSpinner/>}><Shopping/></Suspense>}/>
+                <Route path="/friend-funding"
+                       element={<Suspense fallback={<LoadingSpinner/>}><FriendFunding/></Suspense>}/>
+                <Route path="/shopping/detail/:itemId"
+                       element={<Suspense fallback={<LoadingSpinner/>}><ShoppingDetail/></Suspense>}/>
+                <Route path="/mypage/friend-funding-history"
+                       element={<Suspense fallback={<LoadingSpinner/>}><MypageFriendFundingHistory/></Suspense>}/>
                 {/* + 지난펀딩 기록 디테일   */}
-                <Route path="/mypage/order-history" element={<Suspense fallback={<LoadingSpinner />}><MypageOrderHistory /></Suspense>} />
-                <Route path="/mypage/delivery" element={<Suspense fallback={<LoadingSpinner />}><MypageDeliveryMangement /></Suspense>} />
-                <Route path="/mypage/favorite" element={<Suspense fallback={<LoadingSpinner />}><MypageWishlist /></Suspense>} />
-                <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
-                <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
-
+                <Route path="/mypage/order-history"
+                       element={<Suspense fallback={<LoadingSpinner/>}><MypageOrderHistory/></Suspense>}/>
+                <Route path="/mypage/delivery"
+                       element={<Suspense fallback={<LoadingSpinner/>}><MypageDeliveryMangement/></Suspense>}/>
+                <Route path="/mypage/favorite"
+                       element={<Suspense fallback={<LoadingSpinner/>}><MypageWishlist/></Suspense>}/>
+                <Route path="/mypage/review"
+                       element={<Suspense fallback={<LoadingSpinner/>}><MypageReview/></Suspense>}/>
+                <Route path="/signup" element={<Suspense fallback={<LoadingSpinner/>}><SignUpPage/></Suspense>}/>
+                <Route path="/login/oauth2/code/kakao" element={<Suspense fallback={<LoadingSpinner/>}><KakaoLoginLoadingPage/></Suspense>}/>
             </Routes>
         </BrowserRouter>
     );
