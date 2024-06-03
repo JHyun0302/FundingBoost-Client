@@ -24,7 +24,7 @@ const MypageDeliveryMangement = lazy(() => import('./components/pages/mypage/myp
 const MypageWishlist= lazy(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
 const MypageReview = lazy(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
 const SignUpPage    = lazy(() => import('./components/pages/signUp-page/signUp-page'));
-
+const ErrorPage= lazy(() => import('./components/pages/error-handle-page/error-handle-page'));
 // 로딩 스피너
 const LoadingSpinner = () => (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -63,7 +63,7 @@ function Router() {
                 <Route path="/mypage/favorite" element={<Suspense fallback={<LoadingSpinner />}><MypageWishlist /></Suspense>} />
                 <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
                 <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
-
+                <Route path="/error" element={<Suspense fallback={<LoadingSpinner />}><ErrorPage/></Suspense>} />
             </Routes>
         </BrowserRouter>
     );
