@@ -34,6 +34,12 @@ function MainPage() {
             const data = response.data;
             setMainData(data);
 
+
+            console.log("nickName: " + response.data.data.homeMemberInfoDto.nickName);
+            localStorage.setItem('nickName', response.data.data.homeMemberInfoDto.nickName);
+
+
+
             if (data && data.data && Array.isArray(data.data.itemDtoList)) {
                 setScrollData(prev => lastItemIdParam ? [...prev, ...data.data.itemDtoList] : data.data.itemDtoList);
                 if (data.data.itemDtoList.length > 0) {

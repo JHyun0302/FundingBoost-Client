@@ -19,6 +19,8 @@ function chunkArray(arr, chunkSize) {
 const MainFriendFunding = ({ memberFundingData }) => {
     const [itemsSlide, setItemsSlide] = useState(2);
 
+    console.log(memberFundingData)
+
     useEffect(() => {
         //반응형 추가
         function handleResize() {

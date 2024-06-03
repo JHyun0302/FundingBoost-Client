@@ -49,7 +49,7 @@ const LoginPane = () => {
 
                     // 로그인 상태와 토큰을 localStorage에 저장
                     localStorage.setItem('isAuthenticated', 'true');
-                    localStorage.setItem('user', JSON.stringify({ nickName }));
+                    // localStorage.setItem('user', JSON.stringify({ nickName }));
                     localStorage.setItem('GrantType', grantType);
                     localStorage.setItem('accessToken', token);
                     localStorage.setItem('refreshToken', refresh_token);
