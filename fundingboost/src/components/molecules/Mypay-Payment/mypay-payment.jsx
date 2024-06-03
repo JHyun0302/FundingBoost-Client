@@ -8,9 +8,25 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
     const [inputAmount, setInputAmount] = useState("");
     const [usingPoint, setUsingPoint] = useState(0); // usingPoint 상태 추가
     const navigate = useNavigate();
+    const discountPrice = (itemPrice * selectedItemDto.itemPercent) / 100; //펀딩된 금액
+    console.log(discountPrice);
+
+    const userMaxPoint=()=>{
+        const maxAvailablePoints = itemPrice - discountPrice;
+        console.log("사용가능 포인트:",maxAvailablePoints);
+        return Math.min(maxAvailablePoints, point); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
+    }
+
+    const handleUseAllPoints = () => {
+        const maxPoint = userMaxPoint();
+        setInputAmount(maxPoint);
+        setUsingPoint(maxPoint); // usingPoint 업데이트
+        onUpdateUsingPoint(maxPoint); // 부모 컴포넌트로 usingPoint 업데이트
+    };
+
     const handleInputChange = (event) => {
         const value = Number(event.target.value);
-        const maxPoint = Math.min(point, itemPrice); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
+        const maxPoint = userMaxPoint();
 
         if (value > maxPoint) {
             setInputAmount(maxPoint.toString());
@@ -24,15 +40,12 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
         onUpdateUsingPoint(value || 0);
     };
 
-    const handleUseAllPoints = () => {
-        const maxPoint = Math.min(point, itemPrice); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
-        setInputAmount(maxPoint.toString());
-        setUsingPoint(maxPoint); // usingPoint 업데이트
-        onUpdateUsingPoint(maxPoint); // 부모 컴포넌트로 usingPoint 업데이트
-    };
-
     const handlePayment = async () => {
         try {
+            if(!selectedDeliveryItem){
+                alert("배송지를 선택해주세요!");
+                return;
+            }
             const accessToken = localStorage.getItem('accessToken');
 
             const postData = {
@@ -64,14 +77,14 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
         const safeInputAmount = isNaN(parseFloat(inputAmount)) ? 0 : parseFloat(inputAmount);
 
         // 총 가격 계산 로직에서 null이 아닌 값을 사용
-        const remainingPrice = safeItemPrice - safeInputAmount - collectPrice;
+        const remainingPrice = safeItemPrice - safeInputAmount - discountPrice;
         return remainingPrice > 0 ? remainingPrice.toLocaleString() : "0";
     };
 
     const displayedCollectPrice = collectPrice >= itemPrice ? itemPrice : collectPrice;
-
+    console.log(selectedItemDto.itemPercent);
     const payTotalPrice = calculateTotalPrice(); // 변수명 변경
-
+    const MyPoint = Number(point)
     return (
         <div className="MyPayPointBox">
             <div className="MyPayPointView">
@@ -95,7 +108,7 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
                         </div>
                     </div>
                 </div>
-                <p className="MyPayPoint-remain-point">사용 가능 포인트 {point} P</p>
+                <p className="MyPayPoint-remain-point">사용 가능 포인트 {MyPoint.toLocaleString()} P</p>
             </div>
 
             <div className="MyPayFundingPaymentInformationBox">
@@ -110,20 +123,21 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
                         <div className="MyPayFundingPaymentInformationGroup">
                             <div className="MyPayFundingPaymentInformationText">사용한 포인트</div>
                             <div className="MyPayFundingPaymentInformationOverlap-group">
-                                <div className="text-price">- {inputAmount || "0"} 원</div> {/* 입력된 금액을 표시 */}
+                                <div className="text-price">- {inputAmount.toLocaleString() || "0"} 원</div> {/* 입력된 금액을 표시 */}
                             </div>
                         </div>
                         <div className="MyPayFundingPaymentInformationGroup">
                             <div className="MyPayFundingPaymentInformationText">펀딩 된 금액</div>
-                            <div className="MyPayFundingPaymentInformationOverlap-group">
+                            <div className="MyPayFundingPaymentInform
+                            ationOverlap-group">
                                 <div
-                                    className="text-price">- {displayedCollectPrice ? displayedCollectPrice.toLocaleString() : 0} 원
+                                    className="text-price">- {discountPrice ? discountPrice.toLocaleString() : 0} 원
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="line" alt="Line"/>
-                    <div className="total-price">{payTotalPrice} 원</div>
+                    <div className="total-price">{payTotalPrice.toLocaleString()} 원</div>
                     {/* 총 가격 표시 */}
                 </div>
                 <button className="pay-request-button" onClick={handlePayment}> 결제하기</button>

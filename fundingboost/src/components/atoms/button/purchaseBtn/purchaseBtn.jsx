@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import './purchaseBtn.scss'
 import {useNavigate} from "react-router-dom";
 
-const PurchaseBtn = ({itemId, itemName, itemPrice, itemThumbnailImageUrl, selectOption}) => {
+const PurchaseBtn = ({itemId, itemName, itemPrice, itemThumbnailImageUrl, selectOption,quantity}) => {
     const navigate = useNavigate();
 
     const purchaseBtnClick = () => {
@@ -13,7 +13,8 @@ const PurchaseBtn = ({itemId, itemName, itemPrice, itemThumbnailImageUrl, select
                 itemName: itemName,
                 itemPrice: itemPrice,
                 itemImageUrl: itemThumbnailImageUrl,
-                itemId: itemId
+                itemId: itemId,
+                quantity: quantity
             };
             navigate(`/order/pay`, {state: {itemPurchase}});
         } else {

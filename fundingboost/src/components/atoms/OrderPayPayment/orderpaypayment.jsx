@@ -9,8 +9,14 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
     const navigate = useNavigate();
 
     console.log(selectedDeliveryItem);
+    console.log(selectedItems);
+
 
     const handlepmypaypayment = async () => {
+        if (!selectedDeliveryItem) {
+            alert("주소를 선택해주세요.");
+            return;
+        }
         try {
             const accessToken = localStorage.getItem('accessToken');
 
@@ -28,7 +34,7 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
 
             const datanow = itemPayDtoList.length > 0 ? {
                 itemId: itemPayDtoList[0].itemId,
-                quantity: 1,
+                quantity:itemPayDtoList[0].quantity,
                 deliveryId: selectedDeliveryItem?.deliveryId,
                 usingPoint: usingPoint
             }: {};
