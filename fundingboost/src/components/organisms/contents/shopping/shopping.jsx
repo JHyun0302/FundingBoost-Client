@@ -9,7 +9,7 @@ const ShoppingPane = () => {
     const [selectedCategory, setSelectedCategory] = useState({ name: '전체', param: '' });
     const [isLoading, setIsLoading] = useState(false);
     const [lastItemId, setLastItemId] = useState(null);
-    const [isFirstLoad, setIsFirstLoad] = useState(true); // 첫 번째 호출 여부를 확인하는 상태
+    const [isFirstLoad, setIsFirstLoad] = useState(true);
     const loader = useRef(null);
 
     const fetchData = async (category, lastItemIdParam) => {
@@ -23,7 +23,7 @@ const ShoppingPane = () => {
                 lastItemId: lastItemIdParam
             };
 
-            const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}&lastItemId=${lastItemIdParam}`;
+            const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
 
             const response = await axios.get(url, {
                 responseType: 'json',
@@ -38,10 +38,7 @@ const ShoppingPane = () => {
             const data = response.data;
             if (data && data.data && Array.isArray(data.data.content)) {
                 setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
-                console.log(data.data.content);
-                console.log(url);
                 if (data.data.content.length > 0) {
-                    // 첫 번째 아이템의 itemId에서 10을 뺀 값을 lastItemId로 설정합니다.
                     setLastItemId(data.data.content[0].itemId - 20);
                 }
                 setIsFirstLoad(false);
@@ -57,7 +54,7 @@ const ShoppingPane = () => {
 
     useEffect(() => {
         setItemData([]);
-        fetchData(selectedCategory, 101); // 카테고리 변경시 또는 첫 페이지 로드 시
+        fetchData(selectedCategory, null);
     }, [selectedCategory]);
 
     useEffect(() => {
@@ -79,7 +76,6 @@ const ShoppingPane = () => {
     }, [isLoading, lastItemId, selectedCategory]);
 
     const handleCategorySelect = (category) => {
-        console.log("Selected category:", category);
         setSelectedCategory(category);
     };
 
