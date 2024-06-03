@@ -23,7 +23,7 @@ const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoint
                 </div>
                 <div className="friend-funding-price-current-pay-text">
                     <div>사용 포인트</div>
-                    <div>- {usePoints.toLocaleString()}</div>
+                    <div>- {usePoints.toLocaleString() || "0"}</div>
                 </div>
                 <div className="friend-funding-price-current-pay-text">
                     <div>결제할 금액</div>

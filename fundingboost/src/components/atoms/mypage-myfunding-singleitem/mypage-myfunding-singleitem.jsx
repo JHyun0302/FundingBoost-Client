@@ -17,7 +17,7 @@ const MyFundingSingleItem = ({ apiData, item, myPageFundingItemDtoList }) => {
                     </div>
                     <div className="mypage-myfunding-div">{item.optionName}</div>
                 </div>
-                <div className="mypage-myfunding-text-wrapper-4">{item.itemPrice}원</div>
+                <div className="mypage-myfunding-text-wrapper-4">{item.itemPrice.toLocaleString()}원</div>
 
                 {apiData && <MypageFinfundingbtn item={item} myPageFundingItemDtoList={myPageFundingItemDtoList} />}
             </div>

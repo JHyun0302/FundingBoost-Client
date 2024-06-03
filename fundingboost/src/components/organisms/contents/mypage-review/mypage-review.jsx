@@ -27,7 +27,7 @@ const ReviewPane = () => {
 
                 const response = await axios({
                     method: 'GET',
-                    url: `${process.env.REACT_APP_FUNDINGBOOST}/review`,
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/order/history`,
                     headers: {
                         "Authorization": `Bearer ${accessToken}`,
                         "Access-Control-Allow-Credentials": true,
@@ -45,6 +45,7 @@ const ReviewPane = () => {
 
         fetchData();
     }, []);
+    console.log("reviewApiData:",apiData);
     return (
         <div className="mypage-myhistory-total-container">
             {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}

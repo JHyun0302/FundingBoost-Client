@@ -99,7 +99,14 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                 </div>
 
                 <div className="shareAndHeartAndPurchase">
-                    <PurchaseBtn itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} selectOption={selectOption} itemPrice={itemPrice} itemName={itemName} />
+                    <PurchaseBtn
+                        itemId={itemId}
+                        itemThumbnailImageUrl={itemThumbnailImageUrl}
+                        selectOption={selectOption}
+                        itemPrice={itemPrice}
+                        itemName={itemName}
+                        quantity={quantity}
+                    />
                 </div>
                 </div>
                 <div className="div-third-btn-wrapper">

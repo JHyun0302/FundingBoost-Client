@@ -46,9 +46,11 @@ const FriendFundingPage = () => {
             <Header />
             {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요."/>}
             <FriendFundingDropdownBtn className="friendFundingDropdownBtn" friendFundingData={friendFundingData}/>
-
-            <SingleFriendFunding friendFundingData={friendFundingData} />
-                <FriendNonFunding />
+            {friendFundingData.data && friendFundingData.data.length > 0 ? (
+                <SingleFriendFunding friendFundingData={friendFundingData} />
+            ):(
+            <FriendNonFunding />
+            )}
             <Footer />
         </div>
     );

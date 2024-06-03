@@ -77,6 +77,31 @@ const LoginPane = () => {
         }
     };
 
+    const handleKakaoLogin = async () => {
+        try{
+           await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/login/oauth`, {
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    'Access-Control-Allow-Origin': 'http://localhost:3000/'
+                },
+                withCredentials: true,
+            })
+               .then((response) => {
+                   console.log('응답 데이터:', response.data); // 응답 데이터 출력
+                   console.log('로그인 접속!');
+                   window.location.href = response.data; // 백엔드에서 받은 URL로 리디렉션
+               })
+               .catch((error) => {
+                   console.error('로그인 실패', error);
+               });
+        } catch (error) {
+            console.error('POST 에러:', error);
+            setLoginError(true);
+        }
+    }
+
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleLogin();
@@ -119,9 +144,7 @@ const LoginPane = () => {
                     <br />
                     <button className="login-btn-grey" onClick={handleLogin}>로그인</button>
                 </div>
-                <a href="http://localhost:8080/oauth2/authorization/kakao" className="social-login-link">
-                    <img src={kakaologin} alt="Kakao Login" className="social-login-btn" />
-                </a>
+                <img src={kakaologin} alt="Kakao Login" className="social-login-btn" onClick={handleKakaoLogin}/>
                 <a href="https://nid.naver.com/oauth2.0/authorize" className="social-login-link">
                     <img src={naverlogin} alt="Naver Login" className="social-login-btn" />
                 </a>
