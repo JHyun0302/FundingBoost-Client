@@ -13,6 +13,7 @@ export default function ShoppingCategory({ onCategorySelect }) {
         { name: '디지털', param: '디지털' },
         { name: '리빙/도서', param: '리빙/도서' },
         { name: '스포츠', param: '스포츠' },
+        { name: '교환권', param: '교환권' }
     ];
 
     const handleCategorySelect = (category) => {

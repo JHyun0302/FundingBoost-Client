@@ -24,7 +24,9 @@ const MypageDeliveryMangement = lazy(() => import('./components/pages/mypage/myp
 const MypageWishlist= lazy(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
 const MypageReview = lazy(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
 const SignUpPage    = lazy(() => import('./components/pages/signUp-page/signUp-page'));
+const ErrorPage= lazy(() => import('./components/pages/error-handle-page/error-handle-page'));
 const KakaoLoginLoadingPage = lazy(() => import('./components/pages/login-page/redirection'));
+
 // 로딩 스피너
 const LoadingSpinner = () => (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -32,7 +34,6 @@ const LoadingSpinner = () => (
     </div>
 );
 
-// Suspense 컴포넌트를 사용하여 로딩 중일 때 보여줄 UI를 지정
 function Router() {
     return (
         <BrowserRouter>
@@ -71,15 +72,12 @@ function Router() {
                 <Route path="/mypage/friend-funding-history"
                        element={<Suspense fallback={<LoadingSpinner/>}><MypageFriendFundingHistory/></Suspense>}/>
                 {/* + 지난펀딩 기록 디테일   */}
-                <Route path="/mypage/order-history"
-                       element={<Suspense fallback={<LoadingSpinner/>}><MypageOrderHistory/></Suspense>}/>
-                <Route path="/mypage/delivery"
-                       element={<Suspense fallback={<LoadingSpinner/>}><MypageDeliveryMangement/></Suspense>}/>
-                <Route path="/mypage/favorite"
-                       element={<Suspense fallback={<LoadingSpinner/>}><MypageWishlist/></Suspense>}/>
-                <Route path="/mypage/review"
-                       element={<Suspense fallback={<LoadingSpinner/>}><MypageReview/></Suspense>}/>
-                <Route path="/signup" element={<Suspense fallback={<LoadingSpinner/>}><SignUpPage/></Suspense>}/>
+                <Route path="/mypage/order-history" element={<Suspense fallback={<LoadingSpinner />}><MypageOrderHistory /></Suspense>} />
+                <Route path="/mypage/delivery" element={<Suspense fallback={<LoadingSpinner />}><MypageDeliveryMangement /></Suspense>} />
+                <Route path="/mypage/favorite" element={<Suspense fallback={<LoadingSpinner />}><MypageWishlist /></Suspense>} />
+                <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
+                <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
+                <Route path="/error" element={<Suspense fallback={<LoadingSpinner />}><ErrorPage/></Suspense>} />
                 <Route path="/login/oauth2/code/kakao" element={<Suspense fallback={<LoadingSpinner/>}><KakaoLoginLoadingPage/></Suspense>}/>
             </Routes>
         </BrowserRouter>
