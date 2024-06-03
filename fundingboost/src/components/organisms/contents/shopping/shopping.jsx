@@ -36,6 +36,7 @@ const ShoppingPane = () => {
             });
 
             const data = response.data;
+            console.log(data)
             if (data && data.data && Array.isArray(data.data.content)) {
                 setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
                 if (data.data.content.length > 0) {
