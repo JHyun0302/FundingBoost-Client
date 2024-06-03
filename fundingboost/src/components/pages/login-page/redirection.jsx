@@ -27,17 +27,11 @@ const Redirection = () => {
                     withCredentials: true,
                 });
 
-                const { access_token, refresh_token } = response.data.data;
 
                 if(response.data.data ==null){
                     console.error("response error");
                 };
 
-                console.log(response.data.data);
-                console.log(access_token);
-                console.log(refresh_token);
-                window.localStorage.setItem('access_token', access_token);
-                window.localStorage.setItem('refresh_token', refresh_token);
 
                 console.log('Response:', response.data);
 
