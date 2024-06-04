@@ -9,11 +9,24 @@ import { useNavigate } from 'react-router-dom';
 import WishBtn  from "../button/wishBtn/wishBtn";
 import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
 import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
+import GifthubModal from "../gifthubModal/gifthubModal";
 
 export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl, bookmark}) {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
     const [selectOption, setSelectOptions] = useState("");
+    const [showModal, setShowModal] = useState(false);
+
+    // 계속 소핑하기
+    const closeModal = () => {
+        setShowModal(false);
+        navigate();
+    };
+    // 모달창 마이페이지 이동버튼
+    const gifthubBtnModal = () => {
+        setShowModal(false);
+        navigate('/gifthub');
+    };
 
     const optionChange = (e) =>{
         setSelectOptions(e.target.value);
@@ -53,7 +66,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
             }),
         })
             .then(response => {
-                navigate('/gifthub');
+               setShowModal(true);
             })
             .catch(error => {
                 // Handle error as needed
@@ -65,6 +78,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
     return (
         <div className="shopping-menu-wrapper">
+            <GifthubModal itemName={itemName} show={showModal} onClose={closeModal} onGiftHub={gifthubBtnModal} message="Gifthub에 상품이 담겼습니다."  />
             <div className="shoppingDetailOptionBtnBox">
                 <div className="quantityAndPrice">
                     <div className="quantity">수량</div>
@@ -110,6 +124,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                 </div>
                 </div>
                 <div className="div-third-btn-wrapper">
+
                     <div className="gifthubGroup">
                         <button className="gifthubPosition" onClick={handleGiftHubClick}>
                             <img className="gifthubImg" alt="gifthubImg" src={gifthub}/>
