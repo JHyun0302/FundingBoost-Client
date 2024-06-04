@@ -19,5 +19,13 @@
     font-weight: bold;
   }
 }
+@media (max-width: 479px) {
+  .most-funding-button{
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 12px;
+  }
+
+}
 
 
