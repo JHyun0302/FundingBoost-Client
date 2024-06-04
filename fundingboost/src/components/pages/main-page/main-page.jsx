@@ -8,7 +8,8 @@ import MainFunding from "../../molecules/mainFunding/mainFunding";
 import axios from "axios";
 
 function MainPage() {
-    const [mainData, setMainData] = useState([]);
+    const [mainData, setMainData] = useState({});
+    const [scrollData, setScrollData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [lastItemId, setLastItemId] = useState(null);
     const loader = useRef(null);
@@ -30,13 +31,19 @@ function MainPage() {
                     "Access-Control-Allow-Credentials": true
                 },
             });
-
             const data = response.data;
-            console.log(data)
+            setMainData(data);
+
+
+            console.log("nickName: " + response.data.data.homeMemberInfoDto.nickName);
+            localStorage.setItem('nickName', response.data.data.homeMemberInfoDto.nickName);
+
+
+
             if (data && data.data && Array.isArray(data.data.itemDtoList)) {
-                setMainData(prev => lastItemIdParam ? [...prev, ...data.data.itemDtoList] : data.data.itemDtoList);
+                setScrollData(prev => lastItemIdParam ? [...prev, ...data.data.itemDtoList] : data.data.itemDtoList);
                 if (data.data.itemDtoList.length > 0) {
-                    setLastItemId(data.data.itemDtoList[data.data.itemDtoList.length - 1].itemId - 20);
+                    setLastItemId(data.data.itemDtoList[data.data.itemDtoList.length - 1].itemId);
                 }
             } else {
                 console.error("Error: Unexpected response structure", data);
@@ -74,7 +81,7 @@ function MainPage() {
         <div className="Main-pages">
             <HeaderBar />
             <MainFunding mainData={mainData} />
-            <MainPane mainData={{ data: { itemDtoList: mainData } }} />
+            <MainPane mainData={{ data: { itemDtoList: scrollData } }} />
             <div ref={loader} style={{ height: "100px", margin: "0 auto" }}></div>
             <Footer />
         </div>

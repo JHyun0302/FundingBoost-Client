@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './mainFriendFunding.scss';
 import ItemImg from "../../../atoms/itemImg/itemImg";
 import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
-import ProfileImg from "../../../atoms/ProfileImg/ProfileImg";
 import defaultProfileImg from "../../../../assets/defaultProfile.svg";
 import { useEffect, useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
@@ -18,6 +17,8 @@ function chunkArray(arr, chunkSize) {
 
 const MainFriendFunding = ({ memberFundingData }) => {
     const [itemsSlide, setItemsSlide] = useState(2);
+
+    console.log(memberFundingData)
 
     useEffect(() => {
         //반응형 추가

@@ -8,7 +8,6 @@ import kakaologin from "../../../../assets/sociallogin/kakaologin.png";
 import naverlogin from "../../../../assets/sociallogin/naverlogin.png";
 import googlelogin from "../../../../assets/sociallogin/googlelogin.png";
 import applelogin from "../../../../assets/sociallogin/applelogin.png";
-import logo from "../../../../assets/logo.png";
 import loginmoji from "../../../../assets/loginmoji.svg";
 
 const LoginPane = () => {
@@ -49,7 +48,7 @@ const LoginPane = () => {
 
                     // 로그인 상태와 토큰을 localStorage에 저장
                     localStorage.setItem('isAuthenticated', 'true');
-                    localStorage.setItem('user', JSON.stringify({ nickName }));
+                    // localStorage.setItem('user', JSON.stringify({ nickName }));
                     localStorage.setItem('GrantType', grantType);
                     localStorage.setItem('accessToken', token);
                     localStorage.setItem('refreshToken', refresh_token);

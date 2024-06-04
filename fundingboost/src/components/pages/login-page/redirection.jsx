@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {useRecoilState} from "recoil";
-import {loginState, nickNameState, passwordState} from "../../../state/auth";
+import {loginState, nickNameState} from "../../../state/auth";
 
 const Redirection = () => {
     const code = new URL(window.location.href).searchParams.get('code');
@@ -27,17 +27,11 @@ const Redirection = () => {
                     withCredentials: true,
                 });
 
-                const { access_token, refresh_token } = response.data.data;
 
                 if(response.data.data ==null){
                     console.error("response error");
                 };
 
-                console.log(response.data.data);
-                console.log(access_token);
-                console.log(refresh_token);
-                window.localStorage.setItem('access_token', access_token);
-                window.localStorage.setItem('refresh_token', refresh_token);
 
                 console.log('Response:', response.data);
 

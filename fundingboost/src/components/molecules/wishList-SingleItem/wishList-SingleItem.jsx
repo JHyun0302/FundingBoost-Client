@@ -1,8 +1,6 @@
 import React from 'react';
 import { FcLike } from "react-icons/fc";
 import './wishList-SingleItme.scss'
-import {Link} from "react-router-dom";
-import logo from "../../../assets/logo.png";
 const WishListSingleItem = ({wishListData}) => {
     return (
         <div className="wishListSingleItem">
