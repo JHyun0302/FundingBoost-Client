@@ -1,7 +1,6 @@
 import React from 'react';
 import './single-friendFunding.scss'
 import { Link } from 'react-router-dom';
-import img from '../../../assets/logo.svg'
 import FriendFundingProfileDday from "../../atoms/friendFunding-profile-Dday/friendFunding-profile-Dday";
 import FriendFundingItemImg from "../../atoms/friendFunding-itemImg/friendFunding-itemImg";
 import GaugeBar from "../../atoms/gauge-bar/gauge-bar";

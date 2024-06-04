@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../../../assets/logo.svg';
 import './mypage-wishlist-page.scss';
 import HeaderBar from "../../../organisms/header/header";
 import '@fortawesome/fontawesome-free/css/all.min.css';

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './mainFunding.scss';
 import MemberYesFunding from "../mainMyfunding/memberYesFunding/memberYesFunding";
 import MemberNoFunding from "../mainMyfunding/memberNoFunding/memberNoFunding";
 import MainFriendFunding from "../mainFriendFunding/mainFriendFunding/mainFriendFunding";
 import NonMember from "../mainMyfunding/nonMember/nonMember";
 import MainFriendNoFunding from "../mainFriendFunding/mainFriendNoFunding/mainFriendNoFunding";
-import axios from "axios";
 import { useRecoilValue } from 'recoil';
 import { loginState } from '../../../state/auth';
 

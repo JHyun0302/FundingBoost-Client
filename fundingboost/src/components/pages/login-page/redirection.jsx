@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {useRecoilState} from "recoil";
-import {loginState, nickNameState, passwordState} from "../../../state/auth";
+import {loginState, nickNameState} from "../../../state/auth";
 
 const Redirection = () => {
     const code = new URL(window.location.href).searchParams.get('code');

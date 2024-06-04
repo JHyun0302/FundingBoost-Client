@@ -1,6 +1,5 @@
 import React from 'react';
 import './orderHistory-singleOrder.scss';
-import logo from '../../../assets/logo.svg';
 const OrderHistorySingleOrder = ({orderHistoryData}) => {
     const createdDate = () =>
         (Date().now() + orderHistoryData.createdDate).toISOString().split('T')[0];
