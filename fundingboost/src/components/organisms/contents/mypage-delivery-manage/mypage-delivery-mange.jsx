@@ -32,7 +32,7 @@ const MypageDeliveryPane = () => {
                     headers: {
                         "Access-Control-Allow-Credentials": true,
                         "Authorization": `Bearer ${accessToken}`,
-                        "Access-Control-Allow-Origin": "http://localhost:3000/"
+                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/"
                     },
                     responseType: 'json'
                 });

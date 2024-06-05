@@ -20,7 +20,7 @@ function ExchangePoint({ item, memberId }) {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
-                    "Access-Control-Allow-Origin": "http://localhost:3000/",
+                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
                     'Access-Control-Allow-Credentials': true
                 },
             });
