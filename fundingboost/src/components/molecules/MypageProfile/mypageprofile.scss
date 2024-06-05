@@ -16,6 +16,7 @@
 .myPageProfileImg {
   height: 80px;
   width: 80px;
+  object-fit: cover;
   border-radius: 90px;
   border: 2px solid #3e3e3e;
 }
@@ -26,6 +27,7 @@
   justify-content: center;
   margin-left: 15px;
   font-family: SUITE-Regular;
+  align-items: flex-start;
 }
 
 .myPageProfileName {

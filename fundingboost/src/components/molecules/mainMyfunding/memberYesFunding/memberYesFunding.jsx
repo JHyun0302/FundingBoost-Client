@@ -1,12 +1,10 @@
 import ProfileImg from "../../../atoms/ProfileImg/ProfileImg";
 import CheckFundingButton from "../../../atoms/button/mainMyfuudingBtn/checkFunding-btn";
 import React, { useState, useEffect } from "react";
-import ItemImg from "../../../atoms/itemImg/itemImg";
 import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './memberYesFunding.scss';
-import axios from "axios";
 
 function MemberYesFunding({ memberFundingData }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1085);

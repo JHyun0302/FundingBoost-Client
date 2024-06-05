@@ -1,6 +1,5 @@
 import React from 'react';
 import './singleReview.scss';
-import logo from "../../../assets/logo.png";
 import { BsStarFill } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";

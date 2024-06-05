@@ -19,7 +19,8 @@ const OrderPane = () => {
     const { selectedItems, itemPurchase } = location.state || {};
     const [purchaseItem, setPurchaseItem] = useState(itemPurchase ? [itemPurchase] : selectedItems || []);
 
-    console.log("selectedItems", selectedItems);
+    console.log("selectedItems",purchaseItem);
+
     console.log(deliveryDtoList);
     console.log(purchaseItem);
 

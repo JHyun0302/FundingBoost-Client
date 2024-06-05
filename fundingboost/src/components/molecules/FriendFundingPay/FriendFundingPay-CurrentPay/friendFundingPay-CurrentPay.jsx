@@ -1,7 +1,4 @@
 import React from 'react';
-import img from "../../../../assets/logo.svg";
-import barcodeImage from "../../../../assets/friendFunding/barcode-image.svg";
-import FriendFundingPaymentBtn from "../../../atoms/button/friendfundingPaymentBtn/friendfundingPaymentBtn";
 import './FriendFundingPay-CurrentPay.scss';
 
 const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoints,onUpdateFinalPrice}) => {
@@ -23,7 +20,7 @@ const FriendFundingPayCurrentPay = ({friendFundingPayData,fundingAmount,usePoint
                 </div>
                 <div className="friend-funding-price-current-pay-text">
                     <div>사용 포인트</div>
-                    <div>- {usePoints.toLocaleString()}</div>
+                    <div>- {usePoints.toLocaleString() || "0"}</div>
                 </div>
                 <div className="friend-funding-price-current-pay-text">
                     <div>결제할 금액</div>

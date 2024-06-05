@@ -8,6 +8,7 @@ import axios from "axios";
 
 const MainPane = ({mainData}) => {
     console.log("item 데이터:", mainData.data?.itemDtoList);
+
     return (
         <div className="main-pane-container">
             <div className="ranking-button-area">
@@ -18,9 +19,9 @@ const MainPane = ({mainData}) => {
             <div className="ranking-item-area">
                 <div className="item-list-single">
                     {/* itemDtoList가 존재하는 경우에만 매핑하여 MainRankingItem 컴포넌트를 렌더링 */}
-                    {mainData.data?.itemDtoList && mainData.data?.itemDtoList.map((product, index) => (
+                    {mainData.data?.itemDtoList?.map((product, index) => (
                         <div className="single-item" key={index}>
-                            <MainRankingItem product={product} key={index}/>
+                            <MainRankingItem product={product} />
                         </div>
                     ))}
                 </div>

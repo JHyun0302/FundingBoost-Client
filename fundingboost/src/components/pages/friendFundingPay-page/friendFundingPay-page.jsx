@@ -4,7 +4,6 @@ import PointUse from '../../atoms/point/pointUse';
 import './friendFundingPay-page.scss'
 import img from '../../../assets/logo.svg';
 import axios from "axios";
-import defaultProfileImg from "../../../assets/defaultProfile.svg";
 import HeaderBar from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
 import receipt from "../../../assets/friendFunding/receipt.svg";

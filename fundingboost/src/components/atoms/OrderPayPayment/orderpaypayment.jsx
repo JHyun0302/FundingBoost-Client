@@ -2,15 +2,23 @@ import React, { useState, useEffect } from "react";
 import "./orderpaypayment.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ErrorPage from "../../pages/error-handle-page/error-handle-page";
 
 export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint, totalPrice, selectedDeliveryItem }) {
     const [inputAmount, setInputAmount] = useState("0");
     const [usingPoint, setUsingPoint] = useState(0);
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
 
     console.log(selectedDeliveryItem);
+    console.log(selectedItems);
+
 
     const handlepmypaypayment = async () => {
+        if (!selectedDeliveryItem) {
+            alert("주소를 선택해주세요.");
+            return;
+        }
         try {
             const accessToken = localStorage.getItem('accessToken');
 
@@ -28,10 +36,10 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
 
             const datanow = itemPayDtoList.length > 0 ? {
                 itemId: itemPayDtoList[0].itemId,
-                quantity: 1,
+                quantity:itemPayDtoList[0].quantity,
                 deliveryId: selectedDeliveryItem?.deliveryId,
                 usingPoint: usingPoint
-            }: {};
+            } : {};
 
             console.log("Request Data:", {
                 itemPayDtoList,
@@ -56,10 +64,21 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                     'Access-Control-Allow-Credentials': true
                 }
             });
+            if (response.data.success === false) {
+                // 에러 코드가 50000인 경우 에러 페이지로 리다이렉션
+                if (response.data.error && response.data.error.code === 50000) {
+                    navigate("/error");
+                    return;
+                }
+            }
+
             console.log('POST 결과:', response.data);
             navigate("/order/pay/success");
         } catch (error) {
             console.error('POST 에러:', error);
+            if (error.response && error.response.data && error.response.data.code === 50000) {
+                setError(true);
+            }
         }
     };
 
@@ -103,6 +122,10 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
 
     const remainingPrice = calculateTotalPrice();
 
+    if (error) {
+        return <ErrorPage />;
+    }
+
     return (
         <div className="MyPayPointBox">
             <div className="MyPayPointView">
@@ -144,7 +167,6 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                                 <div className="text-price">- {inputAmount || "0"} 원</div>
                             </div>
                         </div>
-
                     </div>
                     <div className="line" alt="Line"/>
                     <div className="total-price">{remainingPrice} 원</div>

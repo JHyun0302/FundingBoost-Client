@@ -1,7 +1,7 @@
 ### 개요
 
 ### 변경사항
-- [ ] 새로운 기능 추가
+- [x] 새로운 기능 추가
 - [ ] 버그 수정
 - [ ] CSS 등 사용자 UI 디자인 변경
 - [ ] 코드에 영향을 주지 않는 변경사항(오타 수정, 탭 사이즈 변경, 변수명 변경)
@@ -13,5 +13,5 @@
 - [ ] 파일 혹은 폴더명 수정
 - [ ] 파일 혹은 폴더 삭제
 ### 관련 지라 및 위키 링크
-[FF-num](https://kcsfinalproject.atlassian.net/browse/FF-num)
+[FF-22](https://kcsfinalproject.atlassian.net/browse/FF-22)
 ### 리뷰어에게 하고 싶은 말

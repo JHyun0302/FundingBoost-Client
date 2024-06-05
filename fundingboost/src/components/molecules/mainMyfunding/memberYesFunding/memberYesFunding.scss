@@ -13,7 +13,7 @@
   display: flex;
   align-items: flex-start;
   background-color: #EBEBEB;
-  height: 210px;
+  height: 280px;
 
 
   font-family:'SUITE-Regular';
@@ -22,8 +22,15 @@
   }
 
   .profile-img{
-    width: 40px;
+    width: 70px !important;
+    height: 70px !important;
+    object-fit: cover;
     margin-right: 10px;
+  }
+
+  .profile-img-wrapper{
+    width: 80px !important;
+    height: 70px !important;
   }
 
   .memberYesFunding-item {
@@ -83,7 +90,7 @@
     .myFundingItems{
       display: flex;
       justify-content: center;
-      height: 200px;
+      height: 250px;
 
       .myFundingItem-a {
         display: flex;
@@ -91,7 +98,7 @@
         justify-content: center;
         float: left;
         margin: 0px 20px 2px 20px ;
-        height: 200px;
+        height: 250px;
 
         .myFundingItem {
           display: inline-block;
@@ -99,14 +106,16 @@
           text-align: center;
           margin: 0 20px;
         .myFundingItemImg{
-          width: 140px;
-          height: 115px;
+          width: 170px;
+          height: 145px;
+          border-radius: 5px;
           box-shadow: 0px 0px 3px #b8b8b8;
           margin-bottom: 10px;
         }
         .gaugeFull{
-          width: 140px;
-          height: 115px;
+          width: 170px;
+          height: 145px;
+          border-radius: 5px;
           box-shadow: 0px 0px 3px #b8b8b8;
           margin-bottom: 10px;
           filter: brightness(0.68);
@@ -114,8 +123,8 @@
 
 
           .gauge-bar {
-            width: 150px;
-            height: 13px;
+            width:auto;
+            height: 17px;
 
           }
         }
@@ -148,7 +157,7 @@
   height: 30px;
   width:30px;
   border-radius: 50%;
-  margin: 92px 30px 0 30px;
+  margin: 130px 30px 0 30px;
 }
 
 .carousel .control-next.control-arrow:before {
