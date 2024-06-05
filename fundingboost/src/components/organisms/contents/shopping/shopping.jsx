@@ -25,6 +25,9 @@ const ShoppingPane = () => {
 
             const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
 
+         // const url = `http://localhost:8080/api/v3/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
+
+
             const response = await axios.get(url, {
                 responseType: 'json',
                 headers: {
@@ -40,7 +43,7 @@ const ShoppingPane = () => {
             if (data && data.data && Array.isArray(data.data.content)) {
                 setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
                 if (data.data.content.length > 0) {
-                    setLastItemId(data.data.content[0].itemId - 20);
+                    setLastItemId(data.data.content[19].itemId);
                 }
                 setIsFirstLoad(false);
             } else {
