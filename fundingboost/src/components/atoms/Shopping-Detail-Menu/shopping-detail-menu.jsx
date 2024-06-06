@@ -11,6 +11,8 @@ import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
 import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
 import GifthubModal from "../gifthubModal/gifthubModal";
 import NonMemberModal from "../shoppingDetail-nonMemberModal/shoppingDetail-nonMemberModal";
+import ShoppingDetailDefaultText from "../Shopping-Detail-defaultText/shopping-Detail-defaultText";
+
 export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl, bookmark}) {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
@@ -162,6 +164,10 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                     />
                 </div>
                 </div>
+                <div className="shoppingDetailBox-text">
+                    <ShoppingDetailDefaultText/>
+                </div>
+
             </div>
         </div>
     );
