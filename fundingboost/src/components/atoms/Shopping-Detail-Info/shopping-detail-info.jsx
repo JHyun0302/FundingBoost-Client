@@ -1,6 +1,7 @@
 import React from "react"
 import "./shopping-detail-info.scss";
 import shoppingTestImg from "../../../assets/shoppingDetailTest.PNG"
+import Button from "react-bootstrap/Button";
 
 export default function ShoppingDetailItemExplain () {
 
@@ -15,12 +16,18 @@ export default function ShoppingDetailItemExplain () {
 
                 </div>
             </div>
+
             <div className="shopping-detail-img">
                 <img className="shopping-detail-testImg" src={shoppingTestImg}/>
             </div>
 
-            <div className="blank"/>
+            <div className="shopping-detail-default-btn">
+                <Button className="DetailsBtn">
+                    상품설명 자세히보기 ▼
+                </Button>
+            </div>
 
+            <div className="blank"/>
 
         </div>
     );
