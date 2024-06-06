@@ -8,24 +8,19 @@ const ShoppingPane = () => {
     const [itemData, setItemData] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState({ name: '전체', param: '' });
     const [isLoading, setIsLoading] = useState(false);
-    const [lastItemId, setLastItemId] = useState(null);
+    const [currentPage, setCurrentPage] = useState(0); // 페이지 번호 상태 추가
     const [isFirstLoad, setIsFirstLoad] = useState(true);
     const loader = useRef(null);
 
-    const fetchData = async (category, lastItemIdParam) => {
+    const fetchData = async (category, currentPageParam) => {
         if (isLoading) return;
         setIsLoading(true);
 
         try {
             let accessToken = localStorage.getItem('accessToken') || "";
-            const params = {
-                category: category.param,
-                lastItemId: lastItemIdParam
-            };
 
-            const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
-
-         // const url = `http://localhost:8080/api/v3/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
+            const url = `http://localhost:8080/api/v3/items?category=${category.param}&page=${currentPageParam}`;
+            // const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
 
 
             const response = await axios.get(url, {
@@ -39,13 +34,13 @@ const ShoppingPane = () => {
             });
 
             const data = response.data;
+            console.log(url)
             console.log(data)
+
             if (data && data.data && Array.isArray(data.data.content)) {
                 setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
-                if (data.data.content.length > 0) {
-                    setLastItemId(data.data.content[19].itemId);
-                }
                 setIsFirstLoad(false);
+                setCurrentPage(prevPage => prevPage + 1); // 현재 페이지 업데이트
             } else {
                 console.error("Error: Unexpected response structure", data);
             }
@@ -58,14 +53,14 @@ const ShoppingPane = () => {
 
     useEffect(() => {
         setItemData([]);
-        fetchData(selectedCategory, null);
+        setCurrentPage(0); // 선택된 카테고리가 변경될 때 페이지를 0으로 리셋
+        fetchData(selectedCategory, 0);
     }, [selectedCategory]);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !isLoading && lastItemId !== null && lastItemId > 0) {
-                fetchData(selectedCategory, lastItemId);
-            }
+            if (entries[0].isIntersecting && !isLoading) {
+                fetchData(selectedCategory, currentPage);}
         });
 
         if (loader.current) {
@@ -77,7 +72,7 @@ const ShoppingPane = () => {
                 observer.unobserve(loader.current);
             }
         };
-    }, [isLoading, lastItemId, selectedCategory]);
+    }, [isLoading, currentPage, selectedCategory]);  // currentPage를 의존성 배열에 추가
 
     const handleCategorySelect = (category) => {
         setSelectedCategory(category);
