@@ -4,7 +4,7 @@ import wishFillHeart from "../../../../assets/fillheart.svg";
 import './wishBtn.scss'
 import axios from "axios";
 
-const WishBtn = ({itemId, bookmark}) => {
+const WishBtn = ({itemId, bookmark, onNonMemberModalOpen}) => {
     const [isWish, setIsWish] = React.useState(bookmark);
 
     //bookmark 상태
@@ -16,6 +16,10 @@ const WishBtn = ({itemId, bookmark}) => {
     const clickWishBtn = async () => {
         const wishState = !isWish;
         let accessToken = "";
+        if (!accessToken) {
+            onNonMemberModalOpen();
+            return;
+        }
 
         if (localStorage.getItem('accessToken') != null) {
             accessToken = localStorage.getItem('accessToken');

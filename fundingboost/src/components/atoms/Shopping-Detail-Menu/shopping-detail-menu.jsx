@@ -10,12 +10,13 @@ import WishBtn  from "../button/wishBtn/wishBtn";
 import FundingNowBtn from "../button/fundingNowBtn/fundingNowBtn";
 import PurchaseBtn from "../button/purchaseBtn/purchaseBtn";
 import GifthubModal from "../gifthubModal/gifthubModal";
-
+import NonMemberModal from "../shoppingDetail-nonMemberModal/shoppingDetail-nonMemberModal";
 export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl, bookmark}) {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
     const [selectOption, setSelectOptions] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [showNonMemberModal, setShowNonMemberModal] = useState(false);
 
     // 계속 소핑하기
     const closeModal = () => {
@@ -27,6 +28,16 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
         setShowModal(false);
         navigate('/gifthub');
     };
+
+    //위시 모달 상태 관리
+    const openNonMemberModal = () => {
+        setShowNonMemberModal(true);
+    };
+    const closeNonMemberModal = () => {
+        setShowNonMemberModal(false);
+    };
+
+
 
     const optionChange = (e) =>{
         setSelectOptions(e.target.value);
@@ -45,12 +56,18 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
     const handleGiftHubClick = () => {
 
+        const accessToken = localStorage.getItem('accessToken');
+
+        if (!accessToken) {
+            openNonMemberModal();
+            return;
+        }
+
         if (!selectOption || selectOption === "상품 옵션을 선택해주세요.") {
             alert('상품 옵션을 선택해주세요');
             return;
         }
 
-        const accessToken = localStorage.getItem('accessToken');
 
         fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
             method: 'POST',
@@ -78,6 +95,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
     return (
         <div className="shopping-menu-wrapper">
+            <NonMemberModal message="로그인이 필요한 서비스입니다." onClose={closeNonMemberModal} show={showNonMemberModal} />
             <GifthubModal itemName={itemName} show={showModal} onClose={closeModal} onGiftHub={gifthubBtnModal} message="Gifthub에 상품이 담겼습니다."  />
             <div className="shoppingDetailOptionBtnBox">
                 <div className="quantityAndPrice">
@@ -99,7 +117,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         </Form.Select>
                     </div>
                 </div>
-                <div class className="shopping-second-line-wrapper">
+                <div className="shopping-second-line-wrapper">
                 <div className="div-second-btn-wrapper">
                     <div className="div-wrapper">
                         <div className="shareIconWrapper">
@@ -109,7 +127,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
                 </div>
                 <div className="heartIconPosition">
-                    <WishBtn itemId={itemId} bookmark={bookmark}/>
+                    <WishBtn itemId={itemId} bookmark={bookmark}  onNonMemberModalOpen={openNonMemberModal} />
                 </div>
 
                 <div className="shareAndHeartAndPurchase">
@@ -120,6 +138,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         itemPrice={itemPrice}
                         itemName={itemName}
                         quantity={quantity}
+                        onNonMemberModalOpen={openNonMemberModal}
                     />
                 </div>
                 </div>
@@ -138,7 +157,9 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         selectOption={selectOption}
                         itemPrice={itemPrice}
                         itemName={itemName}
-                        quantity={quantity}/>
+                        quantity={quantity}
+                        onNonMemberModalOpen={openNonMemberModal}
+                    />
                 </div>
                 </div>
             </div>
