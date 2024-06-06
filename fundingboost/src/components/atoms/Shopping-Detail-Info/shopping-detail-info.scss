@@ -2,7 +2,20 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 1267px;
+  width: 100%;
+
+  .shopping-detail-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+    .shopping-detail-testImg{
+      display: flex;
+      width: 1200px;
+      height: auto;
+      justify-content: center;
+    }
+  }
 }
 
 .blank{
@@ -47,6 +60,11 @@
   line-height: normal;
   text-align: center;
   white-space: nowrap;
+}
+.shopping-detail-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .shop-item-index-container{
