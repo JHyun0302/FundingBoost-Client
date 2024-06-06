@@ -4,6 +4,7 @@ import './shopping-detail.scss';
 import axios from 'axios';
 import ShoppingDetailItem from "../../../atoms/Shopping-Detail-Title/shopping-detail-title";
 import ShoppingDetailInfo from "../../../atoms/Shopping-Detail-Info/shopping-detail-info";
+import ShoppingDetailDefaultText from "../../../atoms/Shopping-Detail-defaultText/shopping-Detail-defaultText";
 
 const ShoppingDetailPane = () => {
     const [itemData, setItemData] = useState([]);
@@ -38,6 +39,7 @@ const ShoppingDetailPane = () => {
     return(
         <div className="shopping-detail-container">
             <ShoppingDetailItem itemId={itemId} itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} bookmark={itemData.bookmark} />
+            <ShoppingDetailDefaultText />
             <ShoppingDetailInfo/>
         </div>
     );
