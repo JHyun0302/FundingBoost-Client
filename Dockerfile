@@ -7,6 +7,7 @@ RUN npm add react-material-ui-carousel
 RUN npm install sass
 RUN npm install net
 RUN npm install tls
+RUN npm install url
 
 RUN npm i
 COPY . .
