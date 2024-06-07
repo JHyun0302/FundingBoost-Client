@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
 import HttpsProxyAgent from 'https-proxy-agent';
-import { nickNameState, loginState } from './state'; // Adjust the import path to where your Recoil states are defined
+import { nickNameState, loginState } from "../../../state/auth";
 
 const Redirection = () => {
     const code = new URL(window.location.href).searchParams.get('code');
