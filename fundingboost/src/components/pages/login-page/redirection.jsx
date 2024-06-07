@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import axios from 'axios';
-import {useRecoilState} from "recoil";
-import {loginState, nickNameState} from "../../../state/auth";
+import { nickNameState, loginState } from './state'; // Adjust the import path to where your Recoil states are defined
 
 const Redirection = () => {
     const code = new URL(window.location.href).searchParams.get('code');
@@ -10,41 +10,37 @@ const Redirection = () => {
     const [nickName, setNickName] = useRecoilState(nickNameState);
     const [login, setLoginState] = useRecoilState(loginState);
     const [loginError, setLoginError] = useState(false);
-    console.log(code);
+
+    console.log("Code:", code);
 
     useEffect(() => {
         const login = async () => {
-            if (!code) return;
-
+            if (!code) {
+                console.log("No code found");
+                return;
+            }
             try {
-                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/login/oauth2/code/kakao?code=${code}`, {
+                const url = `${process.env.REACT_APP_FUNDINGBOOST}/login/oauth2/code/kakao?code=${code}`;
+                console.log("Making request to:", url);
+
+                const response = await axios.get(url, {
                     responseType: 'json',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Credentials': true,
-                        'Access-Control-Allow-Origin': 'https://k14f4ad097352a.user-app.krampoline.com/'
                     },
                     withCredentials: true,
                 });
-
-
-                if(response.data.data ==null){
-                    console.error("response error");
-                };
-
 
                 console.log('Response:', response.data);
 
                 if (response.data.success) {
                     const { access_token, refresh_token } = response.data.data;
-
                     if (access_token && refresh_token) {
                         const [grantType, token] = access_token.split(' ');
 
                         axios.defaults.headers.common['Authorization'] = token;
                         axios.defaults.headers.common['RefreshToken'] = refresh_token;
 
-                        // 로그인 상태와 토큰을 localStorage에 저장
                         localStorage.setItem('isAuthenticated', 'true');
                         localStorage.setItem('user', JSON.stringify({ nickName }));
                         localStorage.setItem('GrantType', grantType);
@@ -66,19 +62,19 @@ const Redirection = () => {
                         setLoginError(true);
                     }
                 } else {
+                    console.error('Login failed:', response.data.message);
                     setLoginError(true);
                 }
-
-                navigate('/');
             } catch (error) {
-                console.error(error);
-                console.log('로그인 실패');
+                console.error('Error during login:', error);
+                setLoginError(true);
             }
         };
-        login();
-    }, [code, navigate]);
 
-    return <div><h1>test_word</h1></div>;
+        login();
+    }, [code, navigate, nickName, setLoginState]);
+
+    return <div>test page</div>;
 };
 
 export default Redirection;
