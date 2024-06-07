@@ -8,6 +8,7 @@ RUN npm install sass
 RUN npm install net
 RUN npm install tls
 RUN npm install url
+RUN npm install assert
 
 RUN npm i
 COPY . .
