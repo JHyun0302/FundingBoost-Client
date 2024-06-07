@@ -20,10 +20,18 @@ const Redirection = () => {
                 return;
             }
             try {
-                const url = `${process.env.REACT_APP_FUNDINGBOOST}/login/oauth2/code/kakao?code=${code}`;
-                console.log("Making request to:", url);
+				const axios = require('axios');
+				const HttpsProxyAgent = require('https-proxy-agent');
 
-                const response = await axios.get(url, {
+				const httpsAgent = new HttpsProxyAgent({
+					host: 'krmp-proxy.9rum.cc',
+					port: 3128,
+				});
+				const axiosUsingProxy = axios.create({ httpsAgent });
+
+				const url = `${process.env.REACT_APP_FUNDINGBOOST}/login/oauth2/code/kakao?code=${code}`;
+				
+				const response = await axiosUsingProxy.get(url, {
                     responseType: 'json',
                     headers: {
                         'Content-Type': 'application/json',
