@@ -78,7 +78,7 @@ const Redirection = () => {
         login();
     }, [code, navigate]);
 
-    return <div><h1>test_word</h1></div>;
+    return <div>navigate('/');<h1>test_word</h1></div>;
 };
 
 export default Redirection;
