@@ -5,6 +5,7 @@ COPY ./fundingboost/package*.json .
 
 RUN npm add react-material-ui-carousel
 RUN npm install sass
+RUN npm install net
 
 RUN npm i
 COPY . .
