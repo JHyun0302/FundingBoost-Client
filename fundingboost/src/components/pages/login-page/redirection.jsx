@@ -72,7 +72,7 @@ const Redirection = () => {
         login();
     }, [code, navigate, nickName, setLoginState]);
 
-    return <div>test page</div>;
+    return <div></div>;
 };
 
 export default Redirection;
