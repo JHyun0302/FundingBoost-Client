@@ -4,11 +4,18 @@ import './fundingNowBtn.scss'
 import {useNavigate} from "react-router-dom";
 
 
-function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnailImageUrl, quantity}) {
+function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnailImageUrl, quantity, onNonMemberModalOpen}) {
     const navigate = useNavigate();
 
     console.log(quantity);
     const fundingNowBtnClick = () => {
+        const accessToken = localStorage.getItem('accessToken');
+
+        if (!accessToken) {
+            onNonMemberModalOpen();
+            return;
+        }
+
         if(quantity>5){
             alert('펀딩은 최대 5개까지만 가능합니다. ' +
                 '수량을 확인해주세요');
