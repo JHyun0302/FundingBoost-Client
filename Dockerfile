@@ -15,6 +15,7 @@ RUN npm run build
 FROM node:20
 WORKDIR /usr/src/app/fundingboost
 COPY --from=build /usr/src/app/fundingboost/build ./fundingboost
+# COPY ./fundingboost/.env .
 RUN npm install -g serve
 EXPOSE 3000
 
