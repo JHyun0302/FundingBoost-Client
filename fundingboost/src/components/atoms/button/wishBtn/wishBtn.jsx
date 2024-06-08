@@ -15,7 +15,7 @@ const WishBtn = ({itemId, bookmark, onNonMemberModalOpen}) => {
 
     const clickWishBtn = async () => {
         const wishState = !isWish;
-        let accessToken = "";
+        let accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
             onNonMemberModalOpen();
             return;
