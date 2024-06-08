@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
-import HttpsProxyAgent from 'https-proxy-agent';
 import { nickNameState, loginState } from "../../../state/auth";
 
 const Redirection = () => {
@@ -11,22 +10,7 @@ const Redirection = () => {
     const [nickName, setNickName] = useRecoilState(nickNameState);
     const [login, setLoginState] = useRecoilState(loginState);
     const [loginError, setLoginError] = useState(false);
-
     console.log("Code:", code);
-	
-	const httpsAgent = new HttpsProxyAgent({
-		host: 'krmp-proxy.9rum.cc',
-		port: 3128,
-	});
-
-	const config = {
-		httpsAgent,
-		responseType: 'json',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		withCredentials: true,
-	};
 
     useEffect(() => {
         const login = async () => {
@@ -35,10 +19,16 @@ const Redirection = () => {
                 return;
             }
             try {
-                const url = `${process.env.REACT_APP_FUNDINGBOOST}/login/oauth2/code/kakao?code=${code}`;
-                console.log("Making request to:", url);
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/login/oauth2/code/kakao?code=${code}`, {
+                    responseType: 'json',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': true,
+                        'Access-Control-Allow-Origin': 'https://k14f4ad097352a.user-app.krampoline.com/'
+                    },
+                    withCredentials: true,
+                });
 
-                const response = await axios.get(url, config);
                 console.log('Response:', response.data);
 
                 if (response.data.success) {
