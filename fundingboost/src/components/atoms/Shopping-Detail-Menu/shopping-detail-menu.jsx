@@ -114,8 +114,8 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                         <Form.Select aria-label="Default select example"  onChange={optionChange}>
                             <option>상품 옵션을 선택해주세요.</option>
                             <option >{option}</option>
-                            {/*<option value="2">Two</option>*/}
-                            {/*<option value="3">Three</option>*/}
+                            <option>option=[Color] Black</option>
+                            <option>option=[Color] White</option>
                         </Form.Select>
                     </div>
                 </div>
