@@ -35,10 +35,10 @@ const ShoppingPane = () => {
 
         try {
             let accessToken = localStorage.getItem('accessToken') || "";
-            let url = `http://localhost:8080/api/v3/items?category=${category.param}&page=${currentPageParam}`;
+            let url = `https://k14f4ad097352a.user-app.krampoline.com/api/v3/items?category=${category.param}&page=${currentPageParam}`;
 
             if (searchQueryParam) {
-                url = `http://localhost:8080/api/v3/search?keyword=${searchQueryParam}&page=${currentPageParam}`;
+                url = `https://k14f4ad097352a.user-app.krampoline.com/api/v3/search?keyword=${searchQueryParam}&page=${currentPageParam}`;
             }
 
             const response = await axios.get(url, {
