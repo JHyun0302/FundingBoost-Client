@@ -78,8 +78,8 @@ function HeaderBar() {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        // navigate(`/shopping?search=${searchQuery}`);
-        navigate(`/shopping`);
+        navigate(`/shopping?search=${searchQuery}`);
+        // navigate(`/shopping`);
     };
 
     return (
