@@ -24,11 +24,13 @@ function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange, onVa
     const handleMessageChange = (messageText) => {
         setSelectedMessage(messageText);
         onMessageChange(messageText);
+        console.log(messageText)
     };
 
     const handleEndDate = ({endDate}) => {
         setSelectedEndDate(endDate);
         onDateChange(endDate);
+        console.log(endDate)
     };
 
 

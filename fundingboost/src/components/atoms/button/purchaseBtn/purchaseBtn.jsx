@@ -3,10 +3,17 @@ import Button from 'react-bootstrap/Button';
 import './purchaseBtn.scss'
 import {useNavigate} from "react-router-dom";
 
-const PurchaseBtn = ({itemId, itemName, itemPrice, itemThumbnailImageUrl, selectOption,quantity}) => {
+const PurchaseBtn = ({itemId, itemName, itemPrice, itemThumbnailImageUrl, selectOption,quantity, onNonMemberModalOpen}) => {
     const navigate = useNavigate();
 
     const purchaseBtnClick = () => {
+        const accessToken = localStorage.getItem('accessToken');
+
+        if (!accessToken) {
+            onNonMemberModalOpen();
+            return;
+        }
+
         if (selectOption && selectOption !== "상품 옵션을 선택해주세요.") {
             const itemPurchase = {
                 optionName: selectOption,

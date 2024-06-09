@@ -24,3 +24,12 @@
 //  left: 500px; /* 초기 위치 설정 */
 //}
 //
+
+@media (max-width: 479px) {
+  .ranking-pane-container{
+    padding: 0;
+    padding-bottom:0;
+    margin-right:0;
+    margin-left:0;
+  }
+}

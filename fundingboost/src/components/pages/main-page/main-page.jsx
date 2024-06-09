@@ -33,12 +33,15 @@ function MainPage() {
             });
             const data = response.data;
             setMainData(data);
+            console.log(url)
 
-
-            console.log("nickName: " + response.data.data.homeMemberInfoDto.nickName);
-            localStorage.setItem('nickName', response.data.data.homeMemberInfoDto.nickName);
-
-
+            const homeMemberInfo = data.data?.homeMemberInfoDto;
+            if (homeMemberInfo && homeMemberInfo.nickName) {
+                console.log("nickName: " + homeMemberInfo.nickName);
+                localStorage.setItem('nickName', homeMemberInfo.nickName);
+            } else {
+                console.warn("Warning: homeMemberInfoDto or nickName is null or undefined.");
+            }
 
             if (data && data.data && Array.isArray(data.data.itemDtoList)) {
                 setScrollData(prev => lastItemIdParam ? [...prev, ...data.data.itemDtoList] : data.data.itemDtoList);

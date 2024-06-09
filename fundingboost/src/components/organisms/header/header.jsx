@@ -5,17 +5,17 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './header.scss';
-
 import logoImg from '../../../assets/logo.svg';
 import gifthub from '../../../assets/gifthub.svg';
 import { CiSearch } from "react-icons/ci";
 import { loginState } from '../../../state/auth';
 
-function HeaderBar({mainData}) {
+function HeaderBar() {
     const navigate = useNavigate();
     const login = useRecoilValue(loginState);
     const setLoginState = useSetRecoilState(loginState);
     const [nickName, setNickName] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -72,6 +72,16 @@ function HeaderBar({mainData}) {
         }
     };
 
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/shopping?search=${searchQuery}`);
+        // navigate(`/shopping`);
+    };
+
     return (
         <Navbar expand="lg" className="headerBar">
             <Container fluid>
@@ -84,28 +94,31 @@ function HeaderBar({mainData}) {
                         <Nav.Link href="/shopping" className="shopping-btn">쇼핑하기</Nav.Link>
                         <Nav.Link href="/mypage" className="my-btn">MY</Nav.Link>
                     </Nav>
-                    <div className="header-search-login">
-                    <Form className="searchBar">
-                        <CiSearch style={{ fontSize: '40px' }} />
-                        <Form.Control
-                            type="search"
-                            placeholder="상품을 검색해보세요"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button className="gifthub-btn" href="/gifthub"><img src={gifthub} alt="GiftHub" /></Button>
-                    </Form>
 
-                    <div className="loginLogout">
-                        {login.isAuthenticated && localStorage.getItem('accessToken') ? (
-                            <NavDropdown title={localStorage.getItem('nickName')} id="logoutDropdown" align="end">
-                                <NavDropdown.Item onClick={logoutHandler} className="dropdownItem">로그아웃</NavDropdown.Item>
-                            </NavDropdown>
-                        ) : (
-                            <button onClick={loginHandler} className="login-btn">로그인</button>
-                        )}
+                    <div className="header-search-login">
+                        <Form className="searchBar" onSubmit={handleSearchSubmit}>
+                            <Form.Control
+                                type="search"
+                                placeholder="상품을 검색해보세요"
+                                className="me-2"
+                                aria-label="Search"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                            />
+                            <CiSearch style={{ fontSize: '40px', cursor: 'pointer' }} onClick={handleSearchSubmit} />
+                            <Button className="gifthub-btn" href="/gifthub"><img src={gifthub} alt="GiftHub" /></Button>
+                        </Form>
+
+                        <div className="loginLogout">
+                            {login.isAuthenticated && localStorage.getItem('accessToken') ? (
+                                <NavDropdown title={localStorage.getItem('nickName')} id="logoutDropdown" align="end">
+                                    <NavDropdown.Item onClick={logoutHandler} className="dropdownItem">로그아웃</NavDropdown.Item>
+                                </NavDropdown>
+                            ) : (
+                                <button onClick={loginHandler} className="login-btn">로그인</button>
+                            )}
+                        </div>
                     </div>
-                </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
