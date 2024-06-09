@@ -123,3 +123,34 @@
 .loginmoji{
   padding:5px;
 }
+
+@media (max-width: 479px) {
+  .social-login-box {
+    width: 100%;
+
+  }
+  .social-login-btn {
+    width: 70%;
+  }
+  .login-box {
+    width: 70%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+  }
+  .login-btn-grey {
+    height: 80px;
+  }
+  .input-field {
+    width: 189px;
+
+  }
+  .loginmoji {
+    >img {
+      width: 100px;
+    }
+  }
+  .centerAlign {
+    font-size: 25px;
+  }
+}

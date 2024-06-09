@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import './shopping.scss';
 import axios from "axios";
 import ShoppingSingleItem from "../../../atoms/shopping-single-item/shopping-single-item";
@@ -7,23 +8,38 @@ import ShoppingCategory from "../../../atoms/Shopping-Item-Category/shopping-ite
 const ShoppingPane = () => {
     const [itemData, setItemData] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState({ name: '전체', param: '' });
+    const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [lastItemId, setLastItemId] = useState(null);
+    const [currentPage, setCurrentPage] = useState(0);
     const [isFirstLoad, setIsFirstLoad] = useState(true);
     const loader = useRef(null);
+    const location = useLocation();
 
-    const fetchData = async (category, lastItemIdParam) => {
+    useEffect(() => {
+        const searchParams = new URLSearchParams(location.search);
+        const newSearchQuery = searchParams.get('search');
+        console.log('Search Query:', newSearchQuery);
+
+        if (newSearchQuery !== searchQuery) {
+            setSearchQuery(newSearchQuery || '');
+            setItemData([]);
+            setSelectedCategory({ name: '전체', param: '' });
+            setCurrentPage(0);
+            setIsFirstLoad(true);
+        }
+    }, [location.search, searchQuery]);
+
+    const fetchData = async (category, currentPageParam, searchQueryParam) => {
         if (isLoading) return;
         setIsLoading(true);
 
         try {
             let accessToken = localStorage.getItem('accessToken') || "";
-            const params = {
-                category: category.param,
-                lastItemId: lastItemIdParam
-            };
+            let url = `http://localhost:8080/api/v3/items?category=${category.param}&page=${currentPageParam}`;
 
-            const url = `${process.env.REACT_APP_FUNDINGBOOST}/items?category=${category.param}${lastItemIdParam ? `&lastItemId=${lastItemIdParam}` : ''}`;
+            if (searchQueryParam) {
+                url = `http://localhost:8080/api/v3/search?keyword=${searchQueryParam}&page=${currentPageParam}`;
+            }
 
             const response = await axios.get(url, {
                 responseType: 'json',
@@ -36,13 +52,13 @@ const ShoppingPane = () => {
             });
 
             const data = response.data;
-            console.log(data)
+            console.log(url);
+            console.log(data);
+
             if (data && data.data && Array.isArray(data.data.content)) {
                 setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
-                if (data.data.content.length > 0) {
-                    setLastItemId(data.data.content[0].itemId - 20);
-                }
                 setIsFirstLoad(false);
+                setCurrentPage(prevPage => prevPage + 1);
             } else {
                 console.error("Error: Unexpected response structure", data);
             }
@@ -55,13 +71,14 @@ const ShoppingPane = () => {
 
     useEffect(() => {
         setItemData([]);
-        fetchData(selectedCategory, null);
-    }, [selectedCategory]);
+        setCurrentPage(0);
+        fetchData(selectedCategory, 0, searchQuery);
+    }, [selectedCategory, searchQuery]);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !isLoading && lastItemId !== null && lastItemId > 0) {
-                fetchData(selectedCategory, lastItemId);
+            if (entries[0].isIntersecting && !isLoading) {
+                fetchData(selectedCategory, currentPage, searchQuery);
             }
         });
 
@@ -74,10 +91,15 @@ const ShoppingPane = () => {
                 observer.unobserve(loader.current);
             }
         };
-    }, [isLoading, lastItemId, selectedCategory]);
+    }, [isLoading, currentPage, selectedCategory, searchQuery]);
 
     const handleCategorySelect = (category) => {
+        setSearchQuery('');
         setSelectedCategory(category);
+        setItemData([]);
+        setCurrentPage(0);
+        setIsFirstLoad(true);
+        fetchData(category, 0, '');
     };
 
     return (

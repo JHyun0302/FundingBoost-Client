@@ -10,10 +10,12 @@ export default function ShoppingCategory({ onCategorySelect }) {
         { name: '뷰티', param: '뷰티' },
         { name: '패션', param: '패션' },
         { name: '식품', param: '식품' },
-        { name: '디지털', param: '디지털' },
         { name: '리빙/도서', param: '리빙/도서' },
-        { name: '스포츠', param: '스포츠' },
-        { name: '교환권', param: '교환권' }
+        { name: '레저/스포츠', param: '레저/스포츠' },
+        { name: '유아동/반려', param: '유아동/반려' },
+        { name: '디지털/가전', param: '디지털/가전' },
+        { name: '교환권', param: '교환권' },
+        { name: '상품권', param: '상품권' }
     ];
 
     const handleCategorySelect = (category) => {

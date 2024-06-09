@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './mypage-myfunding-dofunding.scss';
 import shareicon from "../../../assets/share.svg";
@@ -9,7 +9,7 @@ import MyPageMyFundingMessage from "../Modal/MypageMyfundingMessage/mypagemyfund
 import messageboxopen from "../../../assets/messagebox-open.svg";
 import ExtensionButton from "../../atoms/buttons/Mypage-Myfunding-Button/mypage-myfunding-extension-button/mypage-myfunding-extension-button";
 
-const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent, message, tag, participateFriendDtoList, myPageFundingItemDtoList,  isFundingClosed, setIsFundingClosed }) => {
+const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent, message, tag, participateFriendDtoList, myPageFundingItemDtoList, isFundingClosed, setIsFundingClosed }) => {
     const [showModal, setShowModal] = useState(false); // 모달 열림 여부 상태 관리
     const [isHovered, setIsHovered] = useState(false);
 
@@ -27,7 +27,6 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
             const accessToken = localStorage.getItem('accessToken');
 
             const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding/close/${fundingId}`, null, {
-
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,20 +38,13 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
             console.log('POST 결과:', response.data);
             setIsFundingClosed(true); // 펀딩 종료 상태 변경
             console.log("isFundingClosed 업데이트 전:", isFundingClosed);
+
+            // 페이지 새로고침
+            window.location.reload();
         } catch (error) {
             console.error('POST 에러:', error);
         }
     };
-    //
-    // useEffect(() => {
-    //     console.log("isFundingClosed:", isFundingClosed); // 상태 변경 후 로그 확인
-    // }, [isFundingClosed]); // isFundingClosed가 변경될 때마다 실행
-
-    // useEffect(() => {
-    //     if (isFundingClosed) {
-    //         console.log("isFundingClosed 업데이트 후:", isFundingClosed);
-    //     }
-    // }, [isFundingClosed]);
 
     return (
         <div className="mypage-right-pane-containter">
@@ -77,9 +69,9 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
                         </button>
                     </div>
                     <div className="mypage-button-noti-wrpper">
-                        <ExtensionButton myPageFundingItemDtoList = {myPageFundingItemDtoList}/>
+                        <ExtensionButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
                         <button className="mypage-button-style-01">
-                            <img src={shareicon} alt="shareicon" className="mypage-share-icon"/>
+                            <img src={shareicon} alt="shareicon" className="mypage-share-icon" />
                         </button>
                         <div className="mypage-remain-date-noti">
                             <div>＊ 기간은 자동 2주 연장됩니다.</div>
@@ -88,11 +80,11 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
                 </div>
                 <div className="horizontalLine"></div>
                 <MyfundingItemList myPageFundingItemDtoList={myPageFundingItemDtoList} isFundingClosed={isFundingClosed} setIsFundingClosed={setIsFundingClosed} />
-                <div className= "mypage-end-button-container">
+                <div className="mypage-end-button-container">
                     <button className="mypage-button-style-03" onClick={handleCloseFunding}>종료하기</button>
                 </div>
                 <div className="horizontalLine"></div>
-                <MyfundingAdditionalPane participateFriendDtoList={participateFriendDtoList} totalPercent={totalPercent}/>
+                <MyfundingAdditionalPane participateFriendDtoList={participateFriendDtoList} totalPercent={totalPercent} />
             </div>
             <MyPageMyFundingMessage show={showModal} message={message} handleClose={toggleModal} />
         </div>
@@ -100,4 +92,3 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
 }
 
 export default MyfundingDoFundingPane;
-

@@ -48,3 +48,16 @@
     flex-direction: column;
   }
 }
+
+@media all and (max-width:479px) {
+  .rankging-text{
+    font-size: 18px;
+  }
+  .item-list-single {
+    gap:93px;
+  }
+  .single-item {
+    max-width: 30%;
+  }
+  }
+

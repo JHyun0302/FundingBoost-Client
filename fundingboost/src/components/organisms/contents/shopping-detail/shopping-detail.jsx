@@ -27,6 +27,7 @@ const ShoppingDetailPane = () => {
                 });
                 setItemData(response.data.data);
                 console.log('GET 결과:', response.data);
+                console.log(response);
             } catch (error) {
                 console.error('GET 에러:', error);
             }
