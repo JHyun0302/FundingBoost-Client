@@ -33,7 +33,7 @@ function FundingRegistPage(props) {
                 return acc;
             }, []);
 
-        // 쇼핑상세에서 펀딩 바로 가기를 통해 아이템 선택한 경우
+            // 쇼핑상세에서 펀딩 바로 가기를 통해 아이템 선택한 경우
         } else if (fundingNowData) {
             const items = [];
 
@@ -149,7 +149,6 @@ function FundingRegistPage(props) {
                 fundingMessage: fundingMessage,
                 tag: fundingTag,
                 deadline: deadline,
-
             })
 
 
@@ -168,6 +167,7 @@ function FundingRegistPage(props) {
 
                 });
             console.log("post :", response);
+            console.log(data)
         } catch (error) {
             console.error('POST 에러:', error);
         }
