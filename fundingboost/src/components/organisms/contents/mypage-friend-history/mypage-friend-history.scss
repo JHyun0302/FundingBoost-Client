@@ -8,3 +8,30 @@
   box-sizing: border-box;
   min-height: 500px;
 }
+
+.mypage-myhistory-total-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.mypage-myhistory-left-pane-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.mypage-myhistory-right-pane-containter{
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #3e3e3e;
+}
+
+.mypage-myhistory-container{
+  display: flex;
+  margin: 10px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  //width: 100%;
+  width: 1130px;
+  box-sizing: border-box;
+  min-height: 500px;
+}
