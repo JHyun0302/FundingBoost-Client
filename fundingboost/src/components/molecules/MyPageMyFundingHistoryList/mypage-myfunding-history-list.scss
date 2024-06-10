@@ -37,6 +37,13 @@
   height: 17px;
 }
 
+.detailed{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .mypage-FH-horizontalLine {
   border-bottom: 1px solid gray;
   margin-left: 10px;

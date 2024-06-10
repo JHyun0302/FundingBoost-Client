@@ -19,7 +19,7 @@ const ShoppingDetailDefaultText = () => {
                             3일이내 도착 예정
                         </div>
                         <div className="shopping-Detail-delivery-Text3">
-                            *도착일은 배송지나 배송사 사정 등으로 변경 또는 지연될 <br/>수 있습니다.
+                            *도착일은 배송지나 배송사 사정 등으로 변경 또는 지연될 수 있습니다.
                         </div>
                     </div>
 
