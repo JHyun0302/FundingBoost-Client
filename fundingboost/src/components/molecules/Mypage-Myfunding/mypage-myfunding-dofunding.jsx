@@ -31,7 +31,7 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
-                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
                     'Access-Control-Allow-Credentials': true
                 }
             });
@@ -42,8 +42,6 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
         } catch (error) {
             console.error('POST 에러:', error);
         }
-		// 페이지 새로고침
-		window.location.reload();
     };
 
     return (
