@@ -1,53 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './calender.scss';
 
-
-const Calender = ({ onDateChange }) => {
+const Calender = ({ onDateChange, selectedDate }) => {
     const today = new Date();
-    const defaultEndDate = new Date();
+    const defaultEndDate = new Date(today);
     defaultEndDate.setDate(today.getDate() + 13);
+
     const [startDate, setStartDate] = useState(today);
-    const [endDate, setEndDate] = useState(defaultEndDate);
+    const [endDate, setEndDate] = useState(selectedDate ? new Date(selectedDate) : defaultEndDate);
 
-    const onChange = (dates) => {
-        const [start, end] = dates;
-        setEndDate(end);
-        onDateChange({ startDate: start, endDate: end });
+    useEffect(() => {
+        // If no date is selected, set the default end date
+        if (!selectedDate) {
+            setEndDate(defaultEndDate);
+            onDateChange(defaultEndDate);
+        }
+    }, [selectedDate, onDateChange, today, defaultEndDate]);
+
+    const onChange = (date) => {
+        setEndDate(date);
+        onDateChange(date);
     };
-
 
     const formatDate = (date) => {
         return date.toLocaleDateString('ko-KR');
     };
-    return (
 
-        <div >
+    return (
+        <div>
             <div className="calender">
                 <DatePicker
-                    selected={startDate}
+                    selected={endDate}
                     onChange={onChange}
                     minDate={today}
-                    maxDate={endDate ? endDate : null}
-                    startDate={today}
+                    startDate={startDate}
                     endDate={endDate}
-
-                    selectsRange
+                    selectsEnd
                     inline
                     showDisabledMonthNavigation
                     isClearable={true}
                 />
             </div>
-
             <div>
-                {/* 선택한 시작 날짜와 종료 날짜를 출력 */}
-                <p>시작일: {startDate && formatDate(startDate)} 종료일: {endDate && formatDate(endDate)}</p>
+                {/* Display selected start and end dates */}
+                <p>시작일: {formatDate(startDate)} 종료일: {endDate && formatDate(endDate)}</p>
             </div>
         </div>
-
-)
-    ;
+    );
 };
 
 export default Calender;
