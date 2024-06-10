@@ -8,7 +8,7 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
     useEffect(() => {
         setOrderedItems(selectedItems);
     }, [selectedItems]);
-    console.log(orderedItems);
+    // console.log(orderedItems);
 
     //상품 순서 지정
     const itemOrderCheck = (index) => {
