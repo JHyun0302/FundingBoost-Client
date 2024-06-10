@@ -128,16 +128,15 @@ function FundingRegistPage(props) {
 
             const accessToken = localStorage.getItem('accessToken');
 
-            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, data,
-
-                {
-                    responseType: 'json',
-                    headers: ({
-                        "Content-Type" : "application/json",
-                        "Access-Control-Allow-Credentials" : true,
-                        "Authorization": `Bearer ${accessToken}`,
-                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/"
-                    })
+            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/funding`, data, {
+                responseType: 'json',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": true,
+                    "Authorization": `Bearer ${accessToken}`,
+                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/"
+                }
+            });
 
             console.log("post :", response);
             console.log(data);
