@@ -8,7 +8,7 @@ const Calender = ({ onDateChange, selectedDate }) => {
     const defaultEndDate = new Date(today);
     defaultEndDate.setDate(today.getDate() + 13);
 
-    const [startDate, setStartDate] = useState(selectedDate || today);
+    const [startDate, setStartDate] = useState(today);
     const [endDate, setEndDate] = useState(selectedDate ? new Date(selectedDate) : defaultEndDate);
 
     useEffect(() => {
@@ -17,13 +17,11 @@ const Calender = ({ onDateChange, selectedDate }) => {
             setEndDate(defaultEndDate);
             onDateChange(defaultEndDate);
         }
-    }, [selectedDate, onDateChange, defaultEndDate]);
+    }, [selectedDate, onDateChange, today, defaultEndDate]);
 
-    const onChange = (dates) => {
-        const [start, end] = dates;
-        setStartDate(start);
-        setEndDate(end);
-        onDateChange(end || start);
+    const onChange = (date) => {
+        setEndDate(date);
+        onDateChange(date);
     };
 
     const formatDate = (date) => {
@@ -34,12 +32,12 @@ const Calender = ({ onDateChange, selectedDate }) => {
         <div>
             <div className="calender">
                 <DatePicker
-                    selected={startDate}
+                    selected={endDate}
                     onChange={onChange}
                     minDate={today}
                     startDate={startDate}
                     endDate={endDate}
-                    selectsRange
+                    selectsEnd
                     inline
                     showDisabledMonthNavigation
                     isClearable={true}
@@ -47,7 +45,7 @@ const Calender = ({ onDateChange, selectedDate }) => {
             </div>
             <div>
                 {/* Display selected start and end dates */}
-                <p>시작일: {startDate && formatDate(startDate)} 종료일: {endDate && formatDate(endDate)}</p>
+                <p>시작일: {formatDate(startDate)} 종료일: {endDate && formatDate(endDate)}</p>
             </div>
         </div>
     );

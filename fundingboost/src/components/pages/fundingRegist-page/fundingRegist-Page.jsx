@@ -115,11 +115,15 @@ function FundingRegistPage(props) {
                 fundingTag = "졸업";
             }
 
+            // Increment deadline by 1 day
+            const incrementedDeadline = new Date(deadline);
+            incrementedDeadline.setDate(incrementedDeadline.getDate());
+
             const data = JSON.stringify({
                 itemIdList: itemIdList,
                 fundingMessage: fundingMessage,
                 tag: fundingTag,
-                deadline: deadline
+                deadline: incrementedDeadline.toISOString() // Convert to ISO format
             });
 
             const accessToken = localStorage.getItem('accessToken');
@@ -140,6 +144,7 @@ function FundingRegistPage(props) {
             console.error('POST 에러:', error);
         }
     };
+
 
     return (
         <div className="fundingRegist-Page">
