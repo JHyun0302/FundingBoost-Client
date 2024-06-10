@@ -38,7 +38,11 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
             console.log('POST 결과:', response.data);
             setIsFundingClosed(true); // 펀딩 종료 상태 변경
             console.log("isFundingClosed 업데이트 전:", isFundingClosed);
-            
+
+			// Slight delay to ensure state update is rendered
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
         } catch (error) {
             console.error('POST 에러:', error);
         }
