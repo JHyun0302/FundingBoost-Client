@@ -14,9 +14,7 @@ console.log(friendFundingData);
                 <div className="friendFunding-itemlist">
                     {friendFundingData?.data?.map((fundingData, index) => (
                         <Link  key={index}
-                              to={{
-                                  pathname: `/friend-Funding/Detail/${fundingData.fundingId}`,
-                                  state: { fundingId: fundingData.fundingId } }}
+                              to={`/friend-funding/detail/${fundingData.fundingId}`}
                               className="friendFunding-Background"
                         >
 

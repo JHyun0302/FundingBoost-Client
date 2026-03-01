@@ -76,8 +76,6 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${accessToken}`,
-                "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
-                'Access-Control-Allow-Credentials': true
 
             },
             body: JSON.stringify({

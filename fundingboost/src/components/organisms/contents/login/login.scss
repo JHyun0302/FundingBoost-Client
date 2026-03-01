@@ -79,18 +79,27 @@
 
 .social-login-link{
   display: block;
-  width: fit-content; /* 내부 요소만큼의 가로폭을 가지도록 설정합니다. */
-  margin: 0 auto; /* 좌우 마진을 자동으로 설정하여 가운데 정렬합니다. */
-  text-align: center; /* 내부 텍스트를 가운데 정렬합니다. */
+  width: min(100%, 60%);
+  margin: 0 auto 10px;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.social-login-link-button{
+  cursor: pointer;
 }
 
 .social-login-btn {
-  width: 60%;/* 버튼의 가로 크기를 100%로 설정하여 부모 요소에 맞춥니다. */
+  width: 100%;
+  display: block;
   height: auto;
-  margin-bottom: 10px; /* 버튼 간의 간격을 설정합니다. 필요에 따라 조정하세요. */
-  cursor: pointer; /* 마우스 커서를 포인터로 변경합니다. */
+  margin-bottom: 0;
+  cursor: pointer;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s; /* 그림자 효과에 transition 적용 */
+  transition: box-shadow 0.3s;
   border-radius: 10px;
 }
 
@@ -129,8 +138,8 @@
     width: 100%;
 
   }
-  .social-login-btn {
-    width: 70%;
+  .social-login-link {
+    width: min(100%, 75%);
   }
   .login-box {
     width: 70%;

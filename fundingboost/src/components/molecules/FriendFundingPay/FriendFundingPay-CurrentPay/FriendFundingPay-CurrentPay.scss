@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 150px;
+  min-height: 150px;
+  height: auto;
+  width: min(100%, 540px);
 
   .friend-funding-price-current-pay-fixed-text {
     color: #888888;
@@ -15,8 +17,9 @@
     flex-direction: column;
     justify-content: space-between;
     align-self: flex-end;
-    height: 150px;
-    width: 540px;
+    min-height: 150px;
+    height: auto;
+    width: 100%;
 
     .friend-funding-price-current-pay-text {
       display: flex;
@@ -31,3 +34,8 @@
 
 }
 
+@media (max-width: 768px) {
+  .friend-funding-price-current-pay .friend-funding-price-current-pay-div {
+    align-self: stretch;
+  }
+}

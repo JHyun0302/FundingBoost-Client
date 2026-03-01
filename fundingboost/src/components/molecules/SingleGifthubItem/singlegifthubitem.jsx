@@ -31,8 +31,6 @@ export default function SingleGiftHubItem({ item, onCheckboxChange, onDelete }) 
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
-                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
-                    'Access-Control-Allow-Credentials': true
                 },
             });
             console.log('아이템 삭제 성공');

@@ -2,7 +2,7 @@ import React from 'react';
 import './wishList.scss';
 import WishListSingleItem from "../wishList-SingleItem/wishList-SingleItem";
 
-const WishList = ({wishListData}) => {
+const WishList = ({wishListData, onRemoveBookmark, isRemoving}) => {
     console.log("위시:",wishListData);
     return (
         <div className="wishList">
@@ -18,7 +18,11 @@ const WishList = ({wishListData}) => {
                         <div className="wishList-SingleItem">
                             {wishListData?.bookmarkItemDtos?.map((wishListData, index) => (
                             <div key={index} className="wish-list-single-item">
-                                <WishListSingleItem wishListData={wishListData}/>
+                                <WishListSingleItem
+                                    wishListData={wishListData}
+                                    onRemoveBookmark={onRemoveBookmark}
+                                    isRemoving={isRemoving}
+                                />
                             </div>
                                 ))}
 

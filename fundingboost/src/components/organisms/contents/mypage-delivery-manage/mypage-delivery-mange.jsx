@@ -30,9 +30,7 @@ const MypageDeliveryPane = () => {
                     method: 'GET',
                     url: `${process.env.REACT_APP_FUNDINGBOOST}/delivery`,
                     headers: {
-                        "Access-Control-Allow-Credentials": true,
                         "Authorization": `Bearer ${accessToken}`,
-                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/"
                     },
                     responseType: 'json'
                 });

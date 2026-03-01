@@ -15,6 +15,7 @@ const SignUp = () => {
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const [seePassword, setSeePassword] = useState(false);
     const [seePasswordConfirm, setSeePasswordConfirm] = useState(false);
+    const [gender, setGender] = useState('');
 
     //이메일 형식
     const fromEmail = (email) => {
@@ -104,6 +105,27 @@ const SignUp = () => {
                         </div>
                         <div className="input-box-info">
                             <div className="input-box-detail">
+                                <a>성별</a>
+                                <div className="gender-select-group">
+                                    <button
+                                        type="button"
+                                        className={`gender-select-btn ${gender === 'MAN' ? 'active' : ''}`}
+                                        onClick={() => setGender('MAN')}
+                                    >
+                                        남자
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={`gender-select-btn ${gender === 'WOMAN' ? 'active' : ''}`}
+                                        onClick={() => setGender('WOMAN')}
+                                    >
+                                        여자
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="input-box-info">
+                            <div className="input-box-detail">
                                 <a>비밀번호 확인</a>
                                 <div className="input-box-password">
                                     <input
@@ -129,7 +151,14 @@ const SignUp = () => {
 
                 </div>
                 <div className="signUp-btn">
-                    <SignUpBtn username={username} email={email} emailValid={emailValid} password={password} passwordConfirm={passwordConfirm}/>
+                    <SignUpBtn
+                        username={username}
+                        email={email}
+                        emailValid={emailValid}
+                        password={password}
+                        passwordConfirm={passwordConfirm}
+                        gender={gender}
+                    />
                 </div>
 
             </div>

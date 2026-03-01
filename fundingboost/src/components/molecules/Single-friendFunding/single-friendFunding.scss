@@ -21,16 +21,16 @@
         justify-content: space-between;
         background-color: #EBEBEB;
         border-radius: 10px;
-        width: 465px;
+        width: min(100%, 465px);
         margin: 15px 10px 15px 10px;
         text-decoration-line: none;
 
         .friendFunding-Background-left {
-          width: 436px;
+          width: calc(100% - 29px);
 
           .friendFunding-gaugeBar {
             .gauge-bar.progress {
-              width: 405px;
+              width: calc(100% - 40px);
               margin: 15px 20px;
               height: 25px;
 
@@ -67,5 +67,19 @@
   }
 }
 
+@media (max-width: 768px) {
+  .friendFunding .friendFunding-row {
+    margin: 12px;
+  }
+
+  .friendFunding .friendFunding-row .friendFunding-itemlist {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .friendFunding .friendFunding-row .friendFunding-itemlist .friendFunding-Background {
+    margin: 10px 0;
+  }
+}
 
 

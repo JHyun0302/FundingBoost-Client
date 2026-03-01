@@ -3,7 +3,7 @@
   padding-top: 18px;
   flex-direction: column;
   justify-content: space-between;
-  width: 375px;
+  width: min(100%, 375px);
   max-height: 320px;
   overflow-y: auto;
 }
@@ -17,7 +17,7 @@
 }
 
 .MyPayDeliveryListBox .MyPayDeliveryListView {
-  width: 355px;
+  width: 100%;
   margin-bottom: 15px;
 }
 
@@ -25,7 +25,7 @@
   background-color: #ffffff;
   border: 1px solid #b7b7b7;
   height: 160px;
-  width: 353px;
+  width: 100%;
   padding: 10px;
 }
 
@@ -48,6 +48,6 @@
   background-color: #ffffff;
   border: 1px solid #b7b7b7;
   height: 160px;
-  width: 353px;
+  width: 100%;
   padding: 10px;
 }

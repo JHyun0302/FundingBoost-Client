@@ -1,6 +1,7 @@
 .mypage-total-container{
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .mypage-right-pane-containter{
@@ -8,14 +9,15 @@
   flex-direction: column;
   min-height: 787px;
   border-left: 1px solid #3e3e3e;
+  width: 100%;
 }
 
 .mypage-myfunding-content-wrapper{
   background-color: #efefef;
   border: 1px solid #d9d9d9;
-  width: 100%;
-  min-width: 1130px;
-  max-width: 1130px;
+  width: min(1130px, calc(100vw - 40px));
+  min-width: 0;
+  max-width: calc(100vw - 40px);
   height: auto;
   margin: 15px;
   display: flex;
@@ -73,4 +75,24 @@
   font-size: 20px;
   font-family: SUITE-Regular;
   color: #9a9a9a;
+}
+
+@media (max-width: 1200px) {
+  .mypage-total-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mypage-right-pane-containter {
+    border-left: none;
+    border-top: 1px solid #3e3e3e;
+    min-height: 0;
+    align-items: center;
+  }
+
+  .mypage-myfunding-content-wrapper {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
 }

@@ -44,8 +44,6 @@ function HeaderBar() {
                 {},
                 {
                     headers: {
-                        "Access-Control-Allow-Credentials": true,
-                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
                         'Authorization': `Bearer ${accessToken}`,
                         'RefreshToken': refreshToken
                     }

@@ -2,30 +2,56 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { HashLoader } from "react-spinners";
 
+const lazyWithRetry = (importer) =>
+    lazy(async () => {
+        const refreshKey = 'fundingboost:chunk-retry';
+        const hasRefreshed = window.sessionStorage.getItem(refreshKey) === 'true';
+
+        try {
+            const component = await importer();
+            window.sessionStorage.setItem(refreshKey, 'false');
+            return component;
+        } catch (error) {
+            const message = error?.message || '';
+            const isChunkLoadError =
+                /ChunkLoadError/i.test(message) ||
+                /Loading chunk [\d]+ failed/i.test(message);
+
+            if (isChunkLoadError && !hasRefreshed) {
+                window.sessionStorage.setItem(refreshKey, 'true');
+                window.location.reload();
+                return new Promise(() => {});
+            }
+
+            window.sessionStorage.setItem(refreshKey, 'false');
+            throw error;
+        }
+    });
+
 // 동적으로 로드할 컴포넌트를 lazy 함수를 사용하여 import
-const Main = lazy(() => import('../src/components/pages/main-page/main-page'));
-const Login = lazy(() => import('../src/components/pages/login-page/login-page'));
-const Gifthub = lazy(() => import('./components/pages/gifthub-page/gifthub-page'));
-const MypageMyfunding = lazy(() => import('./components/pages/mypage/mypage-myfunding-page/mypage-myfunding-page'));
-const MypageFundingHistory = lazy(() => import('./components/pages/mypage/mypage-funding-history-page/mypage-myfunding-history-page'));
-const FundingRegistPage = lazy(() => import('./components/pages/fundingRegist-page/fundingRegist-Page'));
-const PaySuccessPage = lazy(() => import('./components/pages/pay-success-page/pay-success-page'));
-const FundingPayPage = lazy(() => import('./components/pages/mypay-page/mypay-page'));
-const FundingSuccessPage = lazy(() => import('./components/pages/funding-success-page/funding-success-page'));
-const FriendFundingDetail = lazy(() => import('./components/pages/friendFundingDetail-page/friendFundingDetail-page'));
-const FriendFundingPayPage = lazy(() => import('./components/pages/friendFundingPay-page/friendFundingPay-page'));
-const Shopping = lazy(() => import('./components/pages/shopping-page/shopping-page'));
-const FriendFunding = lazy(() => import('./components/pages/friendFunding-page/friendFunding-page'));
-const ShoppingDetail = lazy(() => import('./components/pages/shopping-detail-page/shopping-detail-page'));
-const OrderPayPage = lazy(() => import('./components/pages/order-pay-page/order-pay-page'));
-const MypageFriendFundingHistory = lazy(() => import('./components/pages/mypage/mypage-friend-funding-history-page/mypage-friend-funding-history-page'));
-const MypageOrderHistory  = lazy(() => import('./components/pages/mypage/mypage-order-history-page/mypage-order-history-page'));
-const MypageDeliveryMangement = lazy(() => import('./components/pages/mypage/mypage-delivery-management-page/mypage-delivery-management-page'));
-const MypageWishlist= lazy(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
-const MypageReview = lazy(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
-const SignUpPage    = lazy(() => import('./components/pages/signUp-page/signUp-page'));
-const ErrorPage= lazy(() => import('./components/pages/error-handle-page/error-handle-page'));
-const KakaoLoginLoadingPage = lazy(() => import('./components/pages/login-page/redirection'));
+const Main = lazyWithRetry(() => import('../src/components/pages/main-page/main-page'));
+const Login = lazyWithRetry(() => import('../src/components/pages/login-page/login-page'));
+const Gifthub = lazyWithRetry(() => import('./components/pages/gifthub-page/gifthub-page'));
+const MypageMyfunding = lazyWithRetry(() => import('./components/pages/mypage/mypage-myfunding-page/mypage-myfunding-page'));
+const MypageFundingHistory = lazyWithRetry(() => import('./components/pages/mypage/mypage-funding-history-page/mypage-myfunding-history-page'));
+const FundingRegistPage = lazyWithRetry(() => import('./components/pages/fundingRegist-page/fundingRegist-Page'));
+const PaySuccessPage = lazyWithRetry(() => import('./components/pages/pay-success-page/pay-success-page'));
+const FundingPayPage = lazyWithRetry(() => import('./components/pages/mypay-page/mypay-page'));
+const FundingSuccessPage = lazyWithRetry(() => import('./components/pages/funding-success-page/funding-success-page'));
+const FriendFundingDetail = lazyWithRetry(() => import('./components/pages/friendFundingDetail-page/friendFundingDetail-page'));
+const FriendFundingPayPage = lazyWithRetry(() => import('./components/pages/friendFundingPay-page/friendFundingPay-page'));
+const Shopping = lazyWithRetry(() => import('./components/pages/shopping-page/shopping-page'));
+const FriendFunding = lazyWithRetry(() => import('./components/pages/friendFunding-page/friendFunding-page'));
+const ShoppingDetail = lazyWithRetry(() => import('./components/pages/shopping-detail-page/shopping-detail-page'));
+const OrderPayPage = lazyWithRetry(() => import('./components/pages/order-pay-page/order-pay-page'));
+const MypageFriendFundingHistory = lazyWithRetry(() => import('./components/pages/mypage/mypage-friend-funding-history-page/mypage-friend-funding-history-page'));
+const MypageOrderHistory  = lazyWithRetry(() => import('./components/pages/mypage/mypage-order-history-page/mypage-order-history-page'));
+const MypageDeliveryMangement = lazyWithRetry(() => import('./components/pages/mypage/mypage-delivery-management-page/mypage-delivery-management-page'));
+const MypageWishlist= lazyWithRetry(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
+const MypageReview = lazyWithRetry(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
+const SignUpPage    = lazyWithRetry(() => import('./components/pages/signUp-page/signUp-page'));
+const ErrorPage= lazyWithRetry(() => import('./components/pages/error-handle-page/error-handle-page'));
+const KakaoLoginLoadingPage = lazyWithRetry(() => import('./components/pages/login-page/redirection'));
 
 // 로딩 스피너
 const LoadingSpinner = () => (
@@ -85,4 +111,3 @@ function Router() {
 }
 
 export default Router;
-

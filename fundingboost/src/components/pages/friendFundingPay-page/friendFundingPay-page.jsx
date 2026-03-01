@@ -53,8 +53,6 @@ const FriendFundingPayPage = () => {
                     responseType: 'json',
                     headers: {
                         "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
-                        "Access-Control-Allow-Credentials": true,
                         "Authorization": `Bearer ${accessToken}`
                     },
                 });
@@ -88,17 +86,17 @@ const FriendFundingPayPage = () => {
                                 </div>
 
                                 <FriendFundingPayPrice friendFundingPayData={friendFundingPayData}/>
-                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
+                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: 'min(100%, 700px)'}}/>
                                 <PointUse friendFundingPayData={friendFundingPayData} fundingAmount={fundingAmount}
                                           onUpdatePoints={updateusePoints}/>
-                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
+                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: 'min(100%, 700px)'}}/>
                                 <FriendFundingPayCurrentPay
                                     friendFundingPayData={friendFundingPayData}
                                     fundingAmount={fundingAmount}
                                     usePoints={usePoints}
                                     onUpdateFinalPrice={setFinalPrice}
                                 />
-                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: '700px'}}/>
+                                <hr style={{border: 'none', borderBottom: '2.5px dashed black', width: 'min(100%, 700px)'}}/>
                                 <FriendFundingPayBarcode friendFundingPayData={friendFundingPayData} finalPrice={finalPrice}
                                                          fundingAmount={fundingAmount}  usePoints={usePoints} fundingId={fundingId}/>
                             </div>

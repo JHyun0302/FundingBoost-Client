@@ -1,8 +1,10 @@
 .ShoppingDetailItemBox {
-  height: 450px;
+  min-height: 450px;
+  height: auto;
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  padding: 0 20px;
 }
 
 .ShoppingDetailItemBox .ShoppingDetailItemBoxView {
@@ -15,15 +17,18 @@
 .shopping-detail-column{
   display: flex;
   flex-direction: column;
+  flex: 1 1 320px;
+  min-width: 0;
 }
 
 .ShoppingDetailItemBox .image {
-  height: 300px;
+  height: auto;
   display: flex;
   align-items: flex-start;
   object-fit: cover;
   left: 0;
-  width: 300px;
+  width: min(100%, 300px);
+  aspect-ratio: 1 / 1;
 }
 
 .ShoppingDetailItemBox .itemName {
@@ -46,6 +51,32 @@
 .shopping-detail-title-wrapper{
   display: flex;
   flex-direction: row;
-  //justify-content: center;
-  min-width: 900px;
+  width: min(100%, 1100px);
+  min-width: 0;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .ShoppingDetailItemBox {
+    min-height: 0;
+    margin-top: 24px;
+    padding: 0 16px;
+  }
+
+  .shopping-detail-title-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .shopping-detail-column {
+    width: min(100%, 420px);
+  }
+
+  .ShoppingDetailItemBox .itemName {
+    margin-left: 0;
+    font-size: clamp(24px, 5vw, 30px);
+  }
 }

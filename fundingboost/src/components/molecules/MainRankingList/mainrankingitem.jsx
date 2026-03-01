@@ -1,51 +1,37 @@
 import React from 'react';
-import style from './mainrankingitem.scss';
+import './mainrankingitem.scss';
 import { Link } from 'react-router-dom';
-import { formatPrice } from '../../../utils/formats';
 
-export default function Mainrankingitem({ product }) {
+const metricLabelMap = {
+    funding: '펀딩 반영',
+    purchase: '구매 반영',
+    wish: '위시 반영',
+};
 
+export default function MainRankingItem({ product, metricType }) {
     if (!product) {
         return null;
     }
 
-    const { itemId, itemName, price, itemImageUrl, brandName } = product;
-
-    // console.log(product)
-    
-    // 상품 타이틀이 너무 길 경우 일부만 표시
-    const truncatedTitle = itemName.length > 25 ? itemName.slice(0, 25) + '...' : itemName;
+    const { itemId, itemName, price, itemImageUrl, brandName, score, rank } = product;
+    const truncatedTitle = itemName.length > 34 ? `${itemName.slice(0, 34)}...` : itemName;
+    const scoreLabel = metricLabelMap[metricType] || '집계 반영';
 
     return (
-
-        <Link to={"/shopping/detail/" + itemId} className={style.products} style={{textDecoration: 'none'}}>
-            <div className="item-img-title">
-                <div className={style.imgwrap}>
-                    {/* 상품 품절 여부에 따라 표시 */}
-                    <div className={style.soldout}>
-                        {/*<p className={style.text}>{price > 0 ? "판매중" : "Sold Out"}</p>*/}
-                        <div className={style.bg}></div>
-                    </div>
-
-
-                    <div className="img-wrapper">
-                        <img src={itemImageUrl} width="100%" style={{borderRadius: '10px'}} alt={itemName}/>
-                    </div>
-                </div>
-                <div className="brand-wrapper">
-                    <p className={style.brand}>{brandName}</p>
-                </div>
-                <div className="title-wrapper">
-                    <h4 className={style.title}>{truncatedTitle}</h4>
-                </div>
+        <Link to={`/shopping/detail/${itemId}`} className="main-ranking-card">
+            <div className="main-ranking-rank">{rank}</div>
+            <div className="main-ranking-image-wrap">
+                <img src={itemImageUrl} className="main-ranking-image" alt={itemName} />
             </div>
-
-            <div className="item-price">
-                <div className="price-wrapper">
-                    <p className={style.price}>{price.toLocaleString()}원</p>
-                </div>
+            <div className="main-ranking-meta">
+                <div className="main-ranking-brand">{brandName}</div>
+                <div className="main-ranking-title">{truncatedTitle}</div>
+                <div className="main-ranking-price">{price.toLocaleString()}원</div>
             </div>
-
+            <div className="main-ranking-score">
+                <span>{scoreLabel}</span>
+                <strong>{score}</strong>
+            </div>
         </Link>
     );
 }

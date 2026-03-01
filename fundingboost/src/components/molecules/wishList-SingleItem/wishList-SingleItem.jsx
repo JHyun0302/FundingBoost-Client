@@ -1,14 +1,21 @@
 import React from 'react';
 import { FcLike } from "react-icons/fc";
 import './wishList-SingleItme.scss'
-const WishListSingleItem = ({wishListData}) => {
+const WishListSingleItem = ({wishListData, onRemoveBookmark, isRemoving}) => {
     return (
         <div className="wishListSingleItem">
             {/*<Link to={"/shopping/detail/" + itemId} className={style.product} style={{textDecoration: 'none'}}>*/}
                 <div className="wishList-itme-title">
 
                         <div className="wish-img-wrapper">
-                            <img src={wishListData.itemThumbnailImageUrl} width="100%" style={{borderRadius: '3px'}} />
+                            <img
+                                src={wishListData.itemThumbnailImageUrl}
+                                width="100%"
+                                style={{borderRadius: '3px'}}
+                                alt={wishListData.itemName}
+                                loading="lazy"
+                                decoding="async"
+                            />
                         </div>
                 </div>
 
@@ -22,9 +29,15 @@ const WishListSingleItem = ({wishListData}) => {
 
                 <div className="wish-price-likebtn">
                         <p className="wish-Price">{wishListData.itemPrice.toLocaleString()}원</p>
-                        <div className="likeBtn">
+                        <button
+                            type="button"
+                            className="likeBtn"
+                            onClick={() => onRemoveBookmark?.(wishListData.itemId)}
+                            disabled={isRemoving}
+                            aria-label={`${wishListData.itemName} 위시리스트 삭제`}
+                        >
                             <FcLike />
-                        </div>
+                        </button>
                 </div>
 
             {/*</Link>*/}

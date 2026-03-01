@@ -39,7 +39,8 @@
   justify-content: space-between;
   vertical-align: middle;
   align-items: center;
-  height: 160px;
+  min-height: 160px;
+  height: auto;
   width: auto;
 }
 
@@ -61,7 +62,7 @@
   font-family: SUITE-Regular;
   font-size: 20px;
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .MyPayItemBox .name-option-group {
@@ -69,7 +70,7 @@
   flex-direction: column;
   margin-left: auto;
   height: 22px;
-  width: 376px;
+  width: min(376px, 100%);
 }
 
 .MyPayItemBox .MyPayItem-option-group {
@@ -82,9 +83,11 @@
 .MyPayItemBox .MyPayItem-left-group {
   display: flex;
   flex-direction: row;
-  height: 135px;
-  width: 533px;
+  min-height: 135px;
+  height: auto;
+  width: min(533px, 100%);
   margin-left: 24px;
+  gap: 16px;
 }
 
 .MyPayItemBox .MyPayItem-option-box {
@@ -124,8 +127,16 @@
 }
 
 @media (max-width: 768px) {
-  .MyPayItemBox, .MyPayItemBox .view, .MyPayItemBox .overlap {
+  .MyPayItemBox,
+  .MyPayItemBox .MyPayItemOverlap,
+  .MyPayItemBox .MyPayItem-left-group,
+  .MyPayItemBox .name-option-group {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .MyPayItemBox .MyPayItem-price {
+    margin-top: 12px;
   }
 }

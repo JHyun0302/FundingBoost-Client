@@ -10,12 +10,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: min(100%, 420px);
 }
 
 .my-point-input {
   background-color: #ffffff;
   border: 1px solid #cacaca;
-   width: 300px;
+  width: min(300px, 100%);
   font-size: 18px;
   text-align: right;
 }
@@ -57,5 +60,18 @@
 @media (max-width: 768px) {
   .my-point {
     flex-direction: column;
+  }
+
+  .my-point-first-row {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .my-point-input {
+    flex: 1 1 220px;
+  }
+
+  .my-point-use-usable-point {
+    text-align: center;
   }
 }

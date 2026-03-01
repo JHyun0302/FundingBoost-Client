@@ -1,8 +1,9 @@
 .friend-funding-total-price {
   display: flex;
   flex-direction: column;
-  height: 135px;
-  width: 540px;
+  min-height: 135px;
+  height: auto;
+  width: min(100%, 540px);
   justify-content: space-between;
   margin-top: 10px;
 
@@ -25,4 +26,10 @@
 
 }
 
+@media (max-width: 768px) {
+  .friend-funding-total-price .friend-funding-total-price-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
 

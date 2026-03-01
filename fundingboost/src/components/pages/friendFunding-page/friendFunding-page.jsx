@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './friendFunding-page.scss';
 import Header from "../../organisms/header/header";
 import Footer from "../../organisms/footer/footer";
@@ -11,7 +11,43 @@ import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
 
 const FriendFundingPage = () => {
     const [modalShowState, setModalShowState] = useState(false);
-    const [friendFundingData, setFriendFundingData] = useState([]);
+    const [friendFundingData, setFriendFundingData] = useState({ data: [] });
+    const [sortOption, setSortOption] = useState('최신 등록순');
+
+    const parseDeadlineRank = (deadlineText) => {
+        if (typeof deadlineText !== 'string') {
+            return Number.MAX_SAFE_INTEGER;
+        }
+
+        const match = deadlineText.match(/^D-(\d+)$/i);
+        if (match) {
+            return Number.parseInt(match[1], 10);
+        }
+
+        return Number.MAX_SAFE_INTEGER;
+    };
+
+    const sortedFriendFundingData = useMemo(() => {
+        const rawItems = Array.isArray(friendFundingData?.data) ? [...friendFundingData.data] : [];
+
+        rawItems.sort((left, right) => {
+            if (sortOption === '이름순') {
+                return (left?.nickName || '').localeCompare(right?.nickName || '', 'ko');
+            }
+
+            if (sortOption === '마감 임박순') {
+                return parseDeadlineRank(left?.friendFundingDeadlineDate) - parseDeadlineRank(right?.friendFundingDeadlineDate);
+            }
+
+            return (right?.fundingId || 0) - (left?.fundingId || 0);
+        });
+
+        return {
+            ...friendFundingData,
+            data: rawItems,
+        };
+    }, [friendFundingData, sortOption]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,8 +64,6 @@ const FriendFundingPage = () => {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${accessToken}`,
-                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
-                        "Access-Control-Allow-Credentials": true
                     },
                 });
                 setFriendFundingData(response.data);
@@ -45,9 +79,12 @@ const FriendFundingPage = () => {
         <div>
             <Header />
             {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요."/>}
-            <FriendFundingDropdownBtn className="friendFundingDropdownBtn" friendFundingData={friendFundingData}/>
-            {friendFundingData.data && friendFundingData.data.length > 0 ? (
-                <SingleFriendFunding friendFundingData={friendFundingData} />
+            <FriendFundingDropdownBtn
+                sortOption={sortOption}
+                onSortChange={setSortOption}
+            />
+            {sortedFriendFundingData.data && sortedFriendFundingData.data.length > 0 ? (
+                <SingleFriendFunding friendFundingData={sortedFriendFundingData} />
             ):(
             <FriendNonFunding />
             )}

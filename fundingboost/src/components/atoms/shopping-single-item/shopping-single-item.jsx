@@ -25,7 +25,14 @@ export default function ShoppingSingleItem({ product }) {
                         <div className={style.bg}></div>
                     </div>
                     <div className="img-wrapper">
-                        <img src={itemImageUrl} width="100%" style={{borderRadius: '3px'}} alt={itemName}/>
+                        <img
+                            src={itemImageUrl}
+                            width="100%"
+                            style={{borderRadius: '3px'}}
+                            alt={itemName}
+                            loading="lazy"
+                            decoding="async"
+                        />
                     </div>
                 </div>
                 <div className="brand-wrapper">

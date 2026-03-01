@@ -5,80 +5,169 @@ import axios from "axios";
 import ShoppingSingleItem from "../../../atoms/shopping-single-item/shopping-single-item";
 import ShoppingCategory from "../../../atoms/Shopping-Item-Category/shopping-item-category";
 
+const getStoredAccessToken = () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+        return '';
+    }
+
+    const trimmedToken = token.trim();
+    if (!trimmedToken || trimmedToken === 'null' || trimmedToken === 'undefined') {
+        return '';
+    }
+
+    try {
+        const [, payload] = trimmedToken.split('.');
+        if (!payload) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            return '';
+        }
+
+        const normalizedPayload = payload.replace(/-/g, '+').replace(/_/g, '/');
+        const decodedPayload = JSON.parse(atob(normalizedPayload));
+        if (decodedPayload?.exp && Date.now() >= decodedPayload.exp * 1000) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            return '';
+        }
+    } catch (error) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        return '';
+    }
+
+    return trimmedToken;
+};
+
 const ShoppingPane = () => {
     const [itemData, setItemData] = useState([]);
+    const [categories, setCategories] = useState([{ name: '전체', param: '' }]);
     const [selectedCategory, setSelectedCategory] = useState({ name: '전체', param: '' });
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
-    const [isFirstLoad, setIsFirstLoad] = useState(true);
+    const [hasNext, setHasNext] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
     const loader = useRef(null);
     const location = useLocation();
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const newSearchQuery = searchParams.get('search');
-        console.log('Search Query:', newSearchQuery);
+        setSearchQuery(newSearchQuery || '');
+        setSelectedCategory({ name: '전체', param: '' });
+        setItemData([]);
+        setCurrentPage(0);
+        setHasNext(true);
+        setErrorMessage('');
+    }, [location.search]);
 
-        if (newSearchQuery !== searchQuery) {
-            setSearchQuery(newSearchQuery || '');
-            setItemData([]);
-            setSelectedCategory({ name: '전체', param: '' });
-            setCurrentPage(0);
-            setIsFirstLoad(true);
+    const fetchCategories = async () => {
+        try {
+            const apiV3Base = process.env.REACT_APP_FUNDINGBOOST_V3 || "/api/v3";
+            const response = await axios.get(`${apiV3Base}/items/categories`);
+            const categoryList = Array.isArray(response?.data?.data)
+                ? response.data.data.map((category) => ({ name: category, param: category }))
+                : [];
+
+            setCategories([{ name: '전체', param: '' }, ...categoryList]);
+        } catch (error) {
+            console.error("Error fetching categories:", error);
         }
-    }, [location.search, searchQuery]);
+    };
 
-    const fetchData = async (category, currentPageParam, searchQueryParam) => {
-        if (isLoading) return;
+    const fetchData = async (category, searchQueryParam, page, reset = false) => {
+        if (isLoading || (!reset && !hasNext)) return;
         setIsLoading(true);
+        setErrorMessage('');
 
         try {
-            let accessToken = localStorage.getItem('accessToken') || "";
-            let url = `https://k14f4ad097352a.user-app.krampoline.com/api/v3/items?category=${category.param}&page=${currentPageParam}`;
+            const apiV3Base = process.env.REACT_APP_FUNDINGBOOST_V3 || "/api/v3";
+            const params = new URLSearchParams();
 
+            if (category.param) {
+                params.set('category', category.param);
+            }
+            params.set('size', '20');
+            params.set('page', String(page));
+
+            let url = `${apiV3Base}/items?${params.toString()}`;
             if (searchQueryParam) {
-                url = `https://k14f4ad097352a.user-app.krampoline.com/api/v3/search?keyword=${searchQueryParam}&page=${currentPageParam}`;
+                const searchParams = new URLSearchParams();
+                searchParams.set('keyword', searchQueryParam);
+                searchParams.set('size', '20');
+                searchParams.set('page', String(page));
+                url = `${apiV3Base}/search?${searchParams.toString()}`;
             }
 
-            const response = await axios.get(url, {
-                responseType: 'json',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${accessToken}`,
-                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
-                    "Access-Control-Allow-Credentials": true
-                },
-            });
+            const accessToken = getStoredAccessToken();
+            const headers = {
+                "Content-Type": "application/json",
+            };
+
+            if (accessToken) {
+                headers.Authorization = `Bearer ${accessToken}`;
+            }
+
+            let response;
+            try {
+                response = await axios.get(url, {
+                    responseType: 'json',
+                    headers,
+                });
+            } catch (error) {
+                if (error?.response?.status !== 401 || !accessToken) {
+                    throw error;
+                }
+
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+
+                response = await axios.get(url, {
+                    responseType: 'json',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
 
             const data = response.data;
-            console.log(url);
-            console.log(data);
-
-            if (data && data.data && Array.isArray(data.data.content)) {
-                setItemData(prev => isFirstLoad ? data.data.content : [...prev, ...data.data.content]);
-                setIsFirstLoad(false);
-                setCurrentPage(prevPage => prevPage + 1);
-            } else {
-                console.error("Error: Unexpected response structure", data);
+            if (data && data.success === false) {
+                throw new Error(data?.error?.message || "상품 조회에 실패했습니다.");
             }
+            const content = Array.isArray(data?.data?.content) ? data.data.content : null;
+
+            if (!content) {
+                throw new Error("Unexpected response structure");
+            }
+
+            setItemData((prev) => reset ? content : [...prev, ...content]);
+            setHasNext(Boolean(data?.data?.hasNext));
+            setCurrentPage(page + 1);
         } catch (error) {
             console.error("Error fetching data:", error);
+            setErrorMessage('상품을 불러오지 못했습니다.');
         } finally {
             setIsLoading(false);
         }
     };
 
     useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    useEffect(() => {
         setItemData([]);
         setCurrentPage(0);
-        fetchData(selectedCategory, 0, searchQuery);
+        setHasNext(true);
+        fetchData(selectedCategory, searchQuery, 0, true);
     }, [selectedCategory, searchQuery]);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !isLoading) {
-                fetchData(selectedCategory, currentPage, searchQuery);
+            if (entries[0].isIntersecting && !isLoading && hasNext) {
+                fetchData(selectedCategory, searchQuery, currentPage, false);
             }
         });
 
@@ -91,21 +180,25 @@ const ShoppingPane = () => {
                 observer.unobserve(loader.current);
             }
         };
-    }, [isLoading, currentPage, selectedCategory, searchQuery]);
+    }, [isLoading, hasNext, currentPage, selectedCategory, searchQuery]);
 
     const handleCategorySelect = (category) => {
         setSearchQuery('');
         setSelectedCategory(category);
         setItemData([]);
         setCurrentPage(0);
-        setIsFirstLoad(true);
-        fetchData(category, 0, '');
+        setHasNext(true);
+        setErrorMessage('');
     };
 
     return (
         <div className="shopping-container">
             <div className="ranking-item-area">
-                <ShoppingCategory onCategorySelect={handleCategorySelect} />
+                <ShoppingCategory
+                    categories={categories}
+                    selectedCategoryName={selectedCategory.name}
+                    onCategorySelect={handleCategorySelect}
+                />
                 <div className="shopping-item-list-single">
                     {itemData.length > 0 ? (
                         itemData.map((product, index) => (
@@ -113,8 +206,12 @@ const ShoppingPane = () => {
                                 <ShoppingSingleItem product={product} />
                             </div>
                         ))
-                    ) : (
+                    ) : isLoading ? (
                         <div>Item Loading...</div>
+                    ) : errorMessage ? (
+                        <div>{errorMessage}</div>
+                    ) : (
+                        <div>등록된 상품이 없습니다.</div>
                     )}
                     <div ref={loader} style={{ height: "100px", margin: "0 auto" }}></div>
                 </div>

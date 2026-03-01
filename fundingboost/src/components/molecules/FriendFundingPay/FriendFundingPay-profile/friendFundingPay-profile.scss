@@ -5,10 +5,12 @@
   justify-content: flex-start;
   margin-bottom:  2%;
   margin-left: 40px;
+  flex-wrap: wrap;
 
   .friend-funding-profile-image {
     object-fit: cover;
     width: 120px;
+    height: 120px;
     border: 1px solid black;
     border-radius: 50%;
   }
@@ -31,6 +33,19 @@
   }
 }
 
+@media (max-width: 768px) {
+  .friend-funding-profile {
+    margin-left: 0;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .friend-funding-profile .friend-funding-profile-name {
+    margin-left: 0;
+    letter-spacing: 8px;
+    font-size: 28px;
+  }
+}
 
 
 

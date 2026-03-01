@@ -132,9 +132,7 @@ function FundingRegistPage(props) {
                 responseType: 'json',
                 headers: {
                     "Content-Type": "application/json",
-                    "Access-Control-Allow-Credentials": true,
                     "Authorization": `Bearer ${accessToken}`,
-                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/"
                 }
             });
 

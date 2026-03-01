@@ -35,17 +35,19 @@
 
 .shopping-single-item {
   display: flex;
-  width: 900px;
-  height: 350px;
-  flex-basis: 25%;
+  width: min(100%, 260px);
+  min-width: 220px;
+  height: auto;
+  flex: 1 1 240px;
   padding:10px;
   font-family: SUITE-Regular;
   font-size: 90%;
-  max-width: 15%;
+  max-width: 260px;
   >a{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    width: 100%;
   }
 }
 
@@ -63,4 +65,26 @@
   font-weight: 400;
   min-height: 55px;
   margin-top: -10px;
+}
+
+@media (max-width: 1024px) {
+  .shopping-single-item {
+    flex-basis: calc(33.333% - 25px);
+  }
+}
+
+@media (max-width: 768px) {
+  .shopping-single-item {
+    flex-basis: calc(50% - 25px);
+    max-width: min(100%, 280px);
+  }
+}
+
+@media (max-width: 479px) {
+  .shopping-single-item {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
 }

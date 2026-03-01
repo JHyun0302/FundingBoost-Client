@@ -3,13 +3,15 @@
   width: 100%;
   justify-content: space-evenly;
   margin-top: 10px;
+  gap: 16px;
+  flex-wrap: wrap;
 
   .friend-funding-bar-code-image {
     display: flex;
     align-items: center;
 
     img.barcodeImg {
-      width: 360px;
+      width: min(100%, 360px);
       height: auto;
     }
   }
@@ -40,5 +42,20 @@
       }
 
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .friend-funding-bar-code .friend-funding-bar-code-text {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .friend-funding-bar-code .friend-funding-bar-code-text .friendToFundingBtn-btn {
+    justify-content: stretch;
+  }
+
+  .friend-funding-bar-code .friend-funding-bar-code-text .friendToFundingBtn-btn .yellowBtn {
+    width: 100%;
   }
 }

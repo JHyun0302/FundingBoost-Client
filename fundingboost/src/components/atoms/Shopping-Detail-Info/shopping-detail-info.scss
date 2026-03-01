@@ -12,7 +12,7 @@
     margin-top: 45px;
     .shopping-detail-testImg{
       display: flex;
-      width: 1200px;
+      width: min(1200px, calc(100vw - 32px));
       height: auto;
       justify-content: center;
     }
@@ -24,7 +24,7 @@
 
     button.DetailsBtn.btn.btn-primary {
       background-color: white;
-      width: 320px;
+      width: min(320px, calc(100vw - 32px));
       height: 43px;
       color: #4e4e4e;
       border-color: #ababab;
@@ -46,7 +46,7 @@
   color: #000000;
   font-size: 20px;
   font-weight: 400;
-  width: 407px;
+  width: calc(100% / 3);
   background-color: white;
   border: 1px solid white;
   border-right:1px solid #000000;
@@ -59,7 +59,7 @@
   color: #000000;
   font-size: 20px;
   font-weight: 400;
-  width: 407px;
+  width: calc(100% / 3);
   background-color: white;
   border: 1px solid white;
   border-right:1px solid #000000;
@@ -73,7 +73,7 @@
   color: #000000;
   font-size: 20px;
   font-weight: 400;
-  width: 407px;
+  width: calc(100% / 3);
   background-color: white;
   border: 1px solid white;
   letter-spacing: 0;
@@ -90,10 +90,36 @@
 .shop-item-index-container{
   display: flex;
   flex-direction: row;
-  width: 1220px;
+  width: min(1220px, calc(100vw - 32px));
   height: 60px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   align-items: center; /* 수직 중앙 정렬 */
-  margin: 0 13%; /* 좌우 중앙 정렬 */
+  margin: 0 auto; /* 좌우 중앙 정렬 */
  }
+
+@media (max-width: 900px) {
+  .box .shopping-detail-img {
+    margin-top: 24px;
+  }
+
+  .shop-item-index-container {
+    flex-direction: column;
+    height: auto;
+    align-items: stretch;
+  }
+
+  .box .text-wrapper,
+  .box .text-wrapper-2,
+  .box .text-wrapper-3 {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #000000;
+    padding: 10px 0;
+    white-space: normal;
+  }
+
+  .box .text-wrapper-3 {
+    border-bottom: none;
+  }
+}

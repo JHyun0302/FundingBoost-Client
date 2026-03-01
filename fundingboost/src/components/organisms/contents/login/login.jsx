@@ -29,8 +29,6 @@ const LoginPane = () => {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                    'Access-Control-Allow-Origin': 'https://k14f4ad097352a.user-app.krampoline.com/'
                 },
                 withCredentials: true,
             });
@@ -82,8 +80,6 @@ const LoginPane = () => {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                    'Access-Control-Allow-Origin': 'https://k14f4ad097352a.user-app.krampoline.com/'
                 },
                 withCredentials: true,
             })
@@ -143,7 +139,9 @@ const LoginPane = () => {
                     <br />
                     <button className="login-btn-grey" onClick={handleLogin}>로그인</button>
                 </div>
-                <img src={kakaologin} alt="Kakao Login" className="social-login-btn" onClick={handleKakaoLogin}/>
+                <button type="button" className="social-login-link social-login-link-button" onClick={handleKakaoLogin}>
+                    <img src={kakaologin} alt="Kakao Login" className="social-login-btn" />
+                </button>
                 <a href="https://nid.naver.com/oauth2.0/authorize" className="social-login-link">
                     <img src={naverlogin} alt="Naver Login" className="social-login-btn" />
                 </a>

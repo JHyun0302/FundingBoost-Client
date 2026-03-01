@@ -2,20 +2,22 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
 
   .orderHistoryList-container{
     display: flex;
     flex-direction: column;
     border-left: 1px solid #3e3e3e;
     height: 100%;
+    width: 100%;
   }
 
   .orderHistoryList-box{
     background-color: #efefef;
     border: 1px solid #d9d9d9;
-    width: 100%;
-    min-width: 1130px;
-    max-width: 1130px;
+    width: min(1130px, calc(100vw - 40px));
+    min-width: 0;
+    max-width: calc(100vw - 40px);
 
     margin: 15px;
     display: flex;
@@ -37,6 +39,8 @@
       height: 84px;
       width: 100%;
       align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
       .order-history-list-delivery-management {
         font-weight: bold;
         font-size: 30px;
@@ -126,8 +130,41 @@
     }
   }
 
+@media (max-width: 1200px) {
+  .orderHistoryList {
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .orderHistoryList .orderHistoryList-container {
+    border-left: none;
+    border-top: 1px solid #3e3e3e;
+    align-items: center;
+  }
 
+  .orderHistoryList .orderHistoryList-box {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
+}
 
+@media (max-width: 768px) {
+  .orderHistoryList .orderHistoryList-box .order-history-list {
+    width: 100%;
+  }
 
+  .MyPageFriendFundingListOverlap-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    height: auto;
+    padding: 8px 0;
+  }
 
+  .MyPageFriendFundingListOverlap-group .MyPageFriendFundingListText-wrapper-7,
+  .MyPageFriendFundingListOverlap-group .MyPageFriendFundingListText-wrapper-6 {
+    width: auto;
+    white-space: normal;
+  }
+}

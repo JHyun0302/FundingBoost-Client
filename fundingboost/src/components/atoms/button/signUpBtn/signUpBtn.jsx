@@ -6,11 +6,14 @@ import  '../yellowBtn.scss';
 import axios from "axios";
 
 
-function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
+function SignUpBtn({username, email, password, emailValid, passwordConfirm, gender}){
 
     const handleSingUp = async () =>{
         if (!username || !email || !password) {
             alert('모든 정보를 입력해주세요.');
+            return;
+        } else if (!gender) {
+            alert('성별을 선택해주세요.');
             return;
         } else if  (!emailValid){
             alert('이메일 형식이 올바르지 않습니다.');
@@ -28,7 +31,8 @@ function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
             const data = JSON.stringify({
                 nickName: username,
                 password: password,
-                email: email
+                email: email,
+                gender: gender
             })
             console.log("postData:" +data)
 
@@ -36,8 +40,6 @@ function SignUpBtn({username, email, password, emailValid, passwordConfirm}){
                 responseType: 'json',
                 headers: ({
                     "Content-Type" : "application/json",
-                    "Access-Control-Allow-Credentials" : true,
-                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
                 }),
                 withCredentials: true,
             });

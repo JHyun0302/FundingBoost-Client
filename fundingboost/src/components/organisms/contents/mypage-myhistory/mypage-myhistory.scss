@@ -1,11 +1,13 @@
 .mypage-myhistory-total-container{
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .mypage-myhistory-left-pane-container{
   display: flex;
   flex-direction: column;
+  width: min(100%, 374px);
 }
 
 .mypage-myhistory-right-pane-containter{
@@ -19,9 +21,38 @@
   margin: 10px;
   background-color: #e7e7e7;
   border-radius: 5px;
-  //width: 100%;
-  width: 1130px;
+  width: min(1130px, calc(100vw - 40px));
+  max-width: calc(100vw - 40px);
   box-sizing: border-box;
   min-height: 500px;
 }
 
+@media (max-width: 1200px) {
+  .mypage-myhistory-total-container {
+    flex-direction: column;
+  }
+
+  .mypage-myhistory-left-pane-container {
+    width: 100%;
+    align-items: center;
+  }
+
+  .mypage-myhistory-right-pane-containter {
+    border-left: none;
+    border-top: 1px solid #3e3e3e;
+    width: 100%;
+    align-items: center;
+  }
+
+  .mypage-myhistory-container {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mypage-myhistory-container {
+    min-height: 0;
+  }
+}

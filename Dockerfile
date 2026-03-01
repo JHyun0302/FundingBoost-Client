@@ -1,22 +1,23 @@
-# Build stage
-FROM krmp-d2hub-idock.9rum.cc/dev-test/repo_ab910038b834 AS build
-WORKDIR /usr/src/app
-COPY ./fundingboost/package*.json .
+FROM node:20-alpine AS build
 
-RUN npm add react-material-ui-carousel
-RUN npm install sass
+WORKDIR /app/fundingboost
+COPY fundingboost/package*.json ./
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+COPY fundingboost/ ./
 
-RUN npm i
-COPY . .
-WORKDIR /usr/src/app/fundingboost
+ARG REACT_APP_FUNDINGBOOST=/api/v1
+ARG REACT_APP_FUNDINGBOOST_V3=/api/v3
+ENV REACT_APP_FUNDINGBOOST=$REACT_APP_FUNDINGBOOST
+ENV REACT_APP_FUNDINGBOOST_V3=$REACT_APP_FUNDINGBOOST_V3
+
 RUN npm run build
 
-# Run stage
-FROM node:20
-WORKDIR /usr/src/app/fundingboost
-COPY --from=build /usr/src/app/fundingboost/build ./fundingboost
-# COPY ./fundingboost/.env .
+FROM node:20-alpine
+
+WORKDIR /app
 RUN npm install -g serve
+COPY --from=build /app/fundingboost/build ./build
+
 EXPOSE 3000
 
-CMD ["serve", "-s", "fundingboost"]
+CMD ["serve", "-s", "build", "-l", "3000"]

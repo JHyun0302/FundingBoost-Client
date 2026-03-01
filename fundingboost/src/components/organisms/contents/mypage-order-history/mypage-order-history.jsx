@@ -30,8 +30,6 @@ const MypageOrderHistoryPane = () => {
                     url: `${process.env.REACT_APP_FUNDINGBOOST}/order/history`,
                     headers: {
                         "Authorization": `Bearer ${accessToken}`,
-                        "Access-Control-Allow-Credentials": true,
-                        "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/"
                     },
                     responseType: 'json'
                 });

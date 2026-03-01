@@ -2,11 +2,13 @@
   display: flex;
   font-family: SUITE-Regular;
 
+  .mypage-myhistory-left-pane-container,
   .mypage-left-pane-container{
     display: flex;
     flex-direction: column;
   }
 
+  .mypage-myhistory-right-pane-containter,
   .mypage-right-pane-containter{
     display: flex;
     flex-direction: column;
@@ -14,4 +16,16 @@
     height: 100%;
   }
 
+}
+
+@media (max-width: 1200px) {
+  .mypage-myhistory-total-container {
+    flex-direction: column;
+  }
+
+  .mypage-myhistory-total-container .mypage-myhistory-right-pane-containter,
+  .mypage-myhistory-total-container .mypage-right-pane-containter {
+    border-left: 0;
+    border-top: 1px solid #3e3e3e;
+  }
 }

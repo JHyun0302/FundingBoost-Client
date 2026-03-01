@@ -3,20 +3,22 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
 
   .reviewList-container {
     display: flex;
     flex-direction: column;
     border-left: 1px solid #3e3e3e;
     height: 100%;
+    width: 100%;
   }
 
   .reviewList-box {
     background-color: #efefef;
     border: 1px solid #d9d9d9;
-    width: 100%;
-    min-width: 1130px;
-    max-width: 1130px;
+    width: min(1130px, calc(100vw - 40px));
+    min-width: 0;
+    max-width: calc(100vw - 40px);
 
     margin: 15px;
     display: flex;
@@ -37,6 +39,8 @@
       justify-content: space-between;
       height: 84px;
       width: 100%;
+      gap: 12px;
+      flex-wrap: wrap;
 
       .review-list-delivery-management {
         font-weight: bold;
@@ -62,5 +66,30 @@
       overflow: scroll;
       scrollbar-width: none;
     }
+  }
+}
+
+@media (max-width: 1200px) {
+  .reviewList {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reviewList .reviewList-container {
+    border-left: none;
+    border-top: 1px solid #3e3e3e;
+    align-items: center;
+  }
+
+  .reviewList .reviewList-box {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviewList .reviewList-box .review-list {
+    width: 100%;
   }
 }

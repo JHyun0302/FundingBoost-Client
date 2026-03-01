@@ -20,8 +20,6 @@ function ExchangePoint({ item, memberId }) {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
-                    "Access-Control-Allow-Origin": "https://k14f4ad097352a.user-app.krampoline.com/",
-                    'Access-Control-Allow-Credentials': true
                 },
             });
             setShowModal(false); // 요청 성공 후 모달 닫기
