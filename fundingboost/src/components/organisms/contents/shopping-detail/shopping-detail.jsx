@@ -41,7 +41,7 @@ const getStoredAccessToken = () => {
 };
 
 const ShoppingDetailPane = () => {
-    const [itemData, setItemData] = useState([]);
+    const [itemData, setItemData] = useState({});
     const { itemId } = useParams();
 
     useEffect(() => {
@@ -88,11 +88,18 @@ const ShoppingDetailPane = () => {
         };
 
         fetchFundingItemData();
-    }, []);
+    }, [itemId]);
 
     return(
         <div className="shopping-detail-container">
-            <ShoppingDetailItem itemId={itemId} itemName={itemData.itemName} itemThumbnailImageUrl={itemData.itemThumbnailImageUrl} itemPrice={itemData.itemPrice} option={itemData.option} bookmark={itemData.bookmark} />
+            <ShoppingDetailItem
+                itemId={itemId}
+                itemName={itemData.itemName}
+                itemThumbnailImageUrl={itemData.itemThumbnailImageUrl}
+                itemPrice={itemData.itemPrice}
+                options={itemData.options}
+                bookmark={itemData.bookmark}
+            />
             <ShoppingDetailInfo/>
         </div>
     );

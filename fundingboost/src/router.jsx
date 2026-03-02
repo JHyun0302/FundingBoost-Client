@@ -49,6 +49,8 @@ const MypageOrderHistory  = lazyWithRetry(() => import('./components/pages/mypag
 const MypageDeliveryMangement = lazyWithRetry(() => import('./components/pages/mypage/mypage-delivery-management-page/mypage-delivery-management-page'));
 const MypageWishlist= lazyWithRetry(() => import('./components/pages/mypage/mypage-wishlist-page/mypage-wishlist-page'));
 const MypageReview = lazyWithRetry(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
+const MypageNotice = lazyWithRetry(() => import('./components/pages/mypage/mypage-notice-page/mypage-notice-page'));
+const MypageSupport = lazyWithRetry(() => import('./components/pages/mypage/mypage-support-page/mypage-support-page'));
 const SignUpPage    = lazyWithRetry(() => import('./components/pages/signUp-page/signUp-page'));
 const ErrorPage= lazyWithRetry(() => import('./components/pages/error-handle-page/error-handle-page'));
 const KakaoLoginLoadingPage = lazyWithRetry(() => import('./components/pages/login-page/redirection'));
@@ -102,6 +104,8 @@ function Router() {
                 <Route path="/mypage/delivery" element={<Suspense fallback={<LoadingSpinner />}><MypageDeliveryMangement /></Suspense>} />
                 <Route path="/mypage/favorite" element={<Suspense fallback={<LoadingSpinner />}><MypageWishlist /></Suspense>} />
                 <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
+                <Route path="/mypage/notices" element={<Suspense fallback={<LoadingSpinner />}><MypageNotice /></Suspense>} />
+                <Route path="/mypage/support" element={<Suspense fallback={<LoadingSpinner />}><MypageSupport /></Suspense>} />
                 <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
                 <Route path="/error" element={<Suspense fallback={<LoadingSpinner />}><ErrorPage/></Suspense>} />
                 <Route path="/login/oauth2/code/kakao" element={<Suspense fallback={<LoadingSpinner/>}><KakaoLoginLoadingPage/></Suspense>}/>

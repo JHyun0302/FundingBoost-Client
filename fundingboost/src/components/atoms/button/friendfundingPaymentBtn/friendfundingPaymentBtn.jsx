@@ -1,29 +1,21 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { useNavigate, useParams } from 'react-router-dom';
 import '../yellowBtn.scss';
 import axios from 'axios';
 
 
-function FriendFundingPaymentBtn({usePoints, fundingAmount, fundingId}) {
-
-    const numberUsePoints = Number(usePoints);
-    const numberFundingAmount = Number(fundingAmount);
-
-    console.log("펀딩금액:" + numberFundingAmount);
-    console.log("포인트:" +numberUsePoints);
-    console.log("펀딩id:" +fundingId);
+function FriendFundingPaymentBtn({ fundingId, barcodeToken, disabled }) {
     const handlePayment = async () =>{
         try{
-            const data = JSON.stringify({
-                usingPoint: numberUsePoints,
-                fundingPrice:  numberFundingAmount
-            })
-            console.log("postData:" +data)
-
+            if (!barcodeToken) {
+                alert('바코드 토큰이 준비되지 않았습니다. 잠시 후 다시 시도해주세요.');
+                return;
+            }
             const accessToken = localStorage.getItem('accessToken');
 
-            const response = await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/pay/friends/${fundingId}`,data, {
+            await axios.post(`${process.env.REACT_APP_FUNDINGBOOST}/pay/friends/${fundingId}/barcode-token/consume`, {
+                token: barcodeToken
+            }, {
 
                 responseType: 'json',
                 headers: ({
@@ -41,7 +33,7 @@ function FriendFundingPaymentBtn({usePoints, fundingAmount, fundingId}) {
 
     return (
         <div className="friendToFundingBtn-btn">
-            <Button className="yellowBtn" onClick={handlePayment}>결제하기</Button>
+            <Button className="yellowBtn" onClick={handlePayment} disabled={disabled}>결제하기</Button>
         </div>
     );
 }

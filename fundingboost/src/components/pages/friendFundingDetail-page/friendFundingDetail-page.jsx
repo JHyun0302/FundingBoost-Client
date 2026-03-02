@@ -45,9 +45,7 @@ const FriendFundingDetailPage = () => {
             {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요." />}
             <div className="friendFundingDetail">
                 <FriendFundingDetailItem friendFundingDetailData={friendFundingDetailData} />
-                <div className="friendFundingDetail-optionDetail">
-                    <FriendFundingDetailOptionDetail friendFundingDetailData={friendFundingDetailData} />
-                </div>
+                <FriendFundingDetailOptionDetail friendFundingDetailData={friendFundingDetailData} />
             </div>
             <Footer />
         </div>

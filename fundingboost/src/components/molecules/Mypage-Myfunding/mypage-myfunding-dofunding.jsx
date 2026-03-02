@@ -65,10 +65,12 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
                         </button>
                     </div>
                     <div className="mypage-button-noti-wrpper">
-                        <ExtensionButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
-                        <button className="mypage-button-style-01">
-                            <img src={shareicon} alt="shareicon" className="mypage-share-icon" />
-                        </button>
+                        <div className="mypage-action-button-row">
+                            <ExtensionButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
+                            <button className="mypage-button-style-01" type="button" aria-label="공유하기">
+                                <img src={shareicon} alt="shareicon" className="mypage-share-icon" />
+                            </button>
+                        </div>
                         <div className="mypage-remain-date-noti">
                             <div>＊ 기간은 자동 2주 연장됩니다.</div>
                         </div>

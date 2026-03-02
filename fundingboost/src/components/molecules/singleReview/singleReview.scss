@@ -1,11 +1,22 @@
 .singleReview {
   display: flex;
   flex-direction: column;
+  border: 1px solid #e2dfd8;
+  border-radius: 18px;
   background-size: 100%;
-  height: 205px;
+  min-height: 205px;
   background: #ffffff;
   margin-bottom: 22px;
   width: 95%;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08);
+  }
 
   .singleReview-header {
     height: 100%;
@@ -21,6 +32,9 @@
       .review-item-img{
         >img{
           width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 12px;
         }
       }
 
@@ -55,14 +69,15 @@
 
   .review {
     height: 120px;
-    .review-detail {
-      margin: 3px 30px 2px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      .review-detail-info{
+      .review-detail {
+        margin: 3px 30px 2px 30px;
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 12px;
+        .review-detail-info{
+          display: flex;
+          flex-direction: column;
         .review-star {
           font-size: 18px;
           margin: 0;
@@ -75,24 +90,36 @@
 
         .review-text{
           margin-top: 15px;
+          }
         }
-      }
-      .review-img{
-        width: 70px;
-        height: 70px;
-        display: flex;
+        .review-cta{
+          padding: 10px 14px;
+          border-radius: 999px;
+          background: #191919;
+          color: #ffffff;
+          font-family: SUITE-Regular;
+          font-size: 13px;
+          white-space: nowrap;
+        }
 
       }
-
-    }
   }
 
 
 
 }
 @media (max-width: 768px) {
-  .delivery-address-component {
+  .singleReview {
+    width: 100%;
+  }
+
+  .singleReview .singleReview-header .singleReview-item,
+  .singleReview .review .review-detail {
     flex-wrap: wrap;
-    justify-content: center;
+  }
+
+  .singleReview .review .review-detail .review-cta {
+    width: 100%;
+    text-align: center;
   }
 }

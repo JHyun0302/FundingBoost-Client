@@ -3,23 +3,45 @@ import './singleReview.scss';
 import { BsStarFill } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
-import reviewTestItemImg from "../../../assets/reviewTestItmeImg.webp";
-import reviewTestItem from "../../../assets/reviewTestImg.jpg";
+import { useNavigate } from "react-router-dom";
 
-const SingleReview = ({myReviewList}) => {
-    console.log(myReviewList);
+const SingleReview = ({reviewData}) => {
+    const navigate = useNavigate();
+
+    const renderStars = () => {
+        const stars = [];
+        const fullStars = Math.floor(reviewData.rating);
+        const hasHalfStar = reviewData.rating - fullStars >= 0.5;
+
+        for (let index = 0; index < fullStars; index += 1) {
+            stars.push(<BsStarFill key={`full-${index}`} />);
+        }
+        if (hasHalfStar) {
+            stars.push(<BsStarHalf key="half" />);
+        }
+        while (stars.length < 5) {
+            stars.push(<BsStar key={`empty-${stars.length}`} />);
+        }
+
+        return stars;
+    };
+
     return (
-        <div className="singleReview">
+        <button
+            type="button"
+            className="singleReview"
+            onClick={() => navigate(`/shopping/detail/${reviewData.itemId}`)}
+        >
             <div className="singleReview-header">
                 <div className="singleReview-item">
                     <div className="review-item-img">
-                        <img src={reviewTestItemImg} width="100%" style={{borderRadius: '3px'}}/>
+                        <img src={reviewData.itemImageUrl} alt={reviewData.itemName} />
                     </div>
                     <div className="review-item">
-                        <div className="review-item-name">Apple 에어팟 프로 2세대 USB-C 타입 (MTJV3KH/A)</div>
+                        <div className="review-item-name">{reviewData.itemName}</div>
                         <div className="review-item-text">
-                            <div className="review-option">에어팟 프로 2세대(C 타입) MTJV3KH/A</div>
-                            <div className="review-price"> 100,000</div>
+                            <div className="review-option">{reviewData.optionName || '옵션 없음'}</div>
+                            <div className="review-price">{reviewData.itemPrice.toLocaleString()}원</div>
                         </div>
                     </div>
                 </div>
@@ -28,21 +50,19 @@ const SingleReview = ({myReviewList}) => {
                     <div className="review-detail">
                         <div className="review-detail-info">
                             <p className="review-star">
-                                <BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/><BsStar/>
+                                {renderStars()}
                             </p>
-                            <div className="review-day">2024-05-21</div>
+                            <div className="review-day">{reviewData.createdDate}</div>
 
-                            <div className="review-text">배송이 너무 느리네요. 상품은 맘에 들어요</div>
+                            <div className="review-text">{reviewData.content}</div>
                         </div>
 
-                        <div className="review-img">
-                            <img src={reviewTestItem} width="100%" style={{borderRadius: '3px'}}/>
-                        </div>
+                        <div className="review-cta">상품 보러가기</div>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </button>
     );
 };
 

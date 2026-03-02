@@ -55,6 +55,40 @@
     .review-list-line {
       border-bottom: 1px solid gray;
       margin: 10px;
+      width: 100%;
+    }
+
+    .reviewSortControls {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 10px;
+      margin: 16px 10px 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .reviewSortButton {
+      border: 1px solid #d9d0ba;
+      background: #ffffff;
+      color: #2f2419;
+      border-radius: 999px;
+      min-height: 42px;
+      padding: 0 18px;
+      font-family: SUITE-Regular;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .reviewSortButton:hover {
+      background: #f6efe0;
+      border-color: #d1b67a;
+    }
+
+    .reviewSortButton.active {
+      background: #191919;
+      border-color: #191919;
+      color: #ffffff;
     }
 
     .review-list-addresses {
@@ -65,8 +99,66 @@
       align-items: center;
       overflow: scroll;
       scrollbar-width: none;
+      margin-bottom: 8px;
+    }
+
+    .review-empty-state {
+      width: calc(100% - 24px);
+      margin: 12px;
+      padding: 18px;
+      border-radius: 16px;
+      background: #faf7ef;
+      color: #666666;
+      font-family: SUITE-Regular;
     }
   }
+}
+
+.reviewPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 12px 8px;
+  flex-wrap: wrap;
+}
+
+.reviewPageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reviewPageButton {
+  border: 1px solid #d9d0ba;
+  background: #ffffff;
+  color: #2f2419;
+  border-radius: 999px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 16px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.reviewPageButton:hover:not(:disabled) {
+  background: #f6efe0;
+  border-color: #d1b67a;
+}
+
+.reviewPageButton.active {
+  background: #191919;
+  border-color: #191919;
+  color: #ffffff;
+}
+
+.reviewPageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
 @media (max-width: 1200px) {
@@ -91,5 +183,15 @@
 @media (max-width: 768px) {
   .reviewList .reviewList-box .review-list {
     width: 100%;
+  }
+
+  .reviewList .reviewList-box .reviewSortControls {
+    width: 100%;
+    justify-content: flex-start;
+    margin: 0 10px 12px;
+  }
+
+  .reviewPagination {
+    gap: 8px;
   }
 }

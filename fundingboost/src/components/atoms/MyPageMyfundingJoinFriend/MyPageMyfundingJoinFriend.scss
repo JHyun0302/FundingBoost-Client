@@ -1,16 +1,19 @@
 .myPageFundingJoinFriendView {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  height: 73px;
-  width: 180px;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 73px;
+  width: min(100%, 220px);
   margin: 10px 15px 10px 15px;
+  gap: 12px;
 }
 
 .myPageFundingJoinFriendEllipseFunny {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  min-width: 0;
 }
 
 .myPageFundingJoinFriendEllipse {
@@ -25,21 +28,33 @@
   color: #000000;
   font-size: 18px;
   font-weight: 300;
-  width: 115px;
+  width: auto;
+  max-width: 130px;
   margin-top: 6px;
-  text-align: end;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .myPageFundingJoinFriendDiv {
   color: #000000;
   font-size: 25px;
   font-weight: 700;
-  margin-right: 6px;
-  width: 69px;
+  margin-right: 0;
+  width: auto;
+  max-width: 130px;
+  line-height: 1.15;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 768px) {
-  .view {
-    flex-direction: column;
+  .myPageFundingJoinFriendView {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .myPageFundingJoinFriendDiv,
+  .myPageFundingJoinFriendText-wrapper {
+    max-width: none;
   }
 }

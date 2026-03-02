@@ -107,9 +107,11 @@ function HeaderBar() {
                             <Button className="gifthub-btn" href="/gifthub"><img src={gifthub} alt="GiftHub" /></Button>
                         </Form>
 
-                        <div className="loginLogout">
+                            <div className="loginLogout">
                             {login.isAuthenticated && localStorage.getItem('accessToken') ? (
                                 <NavDropdown title={localStorage.getItem('nickName')} id="logoutDropdown" align="end">
+                                    <NavDropdown.Item onClick={() => navigate('/mypage')} className="dropdownItem">My Page</NavDropdown.Item>
+                                    <NavDropdown.Divider />
                                     <NavDropdown.Item onClick={logoutHandler} className="dropdownItem">로그아웃</NavDropdown.Item>
                                 </NavDropdown>
                             ) : (

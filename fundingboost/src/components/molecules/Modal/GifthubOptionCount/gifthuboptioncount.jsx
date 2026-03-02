@@ -1,50 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
 import './gifthuboptioncount.scss';
 
-function GifthubOptionCount({ onQuantityChange,  gifthubItemId, itemId }) {
+function GifthubOptionCount({ onPersistQuantity, currentQuantity }) {
     const [showModal, setShowModal] = useState(false);
-    const [quantity, setQuantity] = useState('');
+    const [quantity, setQuantity] = useState(String(currentQuantity || 1));
+
+    useEffect(() => {
+        setQuantity(String(currentQuantity || 1));
+    }, [currentQuantity]);
+
+    const getSanitizedQuantity = () => {
+        const parsedQuantity = Number(String(quantity).replace(/\D/g, ''));
+        return parsedQuantity > 0 ? parsedQuantity : 1;
+    };
 
     const handleCloseModal = async () => {
-        onQuantityChange(quantity);
-
-        const requestData = {
-            quantity: quantity
-        };
-
-
-        try {
-            const accessToken = localStorage.getItem('accessToken');
-
-            const response = await axios.patch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/quantity/${gifthubItemId}`, requestData, {
-
-                responseType: 'json',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${accessToken}`,
-                },
-            });
-            console.log('PATCH 결과:', response.data);
-
-        } catch (error) {
-            console.error('PATCH 에러:', error);
+        const normalizedQuantity = getSanitizedQuantity();
+        if (onPersistQuantity) {
+            const isSaved = await onPersistQuantity(normalizedQuantity);
+            if (!isSaved) {
+                return;
+            }
         }
 
         setShowModal(false);
     };
 
-    const handleShowModal = () => setShowModal(true);
+    const handleShowModal = () => {
+        setQuantity(String(currentQuantity || 1));
+        setShowModal(true);
+    };
 
     const handleQuantityChange = (e) => {
-        setQuantity(e.target.value);
+        setQuantity(e.target.value.replace(/\D/g, ''));
+    };
+
+    const adjustQuantity = (delta) => {
+        const nextQuantity = Math.max(1, getSanitizedQuantity() + delta);
+        setQuantity(String(nextQuantity));
     };
 
     return (
         <>
-            <button className="change-button" onClick={handleShowModal}>
+            <button className="change-button" onClick={(event) => {
+                event.stopPropagation();
+                handleShowModal();
+            }}>
                 변경
             </button>
 
@@ -54,12 +57,28 @@ function GifthubOptionCount({ onQuantityChange,  gifthubItemId, itemId }) {
                 </Modal.Header>
                 <Modal.Body>
                     <div>변경할 수량을 입력하세요.</div>
-                    <input
-                        type="text"
-                        placeholder="수량 입력"
-                        value={quantity}
-                        onChange={handleQuantityChange}
-                    />
+                    <div className="gifthub-quantity-modal-row">
+                        <button
+                            type="button"
+                            className="gifthub-quantity-adjust-button"
+                            onClick={() => adjustQuantity(-1)}
+                        >
+                            -
+                        </button>
+                        <input
+                            type="text"
+                            placeholder="수량 입력"
+                            value={quantity}
+                            onChange={handleQuantityChange}
+                        />
+                        <button
+                            type="button"
+                            className="gifthub-quantity-adjust-button"
+                            onClick={() => adjustQuantity(1)}
+                        >
+                            +
+                        </button>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import './fundingRegistItem.scss';
 import NonItemImg from "../../../../assets/nonItemImg.svg";
 
-const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
+const FundingRegistItem = ({ selectedItems, onItemOrderChange, onItemDelete }) => {
     const [orderedItems, setOrderedItems] = useState(selectedItems);
 
     useEffect(() => {
@@ -47,10 +47,32 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
                 * 모든 상품의 순서를 지정해주세요.
             </div>
             {orderedItems.map((item, index) => (
-                <div key={index}>
-                    <div className="itemContainer">
-                        <input type="checkbox" id={`checkbox-${index}`} checked={!!item.order} onChange={() => itemOrderCheck(index)} />
-                        <label className="checkbox-label" htmlFor={`checkbox-${index}`} data-order={item.order || ''}></label>
+                <div key={item.id || `${item.itemId}-${index}`}>
+                    <div
+                        className="itemContainer"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => itemOrderCheck(index)}
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                                event.preventDefault();
+                                itemOrderCheck(index);
+                            }
+                        }}
+                    >
+                        <input
+                            type="checkbox"
+                            id={`checkbox-${index}`}
+                            checked={!!item.order}
+                            onClick={(event) => event.stopPropagation()}
+                            onChange={() => itemOrderCheck(index)}
+                        />
+                        <label
+                            className="checkbox-label"
+                            htmlFor={`checkbox-${index}`}
+                            data-order={item.order || ''}
+                            onClick={(event) => event.stopPropagation()}
+                        ></label>
                         <img src={item.itemImageUrl || NonItemImg} alt={item.itemName} className="item-img" />
                         <div className="itemDetail">
                             <div className="title">{item.itemName}</div>
@@ -62,6 +84,16 @@ const FundingRegistItem = ({ selectedItems,  onItemOrderChange }) => {
                             </div>
                             <div className="price">{item.itemPrice.toLocaleString()} 원</div>
                         </div>
+                        <button
+                            type="button"
+                            className="itemDeleteBtn"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                onItemDelete?.(item.id);
+                            }}
+                        >
+                            삭제
+                        </button>
                     </div>
                 </div>
             ))}

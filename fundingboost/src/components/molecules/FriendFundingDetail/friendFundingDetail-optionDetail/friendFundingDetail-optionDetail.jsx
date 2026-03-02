@@ -3,9 +3,9 @@ import './friendFundingDetail-optionDetail.scss';
 import FriendFundingDetailFriendFunding from '../../../atoms/friendFundingDetail-friendFunding/friendFundingDetail-friendFunding';
 import FriendFundingDetailProfileMessage from '../../../atoms/friendFundingDetail-profileMessage/friendFundingDetail-profileMessage';
 
-const FriendFundingDetailOptionDetail = ({friendFundingDetailData, friendFundingDetailHeight} ) => {
+const FriendFundingDetailOptionDetail = ({ friendFundingDetailData }) => {
     return (
-        <div className="friendFundingDetail-optionDetail" style={{ height: friendFundingDetailHeight }}>
+        <div className="friendFundingDetail-optionDetail">
             <div className="friendFundingDetail-optionDetail1">
                 <FriendFundingDetailProfileMessage friendFundingDetailData={friendFundingDetailData} />
             </div>

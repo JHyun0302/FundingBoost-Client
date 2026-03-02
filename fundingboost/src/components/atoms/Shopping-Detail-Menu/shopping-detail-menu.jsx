@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./shopping-detail-menu.scss";
 import Form from 'react-bootstrap/Form';
 import share from "./../../../assets/share.svg";
-import wish from "./../../../assets/emptyheart.svg";
-import clickwish from "./../../../assets/fillheart.svg";
 import gifthub from "./../../../assets/gifthub.svg";
 import { useNavigate } from 'react-router-dom';
 import WishBtn  from "../button/wishBtn/wishBtn";
@@ -13,7 +11,7 @@ import GifthubModal from "../gifthubModal/gifthubModal";
 import NonMemberModal from "../shoppingDetail-nonMemberModal/shoppingDetail-nonMemberModal";
 import ShoppingDetailDefaultText from "../Shopping-Detail-defaultText/shopping-Detail-defaultText";
 
-export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, option, itemThumbnailImageUrl, bookmark}) {
+export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, options, itemThumbnailImageUrl, bookmark}) {
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
     const [selectOption, setSelectOptions] = useState("");
@@ -41,9 +39,31 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
 
 
 
+    const parsedOptions = useMemo(() => {
+        if (!Array.isArray(options) || options.length === 0) {
+            return ["기본 옵션"];
+        }
+
+        const normalizedOptions = options
+            .map((value) => (value || "").trim())
+            .filter(Boolean);
+
+        return normalizedOptions.length ? Array.from(new Set(normalizedOptions)) : ["기본 옵션"];
+    }, [options]);
+
+    const requiresExplicitSelection = parsedOptions.length > 1;
+
+    useEffect(() => {
+        if (requiresExplicitSelection) {
+            setSelectOptions("");
+            return;
+        }
+
+        setSelectOptions(parsedOptions[0]);
+    }, [parsedOptions, requiresExplicitSelection]);
+
     const optionChange = (e) =>{
         setSelectOptions(e.target.value);
-        console.log(e.target.value);
     }
 
     const decreaseQuantity = () => {
@@ -65,7 +85,7 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
             return;
         }
 
-        if (!selectOption || selectOption === "상품 옵션을 선택해주세요.") {
+        if (requiresExplicitSelection && (!selectOption || selectOption === "상품 옵션을 선택해주세요.")) {
             alert('상품 옵션을 선택해주세요');
             return;
         }
@@ -109,11 +129,19 @@ export default function ShoppingDetailOptionBtn({itemId, itemName, itemPrice, op
                 </div>
                 <div className="shopping-detail-column">
                     <div className="selectOptionPositon">
-                        <Form.Select aria-label="Default select example"  onChange={optionChange}>
-                            <option>상품 옵션을 선택해주세요.</option>
-                            <option >{option}</option>
-                            <option>option=[Color] Black</option>
-                            <option>option=[Color] White</option>
+                        <Form.Select
+                            aria-label="상품 옵션 선택"
+                            onChange={optionChange}
+                            value={selectOption}
+                        >
+                            {requiresExplicitSelection && (
+                                <option value="">상품 옵션을 선택해주세요.</option>
+                            )}
+                            {parsedOptions.map((optionValue) => (
+                                <option key={optionValue} value={optionValue}>
+                                    {optionValue}
+                                </option>
+                            ))}
                         </Form.Select>
                     </div>
                 </div>

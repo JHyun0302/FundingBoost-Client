@@ -10,6 +10,17 @@
     display: flex;
     justify-content: space-between;
     margin: 6px 0;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
     .MyPageOrderHistoryOneGroup {
       display: flex;
       flex-direction: row;

@@ -1,13 +1,20 @@
 .friendFundingDetail-optionDetail {
   font-family: SUITE-Regular;
-  width: 369.6px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  .friendFundingDetail-optionDetail1{
-    height: 100vh;
+  gap: 16px;
+  position: sticky;
+  top: 92px;
+
+  .friendFundingDetail-optionDetail1,
+  .friendFundingDetail-optionDetail2 {
+    width: 100%;
   }
-  .friendFundingDetail-optionDetail2{
-    height: 100%;
+}
+
+@media (max-width: 1100px) {
+  .friendFundingDetail-optionDetail {
+    position: static;
   }
 }

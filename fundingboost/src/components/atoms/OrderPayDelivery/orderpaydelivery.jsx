@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './orderpaydelivery.scss';
 import MyPayDeliveryInput from "../../atoms/Mypay-Delivery-Input/mypay-delivery-input";
 import OrderPayDeliveryHistoryList from "../../atoms/OrderPayDeliveryHistoryList/OrderPayDeliveryHistoryList";
@@ -11,6 +11,12 @@ const OrderPayDelivery = ({ deliveryDtoList, onSelectItem }) => {
         onSelectItem(item);
     };
 
+    useEffect(() => {
+        if (!selectedItem && deliveryDtoList?.length) {
+            handleSelectItem(deliveryDtoList[0]);
+        }
+    }, [deliveryDtoList, selectedItem]);
+
     return (
         <div>
             <div className="Mypay-delivery-wrapper">
@@ -20,7 +26,11 @@ const OrderPayDelivery = ({ deliveryDtoList, onSelectItem }) => {
                 </div>
                 <div className="MyPayItemBox02">
                     <div className="mypay-product-details-text02">배송지 내역</div>
-                    <OrderPayDeliveryHistoryList deliveryDtoList={deliveryDtoList} onSelectItem={handleSelectItem} />
+                    <OrderPayDeliveryHistoryList
+                        deliveryDtoList={deliveryDtoList}
+                        onSelectItem={handleSelectItem}
+                        selectedDeliveryId={selectedItem?.deliveryId}
+                    />
                 </div>
             </div>
         </div>

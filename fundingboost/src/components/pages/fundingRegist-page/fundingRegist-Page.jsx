@@ -90,6 +90,29 @@ function FundingRegistPage(props) {
         setOrderedItems(updatedItems);
     };
 
+    const handleItemDelete = (targetItemId) => {
+        setOrderedItems((prevItems) => {
+            const removedItem = prevItems.find((item) => item.id === targetItemId);
+            if (!removedItem) {
+                return prevItems;
+            }
+
+            const updatedItems = prevItems
+                .filter((item) => item.id !== targetItemId)
+                .map((item) => ({ ...item }));
+
+            if (removedItem.order) {
+                updatedItems.forEach((item) => {
+                    if (item.order && item.order > removedItem.order) {
+                        item.order -= 1;
+                    }
+                });
+            }
+
+            return updatedItems;
+        });
+    };
+
     const handleTagSelect = (tagText) => {
         setTag(tagText);
         setTagIsSelected(!!tagText);
@@ -150,7 +173,11 @@ function FundingRegistPage(props) {
             {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요." />}
             <FundingRegistModal show={showModal} onClose={closeModal} onMyPage={myPageBtnModal} message="진행중인 펀딩이 존재합니다." />
             <div className="fundingRegistContent">
-                <FundingRegistItem selectedItems={orderedItems} onItemOrderChange={handleItemOrderChange} />
+                <FundingRegistItem
+                    selectedItems={orderedItems}
+                    onItemOrderChange={handleItemOrderChange}
+                    onItemDelete={handleItemDelete}
+                />
                 <div className="fundingRegist-Details">
                     <div className="fundingRegistOption">
                         <FundingRegistDetails

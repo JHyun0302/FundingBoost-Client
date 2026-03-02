@@ -2,22 +2,20 @@ import React from 'react';
 import "./mypage-myfunding-history.scss";
 import MypageMyfundingGauge from "../mypage-myfunding-gauge/mypage-myfunding-gauge";
 
-export default function MyPageMyFundingHistory({ data }) {
+export default function MyPageMyFundingHistory({ data, onOpenDetail }) {
     console.log(data);
 
     return (
         <div className="myPageFundingRecordItem-container">
             {data && (
-                <div className="myPageFundingRecordItem">
+                <button type="button" className="myPageFundingRecordItem" onClick={() => onOpenDetail(data.fundingId)}>
                     <img className="image" alt="Image" src={data.itemImageUrl} />
                     <div className="myPageFundingRecordText">
                         <div className='showFunding'>
                             <div className="fundingTag">{data.tag}</div>
-                            <div className='lookingDetail'>
-                                <div className="showDetail">자세히 보기</div>
-                                <button className="showDetailButton">▶</button>
-                            </div>
+                            <div className='historyCardHint'>클릭하여 상세 보기</div>
                         </div>
+                        <div className="historyItemName">{data.itemName}</div>
                         <p className="fundingDateTime">
                             펀딩 시작일 : {data.createdDate}
                             <br />
@@ -29,7 +27,7 @@ export default function MyPageMyFundingHistory({ data }) {
                         </div>
                         <MypageMyfundingGauge totalPercent={data.fundingPercent} />
                     </div>
-                </div>
+                </button>
             )}
         </div>
     );

@@ -1,12 +1,16 @@
 import React from 'react';
 import './orderHistory-singleOrder.scss';
-const OrderHistorySingleOrder = ({orderHistoryData}) => {
+const OrderHistorySingleOrder = ({orderHistoryData, onOpenDetail}) => {
     const createdDate = () =>
         (Date().now() + orderHistoryData.createdDate).toISOString().split('T')[0];
 
     return (
         <div className="orderHistorySingleOrder">
-            <div className="MyPageOrderHistoryOneView">
+            <button
+                type="button"
+                className="MyPageOrderHistoryOneView"
+                onClick={() => onOpenDetail(orderHistoryData.orderItemId)}
+            >
                 <div className="MyPageOrderHistoryOneGroup">
                     <img className="MyPageOrderHistoryOneEllipse" alt="Ellipse" src={orderHistoryData.itemImageUrl}/>
                     <div className="MyPageOrderHistoryOneOverlap">
@@ -35,7 +39,7 @@ const OrderHistorySingleOrder = ({orderHistoryData}) => {
 
                 </div>
                 <div className="MyPageOrderHistoryOneText-wrapper">{orderHistoryData.price.toLocaleString()} 원</div>
-            </div>
+            </button>
         </div>
     );
 };

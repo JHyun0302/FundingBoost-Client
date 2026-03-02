@@ -1,18 +1,67 @@
 import React, { useState } from "react";
 import "./mypageindex.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useSetRecoilState } from "recoil";
+import { loginState } from "../../../state/auth";
 
 export default function MyPageIndex({ onButtonClick, currentPageIndex }) {
     // 선택된 버튼의 인덱스를 저장하는 상태
     const navigate = useNavigate();
+    const setLoginState = useSetRecoilState(loginState);
     const [selectedButtonIndex, setSelectedButtonIndex] = useState(currentPageIndex);
 
     // 버튼을 클릭할 때 호출되는 함수
     const handleButtonClick = (index) => {
+        if (index === 9) {
+            logoutHandler();
+            return;
+        }
+
         setSelectedButtonIndex(index);
         onButtonClick(index);
         navigateToMyPage(index);
         console.log(index);
+    };
+
+    const clearAuthState = () => {
+        setLoginState({
+            isAuthenticated: false,
+            user: null,
+            accessToken: null,
+            refreshToken: null
+        });
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('user');
+        localStorage.removeItem('GrantType');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('nickName');
+    };
+
+    const logoutHandler = async () => {
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
+
+        try {
+            if (accessToken) {
+                await axios.post(
+                    `${process.env.REACT_APP_FUNDINGBOOST}/logout`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                            RefreshToken: refreshToken
+                        }
+                    }
+                );
+            }
+        } catch (error) {
+            console.error('로그아웃 요청 실패:', error);
+        } finally {
+            clearAuthState();
+            navigate('/home');
+        }
     };
 
     const navigateToMyPage = (index) => {
@@ -37,6 +86,12 @@ export default function MyPageIndex({ onButtonClick, currentPageIndex }) {
                 break;
             case 6:
                 navigate("/mypage/review");
+                break;
+            case 7:
+                navigate("/mypage/notices");
+                break;
+            case 8:
+                navigate("/mypage/support");
                 break;
             default:
                 break;

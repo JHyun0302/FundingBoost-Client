@@ -34,13 +34,17 @@
   color: #000000;
   font-size: 30px;
   font-weight: bold;
-  letter-spacing: 10px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .myPageProfileEmail {
   color: #000000;
   font-size: 15px;
   font-weight: 700;
+  line-height: 1.4;
+  word-break: break-all;
 }
 
 .myPointExplain {

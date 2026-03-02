@@ -2,7 +2,7 @@ import React from "react";
 import "./mypage-friend-funding-item.scss";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
 
-export default function MyPageFriendFundingItem ({ data }) {
+export default function MyPageFriendFundingItem ({ data, onOpenDetail }) {
     const profileSrc = data?.friendProfileImg
         ? (data.friendProfileImg.startsWith('http') || data.friendProfileImg.startsWith('/')
             ? data.friendProfileImg
@@ -12,23 +12,26 @@ export default function MyPageFriendFundingItem ({ data }) {
     return (
         <div className="MyPageFriendFundingOneBox">
             <div className="MyPageFriendFundingOneView">
-                <div className="div">
+                <div className="friendFundingPrimaryColumn">
                     <img
-                        className="ellipse"
+                        className="friendFundingProfileImage"
                         alt={`${data.nickname} 프로필`}
                         src={profileSrc}
                         loading="lazy"
                         decoding="async"
                     />
-                    <div className="MyPageFriendFundingOneText-wrapper-1">
-                        <div className="MyPageFriendFundingOneText-wrapper-3">{data.createdDate}</div>
-                        <div className="MyPageFriendFundingOneText-wrapper-4">
-                            <div className="MyPageFriendFundingOneText-wrapper">{data.nickname}</div>
-                            <div className="MyPageFriendFundingOneText-wrapper-2">{data.tag}</div>
+                    <div className="friendFundingMetaColumn">
+                        <div className="friendFundingDate">{data.latestCreatedDate}</div>
+                        <div className="friendFundingNameRow">
+                            <button type="button" className="friendFundingNameButton" onClick={onOpenDetail}>
+                                {data.nickname}
+                            </button>
+                            <div className="friendFundingTag">{data.tagSummary || "펀딩 참여"}</div>
                         </div>
+                        <div className="friendFundingSubText">내가 참여한 펀딩 {data.contributionCount}건</div>
                     </div>
                 </div>
-                <div className="MyPageFriendFundingOneText-wrapper-6">{data.price.toLocaleString()} 원</div>
+                <div className="friendFundingTotalPrice">{data.totalContributedPrice.toLocaleString()} 원</div>
             </div>
         </div>
     );

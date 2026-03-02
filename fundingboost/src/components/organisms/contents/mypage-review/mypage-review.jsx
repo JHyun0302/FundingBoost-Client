@@ -27,7 +27,7 @@ const ReviewPane = () => {
 
                 const response = await axios({
                     method: 'GET',
-                    url: `${process.env.REACT_APP_FUNDINGBOOST}/order/history`,
+                    url: `${process.env.REACT_APP_FUNDINGBOOST}/review/history`,
                     headers: {
                         "Authorization": `Bearer ${accessToken}`,
                     },

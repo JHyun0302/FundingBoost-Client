@@ -1,9 +1,8 @@
 import React from "react";
 import "./shopping-detail-title.scss";
-import img from "../../../assets/testitem.svg";
 import ShoppingDetailMenu from "../Shopping-Detail-Menu/shopping-detail-menu";
 
-export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImageUrl, itemPrice, option, bookmark }) {
+export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImageUrl, itemPrice, options, bookmark }) {
 
     return (
         <div className="ShoppingDetailItemBox">
@@ -19,7 +18,14 @@ export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImag
                             </div>
                         )}
 
-                        <ShoppingDetailMenu itemId={itemId} itemThumbnailImageUrl={itemThumbnailImageUrl} itemName={itemName} itemPrice={itemPrice} option={option} bookmark={bookmark} />
+                        <ShoppingDetailMenu
+                            itemId={itemId}
+                            itemThumbnailImageUrl={itemThumbnailImageUrl}
+                            itemName={itemName}
+                            itemPrice={itemPrice}
+                            options={options}
+                            bookmark={bookmark}
+                        />
 
                     </div>
                 </div>

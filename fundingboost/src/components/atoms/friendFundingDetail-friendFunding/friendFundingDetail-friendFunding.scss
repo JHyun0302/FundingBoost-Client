@@ -1,77 +1,85 @@
-
 .friendFundingDetailFriendToFunding {
   display: flex;
   justify-content: center;
-  .friendFundingDetail-FriendToFunding{
+  width: 100%;
+
+  .friendFundingDetail-FriendToFunding {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    min-height: 364px;
-    height: auto;
-    width: min(100%, 320px);
+    gap: 20px;
+    min-height: auto;
+    width: 100%;
     align-items: flex-start;
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid #e7e2d7;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
 
-    .friendFundingDetail-FriendToFunding-style1{
+    .friendFundingDetail-FriendToFunding-style1,
+    .friendFundingDetail-FriendToFunding-style2,
+    .friendFundingDetail-FriendToFunding-style3 {
       width: 100%;
+    }
 
-      .fundingToFriend-Text, .deadLine {
+    .friendFundingDetail-FriendToFunding-style1 {
+      .fundingToFriend-Text,
+      .deadLine {
         color: #000000;
-        font-size: 17px;
+        font-size: 18px;
         font-weight: 700;
-        text-align: center;
         display: flex;
       }
 
       .MoneyButtonGroup {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 12px;
         display: flex;
         justify-content: space-around;
       }
     }
 
-    .friendFundingDetail-FriendToFunding-style2{
-      width: 100%;
-
+    .friendFundingDetail-FriendToFunding-style2 {
       .friendFundingDetail-fundingInfo {
         display: flex;
         justify-content: space-between;
         width: 100%;
         align-items: baseline;
+        gap: 12px;
 
         .friendFundingDetail-dDayGroup {
           display: flex;
-          margin-top:30px;
+          margin-top: 0;
           justify-content: space-between;
           align-items: baseline;
+          flex-wrap: wrap;
 
-          .friendFundingDetail-dDay{
+          .friendFundingDetail-dDay {
             color: #FFACAC;
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 900;
             text-align: end;
           }
 
-          .friendFundingDetail-deadLine{
+          .friendFundingDetail-deadLine {
             color: gray;
             font-size: 15px;
             margin-left: 10px;
-            justify-content: center;
             text-align: center;
           }
         }
 
         .friendFundingDetail-totalPercent {
           color: #000000;
-          font-size: 30px;
+          font-size: 40px;
           font-weight: bold;
           text-align: end;
-          height: 100%;
         }
       }
 
-      .friendFundingDetail-gaugeBar{
+      .friendFundingDetail-gaugeBar {
         width: 100%;
+        margin-top: 10px;
 
         .gauge-bar.progress {
           width: 100%;
@@ -85,80 +93,78 @@
         }
       }
     }
-    .friendFundingDetail-FriendToFunding-style3{
-      width: 100%;
 
-        .friendFundingDetail-payButton {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          width: 100%;
-          gap: 8px;
-          flex-wrap: wrap;
+    .friendFundingDetail-FriendToFunding-style3 {
+      .friendFundingDetail-payButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+        flex-wrap: nowrap;
 
-          .friendToFundingBtn-btn {
-          flex: 1 1 220px;
+        .friendToFundingBtn-btn {
+          flex: 1 1 auto;
           width: auto;
 
           button.yellowBtn.btn.btn-primary {
             width: 100%;
-            height: 50px;
+            height: 56px;
           }
         }
-        .fundingButton{
+
+        .fundingButton {
           color: #000000;
           font-size: 17px;
           font-weight: 700;
           text-align: center;
-          width:100%;
+          width: 100%;
           background-color: #ffc83b;
           border-radius: 10px;
           border: none;
         }
+
         .friendFundingDetail-sharebtn {
           object-fit: cover;
           background-size: 100%;
-          border-radius: 7px;
-          height: 50px;
-          width: 50px;
+          border-radius: 12px;
+          height: 56px;
+          width: 56px;
           display: flex;
           justify-content: center;
           align-items: center;
           border: none;
+          background: #ffc83b;
           box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
           transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
           img.friendFundingDetail-sharebtn {
             width: 83%;
             height: 65%;
             box-shadow: none;
-
           }
-
         }
-
       }
     }
-
   }
-
-
 }
 
 @media (max-width: 768px) {
   .friendFundingDetailFriendToFunding .friendFundingDetail-FriendToFunding {
     width: 100%;
+
+    .friendFundingDetail-FriendToFunding-style2 .friendFundingDetail-fundingInfo {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .friendFundingDetail-FriendToFunding-style3 .friendFundingDetail-payButton {
+      flex-wrap: wrap;
+
+      .friendToFundingBtn-btn {
+        width: 100%;
+      }
+    }
   }
 }
-
-
-
-
-
-
-//
-//@media (max-width: 768px) {
-//  .view, .group, .overlap-wrapper, .overlap-group-wrapper, .div-wrapper, .group-2, .group-3, .group-5 {
-//    flex-direction: row;
-//    flex-wrap: wrap;
-//  }
-//}

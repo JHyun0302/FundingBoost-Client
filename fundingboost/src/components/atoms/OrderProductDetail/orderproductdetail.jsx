@@ -5,6 +5,9 @@ const OrderProductDetail = ({ selectedItems }) => {
 
     const item = selectedItems;
     console.log("Item:", item);
+    const safeOptionName = item.optionName || "기본 옵션";
+    const quantity = item.quantity || 1;
+    const lineTotalPrice = item.itemPrice * quantity;
 
     return (
         <div className="order-padding-area">
@@ -17,15 +20,15 @@ const OrderProductDetail = ({ selectedItems }) => {
                                 <div className="MyPayItem-option-box">
                                     <div className="MyPayItem-option">옵션</div>
                                 </div>
-                                <div className="MyPayItem-option-name">{item.optionName}</div>
+                                <div className="MyPayItem-option-name">{safeOptionName}</div>
                             </div>
                             <div className="quantity-wrapper">
                             <div className="MyPayItem-quantity-wrapper">[ 수량 ]</div>
-                                <div className="MyPayItem-quantity"> {item.quantity}</div>
+                                <div className="MyPayItem-quantity"> {quantity}</div>
                             </div>
                         </div>
                     </div>
-                    <div className="MyPayItem-price">{item.itemPrice.toLocaleString()} 원</div>
+                    <div className="MyPayItem-price">{lineTotalPrice.toLocaleString()} 원</div>
                 </div>
         </div>
     );
