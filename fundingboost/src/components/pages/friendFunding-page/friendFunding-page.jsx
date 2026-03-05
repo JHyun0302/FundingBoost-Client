@@ -9,10 +9,14 @@ import FriendNonFunding from "../../organisms/contents/FriendNonFunding/FriendNo
 
 import NonMemberModal from "../../atoms/nonMemberModal/nonMemberModal";
 
+const FRIEND_FUNDING_ITEMS_PER_PAGE = 12;
+const MAX_PAGE_BUTTONS = 7;
+
 const FriendFundingPage = () => {
     const [modalShowState, setModalShowState] = useState(false);
     const [friendFundingData, setFriendFundingData] = useState({ data: [] });
     const [sortOption, setSortOption] = useState('최신 등록순');
+    const [currentPage, setCurrentPage] = useState(1);
 
     const parseDeadlineRank = (deadlineText) => {
         if (typeof deadlineText !== 'string') {
@@ -27,7 +31,7 @@ const FriendFundingPage = () => {
         return Number.MAX_SAFE_INTEGER;
     };
 
-    const sortedFriendFundingData = useMemo(() => {
+    const sortedFriendFundingItems = useMemo(() => {
         const rawItems = Array.isArray(friendFundingData?.data) ? [...friendFundingData.data] : [];
 
         rawItems.sort((left, right) => {
@@ -42,11 +46,44 @@ const FriendFundingPage = () => {
             return (right?.fundingId || 0) - (left?.fundingId || 0);
         });
 
+        return rawItems;
+    }, [friendFundingData, sortOption]);
+
+    const totalPages = Math.max(1, Math.ceil(sortedFriendFundingItems.length / FRIEND_FUNDING_ITEMS_PER_PAGE));
+
+    const pagedFriendFundingData = useMemo(() => {
+        const startIndex = (currentPage - 1) * FRIEND_FUNDING_ITEMS_PER_PAGE;
+        const currentItems = sortedFriendFundingItems.slice(startIndex, startIndex + FRIEND_FUNDING_ITEMS_PER_PAGE);
         return {
             ...friendFundingData,
-            data: rawItems,
+            data: currentItems
         };
-    }, [friendFundingData, sortOption]);
+    }, [currentPage, sortedFriendFundingItems, friendFundingData]);
+
+    const visiblePageNumbers = useMemo(() => {
+        if (totalPages <= MAX_PAGE_BUTTONS) {
+            return Array.from({ length: totalPages }, (_, index) => index + 1);
+        }
+
+        const half = Math.floor(MAX_PAGE_BUTTONS / 2);
+        let start = Math.max(currentPage - half, 1);
+        let end = start + MAX_PAGE_BUTTONS - 1;
+        if (end > totalPages) {
+            end = totalPages;
+            start = end - MAX_PAGE_BUTTONS + 1;
+        }
+        return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+    }, [currentPage, totalPages]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [sortOption]);
+
+    useEffect(() => {
+        if (currentPage > totalPages) {
+            setCurrentPage(totalPages);
+        }
+    }, [currentPage, totalPages]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -83,8 +120,47 @@ const FriendFundingPage = () => {
                 sortOption={sortOption}
                 onSortChange={setSortOption}
             />
-            {sortedFriendFundingData.data && sortedFriendFundingData.data.length > 0 ? (
-                <SingleFriendFunding friendFundingData={sortedFriendFundingData} />
+            {sortedFriendFundingItems.length > 0 ? (
+                <>
+                    <SingleFriendFunding friendFundingData={pagedFriendFundingData} />
+                    {totalPages > 1 && (
+                        <div className="friendFundingPaginationWrap">
+                            <div className="friendFundingPaginationInfo">
+                                {currentPage} / {totalPages}
+                            </div>
+                            <div className="friendFundingPagination">
+                                <button
+                                    type="button"
+                                    className="friendFundingPageButton"
+                                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                    disabled={currentPage === 1}
+                                >
+                                    이전
+                                </button>
+                                <div className="friendFundingPageNumbers">
+                                    {visiblePageNumbers.map((pageNumber) => (
+                                        <button
+                                            key={pageNumber}
+                                            type="button"
+                                            className={`friendFundingPageButton ${currentPage === pageNumber ? 'active' : ''}`}
+                                            onClick={() => setCurrentPage(pageNumber)}
+                                        >
+                                            {pageNumber}
+                                        </button>
+                                    ))}
+                                </div>
+                                <button
+                                    type="button"
+                                    className="friendFundingPageButton"
+                                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    다음
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </>
             ):(
             <FriendNonFunding />
             )}

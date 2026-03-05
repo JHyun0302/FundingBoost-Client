@@ -1,10 +1,25 @@
 import React from 'react';
 import './fundingRegistModal.scss';
 
-const FundingRegistPageModal = ({ show, onClose, message, onMyPage }) => {
+const FundingRegistPageModal = ({ show, onBackToDetail, onClose, message, onMyPage }) => {
     if (!show) {
         return null;
     }
+
+    const handleBackToDetail = () => {
+        if (typeof onBackToDetail === "function") {
+            onBackToDetail();
+            return;
+        }
+
+        if (typeof onClose === "function") {
+            onClose();
+            return;
+        }
+
+        window.location.href = "/shopping";
+    };
+
     return (
         <div className="modal-boby">
             <div className="modal">
@@ -17,7 +32,7 @@ const FundingRegistPageModal = ({ show, onClose, message, onMyPage }) => {
                     <div className="modal-message2">마이페이지로 이동하시겠습니까?</div>
                     <div className="modal-button">
                         <button className="modal-myPageBtn" onClick={onMyPage}>마이페이지 이동</button>
-                        <button className="modal-closeBtn" onClick={onClose}>닫기</button>
+                        <button className="modal-backToDetailBtn" onClick={handleBackToDetail}>상품 상세로 돌아가기</button>
                     </div>
 
 

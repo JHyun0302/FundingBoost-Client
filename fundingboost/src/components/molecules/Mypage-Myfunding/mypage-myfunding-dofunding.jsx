@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './mypage-myfunding-dofunding.scss';
-import shareicon from "../../../assets/share.svg";
 import MyfundingAdditionalPane from "../../atoms/mypage-additional-info/mypage-additional-info";
 import MyfundingItemList from "../mypage-myfunding-itemlist/mypage-myfunding-itemlist";
 import messagebox from "../../../assets/messagebox.svg";
@@ -67,9 +66,6 @@ const MyfundingDoFundingPane = ({ apiData, deadline, deadlineDate, totalPercent,
                     <div className="mypage-button-noti-wrpper">
                         <div className="mypage-action-button-row">
                             <ExtensionButton myPageFundingItemDtoList={myPageFundingItemDtoList} />
-                            <button className="mypage-button-style-01" type="button" aria-label="공유하기">
-                                <img src={shareicon} alt="shareicon" className="mypage-share-icon" />
-                            </button>
                         </div>
                         <div className="mypage-remain-date-noti">
                             <div>＊ 기간은 자동 2주 연장됩니다.</div>

@@ -1,83 +1,204 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
 import './mypage-support.scss';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from '../../../molecules/MypageIndex/mypageindex';
 import NonMemberModal from '../../../atoms/nonMemberModal/nonMemberModal';
 
-const FAQ_ITEMS = [
-    {
-        id: 1,
-        question: '펀딩이 종료되면 결제는 어떻게 처리되나요?',
-        answer: '펀딩이 종료되면 내가 직접 결제한 금액, 포인트 사용 금액, 친구들에게 받은 펀딩 금액이 합산되어 주문 이력에 반영됩니다. 주문 상세 모달에서 결제 비중을 각각 확인할 수 있습니다.'
-    },
-    {
-        id: 2,
-        question: '카카오 로그인 후 성별 입력 모달이 보이는 이유가 무엇인가요?',
-        answer: '현재 카카오 동의항목 권한 제약으로 성별 정보를 직접 받을 수 없어서, 최초 1회만 서비스 내부에서 성별을 선택하도록 처리했습니다. 선택 후에는 다시 표시되지 않습니다.'
-    },
-    {
-        id: 3,
-        question: '쇼핑하기 상품은 어디 기준으로 노출되나요?',
-        answer: '상품은 크롤러가 수집한 item 스키마 데이터를 바탕으로 Elasticsearch 인덱스를 구성한 뒤 검색과 목록 노출에 사용합니다. 크롤링 데이터가 바뀌면 인덱스도 자동으로 재구성됩니다.'
-    },
-    {
-        id: 4,
-        question: '위시리스트, 지난 펀딩 이력, 구매 이력이 비어 보이면 어떻게 해야 하나요?',
-        answer: '로컬/운영 Docker 초기 배포 시 QA 테스트 데이터가 자동 생성됩니다. 데이터가 기대와 다르면 컨테이너 로그를 확인하거나, 완전 초기화 후 재배포해서 테스트 시드를 다시 생성하는 것이 가장 빠릅니다.'
-    },
-    {
-        id: 5,
-        question: '문의는 어디로 보내면 되나요?',
-        answer: '현재 토이 프로젝트 단계라 별도 1:1 문의 시스템은 없습니다. 이 페이지의 안내 메일을 통해 이슈를 접수하거나, 추후 연결될 이슈 트래커/오픈채팅 채널을 통해 접수하는 방식이 적절합니다.'
-    }
-];
+const INITIAL_FAQ_FORM = {
+    question: '',
+    answer: '',
+    sortOrder: 1
+};
+const FAQ_PAGE_SIZE = 5;
 
 const MypageSupportPane = () => {
     const [profileData, setProfileData] = useState(null);
     const [modalShowState, setModalShowState] = useState(false);
-    const [openFaqId, setOpenFaqId] = useState(FAQ_ITEMS[0].id);
+    const [faqItems, setFaqItems] = useState([]);
+    const [openFaqId, setOpenFaqId] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [faqForm, setFaqForm] = useState(INITIAL_FAQ_FORM);
+    const [editingFaqId, setEditingFaqId] = useState(null);
+    const [saving, setSaving] = useState(false);
+    const [faqPage, setFaqPage] = useState(0);
+    const faqEditorRef = useRef(null);
+    const faqQuestionInputRef = useRef(null);
 
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
     };
 
+    const accessToken = localStorage.getItem('accessToken');
+    const authConfig = {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+        responseType: 'json'
+    };
+
+    const loadFaqs = async () => {
+        const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/support/faqs`, authConfig);
+        const nextFaqs = response?.data?.data?.faqs || [];
+        setFaqItems(nextFaqs);
+    };
+
+    const faqTotalPages = useMemo(
+        () => Math.max(Math.ceil(faqItems.length / FAQ_PAGE_SIZE), 1),
+        [faqItems.length]
+    );
+
+    const pagedFaqItems = useMemo(() => {
+        const start = faqPage * FAQ_PAGE_SIZE;
+        return faqItems.slice(start, start + FAQ_PAGE_SIZE);
+    }, [faqItems, faqPage]);
+
+    const maxSortOrder = useMemo(() => {
+        const baseMax = editingFaqId ? faqItems.length : faqItems.length + 1;
+        return Math.max(baseMax, 1);
+    }, [editingFaqId, faqItems.length]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = localStorage.getItem('accessToken');
                 if (!accessToken) {
                     setModalShowState(true);
+                    setLoading(false);
                     return;
                 }
 
-                const response = await axios({
-                    method: 'GET',
-                    url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status`,
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    },
-                    responseType: 'json'
-                });
+                const [profileResponse, faqResponse, accessResponse] = await Promise.all([
+                    axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status`, authConfig),
+                    axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/support/faqs`, authConfig),
+                    axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/admin/dashboard/access`, authConfig).catch(() => null)
+                ]);
+                setProfileData(profileResponse?.data?.data || null);
 
-                setProfileData(response.data.data);
+                const nextFaqs = faqResponse?.data?.data?.faqs || [];
+                setFaqItems(nextFaqs);
+                setOpenFaqId(nextFaqs.length > 0 ? nextFaqs[0].faqId : null);
+                setIsAdmin(accessResponse?.data?.data?.isSuccess === true);
+                setErrorMessage('');
             } catch (error) {
                 console.error('고객센터 정보를 불러오는 중 오류가 발생했습니다.', error);
+                setErrorMessage('고객센터 FAQ를 불러오지 못했습니다.');
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
-    }, []);
+    }, [accessToken]);
+
+    useEffect(() => {
+        setFaqPage((prev) => {
+            const maxPage = Math.max(faqTotalPages - 1, 0);
+            return prev > maxPage ? maxPage : prev;
+        });
+    }, [faqTotalPages]);
+
+    useEffect(() => {
+        if (pagedFaqItems.length === 0) {
+            setOpenFaqId(null);
+            return;
+        }
+        const existsInPage = pagedFaqItems.some((faq) => faq.faqId === openFaqId);
+        if (!existsInPage) {
+            setOpenFaqId(pagedFaqItems[0].faqId);
+        }
+    }, [pagedFaqItems, openFaqId]);
 
     const toggleFaq = (faqId) => {
         setOpenFaqId((prev) => (prev === faqId ? null : faqId));
+    };
+
+    const resetEditor = () => {
+        setFaqForm(INITIAL_FAQ_FORM);
+        setEditingFaqId(null);
+    };
+
+    const startFaqEdit = (faq) => {
+        setEditingFaqId(faq.faqId);
+        setFaqForm({
+            question: faq.question,
+            answer: faq.answer,
+            sortOrder: Math.max(faq.sortOrder || 1, 1)
+        });
+        setOpenFaqId(faq.faqId);
+        requestAnimationFrame(() => {
+            faqEditorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            faqQuestionInputRef.current?.focus();
+        });
+    };
+
+    const handleSubmitFaq = async () => {
+        if (!faqForm.question.trim() || !faqForm.answer.trim()) {
+            alert('질문과 답변을 모두 입력해주세요.');
+            return;
+        }
+
+        const sortOrder = Number(faqForm.sortOrder);
+        if (!Number.isInteger(sortOrder) || sortOrder < 1 || sortOrder > maxSortOrder) {
+            alert(`정렬순서는 1부터 ${maxSortOrder}까지만 입력할 수 있습니다.`);
+            return;
+        }
+
+        setSaving(true);
+        try {
+            const requestBody = {
+                question: faqForm.question,
+                answer: faqForm.answer,
+                sortOrder
+            };
+
+            if (editingFaqId) {
+                await axios.put(
+                    `${process.env.REACT_APP_FUNDINGBOOST}/admin/support/faqs/${editingFaqId}`,
+                    requestBody,
+                    authConfig
+                );
+            } else {
+                await axios.post(
+                    `${process.env.REACT_APP_FUNDINGBOOST}/admin/support/faqs`,
+                    requestBody,
+                    authConfig
+                );
+            }
+
+            await loadFaqs();
+            resetEditor();
+        } catch (error) {
+            console.error('FAQ 저장 실패', error);
+            alert('FAQ 저장에 실패했습니다.');
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const handleDeleteFaq = async (faqId) => {
+        const confirmed = window.confirm('해당 FAQ를 삭제하시겠습니까?');
+        if (!confirmed) {
+            return;
+        }
+        try {
+            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/admin/support/faqs/${faqId}`, authConfig);
+            await loadFaqs();
+            if (editingFaqId === faqId) {
+                resetEditor();
+            }
+        } catch (error) {
+            console.error('FAQ 삭제 실패', error);
+            alert('FAQ 삭제에 실패했습니다.');
+        }
     };
 
     return (
         <div className="mypageSupportPane">
             {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypageSupportPane-left">
-                {profileData && <MypageProfile profileInfo={profileData} />}
+                <MypageProfile profileInfo={profileData || {}} />
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={8} />
             </div>
             <div className="mypageSupportPane-right">
@@ -87,7 +208,7 @@ const MypageSupportPane = () => {
                             <div className="mypageSupportPane-eyebrow">Support</div>
                             <h2>고객센터</h2>
                         </div>
-                        <p>토이 프로젝트 운영 범위에 맞춰 FAQ와 기본 문의 채널을 제공합니다.</p>
+                        <p>자주 묻는 질문을 확인하고 운영자가 FAQ를 직접 관리할 수 있습니다.</p>
                     </div>
 
                     <div className="mypageSupportContact">
@@ -96,16 +217,73 @@ const MypageSupportPane = () => {
                         <div className="mypageSupportContactHint">버그 제보, 기능 문의, 테스트 계정 이슈를 메일로 접수할 수 있습니다.</div>
                     </div>
 
+                    {isAdmin && (
+                        <div className="mypageSupportAdminEditor" ref={faqEditorRef}>
+                            <h3>{editingFaqId ? 'FAQ 수정' : 'FAQ 작성'}</h3>
+                            <input
+                                type="text"
+                                placeholder="질문"
+                                value={faqForm.question}
+                                ref={faqQuestionInputRef}
+                                onChange={(event) => setFaqForm((prev) => ({ ...prev, question: event.target.value }))}
+                            />
+                            <textarea
+                                rows={4}
+                                placeholder="답변"
+                                value={faqForm.answer}
+                                onChange={(event) => setFaqForm((prev) => ({ ...prev, answer: event.target.value }))}
+                            />
+                            <div className="mypageSupportAdminActions">
+                                <label htmlFor="faq-sort-order">정렬순서</label>
+                                <input
+                                    id="faq-sort-order"
+                                    type="number"
+                                    min={1}
+                                    max={maxSortOrder}
+                                    value={faqForm.sortOrder}
+                                    onChange={(event) => {
+                                        const raw = event.target.value;
+                                        if (raw === '') {
+                                            setFaqForm((prev) => ({ ...prev, sortOrder: '' }));
+                                            return;
+                                        }
+                                        const parsed = Number(raw);
+                                        if (!Number.isFinite(parsed)) {
+                                            return;
+                                        }
+                                        const bounded = Math.max(1, Math.min(parsed, maxSortOrder));
+                                        setFaqForm((prev) => ({ ...prev, sortOrder: bounded }));
+                                    }}
+                                />
+                                <span className="mypageSupportSortHint">1 ~ {maxSortOrder}</span>
+                                <span className="mypageSupportSortHint">
+                                    입력한 순서에 삽입되며 기존 FAQ는 자동으로 뒤로 이동합니다.
+                                </span>
+                                {editingFaqId && (
+                                    <button type="button" className="secondary" onClick={resetEditor}>수정 취소</button>
+                                )}
+                                <button type="button" onClick={handleSubmitFaq} disabled={saving}>
+                                    {saving ? '저장 중...' : editingFaqId ? '수정 저장' : 'FAQ 등록'}
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
                     <div className="mypageSupportFaqList">
-                        {FAQ_ITEMS.map((faq) => {
-                            const isOpen = openFaqId === faq.id;
+                        {loading && <p className="mypageSupportEmpty">FAQ를 불러오는 중입니다...</p>}
+                        {!loading && errorMessage && <p className="mypageSupportEmpty">{errorMessage}</p>}
+                        {!loading && !errorMessage && faqItems.length === 0 && (
+                            <p className="mypageSupportEmpty">등록된 FAQ가 없습니다.</p>
+                        )}
+                        {!loading && !errorMessage && pagedFaqItems.map((faq) => {
+                            const isOpen = openFaqId === faq.faqId;
 
                             return (
-                                <div className={`mypageSupportFaqItem ${isOpen ? 'open' : ''}`} key={faq.id}>
+                                <div className={`mypageSupportFaqItem ${isOpen ? 'open' : ''}`} key={faq.faqId}>
                                     <button
                                         type="button"
                                         className="mypageSupportFaqQuestion"
-                                        onClick={() => toggleFaq(faq.id)}
+                                        onClick={() => toggleFaq(faq.faqId)}
                                     >
                                         <span>{faq.question}</span>
                                         <span className="mypageSupportFaqToggle">{isOpen ? '−' : '+'}</span>
@@ -113,12 +291,48 @@ const MypageSupportPane = () => {
                                     {isOpen && (
                                         <div className="mypageSupportFaqAnswer">
                                             {faq.answer}
+                                            {isAdmin && (
+                                                <div className="mypageSupportFaqActions">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => startFaqEdit(faq)}
+                                                    >
+                                                        수정
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="danger"
+                                                        onClick={() => handleDeleteFaq(faq.faqId)}
+                                                    >
+                                                        삭제
+                                                    </button>
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>
                             );
                         })}
                     </div>
+                    {!loading && !errorMessage && faqItems.length > FAQ_PAGE_SIZE && (
+                        <div className="mypageSupportPagination">
+                            <button
+                                type="button"
+                                onClick={() => setFaqPage((prev) => Math.max(prev - 1, 0))}
+                                disabled={faqPage <= 0}
+                            >
+                                이전
+                            </button>
+                            <span>{faqPage + 1} / {faqTotalPages}</span>
+                            <button
+                                type="button"
+                                onClick={() => setFaqPage((prev) => Math.min(prev + 1, faqTotalPages - 1))}
+                                disabled={faqPage >= faqTotalPages - 1}
+                            >
+                                다음
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

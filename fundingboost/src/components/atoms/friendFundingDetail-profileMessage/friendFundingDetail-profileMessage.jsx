@@ -1,10 +1,17 @@
 import React from 'react';
 import "./friendFundingDetail-profileMessage.scss";
 import img2 from "../../../assets/airplane.png";
-import ProfileImg from "../ProfileImg/ProfileImg";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
 
 export default function FriendFundingDetailFriendProfile ({friendFundingDetailData}) {
+    const contributorList = friendFundingDetailData?.data?.contributorList ?? [];
+    const uniqueContributorList = contributorList.filter((contributor, index, list) => {
+        return index === list.findIndex((target) =>
+            target.contributorName === contributor.contributorName
+            && target.contributorProfileImgUrl === contributor.contributorProfileImgUrl
+        );
+    });
+
     return (
         <div className="friendFundingDetail-FriendProfile">
             <div className="friendFundingDetail-Profile">
@@ -25,8 +32,11 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
                 </div>
                 <div className="friendFundingDetail-fundingFriendlist">
                     <div className="friendFundingDetail-fundingFriends">
-                        {friendFundingDetailData?.data?.contributorList.map((contributor, index) => (
-                            <div className="friendFundingDetail-fundingFriends-img" key={index}>
+                        {uniqueContributorList.map((contributor, index) => (
+                            <div
+                                className="friendFundingDetail-fundingFriends-img"
+                                key={`${contributor.contributorName}-${contributor.contributorProfileImgUrl}-${index}`}
+                            >
                                 <img className="fundingFriends-img" alt="Ellipse"
                                     src={contributor.contributorProfileImgUrl || defaultProfileImg}/>
                             <div className="friendFundingDetail-friendName">{contributor.contributorName}</div>

@@ -3,23 +3,26 @@ import "./mypageprofile.scss";
 import defaultProfile from "../../../assets/defaultProfile.svg";
 
 export default function MyPageProfile ({ profileInfo }) {
-    // 프로필 정보에서 필요한 데이터 추출
-    // const { nickName, email, profile, point } = profileInfo.myPageMemberDto;
+    const member = profileInfo?.myPageMemberDto;
+    const isLoadingProfile = !member;
+    const nickName = member?.nickName || '불러오는 중';
+    const email = member?.email || '프로필 정보를 불러오는 중입니다.';
+    const point = member?.point ? member.point.toLocaleString() : '0';
 
     return (
-        <div className="myPageProfileView">
+        <div className={`myPageProfileView ${isLoadingProfile ? 'is-loading' : ''}`}>
             <div className='myPageProfile'>
-                <img className="myPageProfileImg" alt="myPageProfileImg" src={profileInfo.myPageMemberDto?.profileImgUrl ||  defaultProfile}/>
+                <img className="myPageProfileImg" alt="myPageProfileImg" src={member?.profileImgUrl ||  defaultProfile}/>
                 <div className='myPageProfileText'>
-                    <div className="myPageProfileName">{profileInfo.myPageMemberDto?.nickName}</div>
-                    <a className="myPageProfileEmail">
-                        {profileInfo.myPageMemberDto?.email}
-                    </a>
+                    <div className="myPageProfileName">{nickName}</div>
+                    <p className="myPageProfileEmail">
+                        {email}
+                    </p>
                 </div>
             </div>
             <div className="myPointExplain">내 포인트</div>
             <div className="horizontalLine"></div>
-            <div className="myPoint">{profileInfo.myPageMemberDto?.point ? profileInfo.myPageMemberDto?.point.toLocaleString() : '0'} P</div>
+            <div className="myPoint">{point} P</div>
             <div className="horizontalLine"></div>
         </div>
     );

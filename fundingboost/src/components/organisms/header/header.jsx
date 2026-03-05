@@ -15,6 +15,7 @@ function HeaderBar() {
     const login = useRecoilValue(loginState);
     const setLoginState = useSetRecoilState(loginState);
     const [nickName, setNickName] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
@@ -23,6 +24,40 @@ function HeaderBar() {
             const user = JSON.parse(storedUser);
             setNickName(user.nickName);
         }
+    }, [login.isAuthenticated]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('accessToken');
+        if (!login.isAuthenticated || !token) {
+            setIsAdmin(false);
+            return;
+        }
+
+        let mounted = true;
+        const checkAdminAccess = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/admin/dashboard/access`, {
+                    responseType: 'json',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const hasAccess = response?.data?.data?.isSuccess === true;
+                if (mounted) {
+                    setIsAdmin(hasAccess);
+                }
+            } catch (error) {
+                if (mounted) {
+                    setIsAdmin(false);
+                }
+            }
+        };
+
+        checkAdminAccess();
+        return () => {
+            mounted = false;
+        };
     }, [login.isAuthenticated]);
 
     const loginHandler = () => {
@@ -63,6 +98,7 @@ function HeaderBar() {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('nickName');
+            setIsAdmin(false);
             navigate('/home');
         } catch (error) {
             console.error('로그아웃 실패:', error);
@@ -110,6 +146,12 @@ function HeaderBar() {
                             <div className="loginLogout">
                             {login.isAuthenticated && localStorage.getItem('accessToken') ? (
                                 <NavDropdown title={localStorage.getItem('nickName')} id="logoutDropdown" align="end">
+                                    {isAdmin && (
+                                        <>
+                                            <NavDropdown.Item onClick={() => navigate('/adm')} className="dropdownItem">관리자</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                        </>
+                                    )}
                                     <NavDropdown.Item onClick={() => navigate('/mypage')} className="dropdownItem">My Page</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item onClick={logoutHandler} className="dropdownItem">로그아웃</NavDropdown.Item>

@@ -3,7 +3,6 @@ import "./friendFundingDetail-friendFunding.scss";
 import FriendFundingDetailMoneyButtonGroup from "../button/friendFundingDetail-moneybuttonGroup/friendFundingDetail-moneybuttonGroup";
 import GaugeBar from "../gauge-bar/gauge-bar";
 import FriendToFundingBtn from "../button/FriendToFundingBtn/FriendToFundingBtn";
-import shareicon from "../../../assets/share.svg";
 
 
 export default function FriendFundingDetailFriendToFunding({ friendFundingDetailData }) {
@@ -43,11 +42,6 @@ export default function FriendFundingDetailFriendToFunding({ friendFundingDetail
                 <div className="friendFundingDetail-FriendToFunding-style3">
                     <div className="friendFundingDetail-payButton">
                         <FriendToFundingBtn onClick={handleFriendToFundingBtnClick} fundingAmount={fundingAmount}  />
-                        <div>
-                            <button className="friendFundingDetail-sharebtn">
-                                <img alt="shareicon" className="friendFundingDetail-sharebtn" src={shareicon} />
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

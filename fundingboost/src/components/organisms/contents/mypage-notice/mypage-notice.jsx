@@ -1,88 +1,182 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
 import './mypage-notice.scss';
 import MypageProfile from '../../../molecules/MypageProfile/mypageprofile';
 import MyPageIndex from '../../../molecules/MypageIndex/mypageindex';
 import NonMemberModal from '../../../atoms/nonMemberModal/nonMemberModal';
 
-const NOTICE_ITEMS = [
-    {
-        id: 1,
-        category: '업데이트',
-        title: '실시간 선물랭킹 가격대 필터가 추가되었습니다.',
-        date: '2026-03-01',
-        body: '홈 화면 실시간 선물랭킹에서 1만원 이하, 1-3만원, 3-5만원, 5만원 이상 가격대별로 상품을 바로 확인할 수 있습니다.'
-    },
-    {
-        id: 2,
-        category: '안내',
-        title: '마이페이지 이력 화면이 10개 단위 페이지네이션으로 변경되었습니다.',
-        date: '2026-03-01',
-        body: '지난 펀딩 이력, 친구 펀딩 기록, 구매 이력, 위시리스트, 배송지 관리, MY 리뷰가 모두 10개씩 페이지 단위로 분리되어 더 안정적으로 확인할 수 있습니다.'
-    },
-    {
-        id: 3,
-        category: '테스트 데이터',
-        title: '로컬/운영 공통 QA 계정과 샘플 데이터가 자동으로 생성됩니다.',
-        date: '2026-03-01',
-        body: '초기 Docker 배포 시 마리오, 루이지, 피치공주, 키노피오, 요시 계정이 자동 생성되며 친구 관계, 북마크, 펀딩, 주문, 리뷰 데이터도 함께 구성됩니다.'
-    },
-    {
-        id: 4,
-        category: '운영',
-        title: '이미지 URL 정규화와 크롤러 썸네일 보정이 적용되었습니다.',
-        date: '2026-02-28',
-        body: '카카오 CDN 이미지 URL이 percent-encoding 된 상태로 저장되던 문제를 수정했고, 배지 이미지가 대표 이미지로 저장되지 않도록 크롤러 선택 로직을 개선했습니다.'
-    },
-    {
-        id: 5,
-        category: '예정',
-        title: '문의 접수 페이지와 관리자용 공지 관리 기능은 추후 추가 예정입니다.',
-        date: '2026-02-27',
-        body: '현재는 토이 프로젝트 운영 범위에 맞춰 정적 공지와 FAQ 중심으로 제공하고 있으며, 추후 필요 시 작성형 기능을 별도 추가할 수 있습니다.'
-    }
-];
+const INITIAL_NOTICE_FORM = {
+    category: '안내',
+    title: '',
+    body: ''
+};
+const NOTICE_PAGE_SIZE = 5;
 
 const MypageNoticePane = () => {
     const [profileData, setProfileData] = useState(null);
     const [modalShowState, setModalShowState] = useState(false);
+    const [notices, setNotices] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [noticeForm, setNoticeForm] = useState(INITIAL_NOTICE_FORM);
+    const [editingNoticeId, setEditingNoticeId] = useState(null);
+    const [saving, setSaving] = useState(false);
+    const [noticePage, setNoticePage] = useState(0);
+    const noticeEditorRef = useRef(null);
+    const noticeTitleInputRef = useRef(null);
 
     const handleButtonClick = (index) => {
         console.log(`Selected index: ${index}`);
     };
 
+    const accessToken = localStorage.getItem('accessToken');
+
+    const authConfig = {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+        responseType: 'json'
+    };
+
+    const formatDate = (value) => {
+        if (!value) {
+            return '-';
+        }
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) {
+            return '-';
+        }
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}.${month}.${day}`;
+    };
+
+    const loadNotices = async () => {
+        const response = await axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/notices`, authConfig);
+        const nextNotices = response?.data?.data?.notices || [];
+        setNotices(nextNotices);
+    };
+
+    const noticeTotalPages = useMemo(
+        () => Math.max(Math.ceil(notices.length / NOTICE_PAGE_SIZE), 1),
+        [notices.length]
+    );
+
+    const pagedNotices = useMemo(() => {
+        const start = noticePage * NOTICE_PAGE_SIZE;
+        return notices.slice(start, start + NOTICE_PAGE_SIZE);
+    }, [notices, noticePage]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = localStorage.getItem('accessToken');
                 if (!accessToken) {
                     setModalShowState(true);
+                    setLoading(false);
                     return;
                 }
 
-                const response = await axios({
-                    method: 'GET',
-                    url: `${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status`,
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    },
-                    responseType: 'json'
-                });
+                const [profileResponse, noticeResponse, accessResponse] = await Promise.all([
+                    axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/funding/my-funding-status`, authConfig),
+                    axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/notices`, authConfig),
+                    axios.get(`${process.env.REACT_APP_FUNDINGBOOST}/admin/dashboard/access`, authConfig).catch(() => null)
+                ]);
 
-                setProfileData(response.data.data);
+                setProfileData(profileResponse?.data?.data || null);
+                setNotices(noticeResponse?.data?.data?.notices || []);
+                setIsAdmin(accessResponse?.data?.data?.isSuccess === true);
+                setErrorMessage('');
             } catch (error) {
                 console.error('공지사항 정보를 불러오는 중 오류가 발생했습니다.', error);
+                setErrorMessage('공지사항을 불러오지 못했습니다.');
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
-    }, []);
+    }, [accessToken]);
+
+    useEffect(() => {
+        setNoticePage((prev) => {
+            const maxPage = Math.max(noticeTotalPages - 1, 0);
+            return prev > maxPage ? maxPage : prev;
+        });
+    }, [noticeTotalPages]);
+
+    const resetEditor = () => {
+        setNoticeForm(INITIAL_NOTICE_FORM);
+        setEditingNoticeId(null);
+    };
+
+    const startNoticeEdit = (notice) => {
+        setEditingNoticeId(notice.noticeId);
+        setNoticeForm({
+            category: notice.category,
+            title: notice.title,
+            body: notice.body
+        });
+
+        requestAnimationFrame(() => {
+            noticeEditorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            noticeTitleInputRef.current?.focus();
+        });
+    };
+
+    const handleSubmitNotice = async () => {
+        if (!noticeForm.title.trim() || !noticeForm.body.trim() || !noticeForm.category.trim()) {
+            alert('카테고리, 제목, 내용을 모두 입력해주세요.');
+            return;
+        }
+        setSaving(true);
+        try {
+            if (editingNoticeId) {
+                await axios.put(
+                    `${process.env.REACT_APP_FUNDINGBOOST}/admin/notices/${editingNoticeId}`,
+                    noticeForm,
+                    authConfig
+                );
+            } else {
+                await axios.post(
+                    `${process.env.REACT_APP_FUNDINGBOOST}/admin/notices`,
+                    noticeForm,
+                    authConfig
+                );
+            }
+            await loadNotices();
+            resetEditor();
+        } catch (error) {
+            console.error('공지 저장 실패', error);
+            alert('공지 저장에 실패했습니다.');
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const handleDeleteNotice = async (noticeId) => {
+        const confirmed = window.confirm('해당 공지사항을 삭제하시겠습니까?');
+        if (!confirmed) {
+            return;
+        }
+        try {
+            await axios.delete(`${process.env.REACT_APP_FUNDINGBOOST}/admin/notices/${noticeId}`, authConfig);
+            await loadNotices();
+            if (editingNoticeId === noticeId) {
+                resetEditor();
+            }
+        } catch (error) {
+            console.error('공지 삭제 실패', error);
+            alert('공지 삭제에 실패했습니다.');
+        }
+    };
 
     return (
         <div className="mypageNoticePane">
             {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypageNoticePane-left">
-                {profileData && <MypageProfile profileInfo={profileData} />}
+                <MypageProfile profileInfo={profileData || {}} />
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={7} />
             </div>
             <div className="mypageNoticePane-right">
@@ -92,22 +186,99 @@ const MypageNoticePane = () => {
                             <div className="mypageNoticePane-eyebrow">Notice</div>
                             <h2>공지사항</h2>
                         </div>
-                        <p>배포 변경사항과 운영 안내를 한곳에서 확인할 수 있습니다.</p>
+                        <p>서비스 변경사항과 운영 공지를 확인할 수 있습니다.</p>
                     </div>
+                    {isAdmin && (
+                        <div className="mypageNoticeAdminEditor" ref={noticeEditorRef}>
+                            <h3>{editingNoticeId ? '공지 수정' : '공지 작성'}</h3>
+                            <div className="mypageNoticeAdminGrid">
+                                <select
+                                    value={noticeForm.category}
+                                    onChange={(event) => setNoticeForm((prev) => ({ ...prev, category: event.target.value }))}
+                                >
+                                    <option value="안내">안내</option>
+                                    <option value="업데이트">업데이트</option>
+                                    <option value="점검">점검</option>
+                                    <option value="이벤트">이벤트</option>
+                                    <option value="운영">운영</option>
+                                </select>
+                                <input
+                                    type="text"
+                                    placeholder="공지 제목"
+                                    value={noticeForm.title}
+                                    ref={noticeTitleInputRef}
+                                    onChange={(event) => setNoticeForm((prev) => ({ ...prev, title: event.target.value }))}
+                                />
+                            </div>
+                            <textarea
+                                rows={4}
+                                placeholder="공지 내용을 입력하세요."
+                                value={noticeForm.body}
+                                onChange={(event) => setNoticeForm((prev) => ({ ...prev, body: event.target.value }))}
+                            />
+                            <div className="mypageNoticeAdminActions">
+                                {editingNoticeId && (
+                                    <button type="button" onClick={resetEditor} className="secondary">
+                                        수정 취소
+                                    </button>
+                                )}
+                                <button type="button" onClick={handleSubmitNotice} disabled={saving}>
+                                    {saving ? '저장 중...' : editingNoticeId ? '수정 저장' : '공지 등록'}
+                                </button>
+                            </div>
+                        </div>
+                    )}
                     <div className="mypageNoticePane-list">
-                        {NOTICE_ITEMS.map((notice) => (
-                            <article key={notice.id} className="mypageNoticeItem">
+                        {loading && <p className="mypageNoticeEmpty">공지사항을 불러오는 중입니다...</p>}
+                        {!loading && errorMessage && <p className="mypageNoticeEmpty">{errorMessage}</p>}
+                        {!loading && !errorMessage && notices.length === 0 && (
+                            <p className="mypageNoticeEmpty">등록된 공지사항이 없습니다.</p>
+                        )}
+                        {!loading && !errorMessage && pagedNotices.map((notice) => (
+                            <article key={notice.noticeId} className="mypageNoticeItem">
                                 <div className="mypageNoticeItem-meta">
                                     <span className={`mypageNoticeBadge ${notice.category === '업데이트' ? 'accent' : ''}`}>
                                         {notice.category}
                                     </span>
-                                    <span className="mypageNoticeDate">{notice.date}</span>
+                                    <span className="mypageNoticeDate">{formatDate(notice.createdDate)}</span>
                                 </div>
                                 <h3>{notice.title}</h3>
                                 <p>{notice.body}</p>
+                                {isAdmin && (
+                                    <div className="mypageNoticeItemActions">
+                                        <button
+                                            type="button"
+                                            onClick={() => startNoticeEdit(notice)}
+                                        >
+                                            수정
+                                        </button>
+                                        <button type="button" className="danger" onClick={() => handleDeleteNotice(notice.noticeId)}>
+                                            삭제
+                                        </button>
+                                    </div>
+                                )}
                             </article>
                         ))}
                     </div>
+                    {!loading && !errorMessage && notices.length > NOTICE_PAGE_SIZE && (
+                        <div className="mypageNoticePagination">
+                            <button
+                                type="button"
+                                onClick={() => setNoticePage((prev) => Math.max(prev - 1, 0))}
+                                disabled={noticePage <= 0}
+                            >
+                                이전
+                            </button>
+                            <span>{noticePage + 1} / {noticeTotalPages}</span>
+                            <button
+                                type="button"
+                                onClick={() => setNoticePage((prev) => Math.min(prev + 1, noticeTotalPages - 1))}
+                                disabled={noticePage >= noticeTotalPages - 1}
+                            >
+                                다음
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

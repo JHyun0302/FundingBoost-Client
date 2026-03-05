@@ -48,7 +48,7 @@ const MypageMyHistoryPane = () => {
         <div className="mypage-myhistory-total-container">
             {modalShowState && <NonMemberModal message="로그인 후 펀딩부스트를 시작해보세요." />}
             <div className="mypage-left-pane-container">
-                {apiData && <MypageProfile profileInfo={apiData} />}
+                <MypageProfile profileInfo={apiData || {}} />
                 <MyPageIndex onButtonClick={handleButtonClick} currentPageIndex={1} />
             </div>
             <div className="mypage-myhistory-right-pane-containter">

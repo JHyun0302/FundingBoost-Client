@@ -19,6 +19,12 @@ function FundingRegistPage(props) {
 
     const location = useLocation();
     const { fundingNowData, selectedItems } = location.state || {};
+    const returnItemIdFromQuery = new URLSearchParams(location.search).get("itemId");
+    const returnItemIdFromStorage = localStorage.getItem("fundingReturnItemId");
+    const returnItemId = fundingNowData?.itemId
+        ?? (Array.isArray(selectedItems) && selectedItems.length > 0 ? selectedItems[0]?.itemId : null)
+        ?? returnItemIdFromQuery
+        ?? returnItemIdFromStorage;
 
     const [orderedItems, setOrderedItems] = useState(() => {
         if (selectedItems) {
@@ -51,6 +57,12 @@ function FundingRegistPage(props) {
     const [modalShowState, setModalShowState] = useState(false);
 
     useEffect(() => {
+        if (returnItemId) {
+            localStorage.setItem("fundingReturnItemId", String(returnItemId));
+        }
+    }, [returnItemId]);
+
+    useEffect(() => {
         const checkFundingStatus = async () => {
             try {
                 const accessToken = localStorage.getItem('accessToken');
@@ -76,9 +88,13 @@ function FundingRegistPage(props) {
         checkFundingStatus();
     }, []);
 
-    const closeModal = () => {
+    const backToItemDetail = () => {
         setShowModal(false);
-        navigate('/');
+        if (returnItemId) {
+            navigate(`/shopping/detail/${returnItemId}`);
+            return;
+        }
+        navigate('/shopping');
     };
 
     const myPageBtnModal = () => {
@@ -171,7 +187,12 @@ function FundingRegistPage(props) {
         <div className="fundingRegist-Page">
             <HeaderBar />
             {modalShowState && <NonMemberModal message="로그인 후 친구들의 펀딩을 구경해보세요." />}
-            <FundingRegistModal show={showModal} onClose={closeModal} onMyPage={myPageBtnModal} message="진행중인 펀딩이 존재합니다." />
+            <FundingRegistModal
+                show={showModal}
+                onBackToDetail={backToItemDetail}
+                onMyPage={myPageBtnModal}
+                message="진행중인 펀딩이 존재합니다."
+            />
             <div className="fundingRegistContent">
                 <FundingRegistItem
                     selectedItems={orderedItems}

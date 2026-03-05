@@ -21,6 +21,7 @@ const WishListSingleItem = ({wishListData, onRemoveBookmark, isRemoving}) => {
 
                 <div className="wish-brand-wrapper">
                     <p className="wish-brand">카카오</p>
+                    <span className="wish-category-chip">{wishListData.category || "미분류"}</span>
                 </div>
 
                 <div className="wish-title-wrapper">

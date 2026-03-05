@@ -1,53 +1,63 @@
-.mypage-myhistory-total-container{
+.mypage-myhistory-total-container {
+  --mypage-left-width: 374px;
+  display: grid;
+  grid-template-columns: var(--mypage-left-width) minmax(0, 1fr);
+  width: min(100%, 1600px);
+  margin: 0 auto;
+  font-family: SUITE-Regular;
+  align-items: start;
+}
+
+.mypage-myhistory-left-pane-container,
+.mypage-left-pane-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: var(--mypage-left-width);
+  min-width: var(--mypage-left-width);
+  max-width: var(--mypage-left-width);
+}
+
+.mypage-myhistory-right-pane-containter {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-}
-
-.mypage-myhistory-left-pane-container{
-  display: flex;
-  flex-direction: column;
-  width: min(100%, 374px);
-}
-
-.mypage-myhistory-right-pane-containter{
-  display: flex;
-  flex-direction: column;
+  min-width: 0;
   border-left: 1px solid #3e3e3e;
 }
 
-.mypage-myhistory-container{
+.mypage-myhistory-container {
   display: flex;
-  margin: 10px;
+  margin: 10px auto;
   background-color: #e7e7e7;
   border-radius: 5px;
-  width: min(1130px, calc(100vw - 40px));
-  max-width: calc(100vw - 40px);
+  width: min(1130px, calc(100% - 20px));
+  max-width: 1130px;
   box-sizing: border-box;
   min-height: 500px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
   .mypage-myhistory-total-container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-  .mypage-myhistory-left-pane-container {
+  .mypage-myhistory-left-pane-container,
+  .mypage-left-pane-container {
     width: 100%;
-    align-items: center;
+    min-width: 0;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
   .mypage-myhistory-right-pane-containter {
-    border-left: none;
+    border-left: 0;
     border-top: 1px solid #3e3e3e;
     width: 100%;
-    align-items: center;
   }
 
   .mypage-myhistory-container {
-    width: min(100%, calc(100vw - 24px));
-    max-width: calc(100vw - 24px);
-    margin: 12px;
+    width: calc(100% - 24px);
+    margin: 12px auto;
   }
 }
 

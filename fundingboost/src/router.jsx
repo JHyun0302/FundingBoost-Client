@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { HashLoader } from "react-spinners";
 
 const lazyWithRetry = (importer) =>
@@ -51,6 +51,8 @@ const MypageWishlist= lazyWithRetry(() => import('./components/pages/mypage/mypa
 const MypageReview = lazyWithRetry(() => import('./components/pages/mypage/mypage-review-page/mypage-review-page'));
 const MypageNotice = lazyWithRetry(() => import('./components/pages/mypage/mypage-notice-page/mypage-notice-page'));
 const MypageSupport = lazyWithRetry(() => import('./components/pages/mypage/mypage-support-page/mypage-support-page'));
+const AdminDashboardPage = lazyWithRetry(() => import('./components/pages/admin/admin-dashboard-page/admin-dashboard-page'));
+const BarcodeLabPage = lazyWithRetry(() => import('./components/pages/admin/barcode-lab-page/barcode-lab-page'));
 const SignUpPage    = lazyWithRetry(() => import('./components/pages/signUp-page/signUp-page'));
 const ErrorPage= lazyWithRetry(() => import('./components/pages/error-handle-page/error-handle-page'));
 const KakaoLoginLoadingPage = lazyWithRetry(() => import('./components/pages/login-page/redirection'));
@@ -106,6 +108,9 @@ function Router() {
                 <Route path="/mypage/review" element={<Suspense fallback={<LoadingSpinner />}><MypageReview /></Suspense>} />
                 <Route path="/mypage/notices" element={<Suspense fallback={<LoadingSpinner />}><MypageNotice /></Suspense>} />
                 <Route path="/mypage/support" element={<Suspense fallback={<LoadingSpinner />}><MypageSupport /></Suspense>} />
+                <Route path="/adm" element={<Suspense fallback={<LoadingSpinner />}><AdminDashboardPage /></Suspense>} />
+                <Route path="/adm/barcode-lab" element={<Suspense fallback={<LoadingSpinner />}><BarcodeLabPage /></Suspense>} />
+                <Route path="/dev/barcode-lab" element={<Navigate to="/adm/barcode-lab" replace />} />
                 <Route path="/signup" element={<Suspense fallback={<LoadingSpinner />}><SignUpPage/></Suspense>} />
                 <Route path="/error" element={<Suspense fallback={<LoadingSpinner />}><ErrorPage/></Suspense>} />
                 <Route path="/login/oauth2/code/kakao" element={<Suspense fallback={<LoadingSpinner/>}><KakaoLoginLoadingPage/></Suspense>}/>

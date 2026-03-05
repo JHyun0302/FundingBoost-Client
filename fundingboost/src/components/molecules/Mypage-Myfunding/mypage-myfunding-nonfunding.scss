@@ -1,25 +1,18 @@
-.mypage-total-container{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.mypage-right-pane-containter{
+.mypage-nonfunding-pane{
   display: flex;
   flex-direction: column;
   min-height: 787px;
-  border-left: 1px solid #3e3e3e;
   width: 100%;
 }
 
-.mypage-myfunding-content-wrapper{
+.mypage-nonfunding-pane .mypage-myfunding-content-wrapper{
   background-color: #efefef;
   border: 1px solid #d9d9d9;
-  width: min(1130px, calc(100vw - 40px));
+  width: min(1130px, calc(100% - 30px));
   min-width: 0;
-  max-width: calc(100vw - 40px);
+  max-width: 1130px;
   height: auto;
-  margin: 15px;
+  margin: 15px auto;
   display: flex;
   flex-direction: column;
 }
@@ -77,22 +70,14 @@
   color: #9a9a9a;
 }
 
-@media (max-width: 1200px) {
-  .mypage-total-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .mypage-right-pane-containter {
-    border-left: none;
-    border-top: 1px solid #3e3e3e;
+@media (max-width: 992px) {
+  .mypage-nonfunding-pane {
     min-height: 0;
-    align-items: center;
   }
 
-  .mypage-myfunding-content-wrapper {
-    width: min(100%, calc(100vw - 24px));
-    max-width: calc(100vw - 24px);
+  .mypage-nonfunding-pane .mypage-myfunding-content-wrapper {
+    width: calc(100% - 24px);
+    max-width: 1130px;
     margin: 12px;
   }
 }

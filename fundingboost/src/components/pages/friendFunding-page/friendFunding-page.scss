@@ -1,3 +1,86 @@
-.friendFundingDropdownBtn{
-  margin: 27px 0 0 30px;
+.friendFundingDropdownBtn {
+  width: min(1680px, calc(100% - 32px));
+  margin: 14px auto 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.friendFundingPaginationWrap {
+  width: min(1680px, calc(100% - 32px));
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.friendFundingPaginationInfo {
+  font-family: SUITE-Regular;
+  font-size: 13px;
+  color: #737373;
+}
+
+.friendFundingPagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.friendFundingPageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.friendFundingPageButton {
+  border: 1px solid #d9d0ba;
+  background: #ffffff;
+  color: #2f2419;
+  border-radius: 999px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 16px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.friendFundingPageButton:hover:not(:disabled) {
+  background: #f6efe0;
+  border-color: #d1b67a;
+}
+
+.friendFundingPageButton.active {
+  background: #191919;
+  border-color: #191919;
+  color: #ffffff;
+}
+
+.friendFundingPageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .friendFundingDropdownBtn {
+    width: calc(100% - 20px);
+    margin: 10px auto 0;
+  }
+
+  .friendFundingPaginationWrap {
+    width: calc(100% - 20px);
+    margin: 0 auto 14px;
+  }
+
+  .friendFundingPageButton {
+    height: 38px;
+    min-width: 38px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
 }

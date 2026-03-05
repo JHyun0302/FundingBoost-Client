@@ -5,6 +5,25 @@
   font-family: 'SUITE-Regular';
   overflow-x: hidden;
 
+  .friendFundingDetail-status {
+    width: min(960px, calc(100% - 32px));
+    margin: 24px auto;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid #e3e3e3;
+    background-color: #ffffff;
+    text-align: center;
+    color: #3f3f3f;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .friendFundingDetail-status.is-error {
+    border-color: #ffd5d5;
+    background-color: #fff4f4;
+    color: #b13030;
+  }
+
   .friendFundingDetail {
     flex: 1;
     display: flex;

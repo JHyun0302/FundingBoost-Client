@@ -1,26 +1,24 @@
 .wishList{
-  display: flex;
-  flex-direction: row;
-  height: 100%;
+  display: block;
+  width: 100%;
 
   .wishList-container{
     display: flex;
     flex-direction: column;
-    border-left: 1px solid #3e3e3e;
-    height: 100%;
+    width: 100%;
   }
   .wishList-box{
     background-color: #efefef;
     border: 1px solid #d9d9d9;
-    width: min(1130px, calc(100vw - 40px));
+    width: min(1130px, calc(100% - 32px));
     min-width: 0;
-    max-width: calc(100vw - 40px);
-
-    margin: 15px;
+    max-width: 1130px;
+    box-sizing: border-box;
+    margin: 16px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    min-height: 100%;
 
     .wish-list{
       display: flex;
@@ -49,6 +47,47 @@
         border-bottom: 1px solid gray;
         margin: 10px;
         width:100%;
+      }
+
+      .wishListCategoryFilter {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 4px 0 14px;
+      }
+
+      .wishListCategoryButton {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid #d9d0ba;
+        background: #ffffff;
+        color: #2f2419;
+        border-radius: 999px;
+        height: 38px;
+        padding: 0 14px;
+        font-family: SUITE-Regular;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .wishListCategoryButton strong {
+        font-size: 13px;
+        font-weight: 700;
+        color: #8a6a35;
+      }
+
+      .wishListCategoryButton.active {
+        background: #191919;
+        border-color: #191919;
+        color: #ffffff;
+      }
+
+      .wishListCategoryButton.active strong {
+        color: #f7d17b;
       }
 
       .wishList-SingleItem {
@@ -128,14 +167,10 @@
 }
 
 @media (max-width: 768px) {
-  .wishList .wishList-container {
-    border-left: 0;
-  }
-
   .wishList .wishList-box {
-    width: calc(100vw - 24px);
-    max-width: calc(100vw - 24px);
-    margin: 12px;
+    width: calc(100% - 20px);
+    max-width: 1130px;
+    margin: 10px auto;
   }
 
   .wishList .wishList-box .wish-list {
@@ -145,6 +180,10 @@
   .wishList .wishList-box .wish-list .wishList-SingleItem {
     justify-content: center;
     gap: 0;
+  }
+
+  .wishList .wishList-box .wish-list .wishListCategoryFilter {
+    justify-content: center;
   }
 
   .wishListPagination {

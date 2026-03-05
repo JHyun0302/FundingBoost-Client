@@ -3,14 +3,17 @@
   flex-direction: column;
   justify-content: space-between;
   width: auto;
-  padding: 0px 30px 0px 30px;
-  }
+  min-width: 0;
+  padding: 0 12px;
+}
 
 .mypage-myfunding-view {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 240px;
+  max-width: 100%;
+  min-width: 0;
   min-height: 470px;
 }
 
@@ -56,11 +59,14 @@
   margin-bottom: 5px;
   font-family: SUITE-Regular;
   font-size: 15px;
+  line-height: 1.4;
+  min-height: 64px;
   white-space: normal;
-  min-height: 75px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
-.mypage-myfunding-text-wrapper-2, .mypage-myfunding-text-wrapper-3  {
+.mypage-myfunding-text-wrapper-2 {
   color: #000000;
   font-size: 13px;
   letter-spacing: 0;
@@ -95,8 +101,24 @@
 }
 
 @media (max-width: 768px) {
-  .mypage-myfunding-box, .mypage-myfunding-view {
-    flex-direction: column;
+  .mypage-myfunding-box {
+    padding: 0 6px;
+  }
+
+  .mypage-myfunding-view {
+    width: min(280px, 100%);
+    min-height: 420px;
+  }
+
+  .mypage-myfunding-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .mypage-myfunding-title-wrapper-3 {
+    min-height: 56px;
+    font-size: 14px;
   }
 
   .mypage-myfunding-group {

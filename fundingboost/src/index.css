@@ -15,6 +15,10 @@ html,
   min-height: 100%;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 *,
 *::before,
 *::after {

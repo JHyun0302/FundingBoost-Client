@@ -54,28 +54,6 @@
 }
 
 
-.mypage-button-style-01{
-  color: black;
-  margin: 0;
-  height: 40px;
-  min-width: 40px;
-  padding: 0 12px;
-  background-color: #f9c43c;
-  font-family: SUITE-Regular;
-  font-size: 17px;
-  border-radius: 5px;
-  border: 1px solid #b7b7b7;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-.mypage-button-style-01:hover{
-  background-color: #ffa42e;
-  transition: background-color 0.3s;
-}
-
 .mypage-button-style-03{
   color: black;
   margin-right: 10px;
@@ -102,11 +80,6 @@
 .mypage-button-style-03:hover{
   background-color: #ffa42e;
   transition: background-color 0.3s;
-}
-
-.mypage-share-icon{
-  width: 25px;
-  display: block;
 }
 
 .mypage-remain-date-noti{

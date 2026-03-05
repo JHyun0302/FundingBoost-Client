@@ -30,7 +30,8 @@ function FundingNowBtn({selectOption, itemId, itemName, itemPrice, itemThumbnail
                 itemId:itemId,
                 quantity : quantity
             };
-            navigate(`/funding`, {state: {fundingNowData}});
+            localStorage.setItem("fundingReturnItemId", String(itemId));
+            navigate(`/funding?itemId=${itemId}`, { state: { fundingNowData } });
         }else{
             alert('상품 옵션을 선택해주세요');
         }
