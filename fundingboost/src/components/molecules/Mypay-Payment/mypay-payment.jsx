@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./mypay-payment.scss";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import { createIdempotencyKey } from "../../../utils/idempotencyKey";
 
 export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, selectedItemDto, selectedDeliveryItem }) {
     const itemPrice = selectedItemDto.itemPrice;
     const [inputAmount, setInputAmount] = useState("");
     const [usingPoint, setUsingPoint] = useState(0); // usingPoint 상태 추가
+    const idempotencyKeyRef = useRef(createIdempotencyKey());
     const navigate = useNavigate();
     const discountPrice = (itemPrice * selectedItemDto.itemPercent) / 100; //펀딩된 금액
     console.log(discountPrice);
@@ -58,6 +60,7 @@ export default function MyPayPoint ({collectPrice, point, onUpdateUsingPoint, se
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
+                    "Idempotency-Key": idempotencyKeyRef.current
                 }
             });
             if (response.data.success === false) {

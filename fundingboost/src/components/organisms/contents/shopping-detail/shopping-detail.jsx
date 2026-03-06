@@ -95,7 +95,11 @@ const ShoppingDetailPane = () => {
     }, [itemData?.options]);
 
     const imageCandidates = useMemo(() => {
-        const src = toImageProxyUrl(itemData?.itemThumbnailImageUrl || nonItemImg);
+        const src = toImageProxyUrl(itemData?.itemThumbnailImageUrl || nonItemImg, {
+            width: 960,
+            height: 960,
+            quality: 85
+        });
         return [src, src, src];
     }, [itemData?.itemThumbnailImageUrl]);
 
@@ -396,7 +400,11 @@ const ShoppingDetailPane = () => {
                             >
                                 <div className="thumbnail-wrap">
                                     <img
-                                        src={toImageProxyUrl(relatedItem.itemImageUrl || nonItemImg)}
+                                        src={toImageProxyUrl(relatedItem.itemImageUrl || nonItemImg, {
+                                            width: 320,
+                                            height: 320,
+                                            quality: 80
+                                        })}
                                         alt={relatedItem.itemName}
                                         onError={(event) => {
                                             event.currentTarget.onerror = null;

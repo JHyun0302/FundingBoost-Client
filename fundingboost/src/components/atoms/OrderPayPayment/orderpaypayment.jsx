@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./orderpaypayment.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { createIdempotencyKey } from "../../../utils/idempotencyKey";
 
 export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint, totalPrice, selectedDeliveryItem }) {
     const PAYMENT_METHOD = {
@@ -10,6 +11,7 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
     };
     const [inputAmount, setInputAmount] = useState("0");
     const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHOD.MIXED);
+    const idempotencyKeyRef = useRef(createIdempotencyKey());
     const navigate = useNavigate();
 
     const numericPoint = Math.max(Number(point) || 0, 0);
@@ -90,6 +92,7 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${accessToken}`,
+                    "Idempotency-Key": idempotencyKeyRef.current
                 }
             });
             if (response.data.success === false) {
