@@ -5,6 +5,7 @@ import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './memberYesFunding.scss';
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 function MemberYesFunding({ memberFundingData }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1085);
@@ -62,7 +63,7 @@ function MemberYesFunding({ memberFundingData }) {
                             {memberFundingData?.data?.homeMyFundingStatusDto?.homeMyFundingItemDtoList?.map((product, index) => (
                                 <div className="myFundingItem-a" key={index}>
                                     <div className="myFundingItem">
-                                        <img src={product.itemImageUrl} // 각 상품의 percent가 100인 경우 관리
+                                        <img src={toImageProxyUrl(product.itemImageUrl)} // 각 상품의 percent가 100인 경우 관리
                                              className={`myFundingItemimg ${product.itemPercent === 100 ? 'gaugeFull' : 'myFundingItemImg'}`} />
                                         <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                     </div>
@@ -89,7 +90,7 @@ function MemberYesFunding({ memberFundingData }) {
                                     <div className="myFundingItem-a" key={index}>
                                         {chunk.map((product, index) => (
                                             <div className="myFundingItem" key={index}>
-                                                <img src={product.itemImageUrl}
+                                                <img src={toImageProxyUrl(product.itemImageUrl)}
                                                      className={`myFundingItemimg ${product.itemPercent === 100 ? 'gaugeFull' : 'myFundingItemImg'}`}/>
                                                 <GaugeBar value={product.itemPercent} className="myFundingGaugeBar"/>
                                             </div>

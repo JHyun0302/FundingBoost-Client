@@ -1,6 +1,7 @@
 import React from 'react';
 import './friendFundingDetail-item.scss';
 import NonItemImg from '../../../../assets/nonItemImg.svg';
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 const FriendFundingDetailItem = ({ friendFundingDetailData }) => {
     const itemList = friendFundingDetailData?.data?.friendFundingItemList ?? [];
@@ -14,7 +15,7 @@ const FriendFundingDetailItem = ({ friendFundingDetailData }) => {
             <div className="friendFundingDetailItem-list">
                 {itemList.map((item) => (
                     <div key={`${item.itemId}-${item.optionName}`} className="friendFundingDetailItem-itemContainer">
-                        <img src={item.itemImageUrl || NonItemImg} alt={item.itemName} className="item-img" />
+                        <img src={toImageProxyUrl(item.itemImageUrl || NonItemImg)} alt={item.itemName} className="item-img" />
                         <div className="friendFundingDetailItem-itemDetail">
                             <div className="friendFundingDetailItem-itemtitle">{item.itemName}</div>
                             <div className="friendFundingDetailItem-optionDetail">

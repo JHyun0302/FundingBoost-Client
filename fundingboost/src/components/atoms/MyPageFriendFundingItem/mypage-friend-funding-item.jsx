@@ -1,6 +1,7 @@
 import React from "react";
 import "./mypage-friend-funding-item.scss";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function MyPageFriendFundingItem ({ data, onOpenDetail }) {
     const profileSrc = data?.friendProfileImg
@@ -16,7 +17,7 @@ export default function MyPageFriendFundingItem ({ data, onOpenDetail }) {
                     <img
                         className="friendFundingProfileImage"
                         alt={`${data.nickname} 프로필`}
-                        src={profileSrc}
+                        src={toImageProxyUrl(profileSrc)}
                         loading="lazy"
                         decoding="async"
                     />

@@ -1,5 +1,6 @@
 import React from 'react';
 import './orderHistory-singleOrder.scss';
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 const OrderHistorySingleOrder = ({orderHistoryData, onOpenDetail}) => {
     const createdDate = () =>
         (Date().now() + orderHistoryData.createdDate).toISOString().split('T')[0];
@@ -12,7 +13,7 @@ const OrderHistorySingleOrder = ({orderHistoryData, onOpenDetail}) => {
                 onClick={() => onOpenDetail(orderHistoryData.orderItemId)}
             >
                 <div className="MyPageOrderHistoryOneGroup">
-                    <img className="MyPageOrderHistoryOneEllipse" alt="Ellipse" src={orderHistoryData.itemImageUrl}/>
+                    <img className="MyPageOrderHistoryOneEllipse" alt="Ellipse" src={toImageProxyUrl(orderHistoryData.itemImageUrl)}/>
                     <div className="MyPageOrderHistoryOneOverlap">
                         <div className="MyPageOrderHistoryOneText-wrapper-6">{orderHistoryData.createdDate
                         }</div>

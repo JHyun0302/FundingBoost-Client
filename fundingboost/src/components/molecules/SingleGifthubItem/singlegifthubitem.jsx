@@ -4,6 +4,7 @@ import './../../organisms/contents/gifthub/gifthub';
 import Checkbox from '../../atoms/checkbox/checkbox';
 import axios from 'axios';
 import GifthubOptionCount from '../Modal/GifthubOptionCount/gifthuboptioncount';
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function SingleGiftHubItem({ item, isSelected, onCheckboxChange, onDelete, onQuantityChange }) {
     const gifthubItemId = item.giftHubItemId;
@@ -81,7 +82,7 @@ export default function SingleGiftHubItem({ item, isSelected, onCheckboxChange, 
                     onCheckboxChange={handleCheckboxChange}
                 />
                 <div className="gifthub-fundingRegistItem">
-                    <img src={item.itemImageUrl} alt={item.itemName} className="sequenceGroup" />
+                    <img src={toImageProxyUrl(item.itemImageUrl)} alt={item.itemName} className="sequenceGroup" />
                     <div className="gifthub-itemDetail">
                         <div className="gifthub-title">{item.itemName}</div>
                         <button className="delete-button" onClick={(event) => {

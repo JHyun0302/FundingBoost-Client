@@ -2,6 +2,7 @@ import React from "react";
 import "./order-history-detail-modal.scss";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
 import { useNavigate } from "react-router-dom";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function OrderHistoryDetailModal({ detailData, onClose }) {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function OrderHistoryDetailModal({ detailData, onClose }) {
                 <div className="orderHistoryDetailContent">
                     <div className="orderHistoryDetailItemCard">
                         <img
-                            src={detailData.itemImageUrl}
+                            src={toImageProxyUrl(detailData.itemImageUrl)}
                             alt={detailData.itemName}
                             className="orderHistoryDetailItemImage"
                             loading="lazy"
@@ -91,7 +92,7 @@ export default function OrderHistoryDetailModal({ detailData, onClose }) {
                                     return (
                                         <div className="orderHistoryDetailContributorCard" key={`${contributor.nickname}-${index}`}>
                                             <img
-                                                src={profileSrc}
+                                                src={toImageProxyUrl(profileSrc)}
                                                 alt={`${contributor.nickname} 프로필`}
                                                 className="orderHistoryDetailContributorImage"
                                             />

@@ -1,6 +1,7 @@
 import React from 'react';
 import './mainrankingitem.scss';
 import { Link } from 'react-router-dom';
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 const metricLabelMap = {
     funding: '펀딩 반영',
@@ -21,7 +22,7 @@ export default function MainRankingItem({ product, metricType }) {
         <Link to={`/shopping/detail/${itemId}`} className="main-ranking-card">
             <div className="main-ranking-rank">{rank}</div>
             <div className="main-ranking-image-wrap">
-                <img src={itemImageUrl} className="main-ranking-image" alt={itemName} />
+                <img src={toImageProxyUrl(itemImageUrl)} className="main-ranking-image" alt={itemName} />
             </div>
             <div className="main-ranking-meta">
                 <div className="main-ranking-brand">{brandName}</div>

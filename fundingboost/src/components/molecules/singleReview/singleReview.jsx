@@ -4,6 +4,7 @@ import { BsStarFill } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 const SingleReview = ({reviewData}) => {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const SingleReview = ({reviewData}) => {
             <div className="singleReview-header">
                 <div className="singleReview-item">
                     <div className="review-item-img">
-                        <img src={reviewData.itemImageUrl} alt={reviewData.itemName} />
+                        <img src={toImageProxyUrl(reviewData.itemImageUrl)} alt={reviewData.itemName} />
                     </div>
                     <div className="review-item">
                         <div className="review-item-name">{reviewData.itemName}</div>

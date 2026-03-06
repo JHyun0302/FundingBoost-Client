@@ -1,6 +1,7 @@
 import React from 'react';
 import "./mypage-myfunding-history.scss";
 import MypageMyfundingGauge from "../mypage-myfunding-gauge/mypage-myfunding-gauge";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function MyPageMyFundingHistory({ data, onOpenDetail }) {
     console.log(data);
@@ -9,7 +10,7 @@ export default function MyPageMyFundingHistory({ data, onOpenDetail }) {
         <div className="myPageFundingRecordItem-container">
             {data && (
                 <button type="button" className="myPageFundingRecordItem" onClick={() => onOpenDetail(data.fundingId)}>
-                    <img className="image" alt="Image" src={data.itemImageUrl} />
+                    <img className="image" alt="Image" src={toImageProxyUrl(data.itemImageUrl)} />
                     <div className="myPageFundingRecordText">
                         <div className='showFunding'>
                             <div className="fundingTag">{data.tag}</div>

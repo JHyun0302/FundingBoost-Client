@@ -1,6 +1,7 @@
 import React from 'react';
 import "./mypageprofile.scss";
 import defaultProfile from "../../../assets/defaultProfile.svg";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function MyPageProfile ({ profileInfo }) {
     const member = profileInfo?.myPageMemberDto;
@@ -12,7 +13,11 @@ export default function MyPageProfile ({ profileInfo }) {
     return (
         <div className={`myPageProfileView ${isLoadingProfile ? 'is-loading' : ''}`}>
             <div className='myPageProfile'>
-                <img className="myPageProfileImg" alt="myPageProfileImg" src={member?.profileImgUrl ||  defaultProfile}/>
+                <img
+                    className="myPageProfileImg"
+                    alt="myPageProfileImg"
+                    src={toImageProxyUrl(member?.profileImgUrl || defaultProfile)}
+                />
                 <div className='myPageProfileText'>
                     <div className="myPageProfileName">{nickName}</div>
                     <p className="myPageProfileEmail">

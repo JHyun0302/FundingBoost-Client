@@ -1,6 +1,7 @@
 import React from "react";
 import "./shopping-detail-title.scss";
 import ShoppingDetailMenu from "../Shopping-Detail-Menu/shopping-detail-menu";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImageUrl, itemPrice, options, bookmark }) {
 
@@ -8,7 +9,7 @@ export default function ShoppingDetailItem({ itemId, itemName, itemThumbnailImag
         <div className="ShoppingDetailItemBox">
             <div className="ShoppingDetailItemBoxView">
                 <div className="shopping-detail-title-wrapper">
-                    <img className="image" alt="Image" src={itemThumbnailImageUrl} />
+                    <img className="image" alt="Image" src={toImageProxyUrl(itemThumbnailImageUrl)} />
                     <div className="shopping-detail-column">
                         {itemName && (
                             <div className="itemName">

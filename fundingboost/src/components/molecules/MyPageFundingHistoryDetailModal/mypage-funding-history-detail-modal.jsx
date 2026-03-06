@@ -2,6 +2,7 @@ import React from 'react';
 import './mypage-funding-history-detail-modal.scss';
 import defaultProfile from '../../../assets/defaultProfile.svg';
 import { useNavigate } from "react-router-dom";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 const MyPageFundingHistoryDetailModal = ({ detailData, onClose }) => {
     const navigate = useNavigate();
@@ -41,7 +42,11 @@ const MyPageFundingHistoryDetailModal = ({ detailData, onClose }) => {
                                     key={item.fundingItemId}
                                     onClick={() => navigate(`/shopping/detail/${item.itemId}`)}
                                 >
-                                    <img src={item.itemImageUrl} alt={item.itemName} className="myPageFundingHistoryDetailItemImage" />
+                                    <img
+                                        src={toImageProxyUrl(item.itemImageUrl)}
+                                        alt={item.itemName}
+                                        className="myPageFundingHistoryDetailItemImage"
+                                    />
                                     <div className="myPageFundingHistoryDetailItemText">
                                         <div className="myPageFundingHistoryDetailItemName">{item.itemName}</div>
                                         {item.optionName && (
@@ -64,7 +69,7 @@ const MyPageFundingHistoryDetailModal = ({ detailData, onClose }) => {
                             {contributors.map((friend, index) => (
                                 <div className="myPageFundingHistoryDetailContributorCard" key={`${friend.participateNickname}-${index}`}>
                                     <img
-                                        src={friend.participateProfileImgUrl || defaultProfile}
+                                        src={toImageProxyUrl(friend.participateProfileImgUrl || defaultProfile)}
                                         alt={friend.participateNickname}
                                         className="myPageFundingHistoryDetailContributorImage"
                                     />

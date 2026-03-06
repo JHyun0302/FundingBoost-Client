@@ -1,5 +1,6 @@
 import React from 'react';
 import './orderproductdetail.scss';
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 const OrderProductDetail = ({ selectedItems }) => {
 
@@ -13,7 +14,7 @@ const OrderProductDetail = ({ selectedItems }) => {
         <div className="order-padding-area">
                 <div className="MyPayItemOverlap">
                     <div className="MyPayItem-left-group">
-                        <img className="MyPayItem-image" alt="ItemImage" src={item.itemImageUrl}/>
+                        <img className="MyPayItem-image" alt="ItemImage" src={toImageProxyUrl(item.itemImageUrl)}/>
                         <div className="name-option-group">
                             <p className="MyPayItem-item-name">{item.itemName}</p>
                             <div className="MyPayItem-option-group">

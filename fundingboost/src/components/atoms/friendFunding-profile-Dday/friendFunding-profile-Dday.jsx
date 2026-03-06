@@ -1,6 +1,7 @@
 import React from 'react';
 import './friendFunding-profile-Dday.scss';
 import DefaultProfile from "../../../assets/defaultProfile.svg"
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 
 const FriendFundingProfileDday = ({friendFundingData}) => {
@@ -9,7 +10,7 @@ const FriendFundingProfileDday = ({friendFundingData}) => {
 
                 <div className="friendFundingProfile">
                     <img className="friendProfileImg" alt="friendProfileImg"
-                         src={friendFundingData?.friendProfileImgUrl || DefaultProfile} />
+                         src={toImageProxyUrl(friendFundingData?.friendProfileImgUrl || DefaultProfile)} />
                     <div className="friendNameAndTag">
                         <div className="friendName">{friendFundingData?.nickName}</div>
                         <div className="friendTag">{friendFundingData?.tag}</div>

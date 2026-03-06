@@ -3,6 +3,7 @@ import style from './FundingItem.scss';
 import ItemImg from "../../../atoms/itemImg/itemImg";
 import {Link} from "react-router-dom";
 import { formatPrice } from '../../../../utils/formats';
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 
 export default function Mainrankingitem({ products }) {
@@ -20,7 +21,7 @@ export default function Mainrankingitem({ products }) {
         return (
             <div className="FundingItem">
                 <Link to={"/products/" + products.id} className={style.products}>
-                    <img src={products.thumbnail} width="100%" style={{borderRadius: '3px'}} alt={products.title}/>
+                    <img src={toImageProxyUrl(products.thumbnail)} width="100%" style={{borderRadius: '3px'}} alt={products.title}/>
                     <div className="title-wrapper">
                         <h4 className={style.itemName}>{truncatedTitle}</h4>
                     </div>
@@ -35,4 +36,3 @@ export default function Mainrankingitem({ products }) {
         );
     };
 }
-

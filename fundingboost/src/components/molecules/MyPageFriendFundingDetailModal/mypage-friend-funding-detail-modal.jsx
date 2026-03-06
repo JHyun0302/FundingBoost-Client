@@ -1,6 +1,7 @@
 import React from "react";
 import "./mypage-friend-funding-detail-modal.scss";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function MyPageFriendFundingDetailModal({ friendGroup, onClose }) {
     const profileSrc = friendGroup?.friendProfileImg
@@ -30,7 +31,11 @@ export default function MyPageFriendFundingDetailModal({ friendGroup, onClose })
                 </div>
 
                 <div className="myPageFriendFundingDetailFriendCard">
-                    <img src={profileSrc} alt={`${friendGroup.nickname} 프로필`} className="myPageFriendFundingDetailFriendImage" />
+                    <img
+                        src={toImageProxyUrl(profileSrc)}
+                        alt={`${friendGroup.nickname} 프로필`}
+                        className="myPageFriendFundingDetailFriendImage"
+                    />
                     <div className="myPageFriendFundingDetailFriendText">
                         <div className="myPageFriendFundingDetailFriendName">{friendGroup.nickname}</div>
                         <div className="myPageFriendFundingDetailFriendMeta">
@@ -43,7 +48,7 @@ export default function MyPageFriendFundingDetailModal({ friendGroup, onClose })
                     {friendGroup.contributions.map((contribution) => (
                         <div className="myPageFriendFundingDetailItemCard" key={`${contribution.fundingId}-${contribution.createdDate}`}>
                             <img
-                                src={contribution.itemImageUrl}
+                                src={toImageProxyUrl(contribution.itemImageUrl)}
                                 alt={contribution.itemName}
                                 className="myPageFriendFundingDetailItemImage"
                                 loading="lazy"

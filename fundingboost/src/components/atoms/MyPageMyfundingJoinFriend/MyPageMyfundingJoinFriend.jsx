@@ -1,6 +1,7 @@
 import React from 'react';
 import './MyPageMyfundingJoinFriend.scss';
 import defaultprofileimg from "../../../assets/defaultProfile.svg";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function MyPageFundingJoinFriend({ friend }) {
     const { participateNickname, participatePrice, participateProfileImgUrl } = friend;
@@ -10,7 +11,7 @@ export default function MyPageFundingJoinFriend({ friend }) {
             <img
                 className="myPageFundingJoinFriendEllipse"
                 alt="profileimg"
-                src={participateProfileImgUrl || defaultprofileimg}
+                src={toImageProxyUrl(participateProfileImgUrl || defaultprofileimg)}
             />
             <div className="myPageFundingJoinFriendEllipseFunny">
                 <div className="myPageFundingJoinFriendDiv">{participateNickname}</div>

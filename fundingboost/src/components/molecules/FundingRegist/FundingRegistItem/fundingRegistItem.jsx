@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import './fundingRegistItem.scss';
 import NonItemImg from "../../../../assets/nonItemImg.svg";
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 const FundingRegistItem = ({ selectedItems, onItemOrderChange, onItemDelete }) => {
     const [orderedItems, setOrderedItems] = useState(selectedItems);
@@ -73,7 +74,7 @@ const FundingRegistItem = ({ selectedItems, onItemOrderChange, onItemDelete }) =
                             data-order={item.order || ''}
                             onClick={(event) => event.stopPropagation()}
                         ></label>
-                        <img src={item.itemImageUrl || NonItemImg} alt={item.itemName} className="item-img" />
+                        <img src={toImageProxyUrl(item.itemImageUrl || NonItemImg)} alt={item.itemName} className="item-img" />
                         <div className="itemDetail">
                             <div className="title">{item.itemName}</div>
                             <div className="optionDetail">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FcLike } from "react-icons/fc";
 import './wishList-SingleItme.scss'
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 const WishListSingleItem = ({wishListData, onRemoveBookmark, isRemoving}) => {
     return (
         <div className="wishListSingleItem">
@@ -9,7 +10,7 @@ const WishListSingleItem = ({wishListData, onRemoveBookmark, isRemoving}) => {
 
                         <div className="wish-img-wrapper">
                             <img
-                                src={wishListData.itemThumbnailImageUrl}
+                                src={toImageProxyUrl(wishListData.itemThumbnailImageUrl)}
                                 width="100%"
                                 style={{borderRadius: '3px'}}
                                 alt={wishListData.itemName}

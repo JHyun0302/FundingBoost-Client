@@ -2,6 +2,7 @@ import React from 'react';
 import "./friendFundingDetail-profileMessage.scss";
 import img2 from "../../../assets/airplane.png";
 import defaultProfileImg from "../../../assets/defaultProfile.svg";
+import { toImageProxyUrl } from "../../../utils/imageProxyUrl";
 
 export default function FriendFundingDetailFriendProfile ({friendFundingDetailData}) {
     const contributorList = friendFundingDetailData?.data?.contributorList ?? [];
@@ -17,7 +18,7 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
             <div className="friendFundingDetail-Profile">
                 <div className='friendProfileInfo'>
                     <img className="friendFundingDetail-friendProfileImage" alt="FriendProfile"
-                         src={friendFundingDetailData?.data?.friendProfileImgUrl || defaultProfileImg}/>
+                         src={toImageProxyUrl(friendFundingDetailData?.data?.friendProfileImgUrl || defaultProfileImg)}/>
                     <div className="friendFundingDetail-friendName">{friendFundingDetailData?.data?.friendName}</div>
                     <div className="friendFundingDetail-fundingTag">{friendFundingDetailData?.data?.fundingTag}</div>
                 </div>
@@ -38,7 +39,7 @@ export default function FriendFundingDetailFriendProfile ({friendFundingDetailDa
                                 key={`${contributor.contributorName}-${contributor.contributorProfileImgUrl}-${index}`}
                             >
                                 <img className="fundingFriends-img" alt="Ellipse"
-                                    src={contributor.contributorProfileImgUrl || defaultProfileImg}/>
+                                    src={toImageProxyUrl(contributor.contributorProfileImgUrl || defaultProfileImg)}/>
                             <div className="friendFundingDetail-friendName">{contributor.contributorName}</div>
                             </div>
                         ))}

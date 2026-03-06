@@ -6,6 +6,7 @@ import GaugeBar from "../../../atoms/gauge-bar/gauge-bar";
 import defaultProfileImg from "../../../../assets/defaultProfile.svg";
 import { useEffect, useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 function chunkArray(arr, chunkSize) {
     const chunkedArray = [];
@@ -71,7 +72,11 @@ const MainFriendFunding = ({ memberFundingData }) => {
                                         >
                                             <div className="mainFriendFundingProfile-item">
                                                 <ItemImg imageUrl={friendFunding.commonFriendFundingDto.friendFundingPageItemDtoList[0].itemImageUrl} className="mainFriendFunding-Itemimg"/>
-                                                <img src={friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg} alt="프로필 이미지" className="mainFriendFunding-profile-img"/>
+                                                <img
+                                                    src={toImageProxyUrl(friendFunding.commonFriendFundingDto.friendProfileImgUrl || defaultProfileImg)}
+                                                    alt="프로필 이미지"
+                                                    className="mainFriendFunding-profile-img"
+                                                />
                                             </div>
                                             <div className="mainFriendFunding-textitem-GaugeBar">
                                                 <div className="mainFriendFunding-textContents">

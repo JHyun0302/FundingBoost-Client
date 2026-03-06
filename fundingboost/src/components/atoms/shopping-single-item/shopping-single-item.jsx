@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './shopping-single-item.scss';
 import { Link } from 'react-router-dom';
+import { toImageProxyUrl } from '../../../utils/imageProxyUrl';
 
 export default function ShoppingSingleItem({ product }) {
     if (!product) {
@@ -26,7 +27,7 @@ export default function ShoppingSingleItem({ product }) {
                     </div>
                     <div className="img-wrapper">
                         <img
-                            src={itemImageUrl}
+                            src={toImageProxyUrl(itemImageUrl)}
                             width="100%"
                             style={{borderRadius: '3px'}}
                             alt={itemName}

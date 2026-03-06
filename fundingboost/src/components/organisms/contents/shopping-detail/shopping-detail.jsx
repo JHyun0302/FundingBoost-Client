@@ -4,6 +4,7 @@ import axios from "axios";
 import "./shopping-detail.scss";
 import ShoppingDetailMenu from "../../../atoms/Shopping-Detail-Menu/shopping-detail-menu";
 import nonItemImg from "../../../../assets/nonItemImg.svg";
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 const priceFormatter = new Intl.NumberFormat("ko-KR");
 
@@ -94,7 +95,7 @@ const ShoppingDetailPane = () => {
     }, [itemData?.options]);
 
     const imageCandidates = useMemo(() => {
-        const src = itemData?.itemThumbnailImageUrl || nonItemImg;
+        const src = toImageProxyUrl(itemData?.itemThumbnailImageUrl || nonItemImg);
         return [src, src, src];
     }, [itemData?.itemThumbnailImageUrl]);
 
@@ -395,7 +396,7 @@ const ShoppingDetailPane = () => {
                             >
                                 <div className="thumbnail-wrap">
                                     <img
-                                        src={relatedItem.itemImageUrl || nonItemImg}
+                                        src={toImageProxyUrl(relatedItem.itemImageUrl || nonItemImg)}
                                         alt={relatedItem.itemName}
                                         onError={(event) => {
                                             event.currentTarget.onerror = null;

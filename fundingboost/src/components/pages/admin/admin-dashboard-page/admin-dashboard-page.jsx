@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import HeaderBar from '../../../organisms/header/header';
 import Footer from '../../../organisms/footer/footer';
 import './admin-dashboard-page.scss';
+import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 const formatNumber = (value) => Number(value || 0).toLocaleString('ko-KR');
 const ADMIN_MEMBER_PAGE_SIZE = 10;
@@ -428,7 +429,7 @@ function AdminDashboardPage() {
                                                     className="admin-item-cell admin-item-link"
                                                     onClick={() => navigate(`/shopping/detail/${item.itemId}`)}
                                                 >
-                                                    <img src={item.itemImageUrl} alt={item.itemName} />
+                                                    <img src={toImageProxyUrl(item.itemImageUrl)} alt={item.itemName} />
                                                     <div>
                                                         <strong>{item.itemName}</strong>
                                                         <span>{item.brandName}</span>
