@@ -1,6 +1,5 @@
 import React from 'react';
 import './friendFunding-profile-Dday.scss';
-import img from "../../../assets/logo.svg";
 import DefaultProfile from "../../../assets/defaultProfile.svg"
 
 

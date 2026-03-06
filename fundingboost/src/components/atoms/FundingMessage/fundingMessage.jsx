@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './fundingMessage.scss';
-import axios from 'axios';
 
-export default function FundingMessage({ selectedTag, onMessageChange }) {
+export default function FundingMessage({ initialMessage, onMessageChange }) {
     const [inputCount, setInputCount] = useState(0);
     const [inputText, setInputText] = useState("");
 
     useEffect(() => {
-        // 태그 선택 시 기본 메시지 설정
-        setInputText(selectedTag);
-        setInputCount(selectedTag.length);
-    }, [selectedTag]);
-
-    //글자 Byte 계산
-    const onTextareaHandler = (e) => {
-        setInputCount(
-            e.target.value.replace(/[0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length
-        );
-    };
+        const normalizedMessage = typeof initialMessage === "string" ? initialMessage : "";
+        setInputText(normalizedMessage);
+        setInputCount(normalizedMessage.length);
+    }, [initialMessage]);
 
     const onInputHandler = (e) => {
         const text = e.target.value;

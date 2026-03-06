@@ -145,14 +145,7 @@ function FundingRegistPage(props) {
     const handleSubmit = async () => {
         try {
             const itemIdList = orderedItems.map(item => item.itemId);
-            let fundingTag = tag;
-            if (tag === "펀딩 해주세요🎁") {
-                fundingTag = "기타";
-            } else if (tag === "생일이에요🎉 축하해주세요") {
-                fundingTag = "생일";
-            } else if (tag === "졸업했어요🧑‍🎓 축하해주세요") {
-                fundingTag = "졸업";
-            }
+            const fundingTag = typeof tag === "string" ? tag.trim() : "";
 
             // Increment deadline by 1 day
             const incrementedDeadline = new Date(deadline);

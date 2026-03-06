@@ -3,6 +3,14 @@ import "./friendFunding-DropdownBtn.scss";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 
+const SORT_OPTIONS = [
+    '최신 등록순',
+    '이름순',
+    '마감 임박순',
+    '달성률 높은순',
+    '모금액 높은순'
+];
+
 const FriendFundingDropdownBtn = ({ sortOption, onSortChange }) => {
     return (
         <div className="friendFundingDropdownBtn">
@@ -14,15 +22,11 @@ const FriendFundingDropdownBtn = ({ sortOption, onSortChange }) => {
                     className="mt-2"
                     data-bs-theme="dark"
                 >
-                    <Dropdown.Item onClick={() => onSortChange('이름순')} active={sortOption === '이름순'}>
-                        이름순
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => onSortChange('최신 등록순')} active={sortOption === '최신 등록순'}>
-                        최신 등록순
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => onSortChange('마감 임박순')} active={sortOption === '마감 임박순'}>
-                        마감 임박순
-                    </Dropdown.Item>
+                    {SORT_OPTIONS.map((option) => (
+                        <Dropdown.Item key={option} onClick={() => onSortChange(option)} active={sortOption === option}>
+                            {option}
+                        </Dropdown.Item>
+                    ))}
                 </DropdownButton>
             </>
         </div>

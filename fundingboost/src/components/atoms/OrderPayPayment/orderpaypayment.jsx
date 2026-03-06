@@ -1,24 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./orderpaypayment.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ErrorPage from "../../pages/error-handle-page/error-handle-page";
 
 export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint, totalPrice, selectedDeliveryItem }) {
+    const PAYMENT_METHOD = {
+        MIXED: "MIXED",
+        POINT_ONLY: "POINT_ONLY"
+    };
     const [inputAmount, setInputAmount] = useState("0");
-    const [usingPoint, setUsingPoint] = useState(0);
-    const [error, setError] = useState(false);
+    const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHOD.MIXED);
     const navigate = useNavigate();
 
-    console.log(selectedDeliveryItem);
-    console.log(selectedItems);
+    const numericPoint = Math.max(Number(point) || 0, 0);
+    const numericTotalPrice = Math.max(Number(totalPrice) || 0, 0);
+    const maxUsablePoint = Math.min(numericPoint, numericTotalPrice);
+    const parsedInputAmount = useMemo(() => {
+        const amount = Number(String(inputAmount).replaceAll(",", ""));
+        if (!Number.isFinite(amount)) {
+            return 0;
+        }
+        return Math.max(amount, 0);
+    }, [inputAmount]);
+    const usingPoint = Math.min(parsedInputAmount, maxUsablePoint);
+    const directPayAmount = Math.max(numericTotalPrice - usingPoint, 0);
+    const pointOnlyInsufficient = paymentMethod === PAYMENT_METHOD.POINT_ONLY && directPayAmount > 0;
 
+    useEffect(() => {
+        if (parsedInputAmount > maxUsablePoint) {
+            setInputAmount(maxUsablePoint.toString());
+        }
+    }, [parsedInputAmount, maxUsablePoint]);
 
-    const handlepmypaypayment = async () => {
+    useEffect(() => {
+        onUpdateUsingPoint(usingPoint);
+    }, [onUpdateUsingPoint, usingPoint]);
+
+    const handleOrderPayment = async () => {
         if (!selectedDeliveryItem) {
             alert("주소를 선택해주세요.");
             return;
         }
+        if (pointOnlyInsufficient) {
+            alert("포인트가 부족합니다. '포인트+일반결제'를 선택해주세요.");
+            return;
+        }
+
+        if (paymentMethod === PAYMENT_METHOD.MIXED && directPayAmount > 0) {
+            const confirmed = window.confirm(
+                `포인트 ${usingPoint.toLocaleString()}P를 사용하고 부족한 ${directPayAmount.toLocaleString()}원은 일반결제로 진행할까요?`
+            );
+            if (!confirmed) {
+                return;
+            }
+        }
+
         try {
             const accessToken = localStorage.getItem('accessToken');
 
@@ -31,21 +67,15 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
             const data = {
                 itemPayDtoList,
                 deliveryId: selectedDeliveryItem?.deliveryId,
-                usingPoint: usingPoint
+                usingPoint
             };
 
             const datanow = itemPayDtoList.length > 0 ? {
                 itemId: itemPayDtoList[0].itemId,
                 quantity:itemPayDtoList[0].quantity,
                 deliveryId: selectedDeliveryItem?.deliveryId,
-                usingPoint: usingPoint
-            } : {};
-
-            console.log("Request Data:", {
-                itemPayDtoList,
-                deliveryId: selectedDeliveryItem?.deliveryId,
                 usingPoint
-            });
+            } : {};
 
             const url = itemPayDtoList.some(item => item.giftHubId === null || item.giftHubId === undefined)
                 ? `${process.env.REACT_APP_FUNDINGBOOST}/pay/order/now`
@@ -69,65 +99,39 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                     return;
                 }
             }
-
-            console.log('POST 결과:', response.data);
             navigate("/order/pay/success");
         } catch (error) {
-            console.error('POST 에러:', error);
-            if (error.response && error.response.data && error.response.data.code === 50000) {
-                setError(true);
+            const errorCode = error?.response?.data?.code;
+            if (errorCode === 50000) {
+                navigate("/error");
+                return;
             }
+            alert(error?.response?.data?.message || "결제에 실패했습니다. 다시 시도해주세요.");
         }
     };
 
-    useEffect(() => {
-        if (selectedItems && selectedItems.itemPrice) {
-            // 설정된 기본값을 0으로 유지
-            setInputAmount("0");
-        } else {
-            console.error("selectedItems or itemPrice is missing or invalid", selectedItems);
-        }
-    }, [selectedItems]);
-
     const handleInputChange = (event) => {
-        const value = Number(event.target.value);
-        const maxPoint = Math.min(point, totalPrice); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
-
-        if (value > maxPoint) {
-            setInputAmount(maxPoint.toString());
-        } else if (value < 0) {
+        const onlyDigits = event.target.value.replace(/[^\d]/g, "");
+        if (!onlyDigits) {
             setInputAmount("0");
-        } else {
-            setInputAmount(value.toString());
+            return;
         }
-
-        setUsingPoint(value || 0);
-        onUpdateUsingPoint(value || 0);
+        const value = Number(onlyDigits);
+        if (!Number.isFinite(value)) {
+            setInputAmount("0");
+            return;
+        }
+        setInputAmount(Math.min(value, maxUsablePoint).toString());
     };
 
     const handleUseAllPoints = () => {
-        const maxPoint = Math.min(point, totalPrice); // 사용할 수 있는 최대 포인트는 포인트와 상품 가격 중 작은 값
-        setInputAmount(maxPoint.toString());
-        setUsingPoint(maxPoint); // usingPoint 업데이트
-        onUpdateUsingPoint(maxPoint); // 부모 컴포넌트로 usingPoint 업데이트
+        setInputAmount(maxUsablePoint.toString());
     };
-
-    const calculateTotalPrice = () => {
-        const usedPoints = isNaN(parseFloat(inputAmount)) ? 0 : parseFloat(inputAmount);
-        const remainingPrice = totalPrice - usedPoints;
-        return remainingPrice > 0 ? remainingPrice.toLocaleString() : "0";
-    };
-
-    const remainingPrice = calculateTotalPrice();
-
-    if (error) {
-        return <ErrorPage />;
-    }
 
     return (
         <div className="MyPayPointBox">
             <div className="MyPayPointView">
-                <div className="MyPayPointTitle">포인트</div>
+                <div className="MyPayPointTitle">포인트 사용</div>
                 <div className="MyPayPointGroup">
                     <div className="MyPayPointInput-wrapper">
                         <div className="MyPayPointInput">
@@ -135,19 +139,41 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                                 type="text"
                                 className="point"
                                 placeholder="0"
-                                value={inputAmount} // 입력된 금액 표시
-                                onChange={handleInputChange} // 입력값 변경 시 핸들러 호출
+                                value={usingPoint.toLocaleString()}
+                                onChange={handleInputChange}
                             />
                         </div>
                     </div>
                     <div className="MyPayPointText-P">P</div>
-                    <div className="MyPayPointButton-group-wrapper">
-                        <div className="MyPayPointButton-group">
-                            <button className="MyPayPointUse-all-point" onClick={handleUseAllPoints}>전액사용</button>
-                        </div>
-                    </div>
+                    <button className="MyPayPointUse-all-point" onClick={handleUseAllPoints}>전액사용</button>
                 </div>
-                <p className="MyPayPoint-remain-point">사용 가능 포인트 {point} P</p>
+                <p className="MyPayPoint-remain-point">사용 가능 포인트 {numericPoint.toLocaleString()} P</p>
+            </div>
+
+            <div className="MyPayMethodBox">
+                <div className="MyPayMethodTitle">결제 수단</div>
+                <div className="MyPayMethodOptions">
+                    <button
+                        type="button"
+                        className={`MyPayMethodOption ${paymentMethod === PAYMENT_METHOD.MIXED ? "active" : ""}`}
+                        onClick={() => setPaymentMethod(PAYMENT_METHOD.MIXED)}
+                    >
+                        포인트 + 일반결제
+                        <span className="methodBadge">추천</span>
+                    </button>
+                    <button
+                        type="button"
+                        className={`MyPayMethodOption ${paymentMethod === PAYMENT_METHOD.POINT_ONLY ? "active" : ""}`}
+                        onClick={() => setPaymentMethod(PAYMENT_METHOD.POINT_ONLY)}
+                    >
+                        포인트만 결제
+                    </button>
+                </div>
+                {pointOnlyInsufficient && (
+                    <p className="MyPayMethodWarning">
+                        현재 포인트로는 전액 결제가 불가능합니다. 일반결제를 함께 선택해주세요.
+                    </p>
+                )}
             </div>
 
             <div className="MyPayFundingPaymentInformationBox">
@@ -157,19 +183,31 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                     <div className="MyPayFundingPaymentInformationTotal-group">
                         <div className="MyPayFundingPaymentInformationGroup">
                             <div className="MyPayFundingPaymentInformationText">총 상품 금액</div>
-                            <div className="text-price">{totalPrice.toLocaleString()} 원</div>
+                            <div className="text-price">{numericTotalPrice.toLocaleString()} 원</div>
                         </div>
                         <div className="MyPayFundingPaymentInformationGroup">
                             <div className="MyPayFundingPaymentInformationText">사용한 포인트</div>
                             <div className="MyPayFundingPaymentInformationOverlap-group">
-                                <div className="text-price">- {inputAmount || "0"} 원</div>
+                                <div className="text-price">- {usingPoint.toLocaleString()} 원</div>
                             </div>
+                        </div>
+                        <div className="MyPayFundingPaymentInformationGroup">
+                            <div className="MyPayFundingPaymentInformationText">일반 결제 예정</div>
+                            <div className="text-price">{directPayAmount.toLocaleString()} 원</div>
                         </div>
                     </div>
                     <div className="line" alt="Line"/>
-                    <div className="total-price">{remainingPrice} 원</div>
+                    <div className="total-price">{directPayAmount.toLocaleString()} 원</div>
                 </div>
-                <button className="pay-request-button" onClick={handlepmypaypayment}> 결제하기 </button>
+                <button
+                    className="pay-request-button"
+                    disabled={pointOnlyInsufficient || numericTotalPrice <= 0}
+                    onClick={handleOrderPayment}
+                >
+                    {pointOnlyInsufficient
+                        ? "포인트가 부족합니다"
+                        : `${directPayAmount.toLocaleString()}원 결제하고 주문하기`}
+                </button>
             </div>
         </div>
     );

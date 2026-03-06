@@ -1,15 +1,20 @@
 .friendFunding-profile-Dday{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
   margin: 12px 20px 10px 20px;
 
   .friendFundingProfile {
     display: flex;
+    align-items: center;
 
 
     .friendProfileImg {
       width: 58px;
-      height: auto;
+      height: 58px;
+      object-fit: cover;
+      flex-shrink: 0;
       border-radius: 50%;
       border-color: #000000 !important;
       border: 1px solid;
@@ -52,7 +57,6 @@
   }
 
 }
-
 
 
 

@@ -5,7 +5,6 @@ import Calender from "../../../atoms/Calendar/calender";
 import './fundingRegistDetails.scss';
 
 function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange, messageText, endDate }) {
-    const [selectedTag, setSelectedTag] = useState("");
     const [selectedEndDate, setSelectedEndDate] = useState(endDate || new Date());
     const [selectedMessage, setSelectedMessage] = useState(messageText || "");
 
@@ -19,24 +18,15 @@ function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange, mess
     }, [onDateChange, endDate]);
 
     const handleTagSelect = (tagText) => {
-        setSelectedTag(tagText);
         onTagSelect(tagText);
 
         // 태그 선택 시 해당 태그의 메시지로 설정
-        let tagMessage = "";
-        switch (tagText) {
-            case "생일이에요🎉 축하해주세요":
-                tagMessage = "생일이에요🎉 축하해주세요";
-                break;
-            case "졸업했어요🧑‍🎓 축하해주세요":
-                tagMessage = "졸업했어요🧑‍🎓 축하해주세요";
-                break;
-            case "펀딩 해주세요🎁":
-                tagMessage = "펀딩 해주세요🎁";
-                break;
-            default:
-                tagMessage = "";
-        }
+        const tagMessageMap = {
+            생일: "생일이에요🎉 축하해주세요",
+            졸업: "졸업했어요🧑‍🎓 축하해주세요",
+            기타: "펀딩 해주세요🎁"
+        };
+        const tagMessage = tagMessageMap[tagText] || "";
         setSelectedMessage(tagMessage);
         onMessageChange(tagMessage);
     };
@@ -57,7 +47,7 @@ function FundingRegistDetails({ onTagSelect, onMessageChange, onDateChange, mess
                 <div>
                     <Calender onDateChange={handleEndDate} selectedDate={selectedEndDate} />
                     <FundingTagBtn onTagSelect={handleTagSelect} />
-                    <FundingMessage selectedTag={selectedTag} onMessageChange={handleMessageChange} messageText={selectedMessage} />
+                    <FundingMessage initialMessage={selectedMessage} onMessageChange={handleMessageChange} />
                 </div>
             </div>
         </div>
