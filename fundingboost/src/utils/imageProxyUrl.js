@@ -1,4 +1,6 @@
 const IMAGE_PROXY_PATH = process.env.REACT_APP_IMAGE_PROXY_PATH || "/img-proxy";
+const IMAGE_PROXY_THUMB_PATH = `${IMAGE_PROXY_PATH}-thumb`;
+const IMAGE_PROXY_LARGE_PATH = `${IMAGE_PROXY_PATH}-large`;
 const HTTP_URL_PATTERN = /^https?:\/\//i;
 const PROTOCOL_RELATIVE_PATTERN = /^\/\//;
 const DATA_OR_BLOB_PATTERN = /^(data:|blob:)/i;
@@ -9,6 +11,7 @@ const DEFAULT_THUMB_HEIGHT = 320;
 const DEFAULT_THUMB_SCALE = 2;
 const DEFAULT_THUMB_QUALITY = 82;
 const DEFAULT_THUMB_FORMAT = "fwebp";
+const LARGE_PROXY_THRESHOLD = 400;
 
 const encodeProxyParam = (targetUrl) =>
     encodeURI(targetUrl)
@@ -53,6 +56,35 @@ const buildKakaoThumbUrl = (originUrl, options = {}) => {
     return `${KAKAO_THUMB_ORIGIN}/thumb/C${width}x${height}@${scale}x.${format}.q${quality}/?fname=${encodedOrigin}`;
 };
 
+const hasResizeHint = (options = {}) =>
+    toPositiveInt(options.width, 0) > 0 || toPositiveInt(options.height, 0) > 0;
+
+const resolveNonKakaoProxyPath = (options = {}) => {
+    if (!hasResizeHint(options)) {
+        return IMAGE_PROXY_PATH;
+    }
+
+    const width = toPositiveInt(options.width, 0);
+    const height = toPositiveInt(options.height, 0);
+    const longestEdge = Math.max(width, height);
+
+    if (longestEdge > LARGE_PROXY_THRESHOLD) {
+        return IMAGE_PROXY_LARGE_PATH;
+    }
+    return IMAGE_PROXY_THUMB_PATH;
+};
+
+const buildProxyUrl = (sourceUrl, options = {}) => {
+    const parsed = new URL(sourceUrl);
+    const shouldUseKakaoThumb = shouldTransformKakaoThumb(parsed);
+    const targetUrl = shouldUseKakaoThumb ? buildKakaoThumbUrl(sourceUrl, options) : sourceUrl;
+    const proxyPath = shouldUseKakaoThumb
+        ? IMAGE_PROXY_PATH
+        : resolveNonKakaoProxyPath(options);
+
+    return `${proxyPath}?url=${encodeProxyParam(targetUrl)}`;
+};
+
 export const toImageProxyUrl = (value, options = {}) => {
     if (typeof value !== "string") {
         return value;
@@ -73,11 +105,7 @@ export const toImageProxyUrl = (value, options = {}) => {
 
     if (HTTP_URL_PATTERN.test(url)) {
         try {
-            const parsed = new URL(url);
-            const target = shouldTransformKakaoThumb(parsed)
-                ? buildKakaoThumbUrl(url, options)
-                : url;
-            return `${IMAGE_PROXY_PATH}?url=${encodeProxyParam(target)}`;
+            return buildProxyUrl(url, options);
         } catch (error) {
             return `${IMAGE_PROXY_PATH}?url=${encodeProxyParam(url)}`;
         }
@@ -86,11 +114,7 @@ export const toImageProxyUrl = (value, options = {}) => {
     if (PROTOCOL_RELATIVE_PATTERN.test(url)) {
         const normalized = `https:${url}`;
         try {
-            const parsed = new URL(normalized);
-            const target = shouldTransformKakaoThumb(parsed)
-                ? buildKakaoThumbUrl(normalized, options)
-                : normalized;
-            return `${IMAGE_PROXY_PATH}?url=${encodeProxyParam(target)}`;
+            return buildProxyUrl(normalized, options);
         } catch (error) {
             return `${IMAGE_PROXY_PATH}?url=${encodeProxyParam(normalized)}`;
         }

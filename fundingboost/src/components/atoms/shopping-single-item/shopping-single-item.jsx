@@ -27,7 +27,11 @@ export default function ShoppingSingleItem({ product }) {
                     </div>
                     <div className="img-wrapper">
                         <img
-                            src={toImageProxyUrl(itemImageUrl)}
+                            src={toImageProxyUrl(itemImageUrl, {
+                                width: 320,
+                                height: 320,
+                                quality: 80
+                            })}
                             width="100%"
                             style={{borderRadius: '3px'}}
                             alt={itemName}
