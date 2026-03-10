@@ -121,6 +121,10 @@ export default function ShoppingDetailMenu({
         }
 
         try {
+            const selectedOptionName = (selectOption && selectOption.trim().length > 0)
+                ? selectOption
+                : (parsedOptions[0] || "기본 옵션");
+
             const response = await fetch(`${process.env.REACT_APP_FUNDINGBOOST}/gifthub/${itemId}`, {
                 method: "POST",
                 headers: {
@@ -128,7 +132,8 @@ export default function ShoppingDetailMenu({
                     Authorization: `Bearer ${accessToken}`
                 },
                 body: JSON.stringify({
-                    quantity
+                    quantity,
+                    optionName: selectedOptionName
                 })
             });
 

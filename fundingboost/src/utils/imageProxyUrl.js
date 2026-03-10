@@ -4,14 +4,8 @@ const IMAGE_PROXY_LARGE_PATH = `${IMAGE_PROXY_PATH}-large`;
 const HTTP_URL_PATTERN = /^https?:\/\//i;
 const PROTOCOL_RELATIVE_PATTERN = /^\/\//;
 const DATA_OR_BLOB_PATTERN = /^(data:|blob:)/i;
-const KAKAO_CDN_HOST_PATTERN = /(^|\.)kakaocdn\.net$/i;
-const KAKAO_THUMB_ORIGIN = process.env.REACT_APP_KAKAO_THUMB_ORIGIN || "https://img1.kakaocdn.net";
-const DEFAULT_THUMB_WIDTH = 320;
-const DEFAULT_THUMB_HEIGHT = 320;
-const DEFAULT_THUMB_SCALE = 2;
-const DEFAULT_THUMB_QUALITY = 82;
-const DEFAULT_THUMB_FORMAT = "fwebp";
 const LARGE_PROXY_THRESHOLD = 400;
+const KAKAO_THUMB_HOST = "img1.kakaocdn.net";
 
 const encodeProxyParam = (targetUrl) =>
     encodeURI(targetUrl)
@@ -27,39 +21,10 @@ const toPositiveInt = (value, fallback) => {
     return Math.floor(parsed);
 };
 
-const toKakaoThumbFormat = (value) => {
-    if (typeof value !== "string" || !value.trim()) {
-        return DEFAULT_THUMB_FORMAT;
-    }
-    const normalized = value.trim().toLowerCase();
-    return normalized.startsWith("f") ? normalized : `f${normalized}`;
-};
-
-const shouldTransformKakaoThumb = (urlObj) => {
-    if (!KAKAO_CDN_HOST_PATTERN.test(urlObj.hostname)) {
-        return false;
-    }
-    if (urlObj.hostname.toLowerCase() === "img1.kakaocdn.net" && urlObj.pathname.startsWith("/thumb/")) {
-        return false;
-    }
-    return true;
-};
-
-const buildKakaoThumbUrl = (originUrl, options = {}) => {
-    const width = toPositiveInt(options.width, DEFAULT_THUMB_WIDTH);
-    const height = toPositiveInt(options.height, DEFAULT_THUMB_HEIGHT);
-    const scale = toPositiveInt(options.scale, DEFAULT_THUMB_SCALE);
-    const quality = toPositiveInt(options.quality, DEFAULT_THUMB_QUALITY);
-    const format = toKakaoThumbFormat(options.format);
-    const encodedOrigin = encodeURIComponent(originUrl);
-
-    return `${KAKAO_THUMB_ORIGIN}/thumb/C${width}x${height}@${scale}x.${format}.q${quality}/?fname=${encodedOrigin}`;
-};
-
 const hasResizeHint = (options = {}) =>
     toPositiveInt(options.width, 0) > 0 || toPositiveInt(options.height, 0) > 0;
 
-const resolveNonKakaoProxyPath = (options = {}) => {
+const resolveProxyPath = (options = {}) => {
     if (!hasResizeHint(options)) {
         return IMAGE_PROXY_PATH;
     }
@@ -74,13 +39,55 @@ const resolveNonKakaoProxyPath = (options = {}) => {
     return IMAGE_PROXY_THUMB_PATH;
 };
 
+const safeDecodeURIComponent = (value) => {
+    if (typeof value !== "string") {
+        return value;
+    }
+
+    let decoded = value;
+    for (let i = 0; i < 3; i += 1) {
+        try {
+            const next = decodeURIComponent(decoded);
+            if (next === decoded) {
+                break;
+            }
+            decoded = next;
+        } catch (error) {
+            break;
+        }
+    }
+    return decoded;
+};
+
+const toCanonicalSourceUrl = (sourceUrl, parsedSourceUrl) => {
+    if (
+        parsedSourceUrl.hostname.toLowerCase() !== KAKAO_THUMB_HOST ||
+        !parsedSourceUrl.pathname.startsWith("/thumb/")
+    ) {
+        return sourceUrl;
+    }
+
+    const rawFname = parsedSourceUrl.searchParams.get("fname");
+    if (!rawFname) {
+        return sourceUrl;
+    }
+
+    const decodedFname = safeDecodeURIComponent(rawFname.trim());
+    if (!HTTP_URL_PATTERN.test(decodedFname)) {
+        return sourceUrl;
+    }
+
+    try {
+        return new URL(decodedFname).toString();
+    } catch (error) {
+        return sourceUrl;
+    }
+};
+
 const buildProxyUrl = (sourceUrl, options = {}) => {
     const parsed = new URL(sourceUrl);
-    const shouldUseKakaoThumb = shouldTransformKakaoThumb(parsed);
-    const targetUrl = shouldUseKakaoThumb ? buildKakaoThumbUrl(sourceUrl, options) : sourceUrl;
-    const proxyPath = shouldUseKakaoThumb
-        ? IMAGE_PROXY_PATH
-        : resolveNonKakaoProxyPath(options);
+    const targetUrl = toCanonicalSourceUrl(sourceUrl, parsed);
+    const proxyPath = resolveProxyPath(options);
 
     return `${proxyPath}?url=${encodeProxyParam(targetUrl)}`;
 };

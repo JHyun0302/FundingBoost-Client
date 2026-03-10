@@ -98,7 +98,7 @@
 
 .admin-kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -130,6 +130,35 @@
     font-size: 13px;
     font-weight: 500;
   }
+
+  small {
+    display: block;
+    margin-top: 6px;
+    color: #717983;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.admin-kpi-card-traffic {
+  strong {
+    font-size: 23px;
+  }
+}
+
+.admin-kpi-card-traffic.mode-normal {
+  border-color: #cfdcc9;
+  background: #f8fff6;
+}
+
+.admin-kpi-card-traffic.mode-offload {
+  border-color: #d9d0b0;
+  background: #fffdf3;
+}
+
+.admin-kpi-card-traffic.mode-throttle {
+  border-color: #f1c4c4;
+  background: #fff4f4;
 }
 
 .admin-panel {

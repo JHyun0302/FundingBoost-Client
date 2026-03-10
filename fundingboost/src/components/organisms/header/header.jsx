@@ -112,8 +112,15 @@ function HeaderBar() {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        navigate(`/shopping?search=${searchQuery}`);
-        // navigate(`/shopping`);
+        const normalizedQuery = searchQuery.trim();
+        if (!normalizedQuery) {
+            navigate('/shopping');
+            return;
+        }
+
+        const params = new URLSearchParams();
+        params.set('search', normalizedQuery);
+        navigate(`/shopping?${params.toString()}`);
     };
 
     return (

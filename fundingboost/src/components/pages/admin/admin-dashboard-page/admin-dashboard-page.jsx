@@ -8,6 +8,13 @@ import { toImageProxyUrl } from "../../../../utils/imageProxyUrl";
 
 const formatNumber = (value) => Number(value || 0).toLocaleString('ko-KR');
 const ADMIN_MEMBER_PAGE_SIZE = 10;
+const EDGE_TRAFFIC_STATUS_PATH = '/_edge/traffic-status';
+
+const TRAFFIC_MODE_LABEL = {
+    normal: '정상',
+    offload: '정적 오프로딩',
+    throttle: '이미지 프록시 제한'
+};
 
 const toDateObject = (value) => {
     if (!value) {
@@ -79,6 +86,15 @@ const toDday = (deadline) => {
     return `D-${diffDays}`;
 };
 
+const toTrafficNumber = (value, fallback = 0) => {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+};
+
+const formatTrafficTb = (value) => toTrafficNumber(value).toFixed(4);
+
+const formatTrafficPercent = (value) => `${toTrafficNumber(value).toFixed(2)}%`;
+
 function AdminDashboardPage() {
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('accessToken');
@@ -97,6 +113,9 @@ function AdminDashboardPage() {
     const [memberRoleFilter, setMemberRoleFilter] = useState('ALL');
     const [memberPage, setMemberPage] = useState(0);
     const [updatingMemberId, setUpdatingMemberId] = useState(null);
+    const [trafficStatus, setTrafficStatus] = useState(null);
+    const [trafficLoading, setTrafficLoading] = useState(false);
+    const [trafficError, setTrafficError] = useState('');
 
     const authConfig = useMemo(
         () => ({
@@ -243,6 +262,30 @@ function AdminDashboardPage() {
         navigate(`/adm/barcode-lab?token=${encodeURIComponent(token)}&autoverify=1`);
     }, [navigate]);
 
+    const loadTrafficStatus = useCallback(async () => {
+        setTrafficLoading(true);
+        setTrafficError('');
+        try {
+            const response = await axios.get(EDGE_TRAFFIC_STATUS_PATH, { responseType: 'json' });
+            setTrafficStatus(response?.data || null);
+        } catch (error) {
+            setTrafficError('트래픽 상태를 불러오지 못했습니다.');
+            setTrafficStatus(null);
+        } finally {
+            setTrafficLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (accessState !== 'ready') {
+            return;
+        }
+
+        loadTrafficStatus();
+        const interval = window.setInterval(loadTrafficStatus, 60_000);
+        return () => window.clearInterval(interval);
+    }, [accessState, loadTrafficStatus]);
+
     return (
         <div className="admin-dashboard-page">
             <HeaderBar />
@@ -325,6 +368,22 @@ function AdminDashboardPage() {
                                 <h3>거래액(GMV)</h3>
                                 <strong>{formatNumber(dashboard.kpi?.totalRevenue)}원</strong>
                                 <p>오늘 {formatNumber(dashboard.kpi?.todayRevenue)}원</p>
+                            </article>
+                            <article className={`admin-kpi-card admin-kpi-card-traffic ${trafficStatus?.mode ? `mode-${trafficStatus.mode}` : ''}`}>
+                                <h3>월 누적 트래픽 (Edge)</h3>
+                                <strong>
+                                    {trafficLoading
+                                        ? '조회 중...'
+                                        : `${formatTrafficTb(trafficStatus?.monthlyTb)} / ${toTrafficNumber(trafficStatus?.thresholdTb, 10)}TB`}
+                                </strong>
+                                <p>
+                                    {trafficError || `임계치 사용률 ${formatTrafficPercent(trafficStatus?.thresholdRatio)}`}
+                                </p>
+                                {!trafficError && trafficStatus && (
+                                    <small>
+                                        모드: {TRAFFIC_MODE_LABEL[trafficStatus.mode] || trafficStatus.mode} · 기준월: {trafficStatus.month || '-'}
+                                    </small>
+                                )}
                             </article>
                         </section>
 

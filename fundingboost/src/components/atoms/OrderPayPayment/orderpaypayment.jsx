@@ -63,7 +63,8 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
             const itemPayDtoList = Array.isArray(selectedItems) ? selectedItems.map(item => ({
                 itemId: item.itemId,
                 giftHubId: item.giftHubItemId,
-                quantity: item.quantity
+                quantity: item.quantity,
+                optionName: item.optionName
             })) : [];
 
             const data = {
@@ -76,7 +77,8 @@ export default function OrderpayPoint({ point, selectedItems, onUpdateUsingPoint
                 itemId: itemPayDtoList[0].itemId,
                 quantity:itemPayDtoList[0].quantity,
                 deliveryId: selectedDeliveryItem?.deliveryId,
-                usingPoint
+                usingPoint,
+                optionName: itemPayDtoList[0].optionName
             } : {};
 
             const url = itemPayDtoList.some(item => item.giftHubId === null || item.giftHubId === undefined)

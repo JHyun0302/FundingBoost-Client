@@ -50,12 +50,14 @@ const ShoppingPane = () => {
     const [hasNext, setHasNext] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const loader = useRef(null);
+    const requestAbortController = useRef(null);
+    const requestSequence = useRef(0);
     const location = useLocation();
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const newSearchQuery = searchParams.get('search');
-        setSearchQuery(newSearchQuery || '');
+        setSearchQuery((newSearchQuery || '').trim());
         setSelectedCategory({ name: '전체', param: '' });
         setItemData([]);
         setCurrentPage(0);
@@ -78,12 +80,21 @@ const ShoppingPane = () => {
     };
 
     const fetchData = async (category, searchQueryParam, page, reset = false) => {
-        if (isLoading || (!reset && !hasNext)) return;
+        if (reset && requestAbortController.current) {
+            requestAbortController.current.abort();
+        }
+        if (!reset && (isLoading || !hasNext)) return;
+
+        const requestId = ++requestSequence.current;
         setIsLoading(true);
         setErrorMessage('');
+        let abortController = null;
 
         try {
             const apiV3Base = process.env.REACT_APP_FUNDINGBOOST_V3 || "/api/v3";
+            const normalizedSearchQuery = typeof searchQueryParam === 'string'
+                ? searchQueryParam.trim()
+                : '';
             const params = new URLSearchParams();
 
             if (category.param) {
@@ -93,13 +104,16 @@ const ShoppingPane = () => {
             params.set('page', String(page));
 
             let url = `${apiV3Base}/items?${params.toString()}`;
-            if (searchQueryParam) {
+            if (normalizedSearchQuery) {
                 const searchParams = new URLSearchParams();
-                searchParams.set('keyword', searchQueryParam);
+                searchParams.set('keyword', normalizedSearchQuery);
                 searchParams.set('size', '20');
                 searchParams.set('page', String(page));
                 url = `${apiV3Base}/search?${searchParams.toString()}`;
             }
+
+            abortController = new AbortController();
+            requestAbortController.current = abortController;
 
             const accessToken = getStoredAccessToken();
             const headers = {
@@ -115,6 +129,8 @@ const ShoppingPane = () => {
                 response = await axios.get(url, {
                     responseType: 'json',
                     headers,
+                    signal: abortController.signal,
+                    timeout: 10000,
                 });
             } catch (error) {
                 if (error?.response?.status !== 401 || !accessToken) {
@@ -129,7 +145,13 @@ const ShoppingPane = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    signal: abortController.signal,
+                    timeout: 10000,
                 });
+            }
+
+            if (requestId !== requestSequence.current) {
+                return;
             }
 
             const data = response.data;
@@ -146,10 +168,22 @@ const ShoppingPane = () => {
             setHasNext(Boolean(data?.data?.hasNext));
             setCurrentPage(page + 1);
         } catch (error) {
+            if (requestId !== requestSequence.current) {
+                return;
+            }
+            if (error?.name === 'CanceledError') {
+                return;
+            }
             console.error("Error fetching data:", error);
             setErrorMessage('상품을 불러오지 못했습니다.');
+            setHasNext(false);
         } finally {
-            setIsLoading(false);
+            if (requestAbortController.current === abortController) {
+                requestAbortController.current = null;
+            }
+            if (requestId === requestSequence.current) {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -163,6 +197,12 @@ const ShoppingPane = () => {
         setHasNext(true);
         fetchData(selectedCategory, searchQuery, 0, true);
     }, [selectedCategory, searchQuery]);
+
+    useEffect(() => () => {
+        if (requestAbortController.current) {
+            requestAbortController.current.abort();
+        }
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
